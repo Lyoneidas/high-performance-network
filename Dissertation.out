@@ -1,0 +1,42 @@
+\BOOKMARK [0][-]{chapter.1}{Thesis Background and Literature Review}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Thesis}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Objectives}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Overall Design}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Main Objective}{section.1.2}% 5
+\BOOKMARK [1][-]{section.1.3}{Literature review}{chapter.1}% 6
+\BOOKMARK [2][-]{subsection.1.3.1}{Market Data Feed}{section.1.3}% 7
+\BOOKMARK [2][-]{subsection.1.3.2}{Low Latency Network Infrastructure}{section.1.3}% 8
+\BOOKMARK [2][-]{subsection.1.3.3}{A-B Data Feed}{section.1.3}% 9
+\BOOKMARK [2][-]{subsection.1.3.4}{Scalable Interconnect Switches in Supercomputers}{section.1.3}% 10
+\BOOKMARK [2][-]{subsection.1.3.5}{Field-programmable gate array\(FPGA\) and Integration with Open Sourced Hardware}{section.1.3}% 11
+\BOOKMARK [2][-]{subsection.1.3.6}{Open Sourced Hardware}{section.1.3}% 12
+\BOOKMARK [2][-]{subsection.1.3.7}{Similar Solution}{section.1.3}% 13
+\BOOKMARK [0][-]{chapter.2}{Methodology}{}% 14
+\BOOKMARK [1][-]{section.2.1}{Remote Direct Memory Access\(RDMA\)}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.1.1}{Two Important Concepts: Verbs and Queue Pairs}{section.2.1}% 16
+\BOOKMARK [2][-]{subsection.2.1.2}{Queue Pair}{section.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.3}{RNIC Verbs}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.4}{Implementation Details of Verbs}{section.2.1}% 19
+\BOOKMARK [1][-]{section.2.2}{Fat-tree topology implementation over RDMA}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.1}{Reducing the Cost in Node Intercommunication}{section.2.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.2}{Analysing flat topology and fat-tree topology}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.3}{Rebalancing the fat-tree over network bandwidth}{section.2.2}% 23
+\BOOKMARK [1][-]{section.2.3}{RDMA verb implementation: Infiniband Verbs}{chapter.2}% 24
+\BOOKMARK [2][-]{subsection.2.3.1}{Building the Passive Side}{section.2.3}% 25
+\BOOKMARK [2][-]{subsection.2.3.2}{Conclusion}{section.2.3}% 26
+\BOOKMARK [1][-]{section.2.4}{MPI-CH}{chapter.2}% 27
+\BOOKMARK [2][-]{subsection.2.4.1}{Introduction to SPMD and MPMD}{section.2.4}% 28
+\BOOKMARK [2][-]{subsection.2.4.2}{The architecture of MPI-CH}{section.2.4}% 29
+\BOOKMARK [0][-]{chapter.3}{System Design and Implementation}{}% 30
+\BOOKMARK [1][-]{section.3.1}{Logical design}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.1.1}{Implementation of fat-tree strategy}{section.3.1}% 32
+\BOOKMARK [1][-]{section.3.2}{Algorithm design}{chapter.3}% 33
+\BOOKMARK [0][-]{chapter.4}{Requirements}{}% 34
+\BOOKMARK [0][-]{chapter.5}{Implementation and Testing}{}% 35
+\BOOKMARK [0][-]{chapter.6}{Results}{}% 36
+\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 37
+\BOOKMARK [0][-]{appendix.A}{Design Diagrams}{}% 38
+\BOOKMARK [0][-]{appendix.B}{User Documentation}{}% 39
+\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 40
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 41
+\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 42

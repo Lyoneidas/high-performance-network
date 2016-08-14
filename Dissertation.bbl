@@ -1,0 +1,217 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Aho \harvardand\ Hopcroft}{1974}{aho1974design}
+Aho, A.~V. \harvardand\ Hopcroft, J.~E.  \harvardyearleft 1974\harvardyearright
+  , {\em The design and analysis of computer algorithms}, Pearson Education
+  India.
+
+\harvarditem{Alexander}{2001}{alexander2001market}
+Alexander, C.  \harvardyearleft 2001\harvardyearright , {\em Market models: A
+  guide to financial data analysis}, John Wiley \& Sons.
+
+\harvarditem{Archer \harvardand\ Blocksome}{2012}{archer2012remote}
+Archer, C.~J. \harvardand\ Blocksome, M.~A.  \harvardyearleft
+  2012\harvardyearright , `Remote direct memory access'.
+\newblock US Patent 8,325,633.
+
+\harvarditem[Arndt et~al.]{Arndt, Beukema, Craddock, Gregg, Schmidt
+  \harvardand\ Walk}{2003}{arndt2003infiniband}
+Arndt, R., Beukema, B., Craddock, D., Gregg, T., Schmidt, D. \harvardand\ Walk,
+  B.  \harvardyearleft 2003\harvardyearright , `Infiniband subnet management
+  queue pair emulation for multiple logical ports on a single physical port'.
+\newblock US Patent App. 10/626,988.
+
+\harvarditem{Bedeir}{2010}{bedeir2010building}
+Bedeir, T.  \harvardyearleft 2010\harvardyearright , Building an rdma-capable
+  application with ib verbs, Technical report, Technical report, http://www.
+  hpcadvisorycouncil. com/, August 2010. http://www. hpcadvisorycouncil.
+  com/pdf/building-an-rdma-capableapplication-with-ib-verbs. pdf.
+
+\harvarditem{Behrooz}{2005}{behrooz2005computer}
+Behrooz, P.  \harvardyearleft 2005\harvardyearright , `Computer architecture:
+  From microprocessors to supercomputers'.
+
+\harvarditem[Boyd et~al.]{Boyd, Joseph, Ko \harvardand\
+  Recio}{2007}{boyd2007memory}
+Boyd, W.~T., Joseph, D.~J., Ko, M.~A. \harvardand\ Recio, R.~J.
+  \harvardyearleft 2007\harvardyearright , `Memory management offload for rdma
+  enabled network adapters'.
+\newblock US Patent 7,299,266.
+
+\harvarditem{Brown}{2004}{brown2004engineering}
+Brown, R.~G.  \harvardyearleft 2004\harvardyearright , `Engineering a
+  beowulf-style compute cluster', {\em Duke University Physics Department} .
+
+\harvarditem{Cisco}{n.d.}{ciscoWhitePaper}
+Cisco  \harvardyearleft n.d.\harvardyearright , `The next generation trading
+  infrasturcture',
+  \url{http://www.cisco.com/c/dam/en/us/products/collateral/switches/nexus-3000-series-switches/white_paper_c11-720080.pdf}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Clos}{1953}{clos1953study}
+Clos, C.  \harvardyearleft 1953\harvardyearright , `A study of non-blocking
+  switching networks', {\em Bell System Technical Journal} {\bf
+  32}(2),~406--424.
+
+\harvarditem{Darema}{2001}{darema2001spmd}
+Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
+  present and future, {\em in} `European Parallel Virtual Machine/Message
+  Passing Interface Users’ Group Meeting', Springer, pp.~1--1.
+
+\harvarditem{Dimitrov \harvardand\ Skjellum}{1999}{dimitrov1999efficient}
+Dimitrov, R. \harvardand\ Skjellum, A.  \harvardyearleft 1999\harvardyearright
+  , An efficient mpi implementation for virtual interface (vi)
+  architecture-enabled cluster computing, {\em in} `Proceedings of the Third
+  MPI Developer’s Conference'.
+
+\harvarditem[Dongarra et~al.]{Dongarra, Otto, Snir \harvardand\
+  Walker}{1995}{dongarra1995introduction}
+Dongarra, J.~J., Otto, S.~W., Snir, M. \harvardand\ Walker, D.
+  \harvardyearleft 1995\harvardyearright , `An introduction to the mpi
+  standard', {\em Communications of the ACM} p.~18.
+
+\harvarditem{Ellis}{1980}{ellis1980concurrent}
+Ellis, C.~S.  \harvardyearleft 1980\harvardyearright , `Concurrent search and
+  insertion in avl trees', {\em IEEE Transactions on Computers} {\bf
+  100}(9),~811--817.
+
+\harvarditem{FX}{n.d.}{logipi}
+FX, V.  \harvardyearleft n.d.\harvardyearright , `Logi pi fpga user manual',
+  \url{http://valentfx.com/wiki/index.php?title=Logi-Pi_Quick_Start_Guide}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem[Garcia et~al.]{Garcia, Hilland, Culley, Barron \harvardand\
+  Krause}{2006}{garcia2006binding}
+Garcia, D.~J., Hilland, J.~R., Culley, P.~R., Barron, D.~L. \harvardand\
+  Krause, M.~R.  \harvardyearleft 2006\harvardyearright , `Binding a memory
+  window to a queue pair'.
+\newblock US Patent 7,103,744.
+
+\harvarditem{Gropp \harvardand\ Lusk}{1996}{gropp1996high}
+Gropp, W. \harvardand\ Lusk  \harvardyearleft 1996\harvardyearright , `A
+  high-performance, portable implementation of the mpi message passing
+  interface standard', {\em Parallel computing} {\bf 22}(6),~789--828.
+
+\harvarditem{Gropp \harvardand\ Lusk}{1994}{gropp1994abstract}
+Gropp, W. \harvardand\ Lusk, E.  \harvardyearleft 1994\harvardyearright , `An
+  abstract device definition to support the implementation of a high-level
+  point-to-point message-passing interface', {\em Preprint MCS-P342-1193,
+  Mathematics and Computer Science Division, Argonne National Laboratory,
+  Argonne, Ill} .
+
+\harvarditem{Hauck \harvardand\ DeHon}{2010}{hauck2010reconfigurable}
+Hauck, S. \harvardand\ DeHon, A.  \harvardyearleft 2010\harvardyearright , {\em
+  Reconfigurable computing: the theory and practice of FPGA-based computation},
+  Vol.~1, Morgan Kaufmann.
+
+\harvarditem[Hilland et~al.]{Hilland, Culley, Pinkerton \harvardand\
+  Recio}{2003}{hilland2003rdma}
+Hilland, J., Culley, P., Pinkerton, J. \harvardand\ Recio, R.  \harvardyearleft
+  2003\harvardyearright , `Rdma protocol verbs specification', {\em RDMAC
+  Consortium Draft Specification draft-hilland-iwarp-verbsv1. 0-RDMAC} .
+
+\harvarditem{Kendall}{n.d.}{kendall_2016}
+Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
+  introduction · mpi tutorial',
+  \url{http://mpitutorial.com/tutorials/mpi-introduction/}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Klaas}{2004}{klaas2004system}
+Klaas, J.  \harvardyearleft 2004\harvardyearright , `System-on-a-chip'.
+\newblock US Patent 6,816,750.
+
+\harvarditem{Laumonier}{n.d.}{htfbackyard}
+Laumonier, A.  \harvardyearleft n.d.\harvardyearright , `Hft in my backyard',
+  \url{https://sniperinmahwah.wordpress.com/2014/09/22/hft-in-my-backyard-part-i/}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Le}{2009}{le2009automated}
+Le, D.  \harvardyearleft 2009\harvardyearright , `Automated trading system'.
+
+\harvarditem{Leiserson}{1985}{leiserson1985fat}
+Leiserson, C.~E.  \harvardyearleft 1985\harvardyearright , `Fat-trees:
+  universal networks for hardware-efficient supercomputing', {\em IEEE
+  transactions on Computers} {\bf 100}(10),~892--901.
+
+\harvarditem[Liu et~al.]{Liu, Wu \harvardand\ Panda}{2004}{liu2004high}
+Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
+  2004\harvardyearright , `High performance rdma-based mpi implementation over
+  infiniband', {\em International Journal of Parallel Programming} {\bf
+  32}(3),~167--198.
+
+\harvarditem[Morris et~al.]{Morris, Thomas \harvardand\
+  Luk}{2009}{morris2009fpga}
+Morris, G.~W., Thomas, D.~B. \harvardand\ Luk, W.  \harvardyearleft
+  2009\harvardyearright , Fpga accelerated low-latency market data feed
+  processing, {\em in} `2009 17th IEEE Symposium on High Performance
+  Interconnects', IEEE, pp.~83--89.
+
+\harvarditem{MPI-CH}{n.d.}{mpich_doc_adi3}
+MPI-CH  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
+  \url{https://wiki.mpich.org/mpich/index.php/CH3_And_Channels}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Org}{n.d.}{mpich_doc}
+Org, M.-C.  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
+  \url{http://www.mpich.org/static/docs/v3.2/www3/MPI_Init.html}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\
+  Suo}{2014}{pang2014th}
+Pang, Z., Xie, M., Zhang, J., Zheng, Y., Wang, G., Dong, D. \harvardand\ Suo,
+  G.  \harvardyearleft 2014\harvardyearright , `The th express high performance
+  interconnect networks', {\em Frontiers of Computer Science} {\bf
+  8}(3),~357--366.
+
+\harvarditem{Postel}{n.d.}{udpprotocol}
+Postel, J.  \harvardyearleft n.d.\harvardyearright , `Rfc 768 user datagram
+  protocol', \url{https://tools.ietf.org/html/rfc768}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Protopopov \harvardand\
+  Skjellum}{2001}{protopopov2001multithreaded}
+Protopopov, B.~V. \harvardand\ Skjellum, A.  \harvardyearleft
+  2001\harvardyearright , `A multithreaded message passing interface (mpi)
+  architecture: Performance and program issues', {\em Journal of Parallel and
+  Distributed Computing} {\bf 61}(4),~449--466.
+
+\harvarditem{Russell}{2012}{RobertRDMAintro}
+Russell, R.~D.  \harvardyearleft 2012\harvardyearright , `Introduction to rdma
+  programming'.
+\newblock US Patent App. 10/929,943.
+
+\harvarditem{Schwartz}{1980}{schwartz1980ultracomputers}
+Schwartz, J.~T.  \harvardyearleft 1980\harvardyearright , `Ultracomputers',
+  {\em ACM Transactions on Programming Languages and Systems (TOPLAS)} {\bf
+  2}(4),~484--521.
+
+\harvarditem{Stone}{1971}{stone1971parallel}
+Stone, H.~S.  \harvardyearleft 1971\harvardyearright , `Parallel processing
+  with the perfect shuffle', {\em IEEE transactions on computers} {\bf
+  20}(2),~153--161.
+
+\harvarditem{Stout \harvardand\ Warren}{1986}{stout1986tree}
+Stout, Q.~F. \harvardand\ Warren, B.~L.  \harvardyearleft 1986\harvardyearright
+  , `Tree rebalancing in optimal time and space', {\em Communications of the
+  ACM} {\bf 29}(9),~902--908.
+
+\harvarditem{Yahoo!}{n.d.}{financeyahoo}
+Yahoo!  \harvardyearleft n.d.\harvardyearright , `Yahoo! finance api',
+  \url{http://finance.yahoo.com/quote/API?ltr=1}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem[Yang et~al.]{Yang, Liao, Lu, Hu, Song \harvardand\
+  Su}{2011}{yang2011tianhe}
+Yang, X.-J., Liao, X.-K., Lu, K., Hu, Q.-F., Song, J.-Q. \harvardand\ Su, J.-S.
+   \harvardyearleft 2011\harvardyearright , `The tianhe-1a supercomputer: its
+  hardware and software', {\em Journal of Computer Science and Technology} {\bf
+  26}(3),~344--351.
+
+\harvarditem[Zusman et~al.]{Zusman, Tang, Nakelsky, Verbeck \harvardand\
+  Azizian}{1999}{zusman1999fault}
+Zusman, J., Tang, J.~L., Nakelsky, R.~S., Verbeck, S.~L. \harvardand\ Azizian,
+  D.  \harvardyearleft 1999\harvardyearright , `Fault-tolerant central ticker
+  plant system for distributing financial market data'.
+\newblock US Patent 5,987,432.
+
+\end{thebibliography}
