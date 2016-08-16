@@ -202,8 +202,8 @@ Solution provided by TH Express is efficient but too expensive to achieve, howev
 Market data hardware infrastructure providers offer variates of solutions to reduce the latency in market data feed. The most recent solution is to implementing FPGA hardware algorithm with ARM based SoC. It accepts A-B feed from normal network interfaces and perform the decompression and filtering via algorithm in FPGA, the ARM CPU focuses on mission dispatch and status monitor.\\
 One of the well-known solution provider is the Enyx, the platform of which is based on Altera Stratix V FPGA board. The rebroadcasting latency for the FPGA supported market data processor can reach 1050 nano seconds, and average latency is 1300 nano seconds\cite{ciscoWhitePaper}. Other commercial solutions supports implementation of trading logic in the switch FPGA, that the terminals from the traders only monitors the macro status of the system, and execution of trading signals only relies on the hardware implemented applications, which reduces the event-reaction time significantly.\\ 
 
-\chapter{Methodology}
-This chapter introduces four key technology in the project: Remote direct memory access, fat-tree topology, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
+\chapter{Details of Implemented Technologies}
+This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[H]
@@ -216,7 +216,7 @@ Technology                                                               & Imple
 \begin{tabular}[c]{@{}l@{}}Remote Direct \\ Memory Access\end{tabular}   & Infiniband RMDA                                                         & \begin{tabular}[c]{@{}l@{}}Infiniband verb implementation\\ over RDMA data engine and \\ protocols\end{tabular}                                                  \\ \hline
 \begin{tabular}[c]{@{}l@{}}Fat-tree topology \\ netowork\end{tabular}    & \begin{tabular}[c]{@{}l@{}}Fat-tree over\\ infiniband RDMA\end{tabular} & \begin{tabular}[c]{@{}l@{}}Fat-tree network for RDMA \\ internet layer to communicate\\ more efficiently\end{tabular}                                            \\ \hline
 \begin{tabular}[c]{@{}l@{}}Message Passing\\ Interfaces\end{tabular}     & MPI-CH standard v2                                                      & \begin{tabular}[c]{@{}l@{}}Integrating the hardware platform \\ to a multi-process cluster over a \\ shared memory managed by RDMA\end{tabular}                  \\ \hline
-\begin{tabular}[c]{@{}l@{}}Field Programmable\\ Field Array\end{tabular} & Sparta FPGA                                                             & \begin{tabular}[c]{@{}l@{}}Introducing FPGA to assist CPU \\ clusters handling problems that \\ are hard to be separated into \\ paralleled threads\end{tabular} \\ \bottomrule
+\begin{tabular}[c]{@{}l@{}}Field Programmable\\ Gate Array\end{tabular} & Sparta FPGA                                                             & \begin{tabular}[c]{@{}l@{}}Introducing FPGA to assist CPU \\ clusters handling problems that \\ are hard to be separated into \\ paralleled threads\end{tabular} \\ \bottomrule
 \end{tabular}
 \end{table}
 The implementation of these methods are carefully selected, to fit the architecture and achieve the best performance. MPI structure with RDMA is not a new technology, however, it has not been implemented over the dual-feed switches yet, so the design of the structure is different from a normal MPI cluster. The network topology in implementation is also another innovation because this design is usually in the computational nodes, and the project introduces fat-tree RDMA network to reduce the requirement in hardware performances of single node.\\
@@ -416,7 +416,6 @@ The active side maintains a route to peer nodes for both active and passive side
 This section introduces the RDMA method for memory management, and the fat-tree topology we need to implemented assisting the RDMA for better performances.\\
 The purpose of implementing RDMA in the project is to overcome the weakness in computational power in open-source hardware, which is usually based on ARM processors with limited memory spaces. The established commercial solution to this problem usually contains an unified memory flash.The RDMA enables us to introduce fragmented memory hardware into an virtually unified one. \\
 The purpose of implementing fat-tree topology is inspired by the TH-Express high performance computation clusters, which uses fat-tree interconnection network to solve the problem of low-latency network infrastructure\cite{pang2014th}. In this particular project, fragmented nodes makes it different than implementing a centralized routing system, which have fixed bandwidth balance. The implementation of rebalancing load among node clusters makes it possible to dynamically add/remove nodes.\\
-\newpage
 \section{MPI-CH}
 Researchers introduce the MPI to build a portable and scalable multi-threading platform over heterogeneous hardware environment\cite{dongarra1995introduction}.To understand the necessity of this interface, a brief introduction of message passing model need to be introduced.\\
 Most parallel applications were for scientific purposes\cite{kendall_2016}. Most of the libraries for such applications uses a message passing model for exchanging data among different cores of the machine, and normally a master manages multiple slaves by dispatching tasks and gather results.\\
@@ -526,15 +525,209 @@ Both \textit{get} and \textit{put} are non-blocking, and the data they manipulat
 	\caption{The message queue between nodes}
 	\label{fig:senderreceiver}
 \end{figure}
+The put-get pair can manipulate the buffer in a straightforward fashion, and the memory buffer can be viewed as an circle: the pair holds an fixed size buffer with an fixed head index, and the put method can insert contents into the circle start from the head buffer, meanwhile the get method invoked by the receiver can read contents also start from the head index and points at the tail. Therefore, the buffer\_read method, which is time consuming, can be asynchronous with the buffer\_write, as long as the buffer is not full. This way of communication also makes it easy to synchronize the memory addresses between the sender and receiver, because the communication buffer uses only one header index and both put and get starts from the same place, only with the opposite direction in the circle.\\
+The reason of implementing an independent RDMA channel over CH3 rather than creating a new subset of communication protocols of ADI3 is:
+\begin{itemize}
+	\item Modern implementations already have similar shared memory mechanism in CH3 layer, and the improvements in a subset of CH3 can inherit the interfaces of CH3 itself, and other system built purely on CH3 can benefit from it
+	\item Potentially, other MPI mechanisms will be introduced into the MPICH implementation, for example the Infiniband RDMA which discussed above that it has one-side communication method, and the new implemented methods can use the RDMA channels by following the CH3 interfaces
+	\item The portability requirement of MPICH design makes it necessary to consider a general design of communication channel rather than a specific one
+\end{itemize} 
+\subsubsection{The fat-tree topology}
+In this project, the RDMA channel performs as an optimized data exchange channel for the received data, however, the CH3 does not define the way RDMA channel organizes the network topology.\\
+As discussed in the RDMA section, the best practise for RDMA performance is to implement fat-tree topology within the cluster, especially under the circumstance that nodes are not powerful enough to process complex computation tasks, therefore the design of software implementation over the cluster needs to sacrifice the bandwidth resources to achieve better overall performance with ARM based CPUs.\\
+The fat-tree topology pairs the dual-feed receivers as leaves of the bottom layer, along with an upper layer node also supported by ARM CPU, the added bandwidth among the three nodes is equal to the output.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/fattreeimpl}
+\caption{Fat tree implementation}
+\label{fig:fattreeimpl}
+\end{figure}
+We expect the RDMA in MPICH can reduce the requirements computational power of each receiver, and the parent node $node_{3}$ can have better hardware support to perform more complex algorithms compared to the receivers.\\
 
+\section{Field Programmable Field Array(FPGA) Assisted Computation}
+This section introduces the advanced hardware implementation on the $node_{3}$ discussed above. The Field Programmable Gate Array, FPGA is transitionally considered independent from the general computation architecture such as the CPUs, however, recent development in hardware pipeline technology enables the FPGA to communicate with the general architecture directly, and the content swap from FPGA to CPUs are much faster than the network supported data transmission.\\
+FPGA is known for handling single threaded tasks which are hard to be split into sub-tasks, or the resources for parallel computing is much more costing than those for the single threading processes. FPGA is performs all the computation tasks via hardware directly, and they are programmable.\\
+The project implements FPGA to support the \textit{merging} process after the cluster receiving the data feed. Discussion below shows the details of following technologies:
+\begin{itemize}
+	\item Sparta-6 integration with Raspberry Pi
+	\item FPGA programming technology
+	\item Communication between the CPU and FPGA: wishbone bus
+	\item C language interface for FPGA
+\end{itemize}
+\subsection{Sparta-6 integration with Raspberry Pi}
+We put a Sparta-6 FPGA chip over $node_{3}$ which is an Raspberry Pi2 board. The firm ValentFX has created an integrated environment for the FPGA to run on the Raspberry Pi boards on Linux based systems. \\
+First we need to understand the differences among programs running on three different platforms: CPU platform, micro controller platform and the FPGA platform. \\
+\subsubsection{Programming on CPU platform}
+Programs running on the CPU platforms are the easiest to understand: the programmers, in most cases do not need to worry the details of electric signals inside the CPU chips, and they only need to focus on the high-level logic such as giving an integer value to a parameter $a$ and add one to it for ten times. The programmers do not know how $a$ looks like in the CPU and how the logic 'add one to $a$ for ten times' works in sequence in the accumulators, data swapping in first level caches and system clock triggers. \\
+\subsubsection{The MCU platform}
+\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{picture/mcu}
+\caption{Arduino MCU}
+\label{fig:mcu}
+\end{figure}
+The micro controller platforms are similar to the FPGA ones, and in modern times, the MCU producers will release tools called MicroController Abstract for the programmers to \textit{translate} the high-level programming language, normally C, into the hardware languages that micro controllers can understand. Programmers know the architecture of the MCU their programs run on, and uses modern programming languages to manipulate the signals and clock triggers. Both the input and output of the MCU can be \textit{translated} by the MicroController Abstract layer into the high level programming format. Take the Arduino MCU platform for example: the MCU can produce six modulated electric pulses on its six pins showed in picture \ref{fig:mcu}.\\
+An example code for setting and reading the a value from pin $PD3$ is:
+\begin{lstlisting}[breaklines,breakatwhitespace,caption={Reading PD3 from Arduino MCU},label=compression-psudoCode]
+void setup() {
+	Serial.begin(9600);
+}
+void loop() {
+	int sensorValue = analogRead(PD3);
+	Serial.println(sensorValue);
+	delay(1);
+}
+\end{lstlisting}
+The MCU works in this way: in the setup phase, the program set serial frequency to be 9600 bit per second as the data frequency of the pins, then the MCU is read for sending and receiving signals for each available pin, and in this example we read the default value of pin $PD3$ by using the method analogRead(). This function in the hardware abstract layer will be translated to a pulse which goes into the circus, and gain the module of ping $PD3$ signal within a system circle, and goes back to the hardware abstract layer. They layer will again translate the signals into a high level programming format, for example, if the black box attaches the $PD3$ pin to a high voltage source of 5 Volt, the abstract layer will translate the module 5 Volt into an integer of one.\\
+The expression of different signals can be fixed by the manufacture or defined by the programmers, however, the key idea is that the black box which controls the behaviours of pins must be known to the system designers, and everything inside the black box is fixed and unchangeable, especially the modular logics within.Therefore, the design process of the MCU platform programs are:
+\begin{itemize}
+	\item[1.] Choose and understand the hardware logics of the MCU board
+	\item[2.] Design the software which uses the functions provided by the hardware
+\end{itemize}
+A good example are the MCU chips in the heat sensors, which receives the signals of sensors it attaches to and the outputs are distance from the source to sensor, and a pair of coordinates indicating the relative positions of source. Programmers can make use of the outputs to design their programs, varying from an intelligent flushing toilet controller to navigating program in heat guided missiles.\\ 
+\subsubsection{The FPGA platform}
+The FPGA and microcontroller platform is quite similar, as both needs to know the detailed hardware implementations, and a hardware abstract layer to translate the programming languages and runtime signals.\\
+The difference between the two is FPGA platforms do not have a \textit{fixed} module logics showed in the picture \ref{fig:mcu}, and the designing process of FPGA platform has two phases:
+\begin{itemize}
+	\item[1.] Design the module logics
+	\item[2.] Design the software which uses the module logics in the FPGA
+\end{itemize}
+This process looks complex in the first place, because the module logic in FPGA chip is designed by the programmer, so the software needs to contain a full implementation of hardware abstract layer to perform the bi-directional translation. Programming on FPGA was difficult in the early times, however, the modern design of FPGA boards absorbs the advantages in MCU and FPGA, and creates an structure illustrated in the following picture:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/fpgadesign}
+\caption{Modern FPGA design}
+\label{fig:fpgadesign}
+\end{figure}
+The programmer nowadays do not need to worry about the hardware interfaces of FPGA chip, as the manufacturers have implemented an MCU over the FPGA, and setup the interfaces via MCU instead of the FPGA directly. As discussed above, the MCU has fixed interfaces, and the MCU on the FPGA board provides fixed general interfaces for applications to invoke, and fetch the data from FPGA. The advantage of using this middle ware structure is that the programmers do not need to care about the hardware implementation of the FPGA itself, and manufacturers can provide general drivers for the MCU over specific operating systems, with which the FPGA computation resources can be abstracted into an function in high level programming languages.\\
+\subsubsection{Spartan-6 with Raspberry Pi2}
+The Spartan-6 FPGA over Raspberry Pi, the Logi Pi follows similar way, and it does not use the MCU but rather a technology called Wishbone to create a seamless communication between the CPU and FPGA. It uses Spartan-6 FPGA chip the hardware interfaces to connect to the Raspberry Pi board, supporting Linux based system, and programs can be burnt into the FPGA directly via general tools.\\
+The advantage of using Wishbone will be discussed later, and for introduction, the Wishbone abstracts the MCU discussed above for running programs in FPGA and communicate with CPU. It is an abstract layer which now support Python and C programming language.\\
+
+\chapter{Experiment Design, Requirements and Expectations}
+This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
+The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\
+In order to achieve the goal of receiving dual feeds, which will come from physically two Ethernet cables, the system needs at least two Ethernet ports, and we introduces MPICH over multiple independent hardware which has one Ethernet port each, and congregate them into a cluster in order to meet the requirements.\\
+
+\newpage
+\section{Experiment Design}
+This section introduces the design of five experiments and their architectures:
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+	\centering
+	\caption{Experiment design table}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Number & Name                                                                                                   & Introduction                                                                                                                                                                  \\ \midrule
+		1      & Single data feedwith single receiver                                                                   & Normal UDP send/receive pair                                                                                                                                                  \\
+		2      & Dual data feeds over the cluster                                                                       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds of normal \\ UDP send/receiver pairs\end{tabular}                                                                            \\
+		3      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ processors without RDMA\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds sending data\\ to MPI structure receivers without RDMA\end{tabular}                                                          \\
+		4      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ processors with RDMA\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Using dual data feeds sending data\\ to MPI structure receivers with RDMA\end{tabular}                                                             \\
+		5      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ with unified QoS check\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Ignoring the QoS check of sockets when\\ each node receives data, and performs an\\ unified checksum after merging the feeds\end{tabular}          \\
+		6      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI\\ with unified QoS check on FPGA\end{tabular} & \begin{tabular}[c]{@{}l@{}}Ignoring the QoS check of sockets when\\ each node receives data and performs an\\ unified checksum after merging the feeds\\ by FPGA\end{tabular} \\ \bottomrule
+	\end{tabular}
+\end{table}
+\subsection{Experiment 1: Single data feed with single receiver}
+This experiment shows the behaviour of a single UDP sender(data source) and a single UDP receiver(client), and tracks the output of receiver in the following environment:
+\begin{itemize}
+	\item No data lost in source and transmission
+	\item Data lost in source
+	\item Significant latency in data transmission
+	\item Data source goes down
+\end{itemize} 
+This experiment requires an computer simulating the data source, and a raspberry pi hosted receiver as the client. Quality of service strategy of data transmission is relied on the default settings of the client operating system.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/Exp1}
+\caption{Design of experiment 1}
+\label{fig:Exp1}
+\end{figure}
+\subsection{Experiment 2: Dual data feeds over the cluster}
+This experiment shows the advantage of using dual feeds. Data source needs to simulate two data sources with the same content in package, and has an manual offset of one millisecond. The experiment needs to track the output from receivers under the following scenarios:
+\begin{itemize}
+	\item No data lost in either sources
+	\item One of the source simulates data lost, while the other does not
+	\item Both sources have data lost
+	\item One of the sources goes off-line, while the other one does not
+	\item Both sources go off-line
+\end{itemize}
+The design is shown in picture \ref{fig:Exp2}.\\
+Receiver 1 and 2 can communicate with each other using network protocols and contact $output_{1}$ and $output_{2}$ together to have an unified output, and shows the differences in data lost conditions.\\
+The QoS mechanism is also relied on the configurations in operating system of the receiver, and the merging process will happen in the simulated master node.\\ 
+\subsection{Experiment 3: Dual feeds processed with MPI processors without RDMA}
+This experiment implements MPICH over the Raspberry Pi2 clusters, and the experiment shows output on the master node with dual data feed sources under the same scenarios as experiment2. The receiver programme communicate with each other using the message passing interfaces provided by MPICH, and shows the details of latency handling.\\
+The MPICH program uses MPI\_recv and MPI\_send pair to communicate under the MPI framework, and the way it runs is using SSH client in the master to perform \textit{mpiexec} shell command, with the arguments of a file containing lists of servers, and configurations of pointing at the destination of each MPI programme.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/Exp2}
+\caption{Design of experiment 2}
+\label{fig:Exp2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{picture/exp3}
+\caption{Design of experiment 3}
+\label{fig:exp3}
+\end{figure}
+
+\subsubsection{Description}
+This experiment shows the 
+\begin{itemize}
+	\item UDP clients runs independently on two nodes, and passing the result to a master node
+	\item UDP clients
+\end{itemize}
+
+\section{Experiment Requirements and Expectations}
+\subsection{Simulation of the data source}
+An server needs to run on an separate computer to simulate two high-frequency data sources, and push the data via different programming interfaces to two destinations.
 \chapter{System Design and Implementation}
+This part of the thesis explains design of the system, and the implementations of technologies discussed above. This part is consisted of three parts:
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+	\centering
+	\caption{Contents of system design and implementation}
+	\label{my-label}
+	\begin{tabular}{@{}ll@{}}
+		\toprule
+		Title            & Content                                                                                                                                                                    \\ \midrule
+		Hardware design  & \begin{tabular}[c]{@{}l@{}}The design of the hardware cluster, including the\\  actual hardware used, and the cabling strategy to \\ implement the dual feed.\end{tabular} \\ \hline
+		Logical design   & \begin{tabular}[c]{@{}l@{}}Showing the logical interconnection of the cluster, \\ and the implementation of RDMA, MPICH and FPGA\end{tabular}                              \\ \hline
+		Algorithm design & Showing the design of the algorithm processing dual feeds.                                                                                                                 \\ \bottomrule
+	\end{tabular}
+\end{table}
+\newpage
+\section{Hardware design}
+The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
+\begin{table}[H]
+	\centering
+	\caption{Materials used in the experiment}
+	\label{bom}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Name                  & Amount & Manufacture    & Metrics                                                                                                                    \\ \midrule
+		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\
+		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\
+		Logi Pi FPGA board    & 1      & ValentFX       & \begin{tabular}[c]{@{}l@{}}1x SPARTAN-6 FPGA chip, \\ 5V 1A input\end{tabular}                                             \\
+		Ethernet hub          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
+		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\
+		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\
+		Power cable           & 4      &                & USB power cable                                                                                                            \\ \bottomrule
+	\end{tabular}
+\end{table}
 \section{Logical design}
-\dots how I design the system: dual feed processed by ARM cpu, reconstruction and filtering by FPGA 
-\subsection{Implementation of fat-tree strategy}
+The logic design of the project can be illustrated as the picture below:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{picture/LogicDesign}
+	\caption{The logic design of the system}
+	\label{fig:LogicDesign}
+\end{figure}
 \section{Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
-
-\chapter{Requirements}
 \chapter{Implementation and Testing}
 This is the chapter in which you review the implementation and testing
 decisions and issues, and critique these processes.
