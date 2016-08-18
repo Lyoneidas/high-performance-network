@@ -604,11 +604,12 @@ The programmer nowadays do not need to worry about the hardware interfaces of FP
 The Spartan-6 FPGA over Raspberry Pi, the Logi Pi follows similar way, and it does not use the MCU but rather a technology called Wishbone to create a seamless communication between the CPU and FPGA. It uses Spartan-6 FPGA chip the hardware interfaces to connect to the Raspberry Pi board, supporting Linux based system, and programs can be burnt into the FPGA directly via general tools.\\
 The advantage of using Wishbone will be discussed later, and for introduction, the Wishbone abstracts the MCU discussed above for running programs in FPGA and communicate with CPU. It is an abstract layer which now support Python and C programming language.\\
 
+\subsection{FPGA programming in VHDL}
+
 \chapter{Experiment Design, Requirements and Expectations}
 This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\
 In order to achieve the goal of receiving dual feeds, which will come from physically two Ethernet cables, the system needs at least two Ethernet ports, and we introduces MPICH over multiple independent hardware which has one Ethernet port each, and congregate them into a cluster in order to meet the requirements.\\
-
 \newpage
 \section{Experiment Design}
 This section introduces the design of five experiments and their architectures:
