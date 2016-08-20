@@ -347,7 +347,7 @@ There are two options to reduce data processing time in the switch cluster shown
 One possible solution to avoid the increment of bandwidth requirement is to implement layered interconnection network rather than a flat structure, which resolve the bandwidth requirement to the back bone layer rather than the entire communication network. \\
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.6\linewidth]{picture/flat_addNode.JPG}
+    \includegraphics[width=0.5\linewidth]{picture/flat_addNode.JPG}
     \caption{Adding one node in flat mapping in the same field, six connections are changed}
     \label{fig:flatadd}
 \end{figure}
@@ -604,8 +604,111 @@ The programmer nowadays do not need to worry about the hardware interfaces of FP
 The Spartan-6 FPGA over Raspberry Pi, the Logi Pi follows similar way, and it does not use the MCU but rather a technology called Wishbone to create a seamless communication between the CPU and FPGA. It uses Spartan-6 FPGA chip the hardware interfaces to connect to the Raspberry Pi board, supporting Linux based system, and programs can be burnt into the FPGA directly via general tools.\\
 The advantage of using Wishbone will be discussed later, and for introduction, the Wishbone abstracts the MCU discussed above for running programs in FPGA and communicate with CPU. It is an abstract layer which now support Python and C programming language.\\
 
-\subsection{FPGA programming in VHDL}
+\subsection{FPGA hardware programming}
+As discussed above, the FPGA programming involves two aspects, the software part which communicates with the FPGA, and the FPGA module logic which simulates the function of a MCU. This section will discuss the latter part, and show how this project works with the FPGA hardware design.\\
+Program the hardware logic module in FPGA forms the following steps:
+\begin{itemize}
+	\item Understand the board structure: input and output signals
+	\item Design the hardware logic inside the FPGA chip
+	\item Programming the logic into FPGA and test
+\end{itemize}
+\subsubsection{Board structure}
+The first step is to understand the board design, including understand the hardware resources we have on the board. For example, we need an accumulator to perform a for-loop, however, we need to know which pin refers to the clock on board, to trigger every step of the loop. In the Logi Pi v1.5 board, the clock can be triggered by an oscillator with standard 50MHz signal source, and connects to the $P85$ pin. \\
+Usually, the pins of the FPGA chip are bounded into banks, so the electric schema of FPGA chips will show the pin structure as a form of banks. The FPGA manufacturers do not know the components outside the chip itself, however, only the creator of FPGA board can know how the board structure looks like. The design of FPGA application functions needs a file describes it, to avoid checking schematics diagrams every time, including the number, name and function of each pin on the FPGA chip, therefore we can use the hardware description language(HDL) to implement our functions.\\
+\subsubsection{Design the hardware logic}
+The second step is to understand the function need to implement: how the signals are imported into the FPGA, and how the output is consumed. The signals are variables that are created in the applications running on the CPU platform, and we have the Wishbone mechanism to slurp the signals from the memory in CPU to the SDRAM on the FPGA board, and push them into the designed pin. \\
+Design of the hardware logic in FPGA follows the idea of modular programming, and the designer needs to split the hardware design into basic modules according to the functions FPGA chip provided. Each module is consisted of three parts: the input, which can be a system signal like clock, or the output from another module; the basic logic which contains the hardware logic of how a signal is processed by the basic components, for example the pulse-width modulation logic to carry a constant signal with a periodic one using the following logic:
+\begin{lstlisting}[breaklines,breakatwhitespace,caption={PWM module in Verilog},label=compression-psudoCode]
+//module begin
+input clk_in;
+input [7:0] sig_in;
+input [7:0] counter;
 
+output reg PWM_out =0;
+always@ (poseedge clk_in) 
+	begin
+		if(counter < sig_in)
+			PWM_out <= 1;
+		else
+			PWM_out <=0;
+		counter <= counter +1;
+	end
+//module end		
+\end{lstlisting}  
+The example code shows how to carry an eight-bit long constant signal with the provided system clock, and can be presented in the picture \ref{fig:pwm}. This diagram is the basic component of the hardware design, which we introduces to illustrate how the basic components discussed above are connected together as an overall hardware logic, to perform certain algorithm.\\
+The benefit of using the modular design is that the modules are reusable, and the basic logic components inside FPGA is barely changed, so we can always reuse some classic solution even the code is decades ago.\\
+The Logi Pi FPGA chip supports most of the modular design in the VHDL library, and the manufacturer developed some customized interfaces mainly for chip-to-chip communication especially for the ARM based platforms via PCI ports. These interfaces are the basic parts of this project, called Wishbone and will be discussed later.\\  
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/pwm}
+\caption{PWM modular logic}
+\label{fig:pwm}
+\end{figure}
+\subsubsection{Burning the design into the FPGA chip}
+The FPGA chips are reprogrammable, and the programmer needs to make the chip aware the design using a hardware-based descriptive language to make the FPGA chips know how to form the proper hardware structures. There are several different hardware description languages, and them main stream are the Verilog and VHDL. This project will not introduce or compare these two HDLs, as both are well-known and widely implemented over both academic and commercial fields. Most of the Logi Pi modular interfaces are designed using VHDL, and the project needs to reuse some of them, we choose VHDL as our programming language.\\
+The hardware description language abstracts the hardware details, to improve the universality of the designs. Therefore the module design of input/output signals need a mapping procedure to find the correct hardware resources they combine to. This mapping is based on the descriptive file of the board mentioned above.\\
+Design of the hardware logics always include reusable modules, and it is less likely that designers need to focus on the implementation of a simple module like PWM modules, and a library of implementation details is required when burning the design into the actual FPGA chips.\\
+We have already known the board structure including input/output signal environments and the FPGA chip functions, we need to combine these information together to make the FPGA work as we designed:
+\begin{itemize}
+	\item Write and test the VHDL described design off board
+	\item Introduce the hardware description file with UCF extension to link the modules to hardware interfaces
+	\item Introduce the library to complete the detail design
+\end{itemize}
+The process now can be performed by the integrated development environment provided by Xilinx ISE tools. However, as the Spartan-6 is an old product and the ISE design suite is no longer supported by the Xilinx, there will be some difficulty in compiling the code, and will be explained in the system implementation chapter.\\
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{picture/vhdlstruct}
+\caption{VHDL file structure}
+\label{fig:vhdlstruct}
+\end{figure}
+\subsection{Wishbone: interface for FPGA-to-PC communication}
+We had a brief introduction in how the FPGA works in the above sections, however, the project requires communication between an CPU hosted application and a FPGA hosted one. An commonly used solution is the serial communication architecture, and the communication is via the universal asynchronous receiver/transmitter interfaces\cite{michael1992universal}. The architecture is in picture \ref{fig:uart}.However, the UART technology is an overkill in this project, as the Logi Pi FPGA board is connected to the Raspberry Pi via the GPIO ports, and we can use the serial peripheral interface bus to implement the communication instead.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{picture/uart}
+	\caption{UART architecture}
+	\label{fig:uart}
+\end{figure}
+\subsubsection{Serial Peripheral Interface on Raspberry Pi}
+SPI solves the problem of visibility of FPGA modular details on the application side. Without SPI, the applications need to know the exact hardware layers between the FPGA pins and the GPIO ports it connects to, and all the read/write performances need to call a chain of hardware data drivers to make the communication work. However, the SPI isolates the banks by tagging the FPGA pins with addresses, and ideally, the applications on CPU side only need to know the virtual address it connects to, and the SPI layer will deal with rest of the details.\\ 
+The structure of SPI is quite simple, which is consisted of a master and a slave. The master is embedded on the Raspberry Pi board forming two pairs of communication channel, a slave select channel and a clock:
+\begin{itemize}
+	\item Master Output Slave Input: data is the output of the master SPI and the slave receives the data
+	\item Master Input Slave Output: master SPI receives, or reads the data from slave, however, the slave normally cannot invoke this channel
+	\item Slave Select: the master SPI can select different slaves if there were multiple implementation of slaves in the FPGA
+	\item Serial Clock: the master can output an clock signal instead of the build-in clock signal on the board
+\end{itemize}
+The Raspberry Pi disables the SPI driver by default\cite{rasppispi}, however, it is easy to unlock it by using the tool \textit{RASPI-CONFIG} provided by Alex Bradbury to unblock it\cite{rasppiconfig}. The communication of SPI showed in schematic diagrams \ref{fig:spi}. The SPI slave port connects to both the Spartan 6 FPGA chip and the SDRAM chip on the Logi Pi board, and we can use the SDRAM to store big data.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/spi}
+\caption{SPI schematic diagram}
+\label{fig:spi}
+\end{figure}
+\subsubsection{Implementation of Wishbone on Logi Pi}
+The SPI solve the problem of data driver using GPIO ports communication, however, the implementation over pure SPI is still too complicate to achieve. The application on the CPU side still needs to know the implementation details of the FPGA side, for example, the choice of SPI slaves is triggered by the application, however, different FPGA chip may have varieties of slave memory access address according to the compiling environment for the VHDL. Wishbone technology provides an alternative solution that wraps up the SPI interconnection details into high-level programming language libraries, and combined with address mapping tool provided, the applications on CPU side can have a relatively \textit{fixed} call addresses.\\
+This design sacrifices some flexibility and achieve much convince as designers do not need to reimplement any communication interfaces any more.\\
+The basic component of Wishbone is the register, which has a relatively \textit{fixed} address usually starts with $0x0$ with an offset $0x1$. It is the basic interface for all the wishbone logics and has 16-bit input/output\cite{logiwishbone}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{picture/wishbone_register}
+\caption{Wishbone register}
+\label{fig:wishbone_register}
+\end{figure}
+As mentioned above, the input and output processes are abstracted by the Wishbone wrapper. Take Python for example, reading and writing with register $0x0$ can be performed using the two functions provided by the library \textit{logiRead} and \textit{logiWrite}:
+\begin{table}[]
+	\centering
+	\caption{My caption}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Parameter                                                    & Function                                                     & Notes                                                                                                                                                                                       \\ \midrule
+		address                                                      & \begin{tabular}[c]{@{}l@{}}logiWrite\\ logiRead\end{tabular} & the read/write destination address in hex format                                                                                                                                            \\
+		\begin{tabular}[c]{@{}l@{}}high-byte\\ low-byte\end{tabular} & logiWrite                                                    & \begin{tabular}[c]{@{}l@{}}the write content in hex format and the string will\\  be converted to ASCII. It has a pair of parameters \\ because the registers are 2 bytes long\end{tabular} \\
+		length                                                       & logiRead                                                     & define the byte it reads, 2 means read the entire 16 bits                                                                                                                                   \\ \bottomrule
+	\end{tabular}
+\end{table}
+This project does not have any peripherals and the hardware algorithms are implemented via the basic input/output processes. So the application on the MPI side needs to communicate with the registers via Wishbone, and the algorithms are performed after the data is sent to the registers.\\
 \chapter{Experiment Design, Requirements and Expectations}
 This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\

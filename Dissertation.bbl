@@ -38,6 +38,11 @@ Boyd, W.~T., Joseph, D.~J., Ko, M.~A. \harvardand\ Recio, R.~J.
   enabled network adapters'.
 \newblock US Patent 7,299,266.
 
+\harvarditem{Bradbury}{n.d.}{rasppiconfig}
+Bradbury, A.  \harvardyearleft n.d.\harvardyearright , `Raspberry pi spi',
+  \url{https://www.raspberrypi.org/documentation/configuration/raspi-config.md}.
+\newblock Accessed July 2, 2016.
+
 \harvarditem{Brown}{2004}{brown2004engineering}
 Brown, R.~G.  \harvardyearleft 2004\harvardyearright , `Engineering a
   beowulf-style compute cluster', {\em Duke University Physics Department} .
@@ -139,6 +144,11 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
   infiniband', {\em International Journal of Parallel Programming} {\bf
   32}(3),~167--198.
 
+\harvarditem{Michael}{1992}{michael1992universal}
+Michael, M.~S.  \harvardyearleft 1992\harvardyearright , `Universal
+  asynchronous receiver/transmitter'.
+\newblock US Patent 5,140,679.
+
 \harvarditem[Morris et~al.]{Morris, Thomas \harvardand\
   Luk}{2009}{morris2009fpga}
 Morris, G.~W., Thomas, D.~B. \harvardand\ Luk, W.  \harvardyearleft
@@ -151,9 +161,15 @@ MPI-CH  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
   \url{https://wiki.mpich.org/mpich/index.php/CH3_And_Channels}.
 \newblock Accessed July 2, 2016.
 
-\harvarditem{Org}{n.d.}{mpich_doc}
-Org, M.-C.  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
+\harvarditem{Org}{n.d.{\em a}}{mpich_doc}
+Org, M.-C.  \harvardyearleft n.d.{\em a}\harvardyearright , `Mpich
+  documentation',
   \url{http://www.mpich.org/static/docs/v3.2/www3/MPI_Init.html}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{Org.}{n.d.{\em b}}{rasppispi}
+Org., R.  \harvardyearleft n.d.{\em b}\harvardyearright , `Raspberry pi spi',
+  \url{https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md}.
 \newblock Accessed July 2, 2016.
 
 \harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\
@@ -194,6 +210,11 @@ Stone, H.~S.  \harvardyearleft 1971\harvardyearright , `Parallel processing
 Stout, Q.~F. \harvardand\ Warren, B.~L.  \harvardyearleft 1986\harvardyearright
   , `Tree rebalancing in optimal time and space', {\em Communications of the
   ACM} {\bf 29}(9),~902--908.
+
+\harvarditem{ValentFx}{n.d.}{logiwishbone}
+ValentFx  \harvardyearleft n.d.\harvardyearright , `Logi pi wishbone document',
+  \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
+\newblock Accessed July 2, 2016.
 
 \harvarditem{Yahoo!}{n.d.}{financeyahoo}
 Yahoo!  \harvardyearleft n.d.\harvardyearright , `Yahoo! finance api',
