@@ -420,6 +420,12 @@ The purpose of implementing fat-tree topology is inspired by the TH-Express high
 Researchers introduce the MPI to build a portable and scalable multi-threading platform over heterogeneous hardware environment\cite{dongarra1995introduction}.To understand the necessity of this interface, a brief introduction of message passing model need to be introduced.\\
 Most parallel applications were for scientific purposes\cite{kendall_2016}. Most of the libraries for such applications uses a message passing model for exchanging data among different cores of the machine, and normally a master manages multiple slaves by dispatching tasks and gather results.\\
 The MPI-CH is an implementation of the message passing interface standard, and is widely used over multi-processing machines as a data exchange model over multiple processors performing multi-threading computations. It covers almost every aspect of MPI standards, and widely supports far more different hardware architectures compared to another well-known implementation, the OpenMPI.\\
+The MPI-CH is the solution for implementing scalable dual-feed receiver in this project, to enhance the efficiency of communication among the nodes using a message passing interface, instead of building a complicate interconnection structure from ground zero. The project makes use of the listing features from MPI-CH compare to other solutions:
+\begin{itemize}
+	\item Easy to build and configure message passing interfaces
+	\item Remote memory access mechanism to enable the scalability
+	\item Fat-tree topology to balance the efficiency in hardware architecture of single nodes and network bandwidth
+\end{itemize} 
 \subsection{Introduction to SPMD and MPMD}
 A parallel application can be divided into two different kinds according to the way it uses data and instructions, Single Program Multiple Data and Multiple Program Multiple Data.\\
 Before introducing the SPMD and MPMD,it is necessary to make a brief introduction to the concept of Single Instruction Multiple Data(SIMD) and Multiple Instruction Multiple Data(MIMD).\\
@@ -543,7 +549,8 @@ The fat-tree topology pairs the dual-feed receivers as leaves of the bottom laye
 \label{fig:fattreeimpl}
 \end{figure}
 We expect the RDMA in MPICH can reduce the requirements computational power of each receiver, and the parent node $node_{3}$ can have better hardware support to perform more complex algorithms compared to the receivers.\\
-
+\subsection{Conclusion}
+This section explains the logical structure of the system to implement the dual-feed receivers. Using the MPI-CH implementation under two parallel Raspberry Pi hosted applications, the system can achieve the goal of receiving dual feeds without implement expensive hardware which solves the problem by implementing parallel hardware bus between the CPU and two or more NIC cards. This section also explains how the three important parts works in the background: message queues, remote memory access implementation and fat-tree network topology. The next section will talk about how the third Raspberry Pi works as the master node connecting to a FPGA.\\
 \section{Field Programmable Field Array(FPGA) Assisted Computation}
 This section introduces the advanced hardware implementation on the $node_{3}$ discussed above. The Field Programmable Gate Array, FPGA is transitionally considered independent from the general computation architecture such as the CPUs, however, recent development in hardware pipeline technology enables the FPGA to communicate with the general architecture directly, and the content swap from FPGA to CPUs are much faster than the network supported data transmission.\\
 FPGA is known for handling single threaded tasks which are hard to be split into sub-tasks, or the resources for parallel computing is much more costing than those for the single threading processes. FPGA is performs all the computation tasks via hardware directly, and they are programmable.\\
@@ -552,7 +559,6 @@ The project implements FPGA to support the \textit{merging} process after the cl
 	\item Sparta-6 integration with Raspberry Pi
 	\item FPGA programming technology
 	\item Communication between the CPU and FPGA: wishbone bus
-	\item C language interface for FPGA
 \end{itemize}
 \subsection{Sparta-6 integration with Raspberry Pi}
 We put a Sparta-6 FPGA chip over $node_{3}$ which is an Raspberry Pi2 board. The firm ValentFX has created an integrated environment for the FPGA to run on the Raspberry Pi boards on Linux based systems. \\
@@ -708,7 +714,13 @@ As mentioned above, the input and output processes are abstracted by the Wishbon
 		length                                                       & logiRead                                                     & define the byte it reads, 2 means read the entire 16 bits                                                                                                                                   \\ \bottomrule
 	\end{tabular}
 \end{table}
-This project does not have any peripherals and the hardware algorithms are implemented via the basic input/output processes. So the application on the MPI side needs to communicate with the registers via Wishbone, and the algorithms are performed after the data is sent to the registers.\\
+This project does not have any peripherals and the hardware algorithms are implemented via the basic input/output processes. So the application on the MPI side needs to communicate with the registers via Wishbone, and the algorithms are performed after the data is sent to the registers. After receiving the data from Wishbone bus, we can implement the hardware algorithms afterwards.\\
+\subsubsection{Parallel process and FPGA status}
+The FPGA processes are running parallel with the applications on CPU side, and the application design should take this into consideration. The processing speed of FPGA is much faster than the normal CPU hosted applications, and the clock frequency is different between the cluster. The Wishbone mechanism synchronise the clock via transmission layer, however, the application inside the FPGA still needs to wait for the read signal from the application.\\
+Another problem is that the status of FPGA is controlled by the electric signals only, and the interfaces are fixed. Therefore if the application on the CPU does not read from the FPGA first and change the status of FPGA, the processing result in FPGA modular will soon lost before the CPU applications can react.\\
+These two features requires the design of the system to be aware of the execution sequences especially in the FPGA communication.\\
+\subsection{Conclusion}
+This section introduces how the FPGA will work with the receiver applications on the MPI-CH structure, and focuses on how to design and implement a hardware algorithm in the FPGA, from design to actual coding, and the important technology which enables the hardware to seamlessly communicate to the CPU hosted applications using Wishbone. The FPGA accelerated computation is widely used in the commercial solution to similar problems, especially in the market data feed handlers, however, this project shows the potential of using an open-source FPGA board to achieve the same goal over an cluster hardware environment.\\ 
 \chapter{Experiment Design, Requirements and Expectations}
 This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\

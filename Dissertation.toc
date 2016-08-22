@@ -33,45 +33,48 @@
 \contentsline {subsection}{\numberline {2.3.2}Conclusion}{22}{subsection.2.3.2}
 \contentsline {section}{\numberline {2.4}MPI-CH}{23}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Introduction to SPMD and MPMD}{23}{subsection.2.4.1}
-\contentsline {subsubsection}{Single Program Multiple Data}{23}{section*.13}
+\contentsline {subsubsection}{Single Program Multiple Data}{24}{section*.13}
 \contentsline {subsubsection}{Multiple Program Multiple Data}{24}{section*.14}
-\contentsline {subsection}{\numberline {2.4.2}The architecture of MPI-CH}{24}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.2}The architecture of MPI-CH}{25}{subsection.2.4.2}
 \contentsline {subsubsection}{MPI API}{26}{section*.15}
 \contentsline {subsubsection}{Communication mode in MPI}{26}{section*.16}
 \contentsline {subsubsection}{Abstract Device Interface}{27}{section*.17}
 \contentsline {subsubsection}{RDMA channel implementated on ADI3}{28}{section*.18}
 \contentsline {subsubsection}{RDMA channel implementation}{29}{section*.19}
 \contentsline {subsubsection}{The fat-tree topology}{31}{section*.20}
-\contentsline {section}{\numberline {2.5}Field Programmable Field Array(FPGA) Assisted Computation}{31}{section.2.5}
+\contentsline {subsection}{\numberline {2.4.3}Conclusion}{31}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Field Programmable Field Array(FPGA) Assisted Computation}{32}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Sparta-6 integration with Raspberry Pi}{32}{subsection.2.5.1}
 \contentsline {subsubsection}{Programming on CPU platform}{32}{section*.21}
-\contentsline {subsubsection}{The MCU platform}{32}{section*.22}
+\contentsline {subsubsection}{The MCU platform}{33}{section*.22}
 \contentsline {subsubsection}{The FPGA platform}{34}{section*.23}
 \contentsline {subsubsection}{Spartan-6 with Raspberry Pi2}{35}{section*.24}
 \contentsline {subsection}{\numberline {2.5.2}FPGA hardware programming}{35}{subsection.2.5.2}
-\contentsline {subsubsection}{Board structure}{35}{section*.25}
+\contentsline {subsubsection}{Board structure}{36}{section*.25}
 \contentsline {subsubsection}{Design the hardware logic}{36}{section*.26}
 \contentsline {subsubsection}{Burning the design into the FPGA chip}{37}{section*.27}
 \contentsline {subsection}{\numberline {2.5.3}Wishbone: interface for FPGA-to-PC communication}{38}{subsection.2.5.3}
-\contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{39}{section*.28}
+\contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{40}{section*.28}
 \contentsline {subsubsection}{Implementation of Wishbone on Logi Pi}{40}{section*.29}
-\contentsline {chapter}{\numberline {3}Experiment Design, Requirements and Expectations}{42}{chapter.3}
-\contentsline {section}{\numberline {3.1}Experiment Design}{43}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Experiment 1: Single data feed with single receiver}{43}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Experiment 2: Dual data feeds over the cluster}{44}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{44}{subsection.3.1.3}
-\contentsline {subsubsection}{Description}{45}{section*.30}
-\contentsline {section}{\numberline {3.2}Experiment Requirements and Expectations}{46}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Simulation of the data source}{46}{subsection.3.2.1}
-\contentsline {chapter}{\numberline {4}System Design and Implementation}{47}{chapter.4}
-\contentsline {section}{\numberline {4.1}Hardware design}{48}{section.4.1}
-\contentsline {section}{\numberline {4.2}Logical design}{48}{section.4.2}
-\contentsline {section}{\numberline {4.3}Algorithm design}{49}{section.4.3}
-\contentsline {chapter}{\numberline {5}Implementation and Testing}{50}{chapter.5}
-\contentsline {chapter}{\numberline {6}Results}{51}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusions}{52}{chapter.7}
-\contentsline {chapter}{\numberline {A}Design Diagrams}{56}{appendix.A}
-\contentsline {chapter}{\numberline {B}User Documentation}{57}{appendix.B}
-\contentsline {chapter}{\numberline {C}Raw results output}{58}{appendix.C}
-\contentsline {chapter}{\numberline {D}Code}{59}{appendix.D}
-\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{60}{section.D.1}
+\contentsline {subsubsection}{Parallel process and FPGA status}{42}{section*.30}
+\contentsline {subsection}{\numberline {2.5.4}Conclusion}{42}{subsection.2.5.4}
+\contentsline {chapter}{\numberline {3}Experiment Design, Requirements and Expectations}{43}{chapter.3}
+\contentsline {section}{\numberline {3.1}Experiment Design}{44}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Experiment 1: Single data feed with single receiver}{44}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Experiment 2: Dual data feeds over the cluster}{45}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{45}{subsection.3.1.3}
+\contentsline {subsubsection}{Description}{46}{section*.31}
+\contentsline {section}{\numberline {3.2}Experiment Requirements and Expectations}{47}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Simulation of the data source}{47}{subsection.3.2.1}
+\contentsline {chapter}{\numberline {4}System Design and Implementation}{48}{chapter.4}
+\contentsline {section}{\numberline {4.1}Hardware design}{49}{section.4.1}
+\contentsline {section}{\numberline {4.2}Logical design}{49}{section.4.2}
+\contentsline {section}{\numberline {4.3}Algorithm design}{50}{section.4.3}
+\contentsline {chapter}{\numberline {5}Implementation and Testing}{51}{chapter.5}
+\contentsline {chapter}{\numberline {6}Results}{52}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusions}{53}{chapter.7}
+\contentsline {chapter}{\numberline {A}Design Diagrams}{57}{appendix.A}
+\contentsline {chapter}{\numberline {B}User Documentation}{58}{appendix.B}
+\contentsline {chapter}{\numberline {C}Raw results output}{59}{appendix.C}
+\contentsline {chapter}{\numberline {D}Code}{60}{appendix.D}
+\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{61}{section.D.1}
