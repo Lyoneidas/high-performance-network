@@ -9,6 +9,7 @@
 \usepackage{graphicx} 
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{amsmath}
 \title{High Performance Network Switch Solution Using Open Sourced Hardware}
 \author{Zhouqiang Tu}
 \date{MSc in Internet System and Security\\The University of Bath\\September 2016}
@@ -721,6 +722,152 @@ Another problem is that the status of FPGA is controlled by the electric signals
 These two features requires the design of the system to be aware of the execution sequences especially in the FPGA communication.\\
 \subsection{Conclusion}
 This section introduces how the FPGA will work with the receiver applications on the MPI-CH structure, and focuses on how to design and implement a hardware algorithm in the FPGA, from design to actual coding, and the important technology which enables the hardware to seamlessly communicate to the CPU hosted applications using Wishbone. The FPGA accelerated computation is widely used in the commercial solution to similar problems, especially in the market data feed handlers, however, this project shows the potential of using an open-source FPGA board to achieve the same goal over an cluster hardware environment.\\ 
+
+\chapter{System Design and Implementation}
+This part of the thesis explains design of the system, and the implementations of technologies discussed above. \\
+This part is consisted of three parts:
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+	\centering
+	\caption{Content structure of system design and implementation}
+	\label{my-label}
+	\begin{tabular}{@{}ll@{}}
+		\toprule
+		Name                                                                                    & Content                                                                                                                                                                     \\ \midrule
+		System Requirements                                                                     & \begin{tabular}[c]{@{}l@{}}Showing system requirements based on the hardware\\ achieved, and simulation goals\end{tabular}                                                  \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Hardware Design and\\ Implementations\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Showing the hardware design of the system, including \\ connectivity implementations and power supply \\ implementation\end{tabular}             \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Software Design and\\ Implementations\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Showing the design of different sender-receiver pair, \\ with and without MPI layer and FPGA assisted ones\end{tabular}                          \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Hardware Algorithm\\ Design and Implementations\end{tabular} & \begin{tabular}[c]{@{}l@{}}Showing the design of the hardware implementation \\ along with the software interfaces of the application \\ on the Spartan-6 FPGA\end{tabular} \\ \bottomrule
+	\end{tabular}
+\end{table}
+\newpage
+\section{System Requirements}
+This project wants to achieve the overall following goals:
+\begin{itemize}
+	\item Implementing the dual-feed receiver hardware using the Raspberry Pi boards
+	\item Implementing software on both the simulated sender and receivers for UDP packages
+	\item Monitoring and printing the send-receive results of the communication
+\end{itemize}
+The project does not implement the hardware equipments of 10Gb Ethernet because of the complexity in constructing the hardware over Raspberry Pi and the server side. In order to simulate the environment using RJ-45 cables, we implement a simulated software environment which manually configure the package loss, sending/receiving window and other scenarios.\\
+\subsection{Dual-feed receiver requirements}
+The main goal of this section is to assembling a hardware using Raspberry Pi boards that can receive two network signals from two RJ-45 cables. The bandwidth of both feeds are up to 500 Mb, however, this includes the bandwidth of incoming data and interconnection communication.\\
+\subsection{Sender and receiver of UDP packets}
+This section simulates scenarios of UDP transmission in low-latency network. According to the Cisco user manual of the commercial high-frequency market data handler, the metrics of the bandwidth and message rate follows\cite{ibm2011highfrequency}:
+\begin{table}[H]
+	\centering
+	\caption{Low-latency market data handler metrics}
+	\label{tab:lowlmdm}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Name                      & RTT & \begin{tabular}[c]{@{}l@{}}Average Time Cost Per Hop\\ {[}$usec${]}\end{tabular} \\ \midrule
+		No watchlist overlap      & 1   & 6                                                                                \\
+		Custome watchlist overlap & 1   & 7                                                                                \\ \bottomrule
+	\end{tabular}
+\end{table}
+Which is higher than the RJ-45 maximum bandwidth. The experiment, however, introduces the possibility in packet loss of UDP datagrams, and scaling down the size of required bandwidth and message rate with corresponding package loss ratio, to prove that if we implement similar solution over the 10Gb Ethernet using optic fibre with the same Raspberry Pi structure, we can still achieve the results close to the experiments.\\
+The calculation of packet loss ratio of UDP datagrams $P_{UDP}$ in single feed follows with the listing definitions\cite{moon1998correlation}:
+\begin{itemize}
+	\item $N_{send}$ is the packages sent from the sender side
+	\item $N_{rec}$ is the package received in the receiver side
+	\item $Msg_{i}$ defines the status of a package $i$:
+\end{itemize}
+\begin{equation}
+	Msg_{i}=\begin{cases}1 & packet\ i\ is\ received
+	\\
+	0 & packet\ i\ is\ lost
+	\end{cases}
+\end{equation}
+\begin{itemize}
+	\item $delay_{i}$ is the delay of packet $i$
+\end{itemize}
+Therefore, it is easy to understand that the average package loss ratio $\overline{l}$ is $\frac{\sum_{N}^{0}Msg_{i}}{N}$, however, in this project the scenario is a bit different, because in high-frequency network, the receiver implements a time-out more restricted to normal network threshold recommended\cite{eggert2009tcp}. The real package loss ratio in this project should be:
+\begin{equation}
+	\overline{{l}'}=\frac{\sum_{0}^{N}Msg_{i}-\sum_{0}^{N} H(delay_{i}-t_{threshold})}{N}
+\end{equation}
+\begin{equation}
+	H(x)=\begin{cases}
+	1 & x>0
+	\\
+	0 & x<0
+	\end{cases}
+\end{equation}
+So the accuracy of the experiment result now lies in the estimation of normal package lost rate and package overtime rate corresponding to the chosen bandwidth, and simulate the environment of 10Gb Ethernet under the simulated experiment environment. Therefore, we can estimate the real UDP package reliability in low-latency network with the simulated package lost $Msg_{i}$ and overtime packages whose $delay_{i}$ is larger than the fixed threshold in the receiver.\\
+\subsubsection{Value of the packet loss rate}
+According to a research in the UDP multi-cast network, the package loss rate in multi-cast network of UDP protocol can be expressed in the following way\cite{caceres1999multicast}:
+Given the definitions listed below:
+\begin{itemize}
+	\item $V$ is the overall network using the UDP multicast
+	\item $\alpha$ is the given node set status when the node lost packet, and $\alpha = \alpha_{k},k\subseteq V$
+	\item $\chi{i}$ is the $i$th independent observation result of a node, where $\chi > 0$ means it receives the package, and $\chi =0$ means it does not receive it
+	\item $\Omega$ is the subset of $V$ whose nodes loses packages
+\end{itemize} 
+We have the maximum likelihood estimation of packet loss in this network:
+\begin{equation}
+	p(\chi{0}...\chi{n}|\alpha)=\prod_{0}^{N}p(\chi{i}|\alpha)
+\end{equation}
+It will be convenient to calculate the overall package loss if we manually set the observation result of single node $\chi{i}$ to a step equation, therefore $\chi{i}=\begin{cases}1 & \chi = 0 \\ 0 & \chi > 0\end{cases}$. In order to make the calculation easier, we take the logarithm of likelihood forming a log-likelihood estimation:
+\begin{equation}
+	\eta(p)=log\prod_{0}^{N}p(\chi{i}|\alpha)=\sum^{\Omega}log(p(\chi{i}|\alpha))
+\end{equation} 
+Therefore, we need to find out the measurement method of independent observation of package loss in each node $p(\chi{i}|\alpha)$, however, this value only relates to two factors: the datagram size and predicted send time. These two factors are known to us from the above discussion measured from Cisco, and we need to find out an empirical formula to derive the value of it.\\
+Considering a typical UDP send-receive process, we divide the possible scenarios into two:
+\begin{itemize}
+	\item No package loss
+	\item Package loss occurs
+\end{itemize}
+Given an equation of required bandwidth $B_{req}=\frac{S_{pack}}{T_{trans}}$, where $S_{pack}$ is the total size of the packages and $T_{trans}$ is the estimated time transmitting the whole package. We introduces another time variable specifically for the propagation time $T_{prop}$ In the above two scenarios, we have:
+\begin{itemize}
+	\item No data loss: $T_{totoal}=T_{prop}+\frac{S_{total}}{B_{send}}$
+	\item With data loss: ${T}'_{total}=T_{total}+T_{resend}$, and we have $T_{resend}$ equals to the time cost in resending UDP datagram
+\end{itemize}
+\begin{equation}
+T_{resend}=\frac{S_total}{S_{datagram}}\times p(\chi|\alpha) \times T_{prop} + \frac{p(\chi | \alpha) \times S_{total}}{B_{send}}
+\end{equation}
+Assuming that UDP datagram lost will happen in most cases, therefore the second scenario can be viewed as the average value of $T_{total}.$From table \ref{tab:lowlmdm} we have:
+\begin{itemize}
+	\item Minimum requirement: $S_{send}=45B$, ${T}'_{total}=6usec$, $T_{prop}=1usec$
+	\item Maximum requirement: $S_(send)=45B$, ${T}'_{total}=7usec$, $T_{prop}=1usec$
+\end{itemize} 
+The time consumption for resending the package is relatively small, and $\frac{p(\chi | \alpha) \times S_{total}}{B_{send}}$ can be omitted. We assume that the processing speed is similar in both commercial environment in 10Gb Ethernet and the experiment environment, and the fixed number is $t_{trans}$. The data handlers uses 2 Intel® Xeon® (X5570) 4-core 2.93GHz processors\cite{ibm2011highfrequency}, and the estimated processing time is $t_{trans} \approx 5.8usec$, and ${t}'_{trans} \approx 6.82usec$ therefore we have estimation: 
+\begin{equation}
+	p(\chi | \alpha) \subseteq [2.639\%, 3.448\%] 
+\end{equation}
+\subsubsection{Conclusion}
+We derive the data loss ratio in high-frequency network for UDP datagrams should be  [2.639\%, 3.448\%], with the following assumption:
+\begin{itemize}
+	\item The data loss rate in UDP datagram is similar in both experiment environment and real scenarios
+	\item The ratio of data processing time and propagation time can be considered fixed if the size of datagrams are similar
+\end{itemize}
+\section{Hardware design}
+The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
+\begin{table}[H]
+	\centering
+	\caption{Materials used in the experiment}
+	\label{bom}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Name                  & Amount & Manufacture    & Metrics                                                                                                                    \\ \midrule
+		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\
+		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\
+		Logi Pi FPGA board    & 1      & ValentFX       & \begin{tabular}[c]{@{}l@{}}1x SPARTAN-6 FPGA chip, \\ 5V 1A input\end{tabular}                                             \\
+		Ethernet hub          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
+		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\
+		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\
+		Power cable           & 4      &                & USB power cable                                                                                                            \\ \bottomrule
+	\end{tabular}
+\end{table}
+\section{Logical design}
+The logic design of the project can be illustrated as the picture below:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{picture/LogicDesign}
+	\caption{The logic design of the system}
+	\label{fig:LogicDesign}
+\end{figure}
+\section{Algorithm design}
+\dots design of the thread dispatching, event sensor in the master board
+
 \chapter{Experiment Design, Requirements and Expectations}
 This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\
@@ -799,51 +946,7 @@ This experiment shows the
 \section{Experiment Requirements and Expectations}
 \subsection{Simulation of the data source}
 An server needs to run on an separate computer to simulate two high-frequency data sources, and push the data via different programming interfaces to two destinations.
-\chapter{System Design and Implementation}
-This part of the thesis explains design of the system, and the implementations of technologies discussed above. This part is consisted of three parts:
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[H]
-	\centering
-	\caption{Contents of system design and implementation}
-	\label{my-label}
-	\begin{tabular}{@{}ll@{}}
-		\toprule
-		Title            & Content                                                                                                                                                                    \\ \midrule
-		Hardware design  & \begin{tabular}[c]{@{}l@{}}The design of the hardware cluster, including the\\  actual hardware used, and the cabling strategy to \\ implement the dual feed.\end{tabular} \\ \hline
-		Logical design   & \begin{tabular}[c]{@{}l@{}}Showing the logical interconnection of the cluster, \\ and the implementation of RDMA, MPICH and FPGA\end{tabular}                              \\ \hline
-		Algorithm design & Showing the design of the algorithm processing dual feeds.                                                                                                                 \\ \bottomrule
-	\end{tabular}
-\end{table}
-\newpage
-\section{Hardware design}
-The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
-\begin{table}[H]
-	\centering
-	\caption{Materials used in the experiment}
-	\label{bom}
-	\begin{tabular}{@{}llll@{}}
-		\toprule
-		Name                  & Amount & Manufacture    & Metrics                                                                                                                    \\ \midrule
-		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\
-		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\
-		Logi Pi FPGA board    & 1      & ValentFX       & \begin{tabular}[c]{@{}l@{}}1x SPARTAN-6 FPGA chip, \\ 5V 1A input\end{tabular}                                             \\
-		Ethernet hub          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
-		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\
-		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\
-		Power cable           & 4      &                & USB power cable                                                                                                            \\ \bottomrule
-	\end{tabular}
-\end{table}
-\section{Logical design}
-The logic design of the project can be illustrated as the picture below:
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{picture/LogicDesign}
-	\caption{The logic design of the system}
-	\label{fig:LogicDesign}
-\end{figure}
-\section{Algorithm design}
-\dots design of the thread dispatching, event sensor in the master board
+
 \chapter{Implementation and Testing}
 This is the chapter in which you review the implementation and testing
 decisions and issues, and critique these processes.

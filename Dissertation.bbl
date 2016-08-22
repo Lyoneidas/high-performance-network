@@ -47,6 +47,14 @@ Bradbury, A.  \harvardyearleft n.d.\harvardyearright , `Raspberry pi spi',
 Brown, R.~G.  \harvardyearleft 2004\harvardyearright , `Engineering a
   beowulf-style compute cluster', {\em Duke University Physics Department} .
 
+\harvarditem[C{\'a}ceres et~al.]{C{\'a}ceres, Duffield, Horowitz, Towlsey
+  \harvardand\ Bu}{1999}{caceres1999multicast}
+C{\'a}ceres, R., Duffield, N.~G., Horowitz, J., Towlsey, D. \harvardand\ Bu, T.
+   \harvardyearleft 1999\harvardyearright , Multicast-based inference of
+  network-internal characteristics: Accuracy of packet loss estimation, {\em
+  in} `INFOCOM'99. Eighteenth Annual Joint Conference of the IEEE Computer and
+  Communications Societies. Proceedings. IEEE', Vol.~1, IEEE, pp.~371--379.
+
 \harvarditem{Cisco}{n.d.}{ciscoWhitePaper}
 Cisco  \harvardyearleft n.d.\harvardyearright , `The next generation trading
   infrasturcture',
@@ -74,6 +82,10 @@ Dimitrov, R. \harvardand\ Skjellum, A.  \harvardyearleft 1999\harvardyearright
 Dongarra, J.~J., Otto, S.~W., Snir, M. \harvardand\ Walker, D.
   \harvardyearleft 1995\harvardyearright , `An introduction to the mpi
   standard', {\em Communications of the ACM} p.~18.
+
+\harvarditem{Eggert \harvardand\ Gont}{2009}{eggert2009tcp}
+Eggert, L. \harvardand\ Gont, F.  \harvardyearleft 2009\harvardyearright , `Tcp
+  user timeout option'.
 
 \harvarditem{Ellis}{1980}{ellis1980concurrent}
 Ellis, C.~S.  \harvardyearleft 1980\harvardyearright , `Concurrent search and
@@ -115,6 +127,12 @@ Hilland, J., Culley, P., Pinkerton, J. \harvardand\ Recio, R.  \harvardyearleft
   2003\harvardyearright , `Rdma protocol verbs specification', {\em RDMAC
   Consortium Draft Specification draft-hilland-iwarp-verbsv1. 0-RDMAC} .
 
+\harvarditem{Jain}{n.d.}{ibm2011highfrequency}
+Jain, V.  \harvardyearleft n.d.\harvardyearright , `A low-latency solution for
+  high frequency trading from ibm and mellanox',
+  \url{http://www.mellanox.com/pdf/whitepapers/Low-Latency-Solution-for-High-Frequency-Trading-from-IBM-and-Mellanox.pdf}.
+\newblock Accessed July 2, 2016.
+
 \harvarditem{Kendall}{n.d.}{kendall_2016}
 Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
   introduction · mpi tutorial',
@@ -148,6 +166,12 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
 Michael, M.~S.  \harvardyearleft 1992\harvardyearright , `Universal
   asynchronous receiver/transmitter'.
 \newblock US Patent 5,140,679.
+
+\harvarditem[Moon et~al.]{Moon, Kurose, Skelly \harvardand\
+  Towsley}{1998}{moon1998correlation}
+Moon, S.~B., Kurose, J., Skelly, P. \harvardand\ Towsley, D.  \harvardyearleft
+  1998\harvardyearright , Correlation of packet delay and loss in the internet,
+  Technical report, Technical report, UMass CMPSCI Technical Report 98-11.
 
 \harvarditem[Morris et~al.]{Morris, Thomas \harvardand\
   Luk}{2009}{morris2009fpga}
