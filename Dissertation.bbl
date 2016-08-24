@@ -66,6 +66,18 @@ Clos, C.  \harvardyearleft 1953\harvardyearright , `A study of non-blocking
   switching networks', {\em Bell System Technical Journal} {\bf
   32}(2),~406--424.
 
+\harvarditem{corp.}{n.d.}{realvnc}
+corp., R.  \harvardyearleft n.d.\harvardyearright , `Realvnc on raspberry pi',
+  \url{https://www.realvnc.com/docs/raspberry-pi.html}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem[Cox et~al.]{Cox, Cox, Boardman, Johnston, Scott \harvardand\
+  O’brien}{2014}{cox2014iridis}
+Cox, S.~J., Cox, J.~T., Boardman, R.~P., Johnston, S.~J., Scott, M.
+  \harvardand\ O’brien, N.~S.  \harvardyearleft 2014\harvardyearright ,
+  `Iridis-pi: a low-cost, compact demonstration cluster', {\em Cluster
+  Computing} {\bf 17}(2),~349--358.
+
 \harvarditem{Darema}{2001}{darema2001spmd}
 Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
   present and future, {\em in} `European Parallel Virtual Machine/Message
@@ -116,6 +128,10 @@ Gropp, W. \harvardand\ Lusk, E.  \harvardyearleft 1994\harvardyearright , `An
   Mathematics and Computer Science Division, Argonne National Laboratory,
   Argonne, Ill} .
 
+\harvarditem{Harrington}{2015}{harrington2015learning}
+Harrington, W.  \harvardyearleft 2015\harvardyearright , {\em Learning
+  Raspbian}, Packt Publishing Ltd.
+
 \harvarditem{Hauck \harvardand\ DeHon}{2010}{hauck2010reconfigurable}
 Hauck, S. \harvardand\ DeHon, A.  \harvardyearleft 2010\harvardyearright , {\em
   Reconfigurable computing: the theory and practice of FPGA-based computation},
@@ -133,6 +149,13 @@ Jain, V.  \harvardyearleft n.d.\harvardyearright , `A low-latency solution for
   \url{http://www.mellanox.com/pdf/whitepapers/Low-Latency-Solution-for-High-Frequency-Trading-from-IBM-and-Mellanox.pdf}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem[Junger et~al.]{Junger, Moritz, Lueders, Thuss, Elbracht, Haensel
+  \harvardand\ Kostorz}{2007}{junger2007method}
+Junger, A., Moritz, R., Lueders, U., Thuss, W., Elbracht, B., Haensel, J.
+  \harvardand\ Kostorz, W.  \harvardyearleft 2007\harvardyearright , `Method of
+  data transmission and a transmission and reception device therefor'.
+\newblock US Patent 7,203,776.
+
 \harvarditem{Kendall}{n.d.}{kendall_2016}
 Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
   introduction · mpi tutorial',
@@ -142,6 +165,12 @@ Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
 \harvarditem{Klaas}{2004}{klaas2004system}
 Klaas, J.  \harvardyearleft 2004\harvardyearright , `System-on-a-chip'.
 \newblock US Patent 6,816,750.
+
+\harvarditem{Kunz \harvardand\ McCamey}{1999}{kunz1999rj}
+Kunz, W.~E. \harvardand\ McCamey, A.  \harvardyearleft 1999\harvardyearright ,
+  `Rj-45 modular connector with microwave-transmission-line integrated signal
+  conditioning for high speed networks'.
+\newblock US Patent 5,971,813.
 
 \harvarditem{Laumonier}{n.d.}{htfbackyard}
 Laumonier, A.  \harvardyearleft n.d.\harvardyearright , `Hft in my backyard',
@@ -155,6 +184,13 @@ Le, D.  \harvardyearleft 2009\harvardyearright , `Automated trading system'.
 Leiserson, C.~E.  \harvardyearleft 1985\harvardyearright , `Fat-trees:
   universal networks for hardware-efficient supercomputing', {\em IEEE
   transactions on Computers} {\bf 100}(10),~892--901.
+
+\harvarditem[Lin et~al.]{Lin, Huang, Yuan \harvardand\
+  Bai}{2008}{lin2008transmission}
+Lin, H.-M., Huang, H.-J., Yuan, J.-m. \harvardand\ Bai, M.-C.  \harvardyearleft
+  2008\harvardyearright , `Transmission device and data extended transmission
+  method'.
+\newblock US Patent App. 12/203,007.
 
 \harvarditem[Liu et~al.]{Liu, Wu \harvardand\ Panda}{2004}{liu2004high}
 Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
@@ -194,6 +230,11 @@ Org, M.-C.  \harvardyearleft n.d.{\em a}\harvardyearright , `Mpich
 \harvarditem{Org.}{n.d.{\em b}}{rasppispi}
 Org., R.  \harvardyearleft n.d.{\em b}\harvardyearright , `Raspberry pi spi',
   \url{https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{org.}{n.d.{\em c}}{xtightvncserver}
+org., R.~P.  \harvardyearleft n.d.{\em c}\harvardyearright , `Vnc on raspberry
+  pi', \url{https://www.raspberrypi.org/documentation/remote-access/vnc/}.
 \newblock Accessed July 2, 2016.
 
 \harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\

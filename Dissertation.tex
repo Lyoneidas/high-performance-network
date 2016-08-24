@@ -35,7 +35,7 @@
 \newpage
 
 
-\declaration{High Performance Network Switch Solution Using Open Sourced Hardware}{Zhouqiang Tu}
+\declaration{High Performance Network Switch Solution Using Open Sourced Hardware Accepting Dual Feeds}{Zhouqiang Tu}
 \newpage
 
 
@@ -71,7 +71,7 @@ The SoC system are interconnected as a homogeneous processing cluster. The task/
 	\caption{System Design}
 	\label{fig:system_design}
 \end{figure}
-This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet hub, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
+This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet Switch, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
 The system can be implemented as the interconnection switch network for cloud computing clusters and high performance computer clusters. The design introduces the infrastructural solution for low-latency market data feed, utilizing data transmission efficiency with limited bandwidth, and the fat-tree topology network provides features in system monitoring and scalability in supporting massive computation.\\  
 \subsection{Main Objective}
 The main object for the project is to implement an experiment over a combined hardware-software environment with the features showing in table \ref{table:features}. The system is consisted of two parts:\\
@@ -102,7 +102,6 @@ The principle of providing low latency market data feed is to provide users live
 \end{figure} 
 \subsection{Low Latency Network Infrastructure}
 Engineers provide solutions to achieve lower latency in network transmission for market data, including direct redundant fibre cables from trading centre to traders, shortest path transmission and dual data feed. For example, solution using microwave towers reducing the cost of digging tunnels for fibres and enabling signals transmit over the sphere is implemented between New Jersey and Chicago\cite{htfbackyard}, shows in the picture \ref{fig:2}. Engineers also developed 'dual-feed' mechanism to reduce the cost in retransmission when package lost\cite{zusman1999fault}.The introduction of dual feed, or the A-B feed of market data transmission uses two feeds with offset in delay to avoid significant failure such as delay or fault, especially for regional traders who want to trade across long geographical distances. \\
-
 \begin{figure}[htbp]
 \centering\includegraphics[width=3.5in]{picture/newyork-chicago.jpg}
 \caption{Chicago-New Jersey microwave networks from data vendor Quincy Data}
@@ -169,12 +168,31 @@ P^{-1}(i)=\frac{n-1}{2}+\frac{N}{2}\; \; \; (else)
 \end{equation}
 we introduce the binary representation of data in the original set, that $i=\beta_{D}\beta_{D-1}...\beta_{1}$, so the permutation of $i$ is $P(i)=\beta_{D-1}...\beta_{1}\beta_{D}$, the inverse permutation of $i$ is $P(i)=\beta_{1}\beta_{D}\beta_{D-1}...\beta_{2}$. This defines an ideal switch network that for $o$th step, the data can be divided into even-numbered and odd-numbered processors, and in the $(o+1)$th step, data in even-numbered processors can be moved to low-numbered processors by implementing permutation $P$, and data move from odd-numbered to high-numbered processors can be performed by using inverse permutation $P^{-1}$\cite{schwartz1980ultracomputers}. The arbitrary movements of N elements in shuffle is $O(logN)$, similar to the full hypercube network while decreasing significantly in network volume\cite{clos1953study}.\\
 The implementation of a perfect shuffle interconnection is the Fat-tree network. For classic parallel programs, divide and conquer is an efficient solution\cite{aho1974design}. Fat-tree interconnection strategy is a full binary tree. Message routing through children to the parent will carry data from all previous children, thus, the data capacity of the parent $cap(p)=\sum_{chil}^{route}cap(child)$.Data lost in during transmission from $child_{l_{i}}$ to $parent_{i}$ will be detected by the parent node, and retransmission will only occur between the two nodes(if the package still in the cache of the child node). The only exit is the root node, so any message route through the map will have guaranteed reliability with minimum cost.
+
+\subsubsection{Comparison: MPI supported network interconnection and SPI direct data transmission}
+Serial Peripheral Interface(SPI) is another commonly used interconnection technology especially between two single chip machines\cite{junger2007method}. It uses direct digital data feed trigger by the chip, and translated into pulse normally to the GPIO pins, which is a general known hardware ports for pulse signals\cite{lin2008transmission}. The SPI uses slave-master structure, and abstracted the data transmission process, especially the hardware details in digital-simulate signal translation into high level programming language functions and interfaces.\\
+This can be another ideal way to form an interconnected network among the chips, however, we need to compare the SPI technology to the MPI supported Ethernet interconnection.\\
+First, the features of SPI data transmission: data in applications can be translated into digital signals and send over GPIO ports shown in picture \ref{fig:GPIOpin}. The transmission do not need to follow any network layered protocols, and the SPI works as a translator between two applications. The speed of bit exchange in SPI is much faster, and much more efficient than the Ethernet protocols. However, using SPI introduces the problem of scalability and expense: as discussed above, the GPIO pins can only transmit one bit on each pin, and we can either choose to send a series of data via one of the pins, or send multiple bits of data in parallel over multiple pins.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{picture/photo/GPIOpin}
+	\caption{26 GPIO pins on the Logi Pi board}
+	\label{fig:GPIOpin}
+\end{figure}
+The former solution slows down the system because even 1Kb data needs to be translated into 1,000 electric pulse with 50MHz system clock, using 20$usecs$. The other solution makes it hard to increase the scale, because nodes in this cluster needs to be able to broadcast, therefore the number of GPIO pins one node needs is $N_{node}\times n_{GPIO}$, $N_{node}$ is the total amount of nodes, and $n_{GPIO}$ is the number of nodes for a bi-directional interconnection between two nodes.\\ 
+The MPI supported interconnection Ethernet network, however, do not need to worry about the two problems listed above. The defect of this solution is, it requires 10Gb Ethernet peripherals in the simulated switch cluster, and the equipments is hard to install and purchase.\\
+We decided to use the MPI supported solution for the listing reasons:
+\begin{itemize}
+	\item The SPI solution requires special hardware between each node for synchronization of system clock, and the solution is more focused on the hardware part
+	\item We cannot overcome the difficulty in implementing the GPIO port board, as the open-source hardware only supports 40 GPIO pins on the board, however, the minimum number of boards is three. Therefore the SPI interface can only send 20 bit each time between the nodes, and the experiment cannot perform the scalability test as we do not have expandable GPIO pin peripherals
+	\item We found a solution to simulate the scenarios in UDP datagram transmission in 10Gb Ethernet network, especially the package loss possibility simulation, over the normal RJ-45 Ethernet network. The solution will be illustrated in the following chapters.
+\end{itemize}
 \subsection{Field-programmable gate array(FPGA) and Integration with Open Sourced Hardware}
 The introduction of Field-programmable gate array, or the FPGA, aims at solving the heterogeneous computation requirement in hardware based acceleration and general computing by using gateway logic circus to perform general algorithms or general processes\cite{hauck2010reconfigurable}. The FPGA is an integrated circuit, with re-configurable gateway and other logical blocks that can simulate most non-reconfigurable hardware with similar efficiency. The FPGA can be programmed to meet certain functional requirements by certain hardware definition languages, and modern FPGA also supports advances programming language interfaces, for example, C and Python.\\
 The integration of FPGA and open sourced hardware have been carried by the community, and supported by the FPGA providers such as Xilin and Spartan. The LOGI-Pi is the very first FPGA supported by the open sourced hardware, with Spartan FX9 FPGA chip and SATA connector directly to the designed hardware board\cite{logipi}.
 \subsection{Open Sourced Hardware}
 Hardware engineers need to design and print their customized motherboards to support FPGA and other peripherals, however, the industry produces general motherboards supporting most of the ports including PCI-E, HDMI, USB2.0 and USB3.0. Among which the most well-known commodity hardware is Raspberry Pi and BeagleBone Black showed in picture \ref{fig:commodityhardware}. Both are designed as System On a Chip architecture.\\ 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{picture/commodityhardware.jpg}
 \caption{Beaglebone Black and Raspberry Pi2 Model B}
@@ -202,6 +220,14 @@ Solution provided by TH Express is efficient but too expensive to achieve, howev
 \subsubsection{Enyx`s ARM-based System On a Chip solution}
 Market data hardware infrastructure providers offer variates of solutions to reduce the latency in market data feed. The most recent solution is to implementing FPGA hardware algorithm with ARM based SoC. It accepts A-B feed from normal network interfaces and perform the decompression and filtering via algorithm in FPGA, the ARM CPU focuses on mission dispatch and status monitor.\\
 One of the well-known solution provider is the Enyx, the platform of which is based on Altera Stratix V FPGA board. The rebroadcasting latency for the FPGA supported market data processor can reach 1050 nano seconds, and average latency is 1300 nano seconds\cite{ciscoWhitePaper}. Other commercial solutions supports implementation of trading logic in the switch FPGA, that the terminals from the traders only monitors the macro status of the system, and execution of trading signals only relies on the hardware implemented applications, which reduces the event-reaction time significantly.\\ 
+\subsubsection{Raspberry Pi supercomputer in Southampton University}
+The Southampton University has implemented an Raspberry Pi supercomputer with sixty-four Raspberry Pi Model B boards, interconnected several switches and named 'Iridis-Pi'\cite{cox2014iridis}. The performance of the cluster is measured using LINPACK and HPL benchmark, and the single node performance in LINPACK and node increment benchmark by the HPL results are shown in the picture \ref{fig:iridisBenchmark}. The cluster proves that the Raspberry Pi can form an usable parallel computing cluster, even though its power consumption is relatively very low compared to formal parallel computing infrastructures.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/iridisBenchmark}
+\caption{Benchmark result of LINPACK and HPL on Iridis Pi}\cite{cox2014iridis} 
+\label{fig:iridisBenchmark}
+\end{figure}
 
 \chapter{Details of Implemented Technologies}
 This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
@@ -324,11 +350,11 @@ The implementation of dual feeds in data sources also reduces the time cost sign
 \end{figure}
 The nodes can be divided into three groups according to the topology position to each other:
 \begin{itemize}
-	\item Adjacent nodes: nodes have the same parent hub
-    \item Non-adjacent nodes in the same field: nodes have different parent hubs, but the hubs have direct interconnection
-    \item Non-adjacent nodes in different field: nodes have different parent hubs, and the hubs have no direct interconnection
+	\item Adjacent nodes: nodes have the same parent node
+    \item Non-adjacent nodes in the same field: nodes have different parent nodes, but the nodes have direct interconnection
+    \item Non-adjacent nodes in different field: nodes have different parent nodes, and the nodes have no direct interconnection
 \end{itemize}
-As shown in picture \ref{fig:flat}, the $N_{i}$nodes can detect and process errors in transmission and calculation, and $S_{j}$ works as the network hub which cannot process data errors. The average processing time from node N1 to adjacent nodes in network can be divided into three parts:\\
+As shown in picture \ref{fig:flat}, the $N_{i}$nodes can detect and process errors in transmission and calculation, and $S_{j}$ works as the network switches which cannot process data errors. The average processing time from node N1 to adjacent nodes in network can be divided into three parts:\\
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[H]
@@ -662,9 +688,9 @@ We have already known the board structure including input/output signal environm
 	\item Introduce the library to complete the detail design
 \end{itemize}
 The process now can be performed by the integrated development environment provided by Xilinx ISE tools. However, as the Spartan-6 is an old product and the ISE design suite is no longer supported by the Xilinx, there will be some difficulty in compiling the code, and will be explained in the system implementation chapter.\\
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{picture/vhdlstruct}
+\includegraphics[width=0.5\linewidth]{picture/vhdlstruct}
 \caption{VHDL file structure}
 \label{fig:vhdlstruct}
 \end{figure}
@@ -745,14 +771,27 @@ This part is consisted of three parts:
 \section{System Requirements}
 This project wants to achieve the overall following goals:
 \begin{itemize}
-	\item Implementing the dual-feed receiver hardware using the Raspberry Pi boards
-	\item Implementing software on both the simulated sender and receivers for UDP packages
+	\item Inputs of the system, including the dual-feed hardware structure, and UDP session simulation
+	\item FPGA accelerated package filtering: the logic and hardware implementation
 	\item Monitoring and printing the send-receive results of the communication
 \end{itemize}
 The project does not implement the hardware equipments of 10Gb Ethernet because of the complexity in constructing the hardware over Raspberry Pi and the server side. In order to simulate the environment using RJ-45 cables, we implement a simulated software environment which manually configure the package loss, sending/receiving window and other scenarios.\\
-\subsection{Dual-feed receiver requirements}
+
+\subsection{System Input: Dual feeds and UDP Session Simulation}
+This session explains the requirements in system input, including how to form the hardware input of dual feeds from the simulated server side, and the UDP session simulation, especially how to choose the package loss ratio.\\
+\subsubsection{Dual-feed receivers hardware}
 The main goal of this section is to assembling a hardware using Raspberry Pi boards that can receive two network signals from two RJ-45 cables. The bandwidth of both feeds are up to 500 Mb, however, this includes the bandwidth of incoming data and interconnection communication.\\
-\subsection{Sender and receiver of UDP packets}
+In order to measure the experiment results in an easy way, we simulate the server side with only one source, and the offset of package is manually set up in the sender application. Signal of the sender is split by an Ethernet Switch.\\
+
+\subsubsection{Sender-receiver pair requirements}
+The sender application should be able to differ the receiver with manual offset, and the receiver needs to be able to implement the following features respectively:
+\begin{itemize}
+	\item Receive the data feeds and perform error-check without communication between the two feeds
+	\item Receive the data feeds and perform error-check after merging the feeds, this requires communication between the nodes, and this should be separated into two scenarios: with and without MPI communication channel support
+	\item Receive the data feeds and introduces the FPGA algorithm to perform the error check
+\end{itemize}
+
+\subsubsection{UDP simulator}
 This section simulates scenarios of UDP transmission in low-latency network. According to the Cisco user manual of the commercial high-frequency market data handler, the metrics of the bandwidth and message rate follows\cite{ibm2011highfrequency}:
 \begin{table}[H]
 	\centering
@@ -765,7 +804,7 @@ This section simulates scenarios of UDP transmission in low-latency network. Acc
 		Custome watchlist overlap & 1   & 7                                                                                \\ \bottomrule
 	\end{tabular}
 \end{table}
-Which is higher than the RJ-45 maximum bandwidth. The experiment, however, introduces the possibility in packet loss of UDP datagrams, and scaling down the size of required bandwidth and message rate with corresponding package loss ratio, to prove that if we implement similar solution over the 10Gb Ethernet using optic fibre with the same Raspberry Pi structure, we can still achieve the results close to the experiments.\\
+It is clear that the 10Gb Ethernet bandwidth and data speed is higher than the RJ-45 maximum metrics. The experiment, however, introduces the possibility in packet loss of UDP datagrams, and scaling down the size of required bandwidth and message rate with corresponding package loss ratio, to prove that if we implement similar solution over the 10Gb Ethernet using optic fibre with the same Raspberry Pi structure, we can still achieve the results close to the experiments.\\
 The calculation of packet loss ratio of UDP datagrams $P_{UDP}$ in single feed follows with the listing definitions\cite{moon1998correlation}:
 \begin{itemize}
 	\item $N_{send}$ is the packages sent from the sender side
@@ -839,6 +878,7 @@ We derive the data loss ratio in high-frequency network for UDP datagrams should
 	\item The data loss rate in UDP datagram is similar in both experiment environment and real scenarios
 	\item The ratio of data processing time and propagation time can be considered fixed if the size of datagrams are similar
 \end{itemize}
+
 \section{Hardware design}
 The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
 \begin{table}[H]
@@ -851,21 +891,114 @@ The table of materials used in the project is shown in table \ref{bom}. However,
 		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\
 		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\
 		Logi Pi FPGA board    & 1      & ValentFX       & \begin{tabular}[c]{@{}l@{}}1x SPARTAN-6 FPGA chip, \\ 5V 1A input\end{tabular}                                             \\
-		Ethernet hub          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
+		Ethernet Switch          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
 		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\
 		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\
 		Power cable           & 4      &                & USB power cable                                                                                                            \\ \bottomrule
 	\end{tabular}
 \end{table}
-\section{Logical design}
-The logic design of the project can be illustrated as the picture below:
+\subsection{Interconnection Design and Implementation}
+The Raspberry Pi only has one Ethernet Port, and data traffic among them can be achieved using two ways: the Ethernet cable and GPIO ports. The Ethernet cable way is easy to understand: Raspberry Pi boards forms a LAN and they can reach each other using Internet protocols. The GPIO ports is another ideal way for our project, because the data transmission ratio will not be limited by the interconnection architecture which overlays the incoming data feeds. This uses GPIO hardware communication structure which has been introduced in former chapter, and the applications in this solution exchange direct bit data via the hardware directly through the GPIO pins.\\
+However, the implementation of UART interconnection has the following problem: the pin number of GPIO ports on Raspberry Pi boards is not big enough to process large quantity of data, and an solution for that is using an GPIO expansion board. We also need to implement an synchronizer between two GPIO ports because the system clock on different Raspberry Pi boards is slightly different, and will affect the efficiency in transmission.\\
+\subsubsection{Interconnection design}
+In order to perform the experiment with minimum cost, we decide to use the Ethernet connection solution among the Raspberry Pi boards shows in picture \ref{fig:hardwareDesign}.\\  
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/hardwareDesign}
+\caption{Interconnection Hardware Design}
+\label{fig:hardwareDesign}
+\end{figure}
+The bandwidth requirement has been discussed in the previous sections, and we can derive the overall bandwidth of each system:\\
+\begin{itemize}
+	\item Each port supports maximum 500Mbps
+	\item RJ-45 cable only supports 100Mbps bandwidth\cite{kunz1999rj}
+	\item The bandwidth inside switch can be considered as infinite, as it is inner-chip communication inside.
+\end{itemize}
+Therefore, the actual bandwidth limit in one-side communication is 100Mbps, however, the MPI-CH is a two-side communication among the nodes, and the server input also uses the same interconnection network. Therefore, the upper limit in actual one-side communication is less than 40Mbps.\\
+\subsubsection{Interconnection implementation}
+and the real cabling photo:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/photo/SwitchConnection}
+\caption{Cabling on the switch board}
+\label{fig:SwitchConnection}
+\end{figure}
+We have two sorts of Raspberry Pi boards, the slave nodes that perform as the receivers, and a master node which connects to an Logi Pi FPGA board. The network connection of these two kinds are similar:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{picture/photo/rappCluster}
+\caption{Ethernet connection in slave node and master node}
+\label{fig:rappCluster}
+\end{figure}
+\subsection{Power Supply Design}
+The power supply of the cluster is divided into two parts(the simulated server has independent power supply). The switch is supported directly from a power strip without backup, and the cluster is supported by an USB power hub with stabilizer. The design should be enough for experiment, however, as the Logi Pi FPGA board does not have any static memory module, the hardware content will be lost if the power supply is cut of for the master node, we should implement Unstoppable Power Supply units for large scale implementation.\\
+The design of power supply is illustrated in the picture \ref{fig:powerDesign}. The FPGA can get power from both the GPIO pins in the master board, and the USB power hub with a standard A-B USB cable. The FPGA board is used for accelerating the processing speed and there is no meaning to keep it alive if the master node is off-line.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/powerDesign}
+\caption{Power supply design for the cluster}
+\label{fig:powerDesign}
+\end{figure}
+\subsection{Conclusion}
+We discussed the hardware design in this section, and set the bandwidth of the experiment environment to be $B_{exp} \approx 40Mbps$, and the detail description for the network structure implementation and power supply implementation prove that the experiment over Raspberry Pi-Logi Pi cluster can demonstrate the solution we provided for the high performance network receiving dual feeds.\\ 
+\section{System Design and Implementation}
+The blue print of the software system over the cluster is illustrated in picture \ref{fig:LogicDesign}, and the implementations are focused on the MPI supported Linux cluster over Raspberry Pi, including the installation and configuration of MPI-CH2 framework on Linux, configurations of Python support and FPGA development configuration.\\
+The Raspberry Pi hardware, however, is different from general computing platforms in the following ways:
+\begin{itemize}
+	\item Only limited operating system images can be installed on Raspberry Pi, and most of them are deep customized for the ARM based platforms
+	\item Hardware portals on the Raspberry Pi is different, including the SPI and i2c configurations
+\end{itemize}
+We encountered some legacy problems from both the cluster implementations and Windows system as the server. The solution for these problems will be discussed in this section.\\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{picture/LogicDesign}
 	\caption{The logic design of the system}
 	\label{fig:LogicDesign}
 \end{figure}
-\section{Algorithm design}
+\subsection{Operating System and Internet Connection}
+We chose the Raspbian from one of the official supported customized OS images by Raspberry Pi organization as our operating system. The Raspbian is customized from Debian to support the ARM CPUs, and other unique hardware drivers in Pi boards\cite{harrington2015learning}. Writing the system image into SD card and plug it into the Pi board, the system is well supported by the community that starting up is quite easy. However, it would occur some bugs in the system if we do not start up the cluster in the correct sequence.\\
+\subsubsection{Solution to the IP address configuration}
+ The Internet connection of the cluster is provided by the computer served as the sender. It shares the WIFI public network with the cluster using a wired cable linked from the computer to switch. After sharing the network, the IP of wired network adaptor in the computer will be fixed to 192.168.137.1 with net mask 255.255.255.0. We configure the Raspbians to manually get their fixed IP address on eth0 interface by changing the booting configurations, and the three nodes uses 192.168.137.101, 192.168.137.102, 192.168.137.103 in order to avoid conflict. This setting needs to be set in both booting configure and the image level file cmdline.txt.\\
+ \subsubsection{Solution to Internet reconnection}
+ We need Internet connection over the cluster to perform package installation and update, however, a bug in Windows 10 wireless network sharing policy can cause a lost in Internet support of the cluster. The bug happens when the OS is turned to sleep or when wireless signals are cut off for a while. The wired adapter will be turned into the primary adapter on the above scenarios, and some parts of the network sharing will not work even we manually reconnect the wireless network again.\\
+ A solution to this is to perform ARP scan from the server over the clusters manually after reconnecting, and be sure that all the interfaces on the Raspberry Pi are set to manual configuration, because the wired adaptor may lose the setting of disabling DHCP, and some network interfaces might be activated by mistake.\\
+\subsubsection{Interacting with the cluster: ssh terminal and VNC}
+We choose two ways to interact with the cluster, ssh using Putty client and VNC to see the XWindows desktop. The latter one is implemented by the RealVNC viewer on the monitor side\cite{realvnc}, and tightvncserver on the cluster side\cite{xtightvncserver}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{picture/terminal}
+\caption{SSH terminal and VNC XWindows for master node}
+\label{fig:terminal}
+\end{figure}
+\subsection{MPI-CH2: Install and Configure}
+MPI-CH2 needs to be compiled and installed from the source. The latest stable version for MPI-CH2 is 3.2. Installing of MPI-CH2 is time-consuming, and takes about three hours to compile, build and install the entire system without any error. Therefore we made one image with MPI-CH2 installed, and wrote that to all rest two nodes to save time.\\
+This section will not discuss in detail about the installation steps and configuring system files, however, we can describe the overall process is to download source, build and compile, then add necessary middle wares, in the end the MPICH2 package provides example codes and will work if the installation is completed. The configuration of MPI-CH2 over Raspbian is a bit different from other x86 Linux images. The hostname of Raspbians are the same due to the default configuration, and changing the host name in the file /etc/hostname will affect the environment because some programs, including mpiexec and mpirun, will use etc/hosts as the indexing. The changing in IP address discussed above will make these applications unable to find the local host, as it is set to be 127.0.0.1 with the name 'localhost'.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{picture/mpi-setup/setpsMPICH2}
+\caption{Setting up the MPI-CH2 environment}
+\label{fig:setpsMPICH2}
+\end{figure}
+
+\section{Software Design and Implementation}
+The data flow blueprint for the project can be illustrated in the picture \cite{fig:LogicDesign}, and the implementation details can be very different according to the framework we are using. The software system can be split into three parts:
+\begin{itemize}
+	\item Data feed: simulates the high-frequency data, can be configured into different sending modes with related package size and error rate
+	\item Dual-feed receiver: the receivers are running over the MPI-CH framework, however, it can have two different strategy in processing received data: the error check mechanism happens in the master node, and the receivers can choose either to retransmit every single datagram right after receiving it, or retransmit the entire package after the transmission is time-out
+	\item Master node: the master node needs to perform at least two functions: metrics collection and error check
+\end{itemize}
+We demonstrate the solutions to these requirements in the following contents. Multiple implementations of data feed and master node are introduced in order to make comparison of combination in the experiment, and we make decision of the strategy in the dual-feed receiver for some experiments done on the cluster. 
+
+\subsection{Design of the Data Feed}
+The flow diagram of data feed is picture \ref{fig:sender-diagram}. It does not fully simulate the real A-B data feed over UDP protocols, however, because we send serials of integer data to the receivers in order to perform benchmark of the efficiency. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{picture/sender-diagram}
+\caption{Data feed application flow diagram}
+\label{fig:sender-diagram}
+\end{figure}
+
+\section{FPGA Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
 
 \chapter{Experiment Design, Requirements and Expectations}
