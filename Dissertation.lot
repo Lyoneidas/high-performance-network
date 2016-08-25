@@ -1,16 +1,16 @@
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces System Features}}{3}{table.1.1}
-\contentsline {table}{\numberline {1.2}{\ignorespaces Latency and bandwidth in memory IO}}{6}{table.1.2}
+\contentsline {table}{\numberline {1.1}{\ignorespaces Latency and bandwidth in memory IO}}{4}{table.1.1}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces My caption}}{13}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{20}{table.2.2}
-\contentsline {table}{\numberline {2.3}{\ignorespaces My caption}}{43}{table.2.3}
+\contentsline {table}{\numberline {2.1}{\ignorespaces My caption}}{12}{table.2.1}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{19}{table.2.2}
+\contentsline {table}{\numberline {2.3}{\ignorespaces My caption}}{42}{table.2.3}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Content structure of system design and implementation}}{45}{table.3.1}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Low-latency market data handler metrics}}{47}{table.3.2}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Materials used in the experiment}}{50}{table.3.3}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Content structure of system design and implementation}}{44}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces System Features}}{46}{table.3.2}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Low-latency market data handler metrics}}{48}{table.3.3}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Materials used in the experiment}}{51}{table.3.4}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Experiment design table}}{59}{table.4.1}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Experiment design table}}{61}{table.4.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

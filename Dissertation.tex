@@ -62,39 +62,10 @@ Financial instruments and organizations in the modern world needs to provide an 
 Low latency infrastructure is invented to meet the market requirements, it is usually consisted of two parts,  computational nodes and network infrastructure. Existing solutions for the former part are customized servers, cloud computer farms and special data centres. They are programmed to perform data analysis over live market data feed, the outputs are trading behaviours packed as orders . Firms in computer network services are focusing on the latter part, as the latency in this part can be solved by engineering practises.\\
 Solutions for low latency network usually come with high cost non-scalable hardware, and requires racks of server cabinets to install the devices. However, the entry barrier in the upfront investment for network infrastructure makes it difficult for medium or small financial institutions to start business in this field.\\
 Researchers are looking forward to find alternative solutions to build network infrastructures that supports low latency market data feed. The researchers in high performance computation cluster provides a possible solution. The interconnect networks in supercomputers follows a different design in network interfaces. The improving design of parallel program architectural in supercomputers requires more efficient parallelism in network interface\cite{pang2014th}. We introduces the high scalable design and the fat-tree topology in the architecture into our design of high performance network switches, and achieve similar acceleration in data process as the existing commercial solutions.\\
-\section{Objectives}
-\subsection{Overall Design}
-The project designed an experimental system over Raspberry Pi 2 Model B hardware, that supports 100Mbps Ethernet dual feeds as data source. The system should be flexible in error tolerance such as package loss, and scalable in implementing additional heterogeneous hardware. The network can be separated into two parts: the communication layer that supports low-latency network, and monitor system embedded in the SoC that implements additional features such as error tolerance. \\ 
-The SoC system are interconnected as a homogeneous processing cluster. The task/thread management are performed by interconnected CPUs over multi-processor interfaces, memory solution for bandwidth requirement of high frequency data is RDMA protocols implemented over open sourced hardware memories. The FPGA attached in the master node is in charge of decoding, decompression and filtering for dual feeds.\\
-\begin{figure}[htbp]
-	\centering\includegraphics[width=3.5in]{picture/System_Design.jpg}
-	\caption{System Design}
-	\label{fig:system_design}
-\end{figure}
-This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet Switch, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
-The system can be implemented as the interconnection switch network for cloud computing clusters and high performance computer clusters. The design introduces the infrastructural solution for low-latency market data feed, utilizing data transmission efficiency with limited bandwidth, and the fat-tree topology network provides features in system monitoring and scalability in supporting massive computation.\\  
-\subsection{Main Objective}
-The main object for the project is to implement an experiment over a combined hardware-software environment with the features showing in table \ref{table:features}. The system is consisted of two parts:\\
-\begin{itemize}
-	\item The hardware part: creating physical connection among ARM based SoCs and FPGA accelerated data processor, and connect to the data feed via Ethernet cables;
-	\item The software part: creating logical fat-tree topology network, that buffering dual feeds in the slave nodes and processing UDP packages via FPGA accelerated master node and other parallel user cores; 
-\end{itemize}
-\begin{table}[]
-	\centering
-	\caption{System Features}
-	\label{table:features}
-	\begin{tabular}{@{}l|l@{}}
-		\toprule
-		Features                                                                           & Description                                                                                                                                                                                                                                               \\ \midrule
-		\begin{tabular}[c]{@{}l@{}}A-B data feed\\ handler\end{tabular}                    & \begin{tabular}[c]{@{}l@{}}The system needs to support dual data feed(A-B data feed)\\ to simulate the senario of ultra-low latency market data \\ transmission\end{tabular}                                                                              \\ \hline
-		\begin{tabular}[c]{@{}l@{}}FPGA accelerated\\ UDP package processsing\end{tabular} & \begin{tabular}[c]{@{}l@{}}The decompression and filtering of dual UDP packages in \\ FPGA are proved to be more efficient than pure CPU \\ solutions, and can be expand to more general situations\\ in normal high frequency data networks\end{tabular} \\ \hline
-		\begin{tabular}[c]{@{}l@{}}ARM based SoC \\ interconnection\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Interconnection among ARM based SoC network makes it \\ possible to implement scalable buffer capacity and bandwidth\end{tabular}                                                                                              \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Fat tree \\ interconnect \\ network\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Fat tree topology is proved to be efficient in \\ implementing interconnection network for massive parallel \\ computation, and flexible in scalable computational nodes.\end{tabular}                                         \\ \bottomrule
-	\end{tabular}
-\end{table}
+
 \section{Literature review}
 \subsection{Market Data Feed}
-The principle of providing low latency market data feed is to provide users live data of current price information and trader status, including individual portfolio valuation, financial market data, trading activities and alarms, a matrix of these data forms an 'Order Book'. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies. For example, data delayed over 5 minutes can be fetched from Yahoo finance API for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
+The principle of providing low latency market data feed is to provide users live data of current price information and trader status, including individual portfolio valuation, financial market data, trading activities and alarms, a matrix of these data forms an 'Order Book'. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies. For example, data delayed over 5 minutes can be fetched from Yahoo finance Application Programming Interface(API) for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
 \begin{figure}[htbp] 
 \centering\includegraphics[width=3.5in]{picture/tradevenue.PNG} 
 \caption{Relationship among trade venue, data vendors and customers}
@@ -195,7 +166,7 @@ Hardware engineers need to design and print their customized motherboards to sup
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{picture/commodityhardware.jpg}
-\caption{Beaglebone Black and Raspberry Pi2 Model B}
+\caption{Beaglebone Black and Raspberry Pi2 Model B}\cite{bbbrpi}
 \label{fig:commodityhardware}
 \end{figure}
 
@@ -228,7 +199,8 @@ The Southampton University has implemented an Raspberry Pi supercomputer with si
 \caption{Benchmark result of LINPACK and HPL on Iridis Pi}\cite{cox2014iridis} 
 \label{fig:iridisBenchmark}
 \end{figure}
-
+\section{Conclusion}
+In this chapter we made introductions to the background knowledge of high-frequency market data and its network infrastructure, especially the A-B data feed it uses to reduce network latency. Then we explained 
 \chapter{Details of Implemented Technologies}
 This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
 % Please add the following required packages to your document preamble:
@@ -750,7 +722,7 @@ These two features requires the design of the system to be aware of the executio
 This section introduces how the FPGA will work with the receiver applications on the MPI-CH structure, and focuses on how to design and implement a hardware algorithm in the FPGA, from design to actual coding, and the important technology which enables the hardware to seamlessly communicate to the CPU hosted applications using Wishbone. The FPGA accelerated computation is widely used in the commercial solution to similar problems, especially in the market data feed handlers, however, this project shows the potential of using an open-source FPGA board to achieve the same goal over an cluster hardware environment.\\ 
 
 \chapter{System Design and Implementation}
-This part of the thesis explains design of the system, and the implementations of technologies discussed above. \\
+This part of the thesis explains the main objective of the experiments, design of the experimenting system, and the implementations of technologies discussed above. 
 This part is consisted of three parts:
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -761,13 +733,44 @@ This part is consisted of three parts:
 	\begin{tabular}{@{}ll@{}}
 		\toprule
 		Name                                                                                    & Content                                                                                                                                                                     \\ \midrule
-		System Requirements                                                                     & \begin{tabular}[c]{@{}l@{}}Showing system requirements based on the hardware\\ achieved, and simulation goals\end{tabular}                                                  \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Experiment Objectives and\\System Requirements    \end{tabular}                                                                 & \begin{tabular}[c]{@{}l@{}}Showing system requirements based on the hardware\\ achieved, and simulation goals\end{tabular}                                                  \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Hardware Design and\\ Implementations\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Showing the hardware design of the system, including \\ connectivity implementations and power supply \\ implementation\end{tabular}             \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Software Design and\\ Implementations\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Showing the design of different sender-receiver pair, \\ with and without MPI layer and FPGA assisted ones\end{tabular}                          \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Hardware Algorithm\\ Design and Implementations\end{tabular} & \begin{tabular}[c]{@{}l@{}}Showing the design of the hardware implementation \\ along with the software interfaces of the application \\ on the Spartan-6 FPGA\end{tabular} \\ \bottomrule
 	\end{tabular}
 \end{table}
 \newpage
+\section{Experiment Objectives}
+\subsection{Overall Design}
+The project designed an experimental system over Raspberry Pi 2 Model B hardware, that supports 100Mbps Ethernet dual UDP datagram feeds as data source. The system should be flexible in error tolerance such as package loss, and scalable in implementing additional heterogeneous hardware. The network can be separated into two parts: the communication layer that supports low-latency network, and monitor system embedded in the SoC that implements additional features such as error tolerance. \\ 
+The System over Chips(SoC) system are interconnected as a homogeneous processing cluster. The task/thread management are performed by interconnected CPUs over multi-processor interfaces, memory solution for bandwidth requirement of high frequency data is RDMA protocols implemented over open sourced hardware memories. The FPGA attached in the master node is in charge of decoding, decompression and filtering for dual feeds.\\
+\begin{figure}[H]
+	\centering\includegraphics[width=3.5in]{picture/System_Design.jpg}
+	\caption{System Design}
+	\label{fig:system_design}
+\end{figure}
+This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet Switch, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
+The system can be implemented as the interconnection switch network for cloud computing clusters and high performance computer clusters. The design introduces the infrastructural solution for low-latency market data feed, utilizing data transmission efficiency with limited bandwidth, and the fat-tree topology network provides features in system monitoring and scalability in supporting massive computation.\\  
+This thesis provides a possible solution to this problem, which is implementing the dual data feed system over the open sourced hardware, and using Message Passing Interface technology to make the system scalable to achieve similar performance as the commercial ones with lower cost in purchasing and energy cost.\\
+\subsection{Main Objective}
+The main object for the project is to implement an experiment over a combined hardware-software environment with the features showing in table \ref{table:features}. The system is consisted of two parts:\\
+\begin{itemize}
+	\item The hardware part: creating physical connection among ARM based SoCs and FPGA accelerated data processor, and connect to the data feed via Ethernet cables;
+	\item The software part: creating logical fat-tree topology network, that buffering dual feeds in the slave nodes and processing UDP packages via FPGA accelerated master node and other parallel user cores; 
+\end{itemize}
+\begin{table}[H]
+	\centering
+	\caption{System Features}
+	\label{table:features}
+	\begin{tabular}{@{}l|l@{}}
+		\toprule
+		Features                                                                           & Description                                                                                                                                                                                                                                               \\ \midrule
+		\begin{tabular}[c]{@{}l@{}}A-B UDP data feed\\ handler\end{tabular}                    & \begin{tabular}[c]{@{}l@{}}The system needs to support dual data feed(A-B data feed)\\ to simulate the senario of ultra-low latency market data \\ transmission\end{tabular}                                                                              \\ \hline
+		\begin{tabular}[c]{@{}l@{}}FPGA accelerated\\ UDP package processsing\end{tabular} & \begin{tabular}[c]{@{}l@{}}The decompression and filtering of dual UDP packages in \\ FPGA are proved to be more efficient than pure CPU \\ solutions, and can be expand to more general situations\\ in normal high frequency data networks\end{tabular} \\ \hline
+		\begin{tabular}[c]{@{}l@{}}ARM based SoC \\ interconnection\end{tabular}           & \begin{tabular}[c]{@{}l@{}}Interconnection among ARM based SoC network makes it \\ possible to implement scalable buffer capacity and bandwidth\end{tabular}                                                                                              \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Fat tree \\ interconnect \\ network\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Fat tree topology is proved to be efficient in \\ implementing interconnection network for massive parallel \\ computation, and flexible in scalable computational nodes.\end{tabular}                                         \\ \bottomrule
+	\end{tabular}
+\end{table}
 \section{System Requirements}
 This project wants to achieve the overall following goals:
 \begin{itemize}
@@ -979,7 +982,8 @@ This section will not discuss in detail about the installation steps and configu
 \caption{Setting up the MPI-CH2 environment}
 \label{fig:setpsMPICH2}
 \end{figure}
-
+\subsubsection{Adding Python support to MPI-CH2:MPI4PY}
+Python has 
 \section{Software Design and Implementation}
 The data flow blueprint for the project can be illustrated in the picture \cite{fig:LogicDesign}, and the implementation details can be very different according to the framework we are using. The software system can be split into three parts:
 \begin{itemize}
@@ -997,7 +1001,10 @@ The flow diagram of data feed is picture \ref{fig:sender-diagram}. It does not f
 \caption{Data feed application flow diagram}
 \label{fig:sender-diagram}
 \end{figure}
-
+The main goal of the data source provider is to simulate the data loss, and we have two ways to implement it. One is to make a real manual data loss in some of the packages before sending, and leave the error check to differ the 'correct' data source and 'corrupted' data source. Another is to pre-set a bulk of independent sending tasks, and manually disable some of the tasks randomly.\\
+The first option simulates the UDP datagram transmission directly, however, it is takes time to make comparison, as for each sending task, the receiver side needs to run a full error check. It also cannot perfectly simulate the situation with one of the source significantly delayed, because the UDP datagram can arrive in mixed sequence and the UDP receiver will automatically sort the data according to the header.\\
+The second option uses failure rate of the independent replications to substitute the data loss rate in single transmission, with the definition of Bernoulli experiment\cite{anderberg2014cluster}.\\
+because for a group of tasks with an amount of $N$, the failure rate ${P}'=\frac{N_{fail}}{N}$, and for a single task, the failure rate $p_{fail}=$
 \section{FPGA Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
 

@@ -9,6 +9,11 @@ Aho, A.~V. \harvardand\ Hopcroft, J.~E.  \harvardyearleft 1974\harvardyearright
 Alexander, C.  \harvardyearleft 2001\harvardyearright , {\em Market models: A
   guide to financial data analysis}, John Wiley \& Sons.
 
+\harvarditem{Anderberg}{2014}{anderberg2014cluster}
+Anderberg, M.~R.  \harvardyearleft 2014\harvardyearright , {\em Cluster
+  analysis for applications: probability and mathematical statistics: a series
+  of monographs and textbooks}, Vol.~19, Academic press.
+
 \harvarditem{Archer \harvardand\ Blocksome}{2012}{archer2012remote}
 Archer, C.~J. \harvardand\ Blocksome, M.~A.  \harvardyearleft
   2012\harvardyearright , `Remote direct memory access'.
@@ -255,6 +260,12 @@ Protopopov, B.~V. \harvardand\ Skjellum, A.  \harvardyearleft
   2001\harvardyearright , `A multithreaded message passing interface (mpi)
   architecture: Performance and program issues', {\em Journal of Parallel and
   Distributed Computing} {\bf 61}(4),~449--466.
+
+\harvarditem{register .Inc}{n.d.}{bbbrpi}
+register .Inc, T.  \harvardyearleft n.d.\harvardyearright , `Review:
+  Beagleboard beaglebone black',
+  \url{http://www.theregister.co.uk/2013/06/11/review_beagleboard_beaglebone_black//}.
+\newblock Accessed July 2, 2016.
 
 \harvarditem{Russell}{2012}{RobertRDMAintro}
 Russell, R.~D.  \harvardyearleft 2012\harvardyearright , `Introduction to rdma
