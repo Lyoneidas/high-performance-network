@@ -13,7 +13,7 @@
 \contentsline {subsection}{\numberline {1.2.7}Similar Solution}{8}{subsection.1.2.7}
 \contentsline {subsubsection}{FPGA accelerated market data feed}{8}{section*.9}
 \contentsline {subsubsection}{TH Express interconnection network}{9}{section*.10}
-\contentsline {subsubsection}{Enyx`s ARM-based System On a Chip solution}{10}{section*.11}
+\contentsline {subsubsection}{Enyx`s ARM-based System on a Chip solution to market data infrastructure}{10}{section*.11}
 \contentsline {subsubsection}{Raspberry Pi supercomputer in Southampton University}{10}{section*.12}
 \contentsline {section}{\numberline {1.3}Conclusion}{11}{section.1.3}
 \contentsline {chapter}{\numberline {2}Details of Implemented Technologies}{12}{chapter.2}
@@ -53,11 +53,11 @@
 \contentsline {subsubsection}{Board structure}{37}{section*.27}
 \contentsline {subsubsection}{Design the hardware logic}{37}{section*.28}
 \contentsline {subsubsection}{Burning the design into the FPGA chip}{38}{section*.29}
-\contentsline {subsection}{\numberline {2.5.3}Wishbone: interface for FPGA-to-PC communication}{40}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.3}Wishbone: interface for FPGA-to-PC communication}{39}{subsection.2.5.3}
 \contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{40}{section*.30}
 \contentsline {subsubsection}{Implementation of Wishbone on Logi Pi}{41}{section*.31}
 \contentsline {subsubsection}{Parallel process and FPGA status}{42}{section*.32}
-\contentsline {subsection}{\numberline {2.5.4}Conclusion}{43}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.4}Conclusion}{42}{subsection.2.5.4}
 \contentsline {chapter}{\numberline {3}System Design and Implementation}{44}{chapter.3}
 \contentsline {section}{\numberline {3.1}Experiment Objectives}{45}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Overall Design}{45}{subsection.3.1.1}
@@ -72,7 +72,7 @@
 \contentsline {section}{\numberline {3.3}Hardware design}{51}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Interconnection Design and Implementation}{51}{subsection.3.3.1}
 \contentsline {subsubsection}{Interconnection design}{52}{section*.38}
-\contentsline {subsubsection}{Interconnection implementation}{52}{section*.39}
+\contentsline {subsubsection}{Interconnection implementation}{53}{section*.39}
 \contentsline {subsection}{\numberline {3.3.2}Power Supply Design}{53}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Conclusion}{54}{subsection.3.3.3}
 \contentsline {section}{\numberline {3.4}System Design and Implementation}{54}{section.3.4}

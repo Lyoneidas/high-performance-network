@@ -40,7 +40,7 @@
 
 
 \abstract
-The thesis introduces a solution to high performance network infrastructure reducing the latency significantly by using dual feeds. The hardware infrastructure implemented in the project is the open sourced hardware, different from the established commercial solutions. The major goal of the project is to prove that the cost in implementing ultra-low latency network can be reduced significantly by using the open sourced hardware, and assisted with FPGA. The project focuses on implementing the fat-tree network topology among three Raspberry Pi2 Model B with one Spartan FPGA, logically introducing the perfect shifting strategy in data intercommunication, implementing MPICH2 among three ARM CPUs, and infiniband RDMA memory accessing strategy to provide the scalability along with the MPI to the system. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
+The thesis introduces an experimental dual-feed solution over open source hardware to reduce the latency in network. One significant improvement in the solution different from other established commercial solutions is that the network infrastructure is built upon open sourced hardware, and the main goal of the project is to prove that the cost in implementing ultra-low latency network can be reduced significantly by using the open sourced resources assisted with FPGA. The project focuses on implementing an experimental environment of fat-tree network topology over three Raspberry Pi2 Model B with one Spartan FPGA, with the implementation of MPICH2 among three ARM CPUs, providing scalability in computational scale to the system. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
 \newpage
 
 \tableofcontents
@@ -141,7 +141,7 @@ we introduce the binary representation of data in the original set, that $i=\bet
 The implementation of a perfect shuffle interconnection is the Fat-tree network. For classic parallel programs, divide and conquer is an efficient solution\cite{aho1974design}. Fat-tree interconnection strategy is a full binary tree. Message routing through children to the parent will carry data from all previous children, thus, the data capacity of the parent $cap(p)=\sum_{chil}^{route}cap(child)$.Data lost in during transmission from $child_{l_{i}}$ to $parent_{i}$ will be detected by the parent node, and retransmission will only occur between the two nodes(if the package still in the cache of the child node). The only exit is the root node, so any message route through the map will have guaranteed reliability with minimum cost.
 
 \subsubsection{Comparison: MPI supported network interconnection and SPI direct data transmission}
-Serial Peripheral Interface(SPI) is another commonly used interconnection technology especially between two single chip machines\cite{junger2007method}. It uses direct digital data feed trigger by the chip, and translated into pulse normally to the GPIO pins, which is a general known hardware ports for pulse signals\cite{lin2008transmission}. The SPI uses slave-master structure, and abstracted the data transmission process, especially the hardware details in digital-simulate signal translation into high level programming language functions and interfaces.\\
+Serial Peripheral Interface(SPI) is another commonly used interconnection technology especially between two single chip machines\cite{junger2007method}. It uses direct digital data feed trigger by the chip, and translated into pulse normally to the General-Purpose Input/Output pins, which is a general known hardware ports for pulse signals\cite{lin2008transmission}. The SPI uses slave-master structure, and abstracted the data transmission process, especially the hardware details in digital-simulate signal translation into high level programming language functions and interfaces.\\
 This can be another ideal way to form an interconnected network among the chips, however, we need to compare the SPI technology to the MPI supported Ethernet interconnection.\\
 First, the features of SPI data transmission: data in applications can be translated into digital signals and send over GPIO ports shown in picture \ref{fig:GPIOpin}. The transmission do not need to follow any network layered protocols, and the SPI works as a translator between two applications. The speed of bit exchange in SPI is much faster, and much more efficient than the Ethernet protocols. However, using SPI introduces the problem of scalability and expense: as discussed above, the GPIO pins can only transmit one bit on each pin, and we can either choose to send a series of data via one of the pins, or send multiple bits of data in parallel over multiple pins.\\
 \begin{figure}[H]
@@ -188,7 +188,7 @@ TH Express interconnection network is the local area net framework for the Chine
 	\label{fig:tianhe1a}
 \end{figure}
 Solution provided by TH Express is efficient but too expensive to achieve, however, it provides an approach to reduce latency in high frequency network data supporting the massive parallel processing system, that scalable commodity hardware supported by RDMA can improve the reliability and bandwidth of the network.\\
-\subsubsection{Enyx`s ARM-based System On a Chip solution}
+\subsubsection{Enyx`s ARM-based System on a Chip solution to market data infrastructure}
 Market data hardware infrastructure providers offer variates of solutions to reduce the latency in market data feed. The most recent solution is to implementing FPGA hardware algorithm with ARM based SoC. It accepts A-B feed from normal network interfaces and perform the decompression and filtering via algorithm in FPGA, the ARM CPU focuses on mission dispatch and status monitor.\\
 One of the well-known solution provider is the Enyx, the platform of which is based on Altera Stratix V FPGA board. The rebroadcasting latency for the FPGA supported market data processor can reach 1050 nano seconds, and average latency is 1300 nano seconds\cite{ciscoWhitePaper}. Other commercial solutions supports implementation of trading logic in the switch FPGA, that the terminals from the traders only monitors the macro status of the system, and execution of trading signals only relies on the hardware implemented applications, which reduces the event-reaction time significantly.\\ 
 \subsubsection{Raspberry Pi supercomputer in Southampton University}
@@ -200,14 +200,14 @@ The Southampton University has implemented an Raspberry Pi supercomputer with si
 \label{fig:iridisBenchmark}
 \end{figure}
 \section{Conclusion}
-In this chapter we made introductions to the background knowledge of high-frequency market data and its network infrastructure, especially the A-B data feed it uses to reduce network latency. Then we explained 
+In this chapter we made introductions to the background knowledge of high-frequency market data and its network infrastructure, especially the A-B data feed it uses to reduce network latency. Then we explained how the scalable interconnect switches are structured in the supercomputers, and focuses on the Beowulf architecture, which is the prototype of our design, the perfect shuffle within the interconnection network and Message Passing Interface. We made a comparison over the Serial Peripheral Interface connection and MPI supported network connection, and explained our choice of the MPI supported one. We also introduced the Field Programmable Gateway Array which holds our hardware algorithm, and two different types of supported open sourced hardware, the BeagleBone Back and Raspberry Pi 2Mode B.\\
+We also made introductions to two established dual datafeed solutions for market data infrastructure and discussed pros and cons of both solutions. The high performance network switch in TH Express network brings us an new idea about the approach to the dual data feed hardware that a Beowulf structured open source hardware can achieve similar performance over the network with much less cost. The Raspberry Pi cluster in Southampton University proves that the performance of open sourced hardware can be acceptable if they are tuned correctly.\\ 
+The following chapter will have detailed introduction of the technologies we implemented.\\ 
 \chapter{Details of Implemented Technologies}
 This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
 \begin{table}[H]
 \centering
-\caption{My caption}
+\caption{Implemented Technologies}
 \label{my-label}
 \begin{tabular}{@{}l|ll@{}}
 \toprule
@@ -622,24 +622,14 @@ The first step is to understand the board design, including understand the hardw
 Usually, the pins of the FPGA chip are bounded into banks, so the electric schema of FPGA chips will show the pin structure as a form of banks. The FPGA manufacturers do not know the components outside the chip itself, however, only the creator of FPGA board can know how the board structure looks like. The design of FPGA application functions needs a file describes it, to avoid checking schematics diagrams every time, including the number, name and function of each pin on the FPGA chip, therefore we can use the hardware description language(HDL) to implement our functions.\\
 \subsubsection{Design the hardware logic}
 The second step is to understand the function need to implement: how the signals are imported into the FPGA, and how the output is consumed. The signals are variables that are created in the applications running on the CPU platform, and we have the Wishbone mechanism to slurp the signals from the memory in CPU to the SDRAM on the FPGA board, and push them into the designed pin. \\
-Design of the hardware logic in FPGA follows the idea of modular programming, and the designer needs to split the hardware design into basic modules according to the functions FPGA chip provided. Each module is consisted of three parts: the input, which can be a system signal like clock, or the output from another module; the basic logic which contains the hardware logic of how a signal is processed by the basic components, for example the pulse-width modulation logic to carry a constant signal with a periodic one using the following logic:
-\begin{lstlisting}[breaklines,breakatwhitespace,caption={PWM module in Verilog},label=compression-psudoCode]
-//module begin
-input clk_in;
-input [7:0] sig_in;
-input [7:0] counter;
+Design of the hardware logic in FPGA follows the idea of modular programming, and the designer needs to split the hardware design into basic modules according to the functions FPGA chip provided. Each module is consisted of three parts: the input, which can be a system signal like clock, or the output from another module; the basic logic which contains the hardware logic of how a signal is processed by the basic components, for example the pulse-width modulation logic to carry a constant signal with a periodic clock using the following logic:
+\begin{itemize}
+	\item[1.] Defining the input signals with fixed bits
+	\item[2.] Defining the parameter which receives the system clock signal, we can treat this parameter as an instance of class 'clock', which will change the value of itself according to time, and have methods to trigger an event which can be captured by system
+	\item[3.] Defining the output, including the bits it contains and pin number it attaches to, the mapping of pin number and actual function, for example, which pin attaches to the LED, can be found on the schematics diagram
+	\item[4.] Making a loop triggered by the clock, and define the behaviours of output inside the body
+\end{itemize}	
 
-output reg PWM_out =0;
-always@ (poseedge clk_in) 
-	begin
-		if(counter < sig_in)
-			PWM_out <= 1;
-		else
-			PWM_out <=0;
-		counter <= counter +1;
-	end
-//module end		
-\end{lstlisting}  
 The example code shows how to carry an eight-bit long constant signal with the provided system clock, and can be presented in the picture \ref{fig:pwm}. This diagram is the basic component of the hardware design, which we introduces to illustrate how the basic components discussed above are connected together as an overall hardware logic, to perform certain algorithm.\\
 The benefit of using the modular design is that the modules are reusable, and the basic logic components inside FPGA is barely changed, so we can always reuse some classic solution even the code is decades ago.\\
 The Logi Pi FPGA chip supports most of the modular design in the VHDL library, and the manufacturer developed some customized interfaces mainly for chip-to-chip communication especially for the ARM based platforms via PCI ports. These interfaces are the basic parts of this project, called Wishbone and will be discussed later.\\  
@@ -670,7 +660,7 @@ The process now can be performed by the integrated development environment provi
 We had a brief introduction in how the FPGA works in the above sections, however, the project requires communication between an CPU hosted application and a FPGA hosted one. An commonly used solution is the serial communication architecture, and the communication is via the universal asynchronous receiver/transmitter interfaces\cite{michael1992universal}. The architecture is in picture \ref{fig:uart}.However, the UART technology is an overkill in this project, as the Logi Pi FPGA board is connected to the Raspberry Pi via the GPIO ports, and we can use the serial peripheral interface bus to implement the communication instead.\\
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{picture/uart}
+	\includegraphics[width=0.4\linewidth]{picture/uart}
 	\caption{UART architecture}
 	\label{fig:uart}
 \end{figure}
@@ -703,7 +693,7 @@ The basic component of Wishbone is the register, which has a relatively \textit{
 As mentioned above, the input and output processes are abstracted by the Wishbone wrapper. Take Python for example, reading and writing with register $0x0$ can be performed using the two functions provided by the library \textit{logiRead} and \textit{logiWrite}:
 \begin{table}[]
 	\centering
-	\caption{My caption}
+	\caption{Wishbone functions}
 	\label{my-label}
 	\begin{tabular}{@{}lll@{}}
 		\toprule
@@ -918,14 +908,13 @@ The bandwidth requirement has been discussed in the previous sections, and we ca
 	\item The bandwidth inside switch can be considered as infinite, as it is inner-chip communication inside.
 \end{itemize}
 Therefore, the actual bandwidth limit in one-side communication is 100Mbps, however, the MPI-CH is a two-side communication among the nodes, and the server input also uses the same interconnection network. Therefore, the upper limit in actual one-side communication is less than 40Mbps.\\
-\subsubsection{Interconnection implementation}
-and the real cabling photo:
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.5\linewidth]{picture/photo/SwitchConnection}
-\caption{Cabling on the switch board}
-\label{fig:SwitchConnection}
+	\centering
+	\includegraphics[width=0.5\linewidth]{picture/photo/SwitchConnection}
+	\caption{Cabling on the switch board}
+	\label{fig:SwitchConnection}
 \end{figure}
+\subsubsection{Interconnection implementation}
 We have two sorts of Raspberry Pi boards, the slave nodes that perform as the receivers, and a master node which connects to an Logi Pi FPGA board. The network connection of these two kinds are similar:
 \begin{figure}[H]
 \centering

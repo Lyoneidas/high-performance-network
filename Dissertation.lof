@@ -27,7 +27,7 @@
 \contentsline {figure}{\numberline {2.17}{\ignorespaces VHDL file structure}}{39}{figure.2.17}
 \contentsline {figure}{\numberline {2.18}{\ignorespaces UART architecture}}{40}{figure.2.18}
 \contentsline {figure}{\numberline {2.19}{\ignorespaces SPI schematic diagram}}{41}{figure.2.19}
-\contentsline {figure}{\numberline {2.20}{\ignorespaces Wishbone register}}{42}{figure.2.20}
+\contentsline {figure}{\numberline {2.20}{\ignorespaces Wishbone register}}{41}{figure.2.20}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces System Design}}{45}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Interconnection Hardware Design}}{52}{figure.3.2}
