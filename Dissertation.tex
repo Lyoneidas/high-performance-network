@@ -606,7 +606,7 @@ This process looks complex in the first place, because the module logic in FPGA 
 \end{figure}
 The programmer nowadays do not need to worry about the hardware interfaces of FPGA chip, as the manufacturers have implemented an MCU over the FPGA, and setup the interfaces via MCU instead of the FPGA directly. As discussed above, the MCU has fixed interfaces, and the MCU on the FPGA board provides fixed general interfaces for applications to invoke, and fetch the data from FPGA. The advantage of using this middle ware structure is that the programmers do not need to care about the hardware implementation of the FPGA itself, and manufacturers can provide general drivers for the MCU over specific operating systems, with which the FPGA computation resources can be abstracted into an function in high level programming languages.\\
 \subsubsection{Spartan-6 with Raspberry Pi2}
-The Spartan-6 FPGA over Raspberry Pi, the Logi Pi follows similar way, and it does not use the MCU but rather a technology called Wishbone to create a seamless communication between the CPU and FPGA. It uses Spartan-6 FPGA chip the hardware interfaces to connect to the Raspberry Pi board, supporting Linux based system, and programs can be burnt into the FPGA directly via general tools.\\
+The Spartan-6 FPGA over Raspberry Pi, the Logi Pi follows similar way, and it does not use the MCU but rather a technology called to create a seamless communication between the CPU and FPGA. It uses Spartan-6 FPGA chip the hardware interfaces to connect to the Raspberry Pi board, supporting Linux based system, and programs can be burnt into the FPGA directly via general tools.\\
 The advantage of using Wishbone will be discussed later, and for introduction, the Wishbone abstracts the MCU discussed above for running programs in FPGA and communicate with CPU. It is an abstract layer which now support Python and C programming language.\\
 
 \subsection{FPGA hardware programming}
@@ -664,6 +664,7 @@ We had a brief introduction in how the FPGA works in the above sections, however
 	\caption{UART architecture}
 	\label{fig:uart}
 \end{figure}
+
 \subsubsection{Serial Peripheral Interface on Raspberry Pi}
 SPI solves the problem of visibility of FPGA modular details on the application side. Without SPI, the applications need to know the exact hardware layers between the FPGA pins and the GPIO ports it connects to, and all the read/write performances need to call a chain of hardware data drivers to make the communication work. However, the SPI isolates the banks by tagging the FPGA pins with addresses, and ideally, the applications on CPU side only need to know the virtual address it connects to, and the SPI layer will deal with rest of the details.\\ 
 The structure of SPI is quite simple, which is consisted of a master and a slave. The master is embedded on the Raspberry Pi board forming two pairs of communication channel, a slave select channel and a clock:
@@ -682,7 +683,7 @@ The Raspberry Pi disables the SPI driver by default\cite{rasppispi}, however, it
 \end{figure}
 \subsubsection{Implementation of Wishbone on Logi Pi}
 The SPI solve the problem of data driver using GPIO ports communication, however, the implementation over pure SPI is still too complicate to achieve. The application on the CPU side still needs to know the implementation details of the FPGA side, for example, the choice of SPI slaves is triggered by the application, however, different FPGA chip may have varieties of slave memory access address according to the compiling environment for the VHDL. Wishbone technology provides an alternative solution that wraps up the SPI interconnection details into high-level programming language libraries, and combined with address mapping tool provided, the applications on CPU side can have a relatively \textit{fixed} call addresses.\\
-This design sacrifices some flexibility and achieve much convince as designers do not need to reimplement any communication interfaces any more.\\
+The ValentFX has implemented Wishbone libraries in C and Python\cite{wishbone} with the above design, sacrificing some flexibility and providing much convince as designers do not need to reimplement any communication interfaces any more.\\
 The basic component of Wishbone is the register, which has a relatively \textit{fixed} address usually starts with $0x0$ with an offset $0x1$. It is the basic interface for all the wishbone logics and has 16-bit input/output\cite{logiwishbone}.\\
 \begin{figure}[H]
 \centering
@@ -704,13 +705,22 @@ As mentioned above, the input and output processes are abstracted by the Wishbon
 	\end{tabular}
 \end{table}
 This project does not have any peripherals and the hardware algorithms are implemented via the basic input/output processes. So the application on the MPI side needs to communicate with the registers via Wishbone, and the algorithms are performed after the data is sent to the registers. After receiving the data from Wishbone bus, we can implement the hardware algorithms afterwards.\\
+The naming rules for the IO process in Wishbone follows:
+\begin{itemize}
+	\item Each pin is abstracted into an address in the SDRAM, and the FPGA performs IO sessions with SDRAM instead of GPIOs directly
+	\item The SDRAM session with SPI is two sided, and the SPI can perform both read and write to a pin by calling the same address
+	\item The address-mapping is hardware irrelevant, therefore different SPI or Operating System implementation will not affect the CPU side applications
+\end{itemize}
 \subsubsection{Parallel process and FPGA status}
 The FPGA processes are running parallel with the applications on CPU side, and the application design should take this into consideration. The processing speed of FPGA is much faster than the normal CPU hosted applications, and the clock frequency is different between the cluster. The Wishbone mechanism synchronise the clock via transmission layer, however, the application inside the FPGA still needs to wait for the read signal from the application.\\
 Another problem is that the status of FPGA is controlled by the electric signals only, and the interfaces are fixed. Therefore if the application on the CPU does not read from the FPGA first and change the status of FPGA, the processing result in FPGA modular will soon lost before the CPU applications can react.\\
 These two features requires the design of the system to be aware of the execution sequences especially in the FPGA communication.\\
 \subsection{Conclusion}
 This section introduces how the FPGA will work with the receiver applications on the MPI-CH structure, and focuses on how to design and implement a hardware algorithm in the FPGA, from design to actual coding, and the important technology which enables the hardware to seamlessly communicate to the CPU hosted applications using Wishbone. The FPGA accelerated computation is widely used in the commercial solution to similar problems, especially in the market data feed handlers, however, this project shows the potential of using an open-source FPGA board to achieve the same goal over an cluster hardware environment.\\ 
-
+\section{Conclusions for the Chapter}
+In this chapter, we introduced the core technologies we implemented in the project, and focuses on the Message Passing Interface; the Remote Direct Memory Access method and the reason of implementing Fat-tree network with explanation of its benefits; the Hardware design and programming technology of FPGA and focuses on how the hardware can communicate with the software running in the modern CPU supported system.\\
+We draw a blueprint of a hardware platform which is linked by Ethernet, and the software runs on it is supported by MPI. The system is scalable and efficient because we implement the Fat-tree network with adjustment of interconnection topology and bandwidth.\\
+The following chapter will discuss the system design and the real implementation of the experiment, and how the features are brought to life.
 \chapter{System Design and Implementation}
 This part of the thesis explains the main objective of the experiments, design of the experimenting system, and the implementations of technologies discussed above. 
 This part is consisted of three parts:
@@ -898,7 +908,7 @@ In order to perform the experiment with minimum cost, we decide to use the Ether
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{picture/hardwareDesign}
-\caption{Interconnection Hardware Design}
+\caption{Interconnection hardware blueprint}
 \label{fig:hardwareDesign}
 \end{figure}
 The bandwidth requirement has been discussed in the previous sections, and we can derive the overall bandwidth of each system:\\
@@ -928,7 +938,7 @@ The design of power supply is illustrated in the picture \ref{fig:powerDesign}. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{picture/powerDesign}
-\caption{Power supply design for the cluster}
+\caption{Power supply blueprint for the cluster}
 \label{fig:powerDesign}
 \end{figure}
 \subsection{Conclusion}
@@ -944,7 +954,7 @@ We encountered some legacy problems from both the cluster implementations and Wi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{picture/LogicDesign}
-	\caption{The logic design of the system}
+	\caption{System blueprint}
 	\label{fig:LogicDesign}
 \end{figure}
 \subsection{Operating System and Internet Connection}
@@ -972,7 +982,8 @@ This section will not discuss in detail about the installation steps and configu
 \label{fig:setpsMPICH2}
 \end{figure}
 \subsubsection{Adding Python support to MPI-CH2:MPI4PY}
-Python has 
+Python has implemented MPI support in the language, in both Python 2 and Python 3\cite{mpi4py}. However, the library temporary supports only the OpenMPI, and we needs to manually add it to the MPI-CH architecture. Fortunately the MPI-CH has already prepared this scenario, and the MPI command environment supports the method \text{mpirun.openmpi} to execute applications using OpenMPI.\\
+The Python MPI library, \text{MPI4PY}
 \section{Software Design and Implementation}
 The data flow blueprint for the project can be illustrated in the picture \cite{fig:LogicDesign}, and the implementation details can be very different according to the framework we are using. The software system can be split into three parts:
 \begin{itemize}
@@ -987,13 +998,45 @@ The flow diagram of data feed is picture \ref{fig:sender-diagram}. It does not f
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{picture/sender-diagram}
-\caption{Data feed application flow diagram}
+\caption{Data feed application blueprint}
 \label{fig:sender-diagram}
 \end{figure}
 The main goal of the data source provider is to simulate the data loss, and we have two ways to implement it. One is to make a real manual data loss in some of the packages before sending, and leave the error check to differ the 'correct' data source and 'corrupted' data source. Another is to pre-set a bulk of independent sending tasks, and manually disable some of the tasks randomly.\\
 The first option simulates the UDP datagram transmission directly, however, it is takes time to make comparison, as for each sending task, the receiver side needs to run a full error check. It also cannot perfectly simulate the situation with one of the source significantly delayed, because the UDP datagram can arrive in mixed sequence and the UDP receiver will automatically sort the data according to the header.\\
-The second option uses failure rate of the independent replications to substitute the data loss rate in single transmission, with the definition of Bernoulli experiment\cite{anderberg2014cluster}.\\
-because for a group of tasks with an amount of $N$, the failure rate ${P}'=\frac{N_{fail}}{N}$, and for a single task, the failure rate $p_{fail}=$
+The second option uses failure rate of the independent replications to substitute the data loss rate in single transmission, with the definition of Bernoulli experiment\cite{anderberg2014cluster}. We choose this design as the data sender.\\
+\subsubsection{Transforming data loss rate to session failure rate}
+For a group of tasks with an amount of $N$, the failure rate $P=\frac{N_{fail}}{N}$, and for a single task, the failure rate $p_{fail}=P$， therefore, for $N$ times of experiments, the probability of failure happens $k$ times is: $C_{N}^{k}(1-p)^{n-k},\ k \subset [0,1,2...,N]$. According to the discussion in system requirements, we have the data loss ratio $p(\chi | \alpha) \subseteq [2.639\%, 3.448\%] $, and we transform this ratio into the success rate of $N$ times Bernoulli experiments by taking the $p(\chi | \alpha)$ into the equation of independent experiment probability.\\
+The reason for this transforming is that the UDP protocol does not have an error check mechanism defined, and it is hard to benchmark efficiency in different data loss rate by comparing the success rate of transmission, as one data loss is a failure defined in the protocol, and the output of experiment $i$ for one time A to B UDP session with data loss is either success, or failure. Instead of measuring the success probability, we made a bundled independent experiments, and randomly fail some of them to simulate the data loss, and the receiver do not need to implement the error check mechanism as the lost data will be filtered before receiving, which saves a lot of time.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/udpsender}
+\caption{UDP sender from data loss rate to success rate}
+\label{fig:udpsender}
+\end{figure}
+\subsubsection{Dual data sender implementation}
+The dual data sender needs to implement the following features:
+\begin{itemize}
+	\item Initiating the experiment, including sending beginning signals to the receivers and receiving environment variables
+	\item Triggering dual data feed via UDP session to the receivers in two Raspberry Pi SoCs
+	\item Triggering data collection process in benchmark applications
+\end{itemize}
+The first feature requires us to be able to send UDP packages to the MPI hosted applications on the cluster before the actual sending process happens, and the initialization should be able to take parameters associate to the experiment we performed. \\
+The second feature requires us to be able to start UDP sessions to two different UDP listeners,a nd send packages simulating the A-B data feed discussed before, with fixed offset in latency.\\
+The third feature requires us to be able to achieve two things: recording the time stamp in each individual session, and sending the recorded results to the benchmark using TCP sessions, as the data would be too big for the UDP protocol to handle.\\
+We uses Business Process Model and Notation to show the flow control of our application\cite{dijkman2011business}:
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{picture/senderDesign}
+\caption{Dual sender flow chart}
+\label{fig:senderDesign}
+\end{figure}
+\subsection{Dual-feed handlers and controller}
+The dual-feed receiver and controller is running on the Raspberry Pi cluster, consisted of three parts and on the MPI-CH2 framework. It has two feed handers, \text{receiver\_A} and \text{receiver\_B}, and a controller running on the master node.\\
+We had two options to design the handlers and controllers over the MPI-CH2, one os using SPMD which only implements one application defining three behaviours, and the \textit{mpirun} take only one applications running on multiple nodes. Behaviours and communications are defined by node rank and tag respectively. \\
+Another solution is using MPMD which defines two different applications, one is for the handlers and anther for the controller. Therefore the \textit{mpirun} needs to manage which node implements which application by defining the details in the \textit{machinefile} required by the method.\\
+We choose the first solution for three reasons: a united application is easier for coding and testing, and easier in scalability because we can changing the functions of each nodes by reordering the ranks defined in the configuration file of MPI-CH, and the version control over the cluster is much easier than the MPMD solution by using the \textit{rsync} tool.\\
+\subsubsection{Requirements for dual-feed handlers}
+The main goal of dual feed handlers is receiving data feeds from the source, and seamlessly retransmit the datagrams to the controller for error check. We think about two different approaches to achieve the 
 \section{FPGA Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
 

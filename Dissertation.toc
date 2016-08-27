@@ -57,7 +57,8 @@
 \contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{40}{section*.30}
 \contentsline {subsubsection}{Implementation of Wishbone on Logi Pi}{41}{section*.31}
 \contentsline {subsubsection}{Parallel process and FPGA status}{42}{section*.32}
-\contentsline {subsection}{\numberline {2.5.4}Conclusion}{42}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.4}Conclusion}{43}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Conclusions for the Chapter}{43}{section.2.6}
 \contentsline {chapter}{\numberline {3}System Design and Implementation}{44}{chapter.3}
 \contentsline {section}{\numberline {3.1}Experiment Objectives}{45}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Overall Design}{45}{subsection.3.1.1}
@@ -84,20 +85,24 @@
 \contentsline {subsubsection}{Adding Python support to MPI-CH2:MPI4PY}{57}{section*.43}
 \contentsline {section}{\numberline {3.5}Software Design and Implementation}{57}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Design of the Data Feed}{58}{subsection.3.5.1}
-\contentsline {section}{\numberline {3.6}FPGA Algorithm design}{59}{section.3.6}
-\contentsline {chapter}{\numberline {4}Experiment Design, Requirements and Expectations}{60}{chapter.4}
-\contentsline {section}{\numberline {4.1}Experiment Design}{61}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Experiment 1: Single data feed with single receiver}{61}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Experiment 2: Dual data feeds over the cluster}{62}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{62}{subsection.4.1.3}
-\contentsline {subsubsection}{Description}{63}{section*.44}
-\contentsline {section}{\numberline {4.2}Experiment Requirements and Expectations}{64}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Simulation of the data source}{64}{subsection.4.2.1}
-\contentsline {chapter}{\numberline {5}Implementation and Testing}{65}{chapter.5}
-\contentsline {chapter}{\numberline {6}Results}{66}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusions}{67}{chapter.7}
-\contentsline {chapter}{\numberline {A}Design Diagrams}{72}{appendix.A}
-\contentsline {chapter}{\numberline {B}User Documentation}{73}{appendix.B}
-\contentsline {chapter}{\numberline {C}Raw results output}{74}{appendix.C}
-\contentsline {chapter}{\numberline {D}Code}{75}{appendix.D}
-\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{76}{section.D.1}
+\contentsline {subsubsection}{Transforming data loss rate to session failure rate}{59}{section*.44}
+\contentsline {subsubsection}{Dual data sender implementation}{59}{section*.45}
+\contentsline {subsection}{\numberline {3.5.2}Dual-feed handlers and controller}{61}{subsection.3.5.2}
+\contentsline {subsubsection}{Requirements for dual-feed handlers}{61}{section*.46}
+\contentsline {section}{\numberline {3.6}FPGA Algorithm design}{61}{section.3.6}
+\contentsline {chapter}{\numberline {4}Experiment Design, Requirements and Expectations}{62}{chapter.4}
+\contentsline {section}{\numberline {4.1}Experiment Design}{63}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Experiment 1: Single data feed with single receiver}{63}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Experiment 2: Dual data feeds over the cluster}{64}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{64}{subsection.4.1.3}
+\contentsline {subsubsection}{Description}{65}{section*.47}
+\contentsline {section}{\numberline {4.2}Experiment Requirements and Expectations}{66}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Simulation of the data source}{66}{subsection.4.2.1}
+\contentsline {chapter}{\numberline {5}Implementation and Testing}{67}{chapter.5}
+\contentsline {chapter}{\numberline {6}Results}{68}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusions}{69}{chapter.7}
+\contentsline {chapter}{\numberline {A}Design Diagrams}{75}{appendix.A}
+\contentsline {chapter}{\numberline {B}User Documentation}{76}{appendix.B}
+\contentsline {chapter}{\numberline {C}Raw results output}{77}{appendix.C}
+\contentsline {chapter}{\numberline {D}Code}{78}{appendix.D}
+\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{79}{section.D.1}

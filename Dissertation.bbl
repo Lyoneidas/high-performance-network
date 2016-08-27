@@ -88,6 +88,11 @@ Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
   present and future, {\em in} `European Parallel Virtual Machine/Message
   Passing Interface Users’ Group Meeting', Springer, pp.~1--1.
 
+\harvarditem[Dijkman et~al.]{Dijkman, Hofstetter \harvardand\
+  Koehler}{2011}{dijkman2011business}
+Dijkman, R., Hofstetter, J. \harvardand\ Koehler, J.  \harvardyearleft
+  2011\harvardyearright , {\em Business Process Model and Notation}, Springer.
+
 \harvarditem{Dimitrov \harvardand\ Skjellum}{1999}{dimitrov1999efficient}
 Dimitrov, R. \harvardand\ Skjellum, A.  \harvardyearleft 1999\harvardyearright
   , An efficient mpi implementation for virtual interface (vi)
@@ -242,6 +247,11 @@ org., R.~P.  \harvardyearleft n.d.{\em c}\harvardyearright , `Vnc on raspberry
   pi', \url{https://www.raspberrypi.org/documentation/remote-access/vnc/}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem{org}{n.d.{\em d}}{mpi4py}
+org, T.~M.  \harvardyearleft n.d.{\em d}\harvardyearright , `Mpi4py
+  documentation', \url{https://pythonhosted.org/mpi4py/usrman/index.html}.
+\newblock Accessed July 2, 2016.
+
 \harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\
   Suo}{2014}{pang2014th}
 Pang, Z., Xie, M., Zhang, J., Zheng, Y., Wang, G., Dong, D. \harvardand\ Suo,
@@ -287,8 +297,15 @@ Stout, Q.~F. \harvardand\ Warren, B.~L.  \harvardyearleft 1986\harvardyearright
   , `Tree rebalancing in optimal time and space', {\em Communications of the
   ACM} {\bf 29}(9),~902--908.
 
-\harvarditem{ValentFx}{n.d.}{logiwishbone}
-ValentFx  \harvardyearleft n.d.\harvardyearright , `Logi pi wishbone document',
+\harvarditem{ValentFx}{n.d.{\em a}}{logiwishbone}
+ValentFx  \harvardyearleft n.d.{\em a}\harvardyearright , `Logi pi wishbone
+  document',
+  \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{ValentFx}{n.d.{\em b}}{wishbone}
+ValentFx, T.  \harvardyearleft n.d.{\em b}\harvardyearright , `Logi pi wishbone
+  hardware documentation',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
 \newblock Accessed July 2, 2016.
 
