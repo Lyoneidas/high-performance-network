@@ -57,7 +57,7 @@ The thesis introduces an experimental dual-feed solution over open source hardwa
 
 \chapter{Thesis Background and Literature Review}
 %% Uncomment this to include a separate tex file wih the introduction contents
-\section{Thesis}
+\section{Thesis Inspiration}
 Financial instruments and organizations in the modern world needs to provide an live update on their current market status, and provide a package of information to its members and partners. The data they need to update is includes bid/ask prise, completed trades and other market status\cite{alexander2001market}. This package of information is aggregated, and streamed as 'Market Data Feed'. Modern financial market requires high performance infrastructure due to the implementation of automated trading system, which implements complicate market strategies and uses the data feed as sources\cite{le2009automated}. Modern strategies requires huge computational power to perform mathematical modelling, and high performance network to make the order ahead of any competitors.\\
 Low latency infrastructure is invented to meet the market requirements, it is usually consisted of two parts,  computational nodes and network infrastructure. Existing solutions for the former part are customized servers, cloud computer farms and special data centres. They are programmed to perform data analysis over live market data feed, the outputs are trading behaviours packed as orders . Firms in computer network services are focusing on the latter part, as the latency in this part can be solved by engineering practises.\\
 Solutions for low latency network usually come with high cost non-scalable hardware, and requires racks of server cabinets to install the devices. However, the entry barrier in the upfront investment for network infrastructure makes it difficult for medium or small financial institutions to start business in this field.\\
@@ -683,19 +683,18 @@ The Raspberry Pi disables the SPI driver by default\cite{rasppispi}, however, it
 \end{figure}
 \subsubsection{Implementation of Wishbone on Logi Pi}
 The SPI solve the problem of data driver using GPIO ports communication, however, the implementation over pure SPI is still too complicate to achieve. The application on the CPU side still needs to know the implementation details of the FPGA side, for example, the choice of SPI slaves is triggered by the application, however, different FPGA chip may have varieties of slave memory access address according to the compiling environment for the VHDL. Wishbone technology provides an alternative solution that wraps up the SPI interconnection details into high-level programming language libraries, and combined with address mapping tool provided, the applications on CPU side can have a relatively \textit{fixed} call addresses.\\
-The ValentFX has implemented Wishbone libraries in C and Python\cite{wishbone} with the above design, sacrificing some flexibility and providing much convince as designers do not need to reimplement any communication interfaces any more.\\
-The basic component of Wishbone is the register, which has a relatively \textit{fixed} address usually starts with $0x0$ with an offset $0x1$. It is the basic interface for all the wishbone logics and has 16-bit input/output\cite{logiwishbone}.\\
+The ValentFX has implemented Wishbone libraries in C and Python\cite{wishbone} with the above design, sacrificing some flexibility and providing much convince as designers do not need to reimplement any communication interfaces any more. The implementation of the libraries abstracts all the low level drivers and kernel details between the Raspberry Pi hardware and Logi Pi hardware, showed in picture \ref{fig:LOGIstack-software-drivers}).\\
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\linewidth]{picture/wishbone_register}
-\caption{Wishbone register}
-\label{fig:wishbone_register}
-\end{figure}
-As mentioned above, the input and output processes are abstracted by the Wishbone wrapper. Take Python for example, reading and writing with register $0x0$ can be performed using the two functions provided by the library \textit{logiRead} and \textit{logiWrite}:
-\begin{table}[]
 	\centering
-	\caption{Wishbone functions}
-	\label{my-label}
+	\includegraphics[width=0.2\linewidth]{"picture/LOGI stack - software - drivers"}
+	\caption{Wishbone register}\cite{logipimanual}
+	\label{fig:LOGIstack-software-drivers}
+\end{figure}
+The basic component of Wishbone is the register, which has a relatively \textit{fixed} address usually starts with $0x0$ with an offset $0x1$. It is the basic interface for all the wishbone logics and has 16-bit input/output\cite{logiwishbone}.\\
+As mentioned above, the input and output processes are abstracted by the Wishbone wrapper. Take Python for example, reading and writing with register $0x0$ can be performed using the two functions provided by the library \textit{logiRead} and \textit{logiWrite}:
+\begin{table}[H]
+	\centering
+	\caption{Wishbone functions}	\label{my-label}
 	\begin{tabular}{@{}lll@{}}
 		\toprule
 		Parameter                                                    & Function                                                     & Notes                                                                                                                                                                                       \\ \midrule
@@ -746,7 +745,7 @@ The project designed an experimental system over Raspberry Pi 2 Model B hardware
 The System over Chips(SoC) system are interconnected as a homogeneous processing cluster. The task/thread management are performed by interconnected CPUs over multi-processor interfaces, memory solution for bandwidth requirement of high frequency data is RDMA protocols implemented over open sourced hardware memories. The FPGA attached in the master node is in charge of decoding, decompression and filtering for dual feeds.\\
 \begin{figure}[H]
 	\centering\includegraphics[width=3.5in]{picture/System_Design.jpg}
-	\caption{System Design}
+	\caption{System blueprint}
 	\label{fig:system_design}
 \end{figure}
 This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet Switch, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
@@ -875,13 +874,30 @@ The time consumption for resending the package is relatively small, and $\frac{p
 \begin{equation}
 	p(\chi | \alpha) \subseteq [2.639\%, 3.448\%] 
 \end{equation}
+\subsubsection{Choice of two receiving strategy}
+There are two different receiving strategies according to the distribution of filtering and error checking of UDP packages. Filtering is the process for checking each piece of data feed datagram $i$: 
+\begin{itemize}
+	\item Has the receiver received datagram $i-1$
+	\item Is the content in datagram $i$ expected
+\end{itemize}
+and error checking is the process of merging the outputs of each data feed, and decide if we have received the expected content.\\
+The first strategy is to implement filtering in each data feed receiver, and error check happens in the controller:
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{picture/Stg_1Recv}
+\caption{Flow chart for filtering in the data feed receiver in BPMN}
+\label{fig:Stg_1Recv}
+\end{figure}
+For each data receiver A and B, we need to wait each to finish, or time out, then the results will be retransmitted to the controller. The filtering takes time, and the status query between the receivers will affect the efficiency of the system. Another potential harm is that one or more data feeds lost connectivity and the alive session needs to wait until the dead ones expired then to retransmit. This will significantly increase the latency in the controller, as the open sourced hardware is not reliable as the commercial ones, and the system needs to be able to tolerate this situation.\\
+We implement the second choice: this one is to perform filtering and error check both in the controller, and the receiver only in charge of individual feed, and the data will be retransmitted to the controller right after the session is over. This solution solves the problem in status queries among receivers, as they do not need to know the status of others, and dead connections will not affect the overall efficiency, as the controller hosts the keep-alive sessions among nodes parallel to the receiving sessions. The worse expired receiver is the one dies in the last package, and the controller only needs to wait for $T_{alive}+T_{offset}$, where $T_{alive}$ is the maximum keep-alive time for each node, and $T_{offset}$ is the manual offset between different data sources.\\
 \subsubsection{Conclusion}
 We derive the data loss ratio in high-frequency network for UDP datagrams should be  [2.639\%, 3.448\%], with the following assumption:
 \begin{itemize}
 	\item The data loss rate in UDP datagram is similar in both experiment environment and real scenarios
 	\item The ratio of data processing time and propagation time can be considered fixed if the size of datagrams are similar
 \end{itemize}
-
+We also makes decision of how the data feed receiver works, especially how the filtering and error check process is distributed. We decided to distribute the filtering and error check in the controller together, and the receiver only needs to retransmit the received datagrams regardless the status of other receivers.
+\newpage
 \section{Hardware design}
 The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
 \begin{table}[H]
@@ -1036,7 +1052,22 @@ We had two options to design the handlers and controllers over the MPI-CH2, one 
 Another solution is using MPMD which defines two different applications, one is for the handlers and anther for the controller. Therefore the \textit{mpirun} needs to manage which node implements which application by defining the details in the \textit{machinefile} required by the method.\\
 We choose the first solution for three reasons: a united application is easier for coding and testing, and easier in scalability because we can changing the functions of each nodes by reordering the ranks defined in the configuration file of MPI-CH, and the version control over the cluster is much easier than the MPMD solution by using the \textit{rsync} tool.\\
 \subsubsection{Requirements for dual-feed handlers}
-The main goal of dual feed handlers is receiving data feeds from the source, and seamlessly retransmit the datagrams to the controller for error check. We think about two different approaches to achieve the 
+The main goal of dual feed handlers is receiving data feeds from the source, and seamlessly retransmit the datagrams to the controller for error check. We think about two different approaches:
+\begin{itemize}
+	\item Collecting all the datagrams before sending to the controller
+	\item Retransmit each datagram to the controller instantly
+\end{itemize}
+We made experiments over the two solutions, and found that the second one affected the overall efficiency of the parallel system, as the instant retransmission will be trigger in the same sequence of the sender, and according to the fat-tree design of the system, the bandwidth of output from the controller is the aggregation of bandwidth over data handlers, therefore the maximum data frequency between the handler and the controller can only be a half of the incoming data.\\
+Another analyse was performed by monitoring the verb queues in the MPI-CH architecture, and we found that the queuing buffer requirement for the second solution shows the similar result: the incoming data of frequency $f$, and the average size of the datagram is $s$, the size of verb queue buffer in the controller is approximately $2\times \frac{s}{f}$ with no data loss, because the architecture of the controller is the same as the handlers, therefore the maximum frequency in verb queue consumption equals to that of handers, so the buffer size should be doubled.\\
+Along with the distribution strategy of filtering and error check discussed in earlier section, and our choice in the retransmit strategy, we can have our blue print for the dual-feed handlers：
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/receiverBlueprint}
+\caption{A-B data feed handler blueprint}
+\label{fig:receiverBlueprint}
+\end{figure}
+\subsubsection{Dual-feed handler implementation}
+The implementation of dual-feed handler is simple, and 
 \section{FPGA Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
 
