@@ -1067,7 +1067,12 @@ Along with the distribution strategy of filtering and error check discussed in e
 \label{fig:receiverBlueprint}
 \end{figure}
 \subsubsection{Dual-feed handler implementation}
-The implementation of dual-feed handler is simple, and 
+The implementation of dual-feed handler is simple, and A, B handler uses the same structure. We set three fixed variable in the handler: 
+\begin{itemize}
+	\item \textit{TERMINATE} signal, represents for the end of the session
+	\item \textit{timeout} value, we set $1ms$ for each datagram to time out
+	\item \textit{keepalive} value, we set $5ms$ for each handler to keep alive and listening to the sender before transforming to waiting mode, and in this mode, the handler will listen to the begin signal from the sender in another port
+\end{itemize}
 \section{FPGA Algorithm design}
 \dots design of the thread dispatching, event sensor in the master board
 
