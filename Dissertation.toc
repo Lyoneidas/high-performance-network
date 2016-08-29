@@ -59,52 +59,60 @@
 \contentsline {subsubsection}{Parallel process and FPGA status}{42}{section*.32}
 \contentsline {subsection}{\numberline {2.5.4}Conclusion}{43}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}Conclusions for the Chapter}{43}{section.2.6}
-\contentsline {chapter}{\numberline {3}System Design and Implementation}{44}{chapter.3}
+\contentsline {chapter}{\numberline {3}Project Design and Implementation}{44}{chapter.3}
 \contentsline {section}{\numberline {3.1}Experiment Objectives}{45}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Overall Design}{45}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Main Objective}{46}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}System Requirements}{47}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}System Input: Dual feeds and UDP Session Simulation}{47}{subsection.3.2.1}
-\contentsline {subsubsection}{Dual-feed receivers hardware}{47}{section*.33}
-\contentsline {subsubsection}{Sender-receiver pair requirements}{47}{section*.34}
-\contentsline {subsubsection}{UDP simulator}{48}{section*.35}
-\contentsline {subsubsection}{Value of the packet loss rate}{49}{section*.36}
-\contentsline {subsubsection}{Choice of two receiving strategy}{50}{section*.37}
-\contentsline {subsubsection}{Conclusion}{52}{section*.38}
-\contentsline {section}{\numberline {3.3}Hardware design}{53}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Interconnection Design and Implementation}{53}{subsection.3.3.1}
-\contentsline {subsubsection}{Interconnection design}{54}{section*.39}
-\contentsline {subsubsection}{Interconnection implementation}{55}{section*.40}
-\contentsline {subsection}{\numberline {3.3.2}Power Supply Design}{55}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Conclusion}{56}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}System Design and Implementation}{56}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Operating System and Internet Connection}{57}{subsection.3.4.1}
-\contentsline {subsubsection}{Solution to the IP address configuration}{57}{section*.41}
-\contentsline {subsubsection}{Solution to Internet reconnection}{58}{section*.42}
-\contentsline {subsubsection}{Interacting with the cluster: ssh terminal and VNC}{58}{section*.43}
-\contentsline {subsection}{\numberline {3.4.2}MPI-CH2: Install and Configure}{58}{subsection.3.4.2}
-\contentsline {subsubsection}{Adding Python support to MPI-CH2:MPI4PY}{59}{section*.44}
-\contentsline {section}{\numberline {3.5}Software Design and Implementation}{59}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Design of the Data Feed}{60}{subsection.3.5.1}
-\contentsline {subsubsection}{Transforming data loss rate to session failure rate}{61}{section*.45}
-\contentsline {subsubsection}{Dual data sender implementation}{61}{section*.46}
-\contentsline {subsection}{\numberline {3.5.2}Dual-feed handlers and controller}{63}{subsection.3.5.2}
-\contentsline {subsubsection}{Requirements for dual-feed handlers}{63}{section*.47}
-\contentsline {subsubsection}{Dual-feed handler implementation}{64}{section*.48}
-\contentsline {section}{\numberline {3.6}FPGA Algorithm design}{64}{section.3.6}
-\contentsline {chapter}{\numberline {4}Experiment Design, Requirements and Expectations}{65}{chapter.4}
-\contentsline {section}{\numberline {4.1}Experiment Design}{66}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Experiment 1: Single data feed with single receiver}{66}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Experiment 2: Dual data feeds over the cluster}{67}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{67}{subsection.4.1.3}
-\contentsline {subsubsection}{Description}{68}{section*.49}
-\contentsline {section}{\numberline {4.2}Experiment Requirements and Expectations}{69}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Simulation of the data source}{69}{subsection.4.2.1}
-\contentsline {chapter}{\numberline {5}Implementation and Testing}{70}{chapter.5}
-\contentsline {chapter}{\numberline {6}Results}{71}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusions}{72}{chapter.7}
-\contentsline {chapter}{\numberline {A}Design Diagrams}{78}{appendix.A}
-\contentsline {chapter}{\numberline {B}User Documentation}{79}{appendix.B}
-\contentsline {chapter}{\numberline {C}Raw results output}{80}{appendix.C}
-\contentsline {chapter}{\numberline {D}Code}{81}{appendix.D}
-\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{82}{section.D.1}
+\contentsline {subsection}{\numberline {3.1.2}Expectations}{46}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Main Objective}{47}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}System Requirements}{48}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}System Input: Dual feeds and UDP Session Simulation}{48}{subsection.3.2.1}
+\contentsline {subsubsection}{Dual-feed receivers hardware}{48}{section*.33}
+\contentsline {subsubsection}{Sender-receiver pair requirements}{48}{section*.34}
+\contentsline {subsubsection}{UDP simulator}{49}{section*.35}
+\contentsline {subsubsection}{Value of the packet loss rate}{50}{section*.36}
+\contentsline {subsubsection}{Choice of two receiving strategy}{51}{section*.37}
+\contentsline {subsubsection}{Conclusion}{53}{section*.38}
+\contentsline {section}{\numberline {3.3}Hardware design}{54}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Interconnection Design and Implementation}{54}{subsection.3.3.1}
+\contentsline {subsubsection}{Interconnection design}{55}{section*.39}
+\contentsline {subsubsection}{Interconnection implementation}{56}{section*.40}
+\contentsline {subsection}{\numberline {3.3.2}Power Supply Design}{56}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Conclusion}{57}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}System Design and Implementation}{57}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Operating System and Internet Connection}{58}{subsection.3.4.1}
+\contentsline {subsubsection}{Solution to the IP address configuration}{58}{section*.41}
+\contentsline {subsubsection}{Solution to Internet reconnection}{59}{section*.42}
+\contentsline {subsubsection}{Interacting with the cluster: ssh terminal and VNC}{59}{section*.43}
+\contentsline {subsection}{\numberline {3.4.2}MPI-CH2: Install and Configure}{59}{subsection.3.4.2}
+\contentsline {subsubsection}{Adding Python support to MPI-CH2:MPI4PY}{60}{section*.44}
+\contentsline {section}{\numberline {3.5}Software Design and Implementation}{60}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Design of the Data Feed}{61}{subsection.3.5.1}
+\contentsline {subsubsection}{Transforming data loss rate to session failure rate}{62}{section*.45}
+\contentsline {subsubsection}{Dual data sender implementation}{62}{section*.46}
+\contentsline {subsection}{\numberline {3.5.2}Dual-feed handlers and controller}{64}{subsection.3.5.2}
+\contentsline {subsubsection}{Requirements for dual-feed handlers}{64}{section*.47}
+\contentsline {subsubsection}{Dual-feed handler implementation}{65}{section*.48}
+\contentsline {subsubsection}{Controller design}{66}{section*.49}
+\contentsline {subsubsection}{Controller implementation}{68}{section*.50}
+\contentsline {section}{\numberline {3.6}FPGA Verification module design and implementation}{69}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Communicator design}{69}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Hardware versification module design}{70}{subsection.3.6.2}
+\contentsline {subsubsection}{Checksum algorithm implementation}{70}{section*.51}
+\contentsline {subsubsection}{Hardware algorithm design}{71}{section*.52}
+\contentsline {section}{\numberline {3.7}Conclusion for the Chapter}{72}{section.3.7}
+\contentsline {chapter}{\numberline {4}Experiment Design, Requirements and Expectations}{73}{chapter.4}
+\contentsline {section}{\numberline {4.1}Experiment Design}{74}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Experiment 1: Single data feed with single receiver}{74}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Experiment 2: Dual data feeds over the cluster}{75}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{75}{subsection.4.1.3}
+\contentsline {subsubsection}{Description}{76}{section*.53}
+\contentsline {section}{\numberline {4.2}Experiment Requirements and Expectations}{77}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Simulation of the data source}{77}{subsection.4.2.1}
+\contentsline {chapter}{\numberline {5}Implementation and Testing}{78}{chapter.5}
+\contentsline {chapter}{\numberline {6}Results}{79}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusions}{80}{chapter.7}
+\contentsline {chapter}{\numberline {A}Design Diagrams}{87}{appendix.A}
+\contentsline {chapter}{\numberline {B}User Documentation}{88}{appendix.B}
+\contentsline {chapter}{\numberline {C}Raw results output}{89}{appendix.C}
+\contentsline {chapter}{\numberline {D}Code}{90}{appendix.D}
+\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{91}{section.D.1}

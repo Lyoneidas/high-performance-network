@@ -9,5 +9,10 @@ Repeated entry---line 351 of file ExampleBibFile.bib
  : @article{liu2004high
  :                     ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 616 of file ExampleBibFile.bib
+ : @misc{garcia2006binding
+ :                        ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "fig:LogicDesign"
-(There were 2 error messages)
+Warning--empty institution in postel1980user
+(There were 3 error messages)

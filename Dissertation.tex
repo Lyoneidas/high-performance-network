@@ -141,7 +141,7 @@ we introduce the binary representation of data in the original set, that $i=\bet
 The implementation of a perfect shuffle interconnection is the Fat-tree network. For classic parallel programs, divide and conquer is an efficient solution\cite{aho1974design}. Fat-tree interconnection strategy is a full binary tree. Message routing through children to the parent will carry data from all previous children, thus, the data capacity of the parent $cap(p)=\sum_{chil}^{route}cap(child)$.Data lost in during transmission from $child_{l_{i}}$ to $parent_{i}$ will be detected by the parent node, and retransmission will only occur between the two nodes(if the package still in the cache of the child node). The only exit is the root node, so any message route through the map will have guaranteed reliability with minimum cost.
 
 \subsubsection{Comparison: MPI supported network interconnection and SPI direct data transmission}
-Serial Peripheral Interface(SPI) is another commonly used interconnection technology especially between two single chip machines\cite{junger2007method}. It uses direct digital data feed trigger by the chip, and translated into pulse normally to the General-Purpose Input/Output pins, which is a general known hardware ports for pulse signals\cite{lin2008transmission}. The SPI uses slave-master structure, and abstracted the data transmission process, especially the hardware details in digital-simulate signal translation into high level programming language functions and interfaces.\\
+Serial Peripheral Interface(SPI) is another commonly used interconnection technology especially between two single chip machines\cite{junger2007method}. It uses direct digital data feed trigger by the chip, and translated into pulse normally to the General-Purpose Input/Output pins, which is a general known hardware ports for pulse signals\cite{lin2008transmission}. The Raspberry Pi board we introduced in the project is equipped with two SPI chips(SPI and i2c over ARM)\cite{jain2014raspberry}. The SPI uses slave-master structure, and abstracted the data transmission process, especially the hardware details in digital-simulate signal translation into high level programming language functions and interfaces.\\
 This can be another ideal way to form an interconnected network among the chips, however, we need to compare the SPI technology to the MPI supported Ethernet interconnection.\\
 First, the features of SPI data transmission: data in applications can be translated into digital signals and send over GPIO ports shown in picture \ref{fig:GPIOpin}. The transmission do not need to follow any network layered protocols, and the SPI works as a translator between two applications. The speed of bit exchange in SPI is much faster, and much more efficient than the Ethernet protocols. However, using SPI introduces the problem of scalability and expense: as discussed above, the GPIO pins can only transmit one bit on each pin, and we can either choose to send a series of data via one of the pins, or send multiple bits of data in parallel over multiple pins.\\
 \begin{figure}[H]
@@ -220,7 +220,7 @@ Technology                                                               & Imple
 \end{table}
 The implementation of these methods are carefully selected, to fit the architecture and achieve the best performance. MPI structure with RDMA is not a new technology, however, it has not been implemented over the dual-feed switches yet, so the design of the structure is different from a normal MPI cluster. The network topology in implementation is also another innovation because this design is usually in the computational nodes, and the project introduces fat-tree RDMA network to reduce the requirement in hardware performances of single node.\\
 \section{Remote Direct Memory Access(RDMA)}
-The introduction of remote direct memory access technology is inspired by the architecture design in TH Express high performance interconnection network switches, which implements the RDMA as a basic memory space management infrastructure to enable the scalability of the system using distributed cluster as an virtual switch rather than using customized central switch. The basic principle of using RDMA is to trade for efficiency with the cost of memory space and bandwidth within the switch system.\\ 
+The introduction of remote direct memory access technology is inspired by the architecture design in TH Express high performance interconnection network switches, which implements the RDMA as a basic memory space management infrastructure to enable the scalability of the system using distributed cluster as an virtual switch rather than using customized central switch. The basic principle of using RDMA is to trade for efficiency with the cost of memory space and bandwidth within the switch system\cite{pinkerton2002case}.\\ 
 Remote direct memory access technology is developed over the traditional Direct Memory Access engine, filling the requirement of encapsulating details in data copying and shifting in cloud platforms\cite{archer2012remote}. The technology enables developers ignoring the implementation in data transmission among computation nodes, and focusing on the design of the parallel computing algorithms themselves. The actual RDMA protocol family is consisted of three protocols:
 \begin{itemize}
 	\item Remote Direct Memory Protocol
@@ -232,7 +232,7 @@ The problem of supporting remote direct memory access is the implementation of u
 Engineers have introduced several features in the implementation of RDMA protocols, that bypasses the kernel model in the traditional internet protocol layers, and created a virtual tunnel among buffers in the threads running on separate nodes in the cluster.\\
 RDMA plays as a core part in the project, which enables the open sourced hardware performs integrated computation with incoming data feeds and share without CPU involvement,  minimizing the computational power cost by increasing the bandwidth and memory space cost, which is far easier and cheaper to achieve than high performance processors.\\
 \subsection{Two Important Concepts: Verbs and Queue Pairs}
-The implementation of verbs and queue pairs enables the RDMA performing kernel bypassing and CPU-free message handling. The verbs are abstract APIs that can be called in the application layer indicates that the application is implementing RDMA thus the layers below, especially the traditional socket-based internet protocol layers will be covered and the network interface card should be ready to be turned into remote memory direct access enabled model,  which will handle UDP packages with DDPP header different from other packages that it will be processed by the NIC card and sent to local memory directly with RDM protocol management. The queue pairs can be viewed as the schedule handler that performing memory registry and calling the RDMA enabled NIC, or the host channel adapter(HCA) to caring pinning of the memory packages. The basic model overview is shown in picture \ref{fig:rnic}\\
+The implementation of verbs and queue pairs enables the RDMA performing kernel bypassing and CPU-free message handling\cite{recio2003rdma}. The verbs are abstract APIs that can be called in the application layer indicates that the application is implementing RDMA thus the layers below, especially the traditional socket-based internet protocol layers will be covered and the network interface card should be ready to be turned into remote memory direct access enabled model,  which will handle UDP packages with DDPP header different from other packages that it will be processed by the NIC card and sent to local memory directly with RDM protocol management. The queue pairs can be viewed as the schedule handler that performing memory registry and calling the RDMA enabled NIC, or the host channel adapter(HCA) to caring pinning of the memory packages\cite{subramoni2009rdma}. The basic model overview is shown in picture \ref{fig:rnic}\\
 \begin{figure}[H]
 	\centering
     \includegraphics[width=0.4\linewidth]{picture/rnic.PNG}
@@ -240,7 +240,7 @@ The implementation of verbs and queue pairs enables the RDMA performing kernel b
     \label{fig:rnic}
 \end{figure}
 \subsection{Queue Pair}
-The queue pair model is based on the consumer-provider model, which handling queuing of the tasks in an asynchronous way, and implements the actual data models in the network interface level to support the verb functions. The queue pair solves the problems of:
+The queue pair model is based on the consumer-provider model, which handling queuing of the tasks in an asynchronous way, and implements the actual data models in the network interface level to support the verb functions\cite{garcia2006binding}. The queue pair solves the problems of:
 \begin{itemize}
 \item Asynchronous arrival of data blocks in the interconnected network
 \item Fault detection in data transmission
@@ -253,15 +253,15 @@ The queue pair is an integrated system of software, hardware and framework in re
     \label{fig:queuedpair}
 \end{figure}
 \subsection{RNIC Verbs}
-The RNIC verbs describes the behaviour of RNIC infrastructure, and creating programming interfaces for applications to make use of the infrastructures\cite{hilland2003rdma}.  The RDMA is built upon a consumer-provider model, and the verb methods act as the middle ware between the application consumers and actual queuing pairs inside the RNIC software logics.\\ 
+The RNIC verbs describes the behaviour of RNIC infrastructure, and creating programming interfaces for applications to make use of the infrastructures\cite{hilland2003rdma}.  The RDMA is built upon a consumer-provider model, and the verb methods act as the middle ware between the application consumers and actual queuing pairs inside the RNIC software logics\cite{krause2008method}.\\ 
 The verb specifications defines functions and semantics the application need to access the RDMA protocol layers, however, the verbs only include connection management and tear-down semantics, and availability to additional protocol layers  are not defined in the verbs.\\ 
 \subsection{Implementation Details of Verbs}
 The implementation of RNIC verbs are related to the actual policy defined by the queue pair politics, and different in actual infrastructure environment. In this project, the RDMA is the memory accessing system which provides buffering services for dynamic hardware structure for high performance system. \\
 \subsubsection{Memory management}
-RNIC introduces two concepts in memory management: memory window and queued pairs. The memory window manages the organization of contents in each node, and queued pairs defines the way separate nodes communicating with each other.\\
+RNIC introduces two concepts in memory management: memory window and queued pairs. The memory window manages the organization of contents in each node, and queued pairs defines the way separate nodes communicating with each other\cite{krause2008method}.\\
 The memory windows are the basic swap element between the actual memory block and RNIC buffer\cite{garcia2006binding}. The RDMA introduces memory windows mechanism to perform memory registration and management. The remote memory shifting and offset table management are implemented through memory windows. \\
 Memory space management are performed through RNIC data drivers via Tagged Offset\cite{boyd2007memory}. From the application consumer view, the memory spaces are continuous and the application can visit the entire 'shared' space by applying simple offset, but it works different from the queue pair view.\\
-The queue pair is the mechanism which work requests are translated by the verbs into the interfaces provided by RNIC library, and be ready to enter the implementation of the data engine before going into the actual internet protocols. The working queues are maintained by separate nodes, and perform as the basic element of content swapping instructions. The swapping of the memory content, instructed by working queue I/O, is managed by STag access control:
+The queue pair is the mechanism which work requests are translated by the verbs into the interfaces provided by RNIC library, and be ready to enter the implementation of the data engine before going into the actual internet protocols. The working queues are maintained by separate nodes, and perform as the basic element of content swapping instructions. The swapping of the memory content, instructed by working queue I/O, is managed by STag access control\cite{hausauer2006rdma}:
 \begin{lstlisting}[breaklines,breakatwhitespace,caption={STag access control},label=stag-psudoCode]
 swapContentViaRNIC(QueuedProcessID qpid){
 	MemoryPointer mwPointer = getLocalMemoryWindowByQPID(qpid);
@@ -281,7 +281,7 @@ swapContentViaRNIC(QueuedProcessID qpid){
 	re.push(qpid);								
 }
 \end{lstlisting}
-So the problem lies in the strategy in choosing the strategy in the cross-node STag management. We can choose either using the same queued process id for all queued pairs, and client can seamlessly access the process registered with the same id in the server, or using different process id on each queued pairs, and managed by the client-server communication.\\
+So the problem lies in the strategy in choosing the strategy in the cross-node STag management. We can choose either using the same queued process id for all queued pairs, and client can seamlessly access the process registered with the same id in the server, or using different process id on each queued pairs, and managed by the client-server communication\cite{hilland2010method}.\\
 Both ways have problem: for the first solution, multiple clients can access each other`s process for they enjoy the same id in the server, which is public accessible; the second solution cannot fulfil the requirement of unified memory window management in multi-client environment, which servers need register multiple memory windows for separate clients.\\
 The solution provided by RNIC is a combination of both solution:
 \begin{itemize}
@@ -290,20 +290,14 @@ The solution provided by RNIC is a combination of both solution:
 \end{itemize}
 \section{Fat-tree topology implementation over RDMA}
 \subsection{Reducing the Cost in Node Intercommunication}
-Cost in node intercommunication lies in to aspects: the content transmission speed between the network interfaces and memory spaces, and the latency in data links among nodes.\\
+Cost in node intercommunication lies in to aspects: the content transmission speed between the network interfaces and memory spaces, and the latency in data links among nodes\cite{arimilli2010percs}.\\
 Data swapping within RDMA system is a bandwidth consuming performance, and the efficiency in data transformation is the threshold for the overall efficiency of the system. \\
 In the data engine level, NIC can access the data blocks with the direct memory addresses without CPU, and improving the accessing speed of data by direct I/O performances from NIC to memory. 
 \begin{lstlisting}[breaklines,breakatwhitespace,caption={Direct Data access from NIC to memory},label=nic-psudoCode]
 SwapMemory(Memorypointer source, Memorypointer destination){
-	//The pid in different client is different
 	QueuedProcessID destiPID = receiveQueue.pop().getPID;
 	Memorypointer desti = 
 		destination + getOffset(source, destination);
-	try{
-		kernel.directWriteToMemory（desti,destiPID.getContent());
-	}catch(MemoryIOException e){
-		e.printStackTrace();
-	}  
 }
 \end{lstlisting}
 In the network topology level, the RDMA network protocols introduces fat-tree topology, which 'parent' nodes have the bandwidth aggregating bandwidth of all children nodes, and the perfect shifting mechanism guarantees the minimum cost in data shifting.\\
@@ -312,7 +306,7 @@ The implementation of perfect shifting is based on one assumption: most of instr
 	\item Require data from local memory space
     \item Require data from the neighbour nodes with the same parents
 \end{itemize}
-The implementation of dual feeds in data sources also reduces the time cost significantly, for the bypassing of kernel model in UDP package processing, the client in the network interface in switches works different in error processing, and node level error can be detected in leaf level switch. Comparing to flat structured centralized switch, the fat-tree topology interconnection reduces the expected error detection time from $E(T_{t}|e)=E(T_{node}|e)+E(T_{route})$, however, the expected time of processing error in node($T_(node)$) is a constant, assuming the cluster is homogeneous, and reducing the error processing time in network transmission phase.\\
+The implementation of dual feeds in data sources also reduces the time cost significantly, for the bypassing of kernel model in UDP package processing, the client in the network interface in switches works different in error processing, and node level error can be detected in leaf level switch\cite{gu2009low}. Comparing to flat structured centralized switch, the fat-tree topology interconnection reduces the expected error detection time from $E(T_{t}|e)=E(T_{node}|e)+E(T_{route})$, however, the expected time of processing error in node($T_(node)$) is a constant, assuming the cluster is homogeneous, and reducing the error processing time in network transmission phase.\\
 \subsection{Analysing flat topology and fat-tree topology}
 \begin{figure}[H]
 	\centering
@@ -385,27 +379,27 @@ The compression process will be performed each turn in rebalancing, for an vine 
 The rebalancing of the tree structure resolves the balancing problem of interconnection bandwidth, take the bandwidth requirement of node 5 for example: in step k before rebalancing, the bandwidth requirement of node 5 on the left side is $b_{1}$ for only one node, and on the right side is $\sum_{m}b_{i}+1$, $m$ is the amount of the leaves after vine node 5. After rebalancing, the bandwidth of node 5 on each side is the same($2\times B_{b}$, $B_{b}$ is the bandwidth of a balanced tree).\\ 
 The introduction of rebalancing tree in the network topology of fat tree is for the stable scalability, and new nodes adding to the system will not have to be added following certain topology rules: the balancing of bandwidth requirement are maintained by the master node automatically, and the topology of the system is maintained dynamically.\\
 \section{RDMA verb implementation: Infiniband Verbs}
-Infiniband verbs, or the iverbs, are the verbs supported by infiniband RDMA protocol family which supports the implementation of RDMA over general hardware clusters. The build-in network topology management can be configured into fat-tree, which is discussed above that we want to introduce in the system. \\
-The Infiniband provides upper-layer protocols(ULPs) supporting not only RDMA itself, but also most features in MPIs. The reason not using the entire Infiniband protocol family is that the support of message passing interfaces in infiniband is ill-supported in scalability, and the version we use for multi-processor interface for the open-source hardware cannot perform ideally in the infiniband pre-configuration, because the passing interfaces designed in the iverb is for much heavier use, including distributed service providers and computation. Our system is a pure message passing system which only filtering and passing message for the clusters, rather than perform the computation for them.\\
-The iverb implementation can be divided into two parts\cite{bedeir2010building}. The client part and the server part. Server side mainly listens to the sockets, and react to the sockets send from the client side. The client send sockets to the servers in order to fetch data from memory directly via RDMA mechanism.\\ 
-The iverbs lie in the client side when the application need to communicate with the server(the details are hidden by the verbs) to fetch data and instructions, and the server side when request are queued in the memory spaces, verbs will translate the queues to working queue elements and find the memory windows it points to, reply with the correct memory space addresses to the client to fetch the data.\\
+Infiniband verbs, or the iverbs, are the verbs supported by infiniband RDMA protocol family which supports the implementation of RDMA over general hardware clusters\cite{mitchell2013using}. The build-in network topology management can be configured into fat-tree, which is discussed above that we want to introduce in the system. \\
+The Infiniband provides upper-layer protocols(ULPs) supporting not only RDMA itself, but also most features in MPIs\cite{liu2003performance}. The reason not using the entire Infiniband protocol family is that the support of message passing interfaces in infiniband is ill-supported in scalability, and the version we use for multi-processor interface for the open-source hardware cannot perform ideally in the infiniband pre-configuration, because the passing interfaces designed in the iverb is for much heavier use, including distributed service providers and computation. Our system is a pure message passing system which only filtering and passing message for the clusters, rather than perform the computation for them.\\
+The iverb implementation can be divided into two parts\cite{bedeir2010building}. The client part and the server part. Server side mainly listens to the sockets, and react to the sockets send from the client side. The client send sockets to the servers in order to fetch data from memory directly via RDMA mechanism\cite{jiang2004efficient}.\\ 
+The iverbs lie in the client side when the application need to communicate with the server(the details are hidden by the verbs) to fetch data and instructions, and the server side when request are queued in the memory spaces, verbs will translate the queues to working queue elements and find the memory windows it points to, reply with the correct memory space addresses to the client to fetch the data\cite{santhanaraman2008designing}.\\
 Two features must be guaranteed for the full functioning of iverb system:
 \begin{itemize}
 	\item Asynchronous reliable communication: both sides will receive hanging notifications and instructions 
     \item No buffers in application level: the synchronization of the send-receive system requires no buffering especially in application memory spaces, which will cause serious problems if the content of application data is modified after sending without completing.
 \end{itemize}
 \subsection{Building the Passive Side}
-The passive side creates and maintains an event handler for queue pairs and an event listener running in the background of network interfaces, which listens to the events from the active sides and send request queues to the queue pairs in the queue event handler directly without implementation of CPU. The iverbs in the event handler will then send the response including the memory content to lower-level protocols to be packaged into sockets, and the network interfaces will then send the package to the destinations.\\
+The passive side creates and maintains an event handler for queue pairs and an event listener running in the background of network interfaces, which listens to the events from the active sides and send request queues to the queue pairs in the queue event handler directly without implementation of CPU\cite{kashyap2006queue}. The iverbs in the event handler will then send the response including the memory content to lower-level protocols to be packaged into sockets, and the network interfaces will then send the package to the destinations.\\
 \begin{figure}[H]
 	\centering
-    \includegraphics[width=0.6\linewidth]{picture/passive.JPG}
+    \includegraphics[width=0.5\linewidth]{picture/passive.JPG}
     \caption{Passive side design}
     \label{fig:passive}
 \end{figure}
 \subsubsection{Building the Active Side}
-The active side runs in the client, which directly queries the content from the 'virtual' memory spaces, which is managed by the server. The active side runs a queued event handler which consumes working queue elements translated by the iverbs from the applications, and resolves receiving queues from the server, getting the actual content of the shared memory spaces.\\
+The active side runs in the client, which directly queries the content from the 'virtual' memory spaces, which is managed by the server. The active side runs a queued event handler which consumes working queue elements translated by the iverbs from the applications, and resolves receiving queues from the server, getting the actual content of the shared memory spaces\cite{kashyap2006queue}.\\
 The active side maintains a route to peer nodes for both active and passive sides, in order to communicate among the clusters for swapping data and instructions.\\
-\begin{figure}
+\begin{figure}[H]
 	\centering
     \includegraphics[width=0.8\linewidth]{picture/active.JPG}
     \caption{Active side design}
@@ -478,10 +472,8 @@ int main(int argc, char** argv){
 	char processor_name[MPI_MAX_PROCESSOR_NAME];
 	int name_len;
 	MPI_Get_processor_name(processor_name, &name_len);
-	/*-----------------/
-	/ Perform algoritm /
-	/-----------------*/
-	 MPI_Finalize();
+
+	MPI_Finalize();
 }
 \end{lstlisting}
 \subsubsection{Communication mode in MPI}
@@ -621,7 +613,7 @@ Program the hardware logic module in FPGA forms the following steps:
 The first step is to understand the board design, including understand the hardware resources we have on the board. For example, we need an accumulator to perform a for-loop, however, we need to know which pin refers to the clock on board, to trigger every step of the loop. In the Logi Pi v1.5 board, the clock can be triggered by an oscillator with standard 50MHz signal source, and connects to the $P85$ pin. \\
 Usually, the pins of the FPGA chip are bounded into banks, so the electric schema of FPGA chips will show the pin structure as a form of banks. The FPGA manufacturers do not know the components outside the chip itself, however, only the creator of FPGA board can know how the board structure looks like. The design of FPGA application functions needs a file describes it, to avoid checking schematics diagrams every time, including the number, name and function of each pin on the FPGA chip, therefore we can use the hardware description language(HDL) to implement our functions.\\
 \subsubsection{Design the hardware logic}
-The second step is to understand the function need to implement: how the signals are imported into the FPGA, and how the output is consumed. The signals are variables that are created in the applications running on the CPU platform, and we have the Wishbone mechanism to slurp the signals from the memory in CPU to the SDRAM on the FPGA board, and push them into the designed pin. \\
+The second step is to understand the function need to implement: how the signals are imported into the FPGA, and how the output is consumed. The signals are variables that are created in the applications running on the CPU platform, and we have the Wishbone mechanism to slurp the signals from the memory in CPU to the Synchronous Dynamic Random Accessing Memory on the FPGA board, and push them into the designed pin. \\
 Design of the hardware logic in FPGA follows the idea of modular programming, and the designer needs to split the hardware design into basic modules according to the functions FPGA chip provided. Each module is consisted of three parts: the input, which can be a system signal like clock, or the output from another module; the basic logic which contains the hardware logic of how a signal is processed by the basic components, for example the pulse-width modulation logic to carry a constant signal with a periodic clock using the following logic:
 \begin{itemize}
 	\item[1.] Defining the input signals with fixed bits
@@ -720,7 +712,7 @@ This section introduces how the FPGA will work with the receiver applications on
 In this chapter, we introduced the core technologies we implemented in the project, and focuses on the Message Passing Interface; the Remote Direct Memory Access method and the reason of implementing Fat-tree network with explanation of its benefits; the Hardware design and programming technology of FPGA and focuses on how the hardware can communicate with the software running in the modern CPU supported system.\\
 We draw a blueprint of a hardware platform which is linked by Ethernet, and the software runs on it is supported by MPI. The system is scalable and efficient because we implement the Fat-tree network with adjustment of interconnection topology and bandwidth.\\
 The following chapter will discuss the system design and the real implementation of the experiment, and how the features are brought to life.
-\chapter{System Design and Implementation}
+\chapter{Project Design and Implementation}
 This part of the thesis explains the main objective of the experiments, design of the experimenting system, and the implementations of technologies discussed above. 
 This part is consisted of three parts:
 % Please add the following required packages to your document preamble:
@@ -749,8 +741,18 @@ The System over Chips(SoC) system are interconnected as a homogeneous processing
 	\label{fig:system_design}
 \end{figure}
 This solution implements and improves the solution provided by the commercial firms in 10Gb Ethernet Switches, which introduces high performance computation chips to resolve the pressure in the network interface buffer. The improvement is in the layer of the high performance computing: in this solution, the HPC layer is not linked directly to the NIC in the board, but is interconnected by the Ethernet Switch, which is much cheaper that 10Gb Ethernet switches. It sacrifices bandwidth in inner system to achieve similar efficiency in data processing by give spaces to heterogeneous scalable computational platforms, consisted by open sourced hardware like Raspberry Pi, and the fat-tree topology interconnection enables the cluster to expand without much cost.\\
+The data flow of the system is demonstrated in picture \ref{fig:Systemdataflowdiagram-Page1}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{"picture/System data flow diagram - Page 1"}
+\caption{System data flow diagram}
+\label{fig:Systemdataflowdiagram-Page1}
+\end{figure}
+This data flow diagram is illustrated in BPMN 2.0 standard, and the legends will be attached in the appendix.\\
+The software system is consisted of three parts:\textit{Green} area: the sender, which sends high frequency dual data feeds;\textit{Yellow} area: the data handler. This one has two implementations, receiving A-B data feeds discussed in the first chapter; \textit{Purple} area: the data controller. This one aggregates the output from the handlers, and performs verification of received data. The channels among the system is maintained by two different architecture: the communication between the sender and handler, and controller to sender are maintained by UDP sessions. The intercommunication between the handlers and controller is embedded on the MPI-CH2 architecture.\\
+\subsection{Expectations}
 The system can be implemented as the interconnection switch network for cloud computing clusters and high performance computer clusters. The design introduces the infrastructural solution for low-latency market data feed, utilizing data transmission efficiency with limited bandwidth, and the fat-tree topology network provides features in system monitoring and scalability in supporting massive computation.\\  
-This thesis provides a possible solution to this problem, which is implementing the dual data feed system over the open sourced hardware, and using Message Passing Interface technology to make the system scalable to achieve similar performance as the commercial ones with lower cost in purchasing and energy cost.\\
+This thesis aims at providing a possible solution to this problem, which is implementing the dual data feed system over the open sourced hardware, and using Message Passing Interface technology to make the system scalable to achieve similar performance as the commercial ones with lower cost in purchasing and energy cost.\\
 \subsection{Main Objective}
 The main object for the project is to implement an experiment over a combined hardware-software environment with the features showing in table \ref{table:features}. The system is consisted of two parts:\\
 \begin{itemize}
@@ -770,6 +772,7 @@ The main object for the project is to implement an experiment over a combined ha
 		\begin{tabular}[c]{@{}l@{}}Fat tree \\ interconnect \\ network\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Fat tree topology is proved to be efficient in \\ implementing interconnection network for massive parallel \\ computation, and flexible in scalable computational nodes.\end{tabular}                                         \\ \bottomrule
 	\end{tabular}
 \end{table}
+\newpage
 \section{System Requirements}
 This project wants to achieve the overall following goals:
 \begin{itemize}
@@ -875,13 +878,12 @@ The time consumption for resending the package is relatively small, and $\frac{p
 	p(\chi | \alpha) \subseteq [2.639\%, 3.448\%] 
 \end{equation}
 \subsubsection{Choice of two receiving strategy}
-There are two different receiving strategies according to the distribution of filtering and error checking of UDP packages. Filtering is the process for checking each piece of data feed datagram $i$: 
+There are two different receiving strategies according to the distribution of filtering UDP packages. Filtering is the process for checking each piece of data feed datagram $i$: 
 \begin{itemize}
 	\item Has the receiver received datagram $i-1$
 	\item Is the content in datagram $i$ expected
 \end{itemize}
-and error checking is the process of merging the outputs of each data feed, and decide if we have received the expected content.\\
-The first strategy is to implement filtering in each data feed receiver, and error check happens in the controller:
+The first strategy is to implement filtering in each data feed receiver:
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\linewidth]{picture/Stg_1Recv}
@@ -889,14 +891,14 @@ The first strategy is to implement filtering in each data feed receiver, and err
 \label{fig:Stg_1Recv}
 \end{figure}
 For each data receiver A and B, we need to wait each to finish, or time out, then the results will be retransmitted to the controller. The filtering takes time, and the status query between the receivers will affect the efficiency of the system. Another potential harm is that one or more data feeds lost connectivity and the alive session needs to wait until the dead ones expired then to retransmit. This will significantly increase the latency in the controller, as the open sourced hardware is not reliable as the commercial ones, and the system needs to be able to tolerate this situation.\\
-We implement the second choice: this one is to perform filtering and error check both in the controller, and the receiver only in charge of individual feed, and the data will be retransmitted to the controller right after the session is over. This solution solves the problem in status queries among receivers, as they do not need to know the status of others, and dead connections will not affect the overall efficiency, as the controller hosts the keep-alive sessions among nodes parallel to the receiving sessions. The worse expired receiver is the one dies in the last package, and the controller only needs to wait for $T_{alive}+T_{offset}$, where $T_{alive}$ is the maximum keep-alive time for each node, and $T_{offset}$ is the manual offset between different data sources.\\
+We implement the second choice: this one is to perform filtering both in the controller, and the receiver only in charge of individual feed, and the data will be retransmitted to the controller right after the session is over. This solution solves the problem in status queries among receivers, as they do not need to know the status of others, and dead connections will not affect the overall efficiency, as the controller hosts the keep-alive sessions among nodes parallel to the receiving sessions. The worse expired receiver is the one dies in the last package, and the controller only needs to wait for $T_{alive}+T_{offset}$, where $T_{alive}$ is the maximum keep-alive time for each node, and $T_{offset}$ is the manual offset between different data sources.\\
 \subsubsection{Conclusion}
 We derive the data loss ratio in high-frequency network for UDP datagrams should be  [2.639\%, 3.448\%], with the following assumption:
 \begin{itemize}
 	\item The data loss rate in UDP datagram is similar in both experiment environment and real scenarios
 	\item The ratio of data processing time and propagation time can be considered fixed if the size of datagrams are similar
 \end{itemize}
-We also makes decision of how the data feed receiver works, especially how the filtering and error check process is distributed. We decided to distribute the filtering and error check in the controller together, and the receiver only needs to retransmit the received datagrams regardless the status of other receivers.
+We also makes decision of how the data feed receiver works, especially how the filtering process is distributed. We decided to distribute the filtering in the controller together, and the receiver only needs to retransmit the received datagrams regardless the status of other receivers.
 \newpage
 \section{Hardware design}
 The table of materials used in the project is shown in table \ref{bom}. However, we do not have 
@@ -1004,8 +1006,8 @@ The Python MPI library, \text{MPI4PY}
 The data flow blueprint for the project can be illustrated in the picture \cite{fig:LogicDesign}, and the implementation details can be very different according to the framework we are using. The software system can be split into three parts:
 \begin{itemize}
 	\item Data feed: simulates the high-frequency data, can be configured into different sending modes with related package size and error rate
-	\item Dual-feed receiver: the receivers are running over the MPI-CH framework, however, it can have two different strategy in processing received data: the error check mechanism happens in the master node, and the receivers can choose either to retransmit every single datagram right after receiving it, or retransmit the entire package after the transmission is time-out
-	\item Master node: the master node needs to perform at least two functions: metrics collection and error check
+	\item Dual-feed receiver: the receivers are running over the MPI-CH framework, however, it can have two different strategy in processing received data: the data verification mechanism happens in the master node, and the receivers can choose either to retransmit every single datagram right after receiving it, or retransmit the entire package after the transmission is time-out
+	\item Master node: the master node needs to perform at least two functions: metrics collection and data verification
 \end{itemize}
 We demonstrate the solutions to these requirements in the following contents. Multiple implementations of data feed and master node are introduced in order to make comparison of combination in the experiment, and we make decision of the strategy in the dual-feed receiver for some experiments done on the cluster. 
 
@@ -1017,8 +1019,8 @@ The flow diagram of data feed is picture \ref{fig:sender-diagram}. It does not f
 \caption{Data feed application blueprint}
 \label{fig:sender-diagram}
 \end{figure}
-The main goal of the data source provider is to simulate the data loss, and we have two ways to implement it. One is to make a real manual data loss in some of the packages before sending, and leave the error check to differ the 'correct' data source and 'corrupted' data source. Another is to pre-set a bulk of independent sending tasks, and manually disable some of the tasks randomly.\\
-The first option simulates the UDP datagram transmission directly, however, it is takes time to make comparison, as for each sending task, the receiver side needs to run a full error check. It also cannot perfectly simulate the situation with one of the source significantly delayed, because the UDP datagram can arrive in mixed sequence and the UDP receiver will automatically sort the data according to the header.\\
+The main goal of the data source provider is to simulate the data loss, and we have two ways to implement it. One is to make a real manual data loss in some of the packages before sending, and leave the verification to differ the 'correct' data source and 'corrupted' data source. Another is to pre-set a bulk of independent sending tasks, and manually disable some of the tasks randomly.\\
+The first option simulates the UDP datagram transmission directly, however, it is takes time to make comparison, as for each sending task, the receiver side needs to run a full verification. It also cannot perfectly simulate the situation with one of the source significantly delayed, because the UDP datagram can arrive in mixed sequence and the UDP receiver will automatically sort the data according to the header.\\
 The second option uses failure rate of the independent replications to substitute the data loss rate in single transmission, with the definition of Bernoulli experiment\cite{anderberg2014cluster}. We choose this design as the data sender.\\
 \subsubsection{Transforming data loss rate to session failure rate}
 For a group of tasks with an amount of $N$, the failure rate $P=\frac{N_{fail}}{N}$, and for a single task, the failure rate $p_{fail}=P$， therefore, for $N$ times of experiments, the probability of failure happens $k$ times is: $C_{N}^{k}(1-p)^{n-k},\ k \subset [0,1,2...,N]$. According to the discussion in system requirements, we have the data loss ratio $p(\chi | \alpha) \subseteq [2.639\%, 3.448\%] $, and we transform this ratio into the success rate of $N$ times Bernoulli experiments by taking the $p(\chi | \alpha)$ into the equation of independent experiment probability.\\
@@ -1042,9 +1044,9 @@ The third feature requires us to be able to achieve two things: recording the ti
 We uses Business Process Model and Notation to show the flow control of our application\cite{dijkman2011business}:
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.0\linewidth]{picture/senderDesign}
-\caption{Dual sender flow chart}
-\label{fig:senderDesign}
+\includegraphics[width=1.0\linewidth]{"picture/Dual sender data flow diagram - Page 1"}
+\caption{Dual sender data flow diagram}
+\label{fig:Dualsenderdataflowdiagram-Page1}
 \end{figure}
 \subsection{Dual-feed handlers and controller}
 The dual-feed receiver and controller is running on the Raspberry Pi cluster, consisted of three parts and on the MPI-CH2 framework. It has two feed handers, \text{receiver\_A} and \text{receiver\_B}, and a controller running on the master node.\\
@@ -1073,10 +1075,143 @@ The implementation of dual-feed handler is simple, and A, B handler uses the sam
 	\item \textit{timeout} value, we set $1ms$ for each datagram to time out
 	\item \textit{keepalive} value, we set $5ms$ for each handler to keep alive and listening to the sender before transforming to waiting mode, and in this mode, the handler will listen to the begin signal from the sender in another port
 \end{itemize}
-\section{FPGA Algorithm design}
-\dots design of the thread dispatching, event sensor in the master board
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{"picture/Dual feed handler flow diagram - Page 1"}
+\caption{Dual-feed handler flow chart}
+\label{fig:Dualfeedhandlerflowdiagram-Page1}
+\end{figure}
+
+The initialization of the handler can receive configuration files in MPI structure, synchronized within the cluster, and the end of the handler is when the datagram session is over, and the handler will retransmit the datagram queue to the handler.\\
+The two checks： termination check and time-out check ensures that the session will be ended in the two scenarios: the \textit{TERMINATE} signal lost or latency of it exceeds the time-out intervals, or the connection between the handler to the source is cut down for unknown reason, and the session only transmitted a part of the complete message.\\
+The implementation of dual data feeds also makes use of these features, as one of the data source may expired abnormally, or both of them do not ended properly, however, there are still chances that the merging result of the two feeds is the original message, and no retransmit from the source will be required.\\
+\subsubsection{Controller design}
+The controller is the main node in the cluster which aggregates the results from data handlers, and has direct session with the source and the metrics. The handler, as discussed above, mainly focuses on two tasks: datagram filtering. The communication between the source and the controller happens after the verification, if the result shows that the datagrams are corrupted and according to the UDP protocol, a retransmission is required.\\
+The design of datagram filtering is simple: the filtering module needs to check the UDP header for checksum and length, and then it can decide whether the datagram is corrupted or not.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/UDPheader}
+\caption{UDP header}\cite{postel1980user}
+\label{fig:UDPheader}
+\end{figure}
+
+The controller takes two data feeds, and in general case, data feed A will arrive several milliseconds earlier than feed B, however, in some cases feed B will be faster than A, and one of them will not return any data in certain scenario, as one of the connection from the handlers to source may lost. Therefore we need to make the inter-MPI communication a provider-consumer model, and the controller needs to wait for the verb provider maintained by MPI-CH2 architecture and triggered by the handlers.\\
+The RDMA discussed above solves the problem of building the model, as the data marked as shifting from the handler to source will be abstracted into RDMA events by the data driver, and a virtual data bus will serve as the provider to deliver the data to its destination marked as the consumer in the controller. From the view of controller, however, it owns two listeners for the data, and the session will expire after the data bus shifting is over. \\
+The blueprint of the controller is showed in picture \ref{fig:controllerBlueprint}. It contains three parts: the data in the data handler which is marked by the RDMA data driver, and a set of RDMA channel, listener and event handler which can perform a seamless data shifting between the handler and the controller using the provider-consumer model. The controller design, however, is simple as the MPI-CH2 architecture abstracts most of the details in RDMA channel communication.\\
+In programming level, RDMA seamless communication needs two parameters:
+\begin{itemize}
+	\item \textit{node\_level} which is defined by the MPI-CH2, and managed by the configuration file which can be manually changed
+	\item \textit{message\_tag}, this parameter is used for defining which channel each block of code uses, as the RDMA communication between the nodes can have more than one implementation, and the driver needs to know the exact block of memory it needs to shift to
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/controllerBlueprint}
+\caption{Controller blueprint}
+\label{fig:controllerBlueprint}
+\end{figure}
+\subsubsection{Controller implementation}
+As discussed above, we do not need to modify the MPI-CH2 implemented RDMA channels, and the implementation of the controller is consisted of two parts: the implementation of configuration file, the \textit{machinefile}, and the application itself.\\
+The structure of \textit{machinefile} shows as follows:
+\begin{lstlisting}[breaklines,breakatwhitespace,caption={Example code},label=Example-Code]
+Host IP address		Node level
+192.168.137.101		2
+192.168.137.102		1
+...					...
+\end{lstlisting}
+The IP addresses and node levels are one-one mapping, and no collision of IP address or node level are allowed. The \textit{mpirun} tool will first examine the \textit{machinefile} it points to followed by  the '-machinefile' instructor, and then it will dispatch the applications and RDMA channels according to it.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{"picture/Controller data flow diagram - Page 1"}
+\caption{Controller data flow diagram}
+\label{fig:Controllerdataflowdiagram-Page1}
+\end{figure}
+The controller application is consisted of two listeners and one verification module containing filtering and datagram error check. We have discussed about how the listener is implemented in the RDMA, and here we focus on how the listener embedded in the overall data flow.\\
+The checksum module, however, is implemented in two ways: one is implemented in Python, which runs on CPU platform, and another is implemented over the FPGA discussed earlier using hardware algorithm. The verification module holds the bottleneck of the overall efficiency for the controller, as the decision of whether the session is succeed or not is defined by this module, and downsizing the cost of this module can significantly improve the system efficiency. On the other hand, the FPGA supported application is running in parallel to the main controller, as introduced before, and the controller will be able to listen to the new incoming datagram sessions while the hardware verification program is running, as some datagrams may be oversized.\\
+\section{FPGA Verification module design and implementation}
+This section introduces how the hardware based verification module is designed and implemented, as the FPGA application uses a different platform, and in order to achieving similar goal as checksum, we need to implement new logic in the hardware different from normal high-level language solutions. The communication between the hardware and software is implemented via SPI over Wishbone, as introduced in last chapter, we will show the details of how it is implemented in the applications.\\
+\subsection{Communicator design}
+There are two communication strategies for implementing the FPGA verification mode: the first one is that we can introduce a \textit{listener} application running in the memory of the CPU, and listening to the calls from the controller for verification of the data, and fetch the data directly from the memory of CPU platform and slurp it into the FPGA board via Wishbone. The second choice is to implement the hardware communicator in the controller, and the controller invokes a guardian thread to wait for the FPGA verification module to return the results.\\
+We tried both and found that neither is applicable:
+\begin{itemize}
+	\item The first strategy is too complex because the independent listener in the memory needs to synchronize to both the hardware and the controller application, which is almost impossible as the controller will not wait for the verification result and the FPGA do not know the status of the CPU based applications
+	\item The second strategy is unachievable because Python multi-threading does not support a return from running thread quite well, and the situation will be unmanageable if the FPGA application died inside the thread. The garbage collection(GC) mechanism in Python is platform depended, and it is too risky to perform GC in a low-latency threading environment\cite{hugunin1997python}
+\end{itemize}
+Our final implementation of the Wishbone communicator is a combination of the two strategies: no independent thread is needed, as the zero-copy data from the memory to FPGA via SPI is fast enough, and a pause in the main thread for it will not harm the overall efficiency. From the system data flow diagram \ref{fig:Systemdataflowdiagram-Page1}, we can see that the sacrifice in non-parallel verification will not harm the overall design.\\
+\subsection{Hardware versification module design}
+The input and output of the FPGA application has fixed number of bits, and the frequency is fixed to $50MHz$ by the board\cite{logiwishbone}. Before introducing the design, we need to have a concept of all the restrictions:
+\begin{table}[H]
+	\centering
+	\caption{Logi Pi input/output fixed variables}
+	\label{my-label}
+	\begin{tabular}{@{}ll@{}}
+		\toprule
+		Name                    & Description                                                         \\ \midrule
+		Input/Output bit number & 16 bits input and output length, split in high 1Byte and low 1Byte \\
+		Input/Output address    & 16 bits abstract address, defined in VHDL by Wishbone               \\
+		Input/Output frequency  & 50 MHz defined by clock signal on Logi Pi board                     \\ \bottomrule
+	\end{tabular}
+\end{table}
+Therefore, the logic of the algorithm should be based on these restrictions, as we cannot easily put the datagram array into the FPGA and make it calculate the sum of each value, because the machine language do not have these concepts.\\
+Another list of concepts we need to have before introducing the design is the hardware modules we need to implement, as discussed in the introduction, the hardware algorithms can be reimplemented and some of the classic design have their standard names\cite{chu2011fpga}:
+\begin{itemize}
+	\item \textit{master}: the Wishbone master which takes fixed bit-length data from fixed address of SDRAM
+	\item \textit{intercon}: the communicator in the master-slave model of SPI architecture, between the master and slaves. The \textit{intercon} differs different slave by addresses
+	\item \textit{PWM}: Pulse Width Modulation, we use it to modulate the digital signals and lit the LEDs\cite{westinghouse1957pulse}
+	\item \textit{register}: can be viewed as normal logic modules, we can implement simple hardware logics in side, including basic I/O, adders and substractors
+\end{itemize}
+\subsubsection{Checksum algorithm implementation}
+The checksum algorithm needs to consider the following requirements:
+\begin{itemize}
+	\item The UDP session datagram in practical is close to 512 Byte\cite{deering1998internet}, and maximum to 8192Byte in order to achieve the best practise
+	\item Registers can only take 16bits of data as input and output separately
+	\item The hardware application runs in parallel to the CPU based application, and the addresses on the FPGA board have no runtime I/O protection, which enables us to perform IO processes without synchronization
+\end{itemize}
+Therefore, we need up to 4096 registers to perform checksum, or 4096 loops of checksum during the process. If the data cannot be divided by 16, we need to add $0$ at the end of it.\\
+We choose to run 4096 loops using one register in the hardware, as it will cost less than $\frac{4096}{5 \times 10^{7} }= 8 \times 10^{-5}$ seconds, far less than the network latency.
+The standard checksum process using hardware is as follows:
+\begin{itemize}
+	\item[1.] Read the pseudo header of the UDP protocol implementations, as it is OS depended
+	\item[2.] Pushing the pseudo header, UDP header with the payload of datagram into the FPGA via Wishbone
+	\item[3.] The FPGA uses adder to add the data, and keeps the carry
+	\item[4.] Add the carry to the final sum, and get the complement code via Wishbone
+	\item[5.] Compare the complement code to the checksum
+\end{itemize}
+\subsubsection{Hardware algorithm design}
+The Valent Fx has provided a modular design tool, the Skeleton, over the Logi Pi board, which customized several pre-defined modules that can be implemented over the Logi Pi board\cite{skeleton}.
+The design of the hardware algorithm showed in the Skeleton IDE shows as follows:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{picture/skeletonProj}
+\caption{Skeleton project design}
+\label{fig:skeletonProj}
+\end{figure}
+The tool will provide us with several fixed addresses for each modules, and the checksum algorithm needs to be implemented in the \textit{reg\_checksum} module. The fixed module addresses are:
+\begin{table}[H]
+	\centering
+	\caption{Static module addresses}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Module Name   & Address & Note                                       \\ \midrule
+		PWM\_0        & 0x000B  & PWM connects to the LED                    \\
+		PWM\_divider  & 0x0008  & PWM\_divider connects to the system\_clock \\
+		reg\_checksum & 0x0000  & Read/Write address of reg\_checksum module \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Conclusion for the Chapter}
+This chapter introduces the experiment objectives and describes how each part of the system is implemented. The objective of this experiment is to provide a solution to high performance network using UDP datagram, and introducing the dual data-feed mechanism to reduce the latency in network caused by datagram retransmission.\\
+The overall design shows how the data drives each part to perform its functions. The system implementation part focuses on the MPI-CH2 over Raspbian operating system, and how the MPI4Py works. It also introduces some bugs in the libraries and OS, and the way to avoid it. The hardware design also introduced how the system in connected by Ethernet cables, and how the system gains its power supply. The software design formed by three parts: the simulated dual-feed sender, the handler and the controller. Details of how the sender is implemented, and the implementation of intercommunication among the two handlers and controller is provided with detailed metrics, and explained why we choose certain strategy in some parts of the system.\\
+The hardware algorithm design introduced in detail about how the checksum mechanism is performed in the FPGA, and we introduced the module structure inside the FPGA by using the IDE desgin diagram of Skeleton.\\
+The next chapter will introduce the experiments we implemented, and their analysis.
 
 \chapter{Experiment Design, Requirements and Expectations}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{picture/photo/cluster}
+	\caption{The Raspberry Pi cluster framed by Lego}
+	\label{fig:cluster}
+\end{figure}
 This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\
 In order to achieve the goal of receiving dual feeds, which will come from physically two Ethernet cables, the system needs at least two Ethernet ports, and we introduces MPICH over multiple independent hardware which has one Ethernet port each, and congregate them into a cluster in order to meet the requirements.\\

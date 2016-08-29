@@ -9,6 +9,10 @@ Aho, A.~V. \harvardand\ Hopcroft, J.~E.  \harvardyearleft 1974\harvardyearright
 Alexander, C.  \harvardyearleft 2001\harvardyearright , {\em Market models: A
   guide to financial data analysis}, John Wiley \& Sons.
 
+\harvarditem{and others}{1957}{westinghouse1957pulse}
+and others  \harvardyearleft 1957\harvardyearright , `Pulse width modulator'.
+\newblock US Patent 2,780,782.
+
 \harvarditem{Anderberg}{2014}{anderberg2014cluster}
 Anderberg, M.~R.  \harvardyearleft 2014\harvardyearright , {\em Cluster
   analysis for applications: probability and mathematical statistics: a series
@@ -18,6 +22,14 @@ Anderberg, M.~R.  \harvardyearleft 2014\harvardyearright , {\em Cluster
 Archer, C.~J. \harvardand\ Blocksome, M.~A.  \harvardyearleft
   2012\harvardyearright , `Remote direct memory access'.
 \newblock US Patent 8,325,633.
+
+\harvarditem[Arimilli et~al.]{Arimilli, Arimilli, Chung, Clark, Denzel, Drerup,
+  Hoefler, Joyner, Lewis, Li et~al.}{2010}{arimilli2010percs}
+Arimilli, B., Arimilli, R., Chung, V., Clark, S., Denzel, W., Drerup, B.,
+  Hoefler, T., Joyner, J., Lewis, J., Li, J. et~al.  \harvardyearleft
+  2010\harvardyearright , The percs high-performance interconnect, {\em in}
+  `2010 18th IEEE Symposium on High Performance Interconnects', IEEE,
+  pp.~75--82.
 
 \harvarditem[Arndt et~al.]{Arndt, Beukema, Craddock, Gregg, Schmidt
   \harvardand\ Walk}{2003}{arndt2003infiniband}
@@ -60,6 +72,10 @@ C{\'a}ceres, R., Duffield, N.~G., Horowitz, J., Towlsey, D. \harvardand\ Bu, T.
   in} `INFOCOM'99. Eighteenth Annual Joint Conference of the IEEE Computer and
   Communications Societies. Proceedings. IEEE', Vol.~1, IEEE, pp.~371--379.
 
+\harvarditem{Chu}{2011}{chu2011fpga}
+Chu, P.~P.  \harvardyearleft 2011\harvardyearright , {\em FPGA prototyping by
+  VHDL examples: Xilinx Spartan-3 version}, John Wiley \& Sons.
+
 \harvarditem{Cisco}{n.d.}{ciscoWhitePaper}
 Cisco  \harvardyearleft n.d.\harvardyearright , `The next generation trading
   infrasturcture',
@@ -87,6 +103,10 @@ Cox, S.~J., Cox, J.~T., Boardman, R.~P., Johnston, S.~J., Scott, M.
 Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
   present and future, {\em in} `European Parallel Virtual Machine/Message
   Passing Interface Users’ Group Meeting', Springer, pp.~1--1.
+
+\harvarditem{Deering}{1998}{deering1998internet}
+Deering, S.~E.  \harvardyearleft 1998\harvardyearright , `Internet protocol,
+  version 6 (ipv6) specification'.
 
 \harvarditem[Dijkman et~al.]{Dijkman, Hofstetter \harvardand\
   Koehler}{2011}{dijkman2011business}
@@ -138,6 +158,12 @@ Gropp, W. \harvardand\ Lusk, E.  \harvardyearleft 1994\harvardyearright , `An
   Mathematics and Computer Science Division, Argonne National Laboratory,
   Argonne, Ill} .
 
+\harvarditem[Gu et~al.]{Gu, Xu \harvardand\ Zhang}{2009}{gu2009low}
+Gu, H., Xu, J. \harvardand\ Zhang, W.  \harvardyearleft 2009\harvardyearright ,
+  A low-power fat tree-based optical network-on-chip for multiprocessor
+  system-on-chip, {\em in} `Proceedings of the conference on Design, Automation
+  and Test in Europe', European Design and Automation Association, pp.~3--8.
+
 \harvarditem{Harrington}{2015}{harrington2015learning}
 Harrington, W.  \harvardyearleft 2015\harvardyearright , {\em Learning
   Raspbian}, Packt Publishing Ltd.
@@ -147,11 +173,35 @@ Hauck, S. \harvardand\ DeHon, A.  \harvardyearleft 2010\harvardyearright , {\em
   Reconfigurable computing: the theory and practice of FPGA-based computation},
   Vol.~1, Morgan Kaufmann.
 
+\harvarditem{Hausauer \harvardand\ Sharp}{2006}{hausauer2006rdma}
+Hausauer, B. \harvardand\ Sharp, R.  \harvardyearleft 2006\harvardyearright ,
+  `Rdma enabled i/o adapter performing efficient memory management'.
+\newblock US Patent App. 11/357,446.
+
 \harvarditem[Hilland et~al.]{Hilland, Culley, Pinkerton \harvardand\
   Recio}{2003}{hilland2003rdma}
 Hilland, J., Culley, P., Pinkerton, J. \harvardand\ Recio, R.  \harvardyearleft
   2003\harvardyearright , `Rdma protocol verbs specification', {\em RDMAC
   Consortium Draft Specification draft-hilland-iwarp-verbsv1. 0-RDMAC} .
+
+\harvarditem[Hilland et~al.]{Hilland, Chadalapaka, Krause, Culley \harvardand\
+  Garcia}{2010}{hilland2010method}
+Hilland, J.~R., Chadalapaka, M., Krause, M.~R., Culley, P.~R. \harvardand\
+  Garcia, D.~J.  \harvardyearleft 2010\harvardyearright , `Method and apparatus
+  for implementing work request lists'.
+\newblock US Patent 7,757,232.
+
+\harvarditem{Hugunin}{1997}{hugunin1997python}
+Hugunin, J.  \harvardyearleft 1997\harvardyearright , Python and java: The best
+  of both worlds, {\em in} `Proceedings of the 6th international Python
+  conference', Vol.~9, pp.~2--18.
+
+\harvarditem[Jain et~al.]{Jain, Vaibhav \harvardand\
+  Goyal}{2014}{jain2014raspberry}
+Jain, S., Vaibhav, A. \harvardand\ Goyal, L.  \harvardyearleft
+  2014\harvardyearright , Raspberry pi based interactive home automation system
+  through e-mail, {\em in} `Optimization, Reliabilty, and Information
+  Technology (ICROIT), 2014 International Conference on', IEEE, pp.~277--280.
 
 \harvarditem{Jain}{n.d.}{ibm2011highfrequency}
 Jain, V.  \harvardyearleft n.d.\harvardyearright , `A low-latency solution for
@@ -159,12 +209,27 @@ Jain, V.  \harvardyearleft n.d.\harvardyearright , `A low-latency solution for
   \url{http://www.mellanox.com/pdf/whitepapers/Low-Latency-Solution-for-High-Frequency-Trading-from-IBM-and-Mellanox.pdf}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem[Jiang et~al.]{Jiang, Liu, Jin, Panda, Buntinas, Thakur
+  \harvardand\ Gropp}{2004}{jiang2004efficient}
+Jiang, W., Liu, J., Jin, H.-W., Panda, D.~K., Buntinas, D., Thakur, R.
+  \harvardand\ Gropp, W.~D.  \harvardyearleft 2004\harvardyearright , Efficient
+  implementation of mpi-2 passive one-sided communication on infiniband
+  clusters, {\em in} `European Parallel Virtual Machine/Message Passing
+  Interface Users’ Group Meeting', Springer, pp.~68--76.
+
 \harvarditem[Junger et~al.]{Junger, Moritz, Lueders, Thuss, Elbracht, Haensel
   \harvardand\ Kostorz}{2007}{junger2007method}
 Junger, A., Moritz, R., Lueders, U., Thuss, W., Elbracht, B., Haensel, J.
   \harvardand\ Kostorz, W.  \harvardyearleft 2007\harvardyearright , `Method of
   data transmission and a transmission and reception device therefor'.
 \newblock US Patent 7,203,776.
+
+\harvarditem[Kashyap et~al.]{Kashyap, Neal, Pfister \harvardand\
+  Recio}{2006}{kashyap2006queue}
+Kashyap, V., Neal, D.~M., Pfister, G.~F. \harvardand\ Recio, R.~J.
+  \harvardyearleft 2006\harvardyearright , `Queue pair resolution in infiniband
+  fabrics'.
+\newblock US Patent 7,116,673.
 
 \harvarditem{Kendall}{n.d.}{kendall_2016}
 Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
@@ -175,6 +240,12 @@ Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
 \harvarditem{Klaas}{2004}{klaas2004system}
 Klaas, J.  \harvardyearleft 2004\harvardyearright , `System-on-a-chip'.
 \newblock US Patent 6,816,750.
+
+\harvarditem{Krause \harvardand\ Hilland}{2008}{krause2008method}
+Krause, M.~R. \harvardand\ Hilland, J.~R.  \harvardyearleft
+  2008\harvardyearright , `Method and apparatus for providing notification via
+  multiple completion queue handlers'.
+\newblock US Patent 7,404,190.
 
 \harvarditem{Kunz \harvardand\ McCamey}{1999}{kunz1999rj}
 Kunz, W.~E. \harvardand\ McCamey, A.  \harvardyearleft 1999\harvardyearright ,
@@ -202,6 +273,14 @@ Lin, H.-M., Huang, H.-J., Yuan, J.-m. \harvardand\ Bai, M.-C.  \harvardyearleft
   method'.
 \newblock US Patent App. 12/203,007.
 
+\harvarditem[Liu et~al.]{Liu, Chandrasekaran, Wu, Jiang, Kini, Yu, Buntinas,
+  Wyckoff \harvardand\ Panda}{2003}{liu2003performance}
+Liu, J., Chandrasekaran, B., Wu, J., Jiang, W., Kini, S., Yu, W., Buntinas, D.,
+  Wyckoff, P. \harvardand\ Panda, D.~K.  \harvardyearleft 2003\harvardyearright
+  , Performance comparison of mpi implementations over infiniband, myrinet and
+  quadrics, {\em in} `Supercomputing, 2003 ACM/IEEE Conference', IEEE,
+  pp.~58--58.
+
 \harvarditem[Liu et~al.]{Liu, Wu \harvardand\ Panda}{2004}{liu2004high}
 Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
   2004\harvardyearright , `High performance rdma-based mpi implementation over
@@ -212,6 +291,13 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
 Michael, M.~S.  \harvardyearleft 1992\harvardyearright , `Universal
   asynchronous receiver/transmitter'.
 \newblock US Patent 5,140,679.
+
+\harvarditem[Mitchell et~al.]{Mitchell, Geng \harvardand\
+  Li}{2013}{mitchell2013using}
+Mitchell, C., Geng, Y. \harvardand\ Li, J.  \harvardyearleft
+  2013\harvardyearright , Using one-sided rdma reads to build a fast,
+  cpu-efficient key-value store, {\em in} `Presented as part of the 2013 USENIX
+  Annual Technical Conference (USENIX ATC 13)', pp.~103--114.
 
 \harvarditem[Moon et~al.]{Moon, Kurose, Skelly \harvardand\
   Towsley}{1998}{moon1998correlation}
@@ -259,6 +345,14 @@ Pang, Z., Xie, M., Zhang, J., Zheng, Y., Wang, G., Dong, D. \harvardand\ Suo,
   interconnect networks', {\em Frontiers of Computer Science} {\bf
   8}(3),~357--366.
 
+\harvarditem{Pinkerton}{2002}{pinkerton2002case}
+Pinkerton, J.  \harvardyearleft 2002\harvardyearright , `The case for rdma',
+  {\em RDMA Consortium, May} {\bf 29},~27.
+
+\harvarditem{Postel}{1980}{postel1980user}
+Postel, J.  \harvardyearleft 1980\harvardyearright , User datagram protocol,
+  Technical report.
+
 \harvarditem{Postel}{n.d.}{udpprotocol}
 Postel, J.  \harvardyearleft n.d.\harvardyearright , `Rfc 768 user datagram
   protocol', \url{https://tools.ietf.org/html/rfc768}.
@@ -271,6 +365,10 @@ Protopopov, B.~V. \harvardand\ Skjellum, A.  \harvardyearleft
   architecture: Performance and program issues', {\em Journal of Parallel and
   Distributed Computing} {\bf 61}(4),~449--466.
 
+\harvarditem{Recio}{2003}{recio2003rdma}
+Recio, R.  \harvardyearleft 2003\harvardyearright , `Rdma enabled nic (rnic)
+  verbs overview', {\em dated Apr} {\bf 29},~1--28.
+
 \harvarditem{register .Inc}{n.d.}{bbbrpi}
 register .Inc, T.  \harvardyearleft n.d.\harvardyearright , `Review:
   Beagleboard beaglebone black',
@@ -281,6 +379,14 @@ register .Inc, T.  \harvardyearleft n.d.\harvardyearright , `Review:
 Russell, R.~D.  \harvardyearleft 2012\harvardyearright , `Introduction to rdma
   programming'.
 \newblock US Patent App. 10/929,943.
+
+\harvarditem[Santhanaraman et~al.]{Santhanaraman, Narravula \harvardand\
+  Panda}{2008}{santhanaraman2008designing}
+Santhanaraman, G., Narravula, S. \harvardand\ Panda, D.~K.  \harvardyearleft
+  2008\harvardyearright , Designing passive synchronization for mpi-2 one-sided
+  communication to maximize overlap, {\em in} `Parallel and Distributed
+  Processing, 2008. IPDPS 2008. IEEE International Symposium on', IEEE,
+  pp.~1--11.
 
 \harvarditem{Schwartz}{1980}{schwartz1980ultracomputers}
 Schwartz, J.~T.  \harvardyearleft 1980\harvardyearright , `Ultracomputers',
@@ -297,19 +403,32 @@ Stout, Q.~F. \harvardand\ Warren, B.~L.  \harvardyearleft 1986\harvardyearright
   , `Tree rebalancing in optimal time and space', {\em Communications of the
   ACM} {\bf 29}(9),~902--908.
 
+\harvarditem[Subramoni et~al.]{Subramoni, Lai, Luo \harvardand\
+  Panda}{2009}{subramoni2009rdma}
+Subramoni, H., Lai, P., Luo, M. \harvardand\ Panda, D.~K.  \harvardyearleft
+  2009\harvardyearright , Rdma over ethernet—a preliminary study, {\em in}
+  `2009 IEEE International Conference on Cluster Computing and Workshops',
+  IEEE, pp.~1--9.
+
 \harvarditem{ValentFx}{n.d.{\em a}}{logiwishbone}
 ValentFx  \harvardyearleft n.d.{\em a}\harvardyearright , `Logi pi wishbone
   document',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
 \newblock Accessed July 2, 2016.
 
-\harvarditem{ValentFx}{n.d.{\em b}}{logipimanual}
-ValentFx, T.  \harvardyearleft n.d.{\em b}\harvardyearright , `Logi pi user
+\harvarditem{ValentFx}{n.d.{\em b}}{skeleton}
+ValentFx, T.  \harvardyearleft n.d.{\em b}\harvardyearright , `Logi pi skeleton
+  project',
+  \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Skeleton_Editor_-_Project}.
+\newblock Accessed July 2, 2016.
+
+\harvarditem{ValentFx}{n.d.{\em c}}{logipimanual}
+ValentFx, T.  \harvardyearleft n.d.{\em c}\harvardyearright , `Logi pi user
   manual', \url{http://valentfx.com/wiki/index.php?title=LOGI_Pi_User_Manual}.
 \newblock Accessed July 2, 2016.
 
-\harvarditem{ValentFx}{n.d.{\em c}}{wishbone}
-ValentFx, T.  \harvardyearleft n.d.{\em c}\harvardyearright , `Logi pi wishbone
+\harvarditem{ValentFx}{n.d.{\em d}}{wishbone}
+ValentFx, T.  \harvardyearleft n.d.{\em d}\harvardyearright , `Logi pi wishbone
   hardware documentation',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
 \newblock Accessed July 2, 2016.

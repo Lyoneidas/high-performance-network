@@ -30,22 +30,29 @@
 \contentsline {figure}{\numberline {2.20}{\ignorespaces Wishbone register}}{41}{figure.2.20}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces System blueprint}}{45}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Flow chart for filtering in the data feed receiver in BPMN}}{51}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Interconnection hardware blueprint}}{54}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Cabling on the switch board}}{55}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Ethernet connection in slave node and master node}}{55}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Power supply blueprint for the cluster}}{56}{figure.3.6}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces System blueprint}}{57}{figure.3.7}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces SSH terminal and VNC XWindows for master node}}{58}{figure.3.8}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Setting up the MPI-CH2 environment}}{59}{figure.3.9}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Data feed application blueprint}}{60}{figure.3.10}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces UDP sender from data loss rate to success rate}}{61}{figure.3.11}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Dual sender flow chart}}{62}{figure.3.12}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces A-B data feed handler blueprint}}{64}{figure.3.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces System data flow diagram}}{46}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Flow chart for filtering in the data feed receiver in BPMN}}{52}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Interconnection hardware blueprint}}{55}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Cabling on the switch board}}{56}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Ethernet connection in slave node and master node}}{56}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Power supply blueprint for the cluster}}{57}{figure.3.7}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces System blueprint}}{58}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces SSH terminal and VNC XWindows for master node}}{59}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Setting up the MPI-CH2 environment}}{60}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Data feed application blueprint}}{61}{figure.3.11}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces UDP sender from data loss rate to success rate}}{62}{figure.3.12}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Dual sender data flow diagram}}{63}{figure.3.13}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces A-B data feed handler blueprint}}{65}{figure.3.14}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Dual-feed handler flow chart}}{65}{figure.3.15}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces UDP header}}{66}{figure.3.16}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Controller blueprint}}{67}{figure.3.17}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Controller data flow diagram}}{68}{figure.3.18}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Skeleton project design}}{71}{figure.3.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Design of experiment 1}}{67}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Design of experiment 2}}{68}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Design of experiment 3}}{68}{figure.4.3}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The Raspberry Pi cluster framed by Lego}}{73}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Design of experiment 1}}{75}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Design of experiment 2}}{76}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Design of experiment 3}}{76}{figure.4.4}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
