@@ -96,6 +96,18 @@ C{\'a}ceres, R., Duffield, N.~G., Horowitz, J., Towlsey, D. \harvardand\ Bu, T.
 Cerf, V.~G.  \harvardyearleft 1991\harvardyearright , Guidelines for internet
   measurement activities, Technical report.
 
+\harvarditem[Chlistalla et~al.]{Chlistalla, Speyer, Kaiser \harvardand\
+  Mayer}{2011}{chlistalla2011high}
+Chlistalla, M., Speyer, B., Kaiser, S. \harvardand\ Mayer, T.  \harvardyearleft
+  2011\harvardyearright , `High-frequency trading', {\em Deutsche Bank
+  Research} {\bf 7}.
+
+\harvarditem[Chordia et~al.]{Chordia, Goyal, Lehmann \harvardand\
+  Saar}{2013}{chordia2013high}
+Chordia, T., Goyal, A., Lehmann, B.~N. \harvardand\ Saar, G.  \harvardyearleft
+  2013\harvardyearright , `High-frequency trading', {\em Johnson School
+  Research Paper Series} (20-2013).
+
 \harvarditem{Chu}{2011}{chu2011fpga}
 Chu, P.~P.  \harvardyearleft 2011\harvardyearright , {\em FPGA prototyping by
   VHDL examples: Xilinx Spartan-3 version}, John Wiley \& Sons.
@@ -163,6 +175,13 @@ Ellis, C.~S.  \harvardyearleft 1980\harvardyearright , `Concurrent search and
   insertion in avl trees', {\em IEEE Transactions on Computers} {\bf
   100}(9),~811--817.
 
+\harvarditem[Fu et~al.]{Fu, Liao, Yang, Wang, Song, Huang, Yang, Xue, Liu, Qiao
+  et~al.}{2016}{fu2016sunway}
+Fu, H., Liao, J., Yang, J., Wang, L., Song, Z., Huang, X., Yang, C., Xue, W.,
+  Liu, F., Qiao, F. et~al.  \harvardyearleft 2016\harvardyearright , `The
+  sunway taihulight supercomputer: system and applications', {\em Science China
+  Information Sciences} {\bf 59}(7),~072001.
+
 \harvarditem{FX}{n.d.}{logipi}
 FX, V.  \harvardyearleft n.d.\harvardyearright , `Logi pi fpga user manual',
   \url{http://valentfx.com/wiki/index.php?title=Logi-Pi_Quick_Start_Guide}.
@@ -174,6 +193,13 @@ Garcia, D.~J., Hilland, J.~R., Culley, P.~R., Barron, D.~L. \harvardand\
   Krause, M.~R.  \harvardyearleft 2006\harvardyearright , `Binding a memory
   window to a queue pair'.
 \newblock US Patent 7,103,744.
+
+\harvarditem[Geist et~al.]{Geist, Gropp, Huss-Lederman, Lumsdaine, Lusk,
+  Saphir, Skjellum \harvardand\ Snir}{1996}{geist1996mpi}
+Geist, A., Gropp, W., Huss-Lederman, S., Lumsdaine, A., Lusk, E., Saphir, W.,
+  Skjellum, T. \harvardand\ Snir, M.  \harvardyearleft 1996\harvardyearright ,
+  Mpi-2: Extending the message-passing interface, {\em in} `European Conference
+  on Parallel Processing', Springer, pp.~128--135.
 
 \harvarditem{Gropp \harvardand\ Lusk}{1996}{gropp1996high}
 Gropp, W. \harvardand\ Lusk  \harvardyearleft 1996\harvardyearright , `A
@@ -257,6 +283,13 @@ Jiang, W., Liu, J., Jin, H.-W., Panda, D.~K., Buntinas, D., Thakur, R.
   clusters, {\em in} `European Parallel Virtual Machine/Message Passing
   Interface Users’ Group Meeting', Springer, pp.~68--76.
 
+\harvarditem[Johnson et~al.]{Johnson, Clark, Piccirillo \harvardand\
+  MacLaren}{2005}{johnson2005memory}
+Johnson, J.~J., Clark, B.~H., Piccirillo, G.~J. \harvardand\ MacLaren, J.~M.
+  \harvardyearleft 2005\harvardyearright , `Memory latency and bandwidth
+  optimizations'.
+\newblock US Patent 6,938,133.
+
 \harvarditem[Junger et~al.]{Junger, Moritz, Lueders, Thuss, Elbracht, Haensel
   \harvardand\ Kostorz}{2007}{junger2007method}
 Junger, A., Moritz, R., Lueders, U., Thuss, W., Elbracht, B., Haensel, J.
@@ -276,6 +309,10 @@ Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
   introduction · mpi tutorial',
   \url{http://mpitutorial.com/tutorials/mpi-introduction/}.
 \newblock Accessed July 2, 2016.
+
+\harvarditem{Kiepert}{2013}{kiepert2013creating}
+Kiepert, J.  \harvardyearleft 2013\harvardyearright , `Creating a raspberry
+  pi-based beowulf cluster', {\em Boise State} .
 
 \harvarditem{Klaas}{2004}{klaas2004system}
 Klaas, J.  \harvardyearleft 2004\harvardyearright , `System-on-a-chip'.
@@ -306,6 +343,12 @@ Leiserson, C.~E.  \harvardyearleft 1985\harvardyearright , `Fat-trees:
   universal networks for hardware-efficient supercomputing', {\em IEEE
   transactions on Computers} {\bf 100}(10),~892--901.
 
+\harvarditem[Liao et~al.]{Liao, Xiao, Yang \harvardand\
+  Lu}{2014}{liao2014milkyway}
+Liao, X., Xiao, L., Yang, C. \harvardand\ Lu, Y.  \harvardyearleft
+  2014\harvardyearright , `Milkyway-2 supercomputer: system and application',
+  {\em Frontiers of Computer Science} {\bf 8}(3),~345--356.
+
 \harvarditem[Lin et~al.]{Lin, Huang, Yuan \harvardand\
   Bai}{2008}{lin2008transmission}
 Lin, H.-M., Huang, H.-J., Yuan, J.-m. \harvardand\ Bai, M.-C.  \harvardyearleft
@@ -332,6 +375,11 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
 Livny, M., Basney, J., Raman, R. \harvardand\ Tannenbaum, T.  \harvardyearleft
   1997\harvardyearright , `Mechanisms for high throughput computing', {\em
   SPEEDUP journal} {\bf 11}(1),~36--40.
+
+\harvarditem{McGowan}{2010}{mcgowan2010rise}
+McGowan, M.~J.  \harvardyearleft 2010\harvardyearright , `Rise of computerized
+  high frequency trading: Use and controversy, the', {\em Duke L. \& Tech.
+  Rev.} p.~i.
 
 \harvarditem{Menkveld}{2013}{menkveld2013high}
 Menkveld, A.~J.  \harvardyearleft 2013\harvardyearright , `High frequency
@@ -500,6 +548,14 @@ Thekkath, C.~A. \harvardand\ Levy, H.~M.  \harvardyearleft
   networks', {\em ACM Transactions on Computer Systems (TOCS)} {\bf
   11}(2),~179--203.
 
+\harvarditem{Upton \harvardand\ Halfacree}{2012}{upton2012meet}
+Upton, E. \harvardand\ Halfacree, G.  \harvardyearleft 2012\harvardyearright ,
+  {\em Meet the Raspberry Pi}, John Wiley \& Sons.
+
+\harvarditem{Upton \harvardand\ Halfacree}{2014}{upton2014raspberry}
+Upton, E. \harvardand\ Halfacree, G.  \harvardyearleft 2014\harvardyearright ,
+  {\em Raspberry Pi user guide}, John Wiley \& Sons.
+
 \harvarditem{ValentFx}{n.d.{\em a}}{logiwishbone}
 ValentFx  \harvardyearleft n.d.{\em a}\harvardyearright , `Logi pi wishbone
   document',
@@ -528,6 +584,10 @@ Vl{\v{c}}ek, O. \harvardand\ Huth, R.  \harvardyearleft 2009\harvardyearright ,
   `Is daily precipitation gamma-distributed?: Adverse effects of an incorrect
   use of the kolmogorov--smirnov test', {\em Atmospheric Research} {\bf
   93}(4),~759--766.
+
+\harvarditem{Vrenios}{2002}{vrenios2002linux}
+Vrenios, A.  \harvardyearleft 2002\harvardyearright , {\em Linux cluster
+  architecture}, Sams.
 
 \harvarditem{Yahoo!}{n.d.}{financeyahoo}
 Yahoo!  \harvardyearleft n.d.\harvardyearright , `Yahoo! finance api',

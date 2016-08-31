@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.23)  31 AUG 2016 10:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.1.23)  31 AUG 2016 20:55
 entering extended mode
 **./Dissertation.tex
 (Dissertation.tex
@@ -409,6 +409,12 @@ LaTeX Warning: Label `my-label' multiply defined.
 
 LaTeX Warning: Label `my-label' multiply defined.
 
+
+LaTeX Warning: Label `fig:latency' multiply defined.
+
+
+LaTeX Warning: Label `my-label' multiply defined.
+
 )
 \openout1 = `Dissertation.aux'.
 
@@ -488,7 +494,7 @@ l.44 \newpage
 same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.31 ...tation: Infiniband Verbs}{23}{section.2.3}
+l.33 ...d fat-tree topology}{23}{subsection.2.2.2}
                                                    [2
 
 ] [3])
@@ -517,1504 +523,1595 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
 [1
 
-] <picture/tradevenue.PNG, id=578, 713.66624pt x 386.94562pt>
+] <picture/tradevenue.PNG, id=608, 347.04657pt x 280.79906pt>
 File: picture/tradevenue.PNG Graphic file (type png)
 
 <use picture/tradevenue.PNG>
 Package pdftex.def Info: picture/tradevenue.PNG used on input line 70.
-(pdftex.def)             Requested size: 252.94499pt x 137.14523pt.
+(pdftex.def)             Requested size: 301.791pt x 244.19037pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 68--73
 
  []
 
 
-Overfull \hbox (21.6805pt too wide) in paragraph at lines 74--75
-[]\OT1/cmr/m/n/10.95 The Mar-ket Data feeds usu-ally trans-mit-ted in User Data
--gram Pro-to-col(UDP) datagrams([]Brook,
+Overfull \hbox (21.6805pt too wide) in paragraph at lines 74--77
+\OT1/cmr/m/n/10.95 The Mar-ket Data feeds usu-ally trans-mit-ted in User Data-g
+ram Pro-to-col(UDP) datagrams([]Brook,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
+Underfull \hbox (badness 10000) in paragraph at lines 74--77
 
  []
 
-<picture/newyork-chicago.jpg, id=581, 642.4pt x 358.33875pt>
-File: picture/newyork-chicago.jpg Graphic file (type jpg)
-
-<use picture/newyork-chicago.jpg>
-Package pdftex.def Info: picture/newyork-chicago.jpg used on input line 78.
-(pdftex.def)             Requested size: 252.94499pt x 141.09662pt.
- [2pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.83 \subsection{
-                 A-B Data Feed} <./picture/tradevenue.PNG>]
-<picture/A-BFeed.PNG, id=589, 671.50874pt x 331.2375pt>
-File: picture/A-BFeed.PNG Graphic file (type png)
-
-<use picture/A-BFeed.PNG>
-Package pdftex.def Info: picture/A-BFeed.PNG used on input line 86.
-(pdftex.def)             Requested size: 252.94499pt x 124.76971pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--91
-
- []
-
-[3pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2}
+[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.91 
-      <./picture/newyork-chicago.jpg>] [4pdfTeX warning (ext4): destination wit
-h the same identifier (name{figure.1.3}) has been already used, duplicate ignor
-ed
+l.77 \subsection{
+                 Low Latency Network Infrastructure} <./picture/tradevenue.PNG>
+] <picture/newyork-chicago.jpg, id=617, 642.4pt x 358.33875pt>
+File: picture/newyork-chicago.jpg Graphic file (type jpg)
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.117 \end{equation}
-                     <./picture/A-BFeed.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 117--120
+<use picture/newyork-chicago.jpg>
+Package pdftex.def Info: picture/newyork-chicago.jpg used on input line 82.
+(pdftex.def)             Requested size: 301.791pt x 168.34814pt.
 
- []
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{table.1.1})
- has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.140 \end{equation}
-                    ]
-<picture/photo/GPIOpin.jpg, id=620, 1284.8pt x 721.69624pt>
-File: picture/photo/GPIOpin.jpg Graphic file (type jpg)
-
-<use picture/photo/GPIOpin.jpg>
-Package pdftex.def Info: picture/photo/GPIOpin.jpg used on input line 150.
-(pdftex.def)             Requested size: 301.791pt x 169.52155pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--153
+Underfull \hbox (badness 10000) in paragraph at lines 78--85
 
  []
 
-[6]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 158.
+[3] <picture/A-BFeed.PNG, id=623, 731.73375pt x 505.89pt>
+File: picture/A-BFeed.PNG Graphic file (type png)
+
+<use picture/A-BFeed.PNG>
+Package pdftex.def Info: picture/A-BFeed.PNG used on input line 89.
+(pdftex.def)             Requested size: 301.791pt x 208.64359pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--92
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--96
+
+ []
+
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.1.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.96 \subsection{
+                 Beowulf Cluster}pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.1.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.96 \subsection{
+                 Beowulf Cluster} <./picture/newyork-chicago.jpg> <./picture/A-
+BFeed.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+[5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 103.
 
  ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 158.
- [7pdfTeX warning (ext4): destination with the same identifier (name{figure.1.4
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.167 \begin{itemize}
-                      <./picture/photo/GPIOpin.jpg>]
-Missing character: There is no ã in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no € in font cmr10!
- [8]
-<picture/commodityhardware.jpg, id=637, 1027.84pt x 332.24126pt>
-File: picture/commodityhardware.jpg Graphic file (type jpg)
-
-<use picture/commodityhardware.jpg>
-Package pdftex.def Info: picture/commodityhardware.jpg used on input line 196.
-(pdftex.def)             Requested size: 301.791pt x 97.54898pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--199
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 103.
+ [6]
+Underfull \hbox (badness 10000) in paragraph at lines 137--140
 
  []
 
-[9pdfTeX warning (ext4): destination with the same identifier (name{table.1.2})
+[7pdfTeX warning (ext4): destination with the same identifier (name{table.1.1})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.199 \end{figure}
-                  ] <picture/FPGAcall.png, id=643, 320.19624pt x 208.78pt>
+l.141 \subsubsection{
+                     Interconnect Networks Topology: Perfect Shuffle and Fat...
+] <picture/photo/GPIOpin.jpg, id=654, 1284.8pt x 721.69624pt>
+File: picture/photo/GPIOpin.jpg Graphic file (type jpg)
+
+<use picture/photo/GPIOpin.jpg>
+Package pdftex.def Info: picture/photo/GPIOpin.jpg used on input line 170.
+(pdftex.def)             Requested size: 301.791pt x 169.52155pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--173
+
+ []
+
+[8] [9pdfTeX warning (ext4): destination with the same identifier (name{figure.
+1.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.177 \begin{itemize}
+                      <./picture/photo/GPIOpin.jpg>] [10]
+Missing character: There is no ã in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no € in font cmr10!
+ [11]
+<picture/commodityhardware.jpg, id=681, 1027.84pt x 332.24126pt>
+File: picture/commodityhardware.jpg Graphic file (type jpg)
+
+<use picture/commodityhardware.jpg>
+Package pdftex.def Info: picture/commodityhardware.jpg used on input line 216.
+(pdftex.def)             Requested size: 301.791pt x 97.54898pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--219
+
+ []
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{table.1.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.220 
+      ] <picture/FPGAcall.png, id=687, 320.19624pt x 208.78pt>
 File: picture/FPGAcall.png Graphic file (type png)
 
 <use picture/FPGAcall.png>
-Package pdftex.def Info: picture/FPGAcall.png used on input line 206.
+Package pdftex.def Info: picture/FPGAcall.png used on input line 226.
 (pdftex.def)             Requested size: 215.56593pt x 140.56041pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--209
+Underfull \hbox (badness 10000) in paragraph at lines 223--229
 
  []
 
-[10pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.1.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.210 \subsubsection{
+l.230 \subsubsection{
                      TH Express interconnection network} <./picture/commodityha
-rdware.jpg>] <picture/tianhe1A.PNG, id=650, 499.8675pt x 283.0575pt>
+rdware.jpg>] <picture/tianhe1A.PNG, id=694, 499.8675pt x 283.0575pt>
 File: picture/tianhe1A.PNG Graphic file (type png)
 
 <use picture/tianhe1A.PNG>
-Package pdftex.def Info: picture/tianhe1A.PNG used on input line 214.
+Package pdftex.def Info: picture/tianhe1A.PNG used on input line 234.
 (pdftex.def)             Requested size: 301.791pt x 170.8983pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--217
+Underfull \hbox (badness 10000) in paragraph at lines 231--237
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.1.6
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.1.6
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.219 \subsubsection{
+l.239 \subsubsection{
                      Enyx`s ARM-based System on a Chip solution to market da...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1.7}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.219 \subsubsection{
+l.239 \subsubsection{
                      Enyx`s ARM-based System on a Chip solution to market da...
  <./picture/FPGAcall.png> <./picture/tianhe1A.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 220--222
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 
  []
 
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-<picture/iridisBenchmark.jpg, id=659, 1024.57782pt x 398.23781pt>
+<picture/iridisBenchmark.jpg, id=704, 1024.57782pt x 398.23781pt>
 File: picture/iridisBenchmark.jpg Graphic file (type jpg)
 
 <use picture/iridisBenchmark.jpg>
-Package pdftex.def Info: picture/iridisBenchmark.jpg used on input line 226.
+Package pdftex.def Info: picture/iridisBenchmark.jpg used on input line 246.
 (pdftex.def)             Requested size: 258.68175pt x 100.54361pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--229
+Underfull \hbox (badness 10000) in paragraph at lines 243--249
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--235
+Underfull \hbox (badness 10000) in paragraph at lines 251--255
 
  []
 
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.1.8
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.1.8
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.235 \chapter{
-               Details of Implemented Technologies} <./picture/iridisBenchmark.
-jpg>] [13]
+l.255 \chapter{
+               Implemented Technologies in the Project} <./picture/iridisBenchm
+ark.jpg>] [16]
 Chapter 2.
+Missing character: There is no ã in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no € in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 236--249
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+Underfull \hbox (badness 10000) in paragraph at lines 256--269
 
  []
 
-[14
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
+
+ []
+
+[17
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.2.1}) h
 as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.251 \section{
+l.271 \section{
                Remote Direct Memory Access(RDMA)}]
-Underfull \hbox (badness 10000) in paragraph at lines 259--263
+Underfull \hbox (badness 10000) in paragraph at lines 279--283
 
  []
 
-[15] <picture/rnic.PNG, id=680, 322.70563pt x 331.2375pt>
+[18] <picture/rnic.PNG, id=724, 322.70563pt x 331.2375pt>
 File: picture/rnic.PNG Graphic file (type png)
 
 <use picture/rnic.PNG>
-Package pdftex.def Info: picture/rnic.PNG used on input line 267.
+Package pdftex.def Info: picture/rnic.PNG used on input line 287.
 (pdftex.def)             Requested size: 172.45012pt x 177.0056pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--270
+Underfull \hbox (badness 10000) in paragraph at lines 284--290
 
  []
 
-[16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+[19pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.274 \item A
-             synchronous arrival of data blocks in the interconnected network <
-./picture/rnic.PNG>] <picture/queuepair.JPG, id=686, 499.8675pt x 283.81032pt>
+l.293 \begin{itemize}
+                      <./picture/rnic.PNG>]
+<picture/queuepair.JPG, id=730, 499.8675pt x 283.81032pt>
 File: picture/queuepair.JPG Graphic file (type jpg)
 
 <use picture/queuepair.JPG>
-Package pdftex.def Info: picture/queuepair.JPG used on input line 280.
+Package pdftex.def Info: picture/queuepair.JPG used on input line 300.
 (pdftex.def)             Requested size: 258.68175pt x 146.87631pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--283
+Underfull \hbox (badness 10000) in paragraph at lines 297--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--287
+Underfull \hbox (badness 10000) in paragraph at lines 305--307
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
-
- []
-
-[17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+[20pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.289 \subsubsection{
-                     Memory management} <./picture/queuepair.JPG>]
-Overfull \hbox (13.34625pt too wide) in paragraph at lines 290--294
+l.307 \subsection{
+                  Implementation Details of Verbs} <./picture/queuepair.JPG>]
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+
+ []
+
+
+Overfull \hbox (13.34625pt too wide) in paragraph at lines 310--314
 \OT1/cmr/m/n/10.95 Memory space man-age-ment are per-formed through RNIC data d
 rivers via Tagged Offset([]Boyd,
  []
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 294.
+nput line 314.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 295.
-[18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 338--339
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 315.
+[21] [22]
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
 
  []
 
-<picture/FlatStruct.PNG, id=725, 436.63126pt x 370.38374pt>
+<picture/FlatStruct.PNG, id=770, 436.63126pt x 370.38374pt>
 File: picture/FlatStruct.PNG Graphic file (type png)
 
 <use picture/FlatStruct.PNG>
-Package pdftex.def Info: picture/FlatStruct.PNG used on input line 342.
+Package pdftex.def Info: picture/FlatStruct.PNG used on input line 362.
 (pdftex.def)             Requested size: 172.45012pt x 146.28584pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 352--366
-
- []
-
-[20pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
-}) has been already used, duplicate ignored
+ [23pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.366 \end{table}
-                  <./picture/FlatStruct.PNG>]
-<picture/flat_addNode.JPG, id=734, 657.2053pt x 352.31625pt>
+l.371 \end{itemize}
+                    <./picture/FlatStruct.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 372--386
+
+ []
+
+<picture/flat_addNode.JPG, id=778, 657.2053pt x 352.31625pt>
 File: picture/flat_addNode.JPG Graphic file (type jpg)
 
 <use picture/flat_addNode.JPG>
-Package pdftex.def Info: picture/flat_addNode.JPG used on input line 372.
+Package pdftex.def Info: picture/flat_addNode.JPG used on input line 392.
 (pdftex.def)             Requested size: 215.56593pt x 115.56047pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--375
+Underfull \hbox (badness 10000) in paragraph at lines 387--395
 
  []
 
-<picture/tree_addNodes.jpg, id=735, 733.23938pt x 242.40562pt>
+<picture/tree_addNodes.jpg, id=779, 733.23938pt x 242.40562pt>
 File: picture/tree_addNodes.jpg Graphic file (type jpg)
 
 <use picture/tree_addNodes.jpg>
-Package pdftex.def Info: picture/tree_addNodes.jpg used on input line 379.
+Package pdftex.def Info: picture/tree_addNodes.jpg used on input line 399.
 (pdftex.def)             Requested size: 258.68175pt x 85.52011pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 376--382
+Underfull \hbox (badness 10000) in paragraph at lines 396--402
 
  []
 
-[21pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}
+[24pdfTeX warning (ext4): destination with the same identifier (name{table.2.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.382 \end{figure}
+l.402 \end{figure}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.2.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.382 \end{figure}
+l.402 \end{figure}
                    <./picture/flat_addNode.JPG>]
-<picture/compression.JPG, id=742, 703.87968pt x 280.04625pt>
+<picture/compression.JPG, id=786, 703.87968pt x 280.04625pt>
 File: picture/compression.JPG Graphic file (type jpg)
 
 <use picture/compression.JPG>
-Package pdftex.def Info: picture/compression.JPG used on input line 403.
+Package pdftex.def Info: picture/compression.JPG used on input line 423.
 (pdftex.def)             Requested size: 258.68175pt x 102.91896pt.
- [22pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+ [25pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.407 T
+l.427 T
        he compression process will be performed each turn in rebalancing, fo...
  <./picture/tree_addNodes.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 407--410
+Underfull \hbox (badness 10000) in paragraph at lines 427--430
 
  []
 
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6
+[26pdfTeX warning (ext4): destination with the same identifier (name{figure.2.6
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.416 \begin{itemize}
+l.436 \begin{itemize}
                       <./picture/compression.JPG>]
-<picture/passive.JPG, id=765, 497.60907pt x 290.58563pt>
+<picture/passive.JPG, id=810, 497.60907pt x 290.58563pt>
 File: picture/passive.JPG Graphic file (type jpg)
 
 <use picture/passive.JPG>
-Package pdftex.def Info: picture/passive.JPG used on input line 424.
+Package pdftex.def Info: picture/passive.JPG used on input line 444.
 (pdftex.def)             Requested size: 215.56593pt x 125.88495pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--427
+Underfull \hbox (badness 10000) in paragraph at lines 441--447
 
  []
 
-<picture/active.JPG, id=766, 740.0147pt x 265.74281pt>
+<picture/active.JPG, id=811, 740.0147pt x 265.74281pt>
 File: picture/active.JPG Graphic file (type jpg)
 
 <use picture/active.JPG>
-Package pdftex.def Info: picture/active.JPG used on input line 433.
+Package pdftex.def Info: picture/active.JPG used on input line 453.
 (pdftex.def)             Requested size: 344.90681pt x 123.85703pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--436
+Underfull \hbox (badness 10000) in paragraph at lines 449--456
 
  []
 
-[24pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
+[27pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.436 \end{figure}
+l.456 \end{figure}
                    <./picture/passive.JPG>]
-Underfull \hbox (badness 10000) in paragraph at lines 438--441
+Underfull \hbox (badness 10000) in paragraph at lines 458--461
 
  []
 
-[25pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.446 \begin{itemize}
+l.466 \begin{itemize}
                       <./picture/active.JPG>]
-Underfull \hbox (badness 10000) in paragraph at lines 452--456
+Underfull \hbox (badness 10000) in paragraph at lines 472--476
 
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 464--465
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 484--485
 
  []
 
-[27] <picture/MPIarchitecture.jpg, id=787, 351.56343pt x 367.3725pt>
+[30] <picture/MPIarchitecture.jpg, id=831, 351.56343pt x 367.3725pt>
 File: picture/MPIarchitecture.jpg Graphic file (type jpg)
 
 <use picture/MPIarchitecture.jpg>
-Package pdftex.def Info: picture/MPIarchitecture.jpg used on input line 479.
+Package pdftex.def Info: picture/MPIarchitecture.jpg used on input line 499.
 (pdftex.def)             Requested size: 258.68175pt x 270.30983pt.
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no š in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 488--490
+Underfull \hbox (badness 10000) in paragraph at lines 508--510
 
  []
 
-[28pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9
+[31pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.490 \subsubsection{
+l.510 \subsubsection{
                      MPI API} <./picture/MPIarchitecture.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 491--493
+Underfull \hbox (badness 10000) in paragraph at lines 511--513
 
  []
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 494.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 514.
 
 ("d:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 494.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 514.
 
-<picture/rendezvousMode.jpg, id=792, 368.87813pt x 289.08pt>
+<picture/rendezvousMode.jpg, id=836, 368.87813pt x 289.08pt>
 File: picture/rendezvousMode.jpg Graphic file (type jpg)
 
 <use picture/rendezvousMode.jpg>
-Package pdftex.def Info: picture/rendezvousMode.jpg used on input line 512.
+Package pdftex.def Info: picture/rendezvousMode.jpg used on input line 532.
 (pdftex.def)             Requested size: 258.68175pt x 202.72072pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 509--515
+Underfull \hbox (badness 10000) in paragraph at lines 529--535
 
  []
 
-[29] [30pdfTeX warning (ext4): destination with the same identifier (name{figur
+[32] [33pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.2.10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.528 \begin{itemize}
+l.548 \begin{itemize}
                       <./picture/rendezvousMode.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 532--534
+Underfull \hbox (badness 10000) in paragraph at lines 552--554
 
  []
 
-<picture/ADI3.jpg, id=818, 344.03531pt x 153.57375pt>
+<picture/ADI3.jpg, id=863, 344.03531pt x 153.57375pt>
 File: picture/ADI3.jpg Graphic file (type jpg)
  <use picture/ADI3.jpg>
-Package pdftex.def Info: picture/ADI3.jpg used on input line 539.
+Package pdftex.def Info: picture/ADI3.jpg used on input line 559.
 (pdftex.def)             Requested size: 215.56593pt x 96.22705pt.
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 543--545
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 563--565
 
  []
 
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no Œ in font cmr10!
-<picture/senderreceiver.jpg, id=824, 330.48468pt x 294.34969pt>
+<picture/senderreceiver.jpg, id=869, 330.48468pt x 294.34969pt>
 File: picture/senderreceiver.jpg Graphic file (type jpg)
 
 <use picture/senderreceiver.jpg>
-Package pdftex.def Info: picture/senderreceiver.jpg used on input line 550.
+Package pdftex.def Info: picture/senderreceiver.jpg used on input line 570.
 (pdftex.def)             Requested size: 215.56593pt x 192.00322pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 546--553
+Underfull \hbox (badness 10000) in paragraph at lines 566--573
 
  []
 
-[32pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+[35pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.554 T
+l.574 T
        he put-get pair can manipulate the buffer in a straightforward fashio...
  <./picture/ADI3.jpg>]
-<picture/fattreeimpl.jpg, id=831, 424.58624pt x 200.24812pt>
+<picture/fattreeimpl.jpg, id=875, 424.58624pt x 200.24812pt>
 File: picture/fattreeimpl.jpg Graphic file (type jpg)
 
 <use picture/fattreeimpl.jpg>
-Package pdftex.def Info: picture/fattreeimpl.jpg used on input line 567.
+Package pdftex.def Info: picture/fattreeimpl.jpg used on input line 587.
 (pdftex.def)             Requested size: 301.791pt x 142.3391pt.
- [33pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+ [36pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.570 \end{figure}
+l.590 \end{figure}
                    <./picture/senderreceiver.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 571--572
+Underfull \hbox (badness 10000) in paragraph at lines 591--592
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 573--574
+Underfull \hbox (badness 10000) in paragraph at lines 593--594
 
  []
 
-[34pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+[37pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.578 \begin{itemize}
+l.598 \begin{itemize}
                       <./picture/fattreeimpl.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 584--586
+Underfull \hbox (badness 10000) in paragraph at lines 604--606
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--588
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
 
  []
 
-<picture/mcu.jpg, id=841, 467.49657pt x 249.18094pt>
+<picture/mcu.jpg, id=885, 467.49657pt x 249.18094pt>
 File: picture/mcu.jpg Graphic file (type jpg)
  <use picture/mcu.jpg>
-Package pdftex.def Info: picture/mcu.jpg used on input line 591.
+Package pdftex.def Info: picture/mcu.jpg used on input line 611.
 (pdftex.def)             Requested size: 258.68175pt x 137.88641pt.
 
-[35] [36pdfTeX warning (ext4): destination with the same identifier (name{figur
+[38] [39pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.2.14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.609 \begin{itemize}
+l.629 \begin{itemize}
                       <./picture/mcu.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 613--614
+Underfull \hbox (badness 10000) in paragraph at lines 633--634
 
  []
 
-<picture/fpgadesign.jpg, id=863, 323.70938pt x 227.34938pt>
+<picture/fpgadesign.jpg, id=908, 323.70938pt x 227.34938pt>
 File: picture/fpgadesign.jpg Graphic file (type jpg)
 
 <use picture/fpgadesign.jpg>
-Package pdftex.def Info: picture/fpgadesign.jpg used on input line 624.
+Package pdftex.def Info: picture/fpgadesign.jpg used on input line 644.
 (pdftex.def)             Requested size: 215.56593pt x 151.39705pt.
- [37]
-Underfull \hbox (badness 10000) in paragraph at lines 628--629
+ [40]
+Underfull \hbox (badness 10000) in paragraph at lines 648--649
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 630--632
-
- []
-
-[38pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-5}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.636 \begin{itemize}
-                      <./picture/fpgadesign.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 642--644
-
- []
-
-[39] <picture/pwm.jpg, id=882, 474.27188pt x 182.18062pt>
-File: picture/pwm.jpg Graphic file (type jpg)
-
-<use picture/pwm.jpg>
-Package pdftex.def Info: picture/pwm.jpg used on input line 659.
-(pdftex.def)             Requested size: 215.56593pt x 82.80334pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 654--662
-
- []
-
-[40pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-6}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.668 \begin{itemize}
-                      <./picture/pwm.jpg>]
-<picture/vhdlstruct.jpg, id=888, 466.74374pt x 374.90062pt>
-File: picture/vhdlstruct.jpg Graphic file (type jpg)
-
-<use picture/vhdlstruct.jpg>
-Package pdftex.def Info: picture/vhdlstruct.jpg used on input line 676.
-(pdftex.def)             Requested size: 215.56593pt x 173.14856pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 673--679
-
- []
-
-<picture/uart.jpg, id=890, 342.5297pt x 392.21532pt>
-File: picture/uart.jpg Graphic file (type jpg)
- <use picture/uart.jpg>
-Package pdftex.def Info: picture/uart.jpg used on input line 684.
-(pdftex.def)             Requested size: 172.45012pt x 197.47168pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 681--687
+Underfull \hbox (badness 10000) in paragraph at lines 650--652
 
  []
 
 [41pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-7}) has been already used, duplicate ignored
+5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.687 \end{figure}
-                   <./picture/vhdlstruct.jpg>]
-<picture/spi.jpg, id=896, 361.35pt x 90.3375pt>
-File: picture/spi.jpg Graphic file (type jpg)
- <use picture/spi.jpg>
-Package pdftex.def Info: picture/spi.jpg used on input line 701.
-(pdftex.def)             Requested size: 215.56593pt x 53.89137pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 698--704
+l.656 \begin{itemize}
+                      <./picture/fpgadesign.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 662--664
 
  []
 
-[42pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-8}) has been already used, duplicate ignored
+[42] <picture/pwm.jpg, id=926, 474.27188pt x 182.18062pt>
+File: picture/pwm.jpg Graphic file (type jpg)
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.704 \end{figure}
-                   <./picture/uart.jpg>]
-<"picture/LOGI stack - software - drivers".jpg, id=903, 112.9821pt x 137.0721pt
->
-File: "picture/LOGI stack - software - drivers".jpg Graphic file (type jpg)
- <use "picture/LOGI stack - software - drivers".jpg>
-Package pdftex.def Info: "picture/LOGI stack - software - drivers".jpg used on 
-input line 710.
-(pdftex.def)             Requested size: 86.22505pt x 104.61299pt.
+<use picture/pwm.jpg>
+Package pdftex.def Info: picture/pwm.jpg used on input line 679.
+(pdftex.def)             Requested size: 215.56593pt x 82.80334pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 706--713
+Underfull \hbox (badness 10000) in paragraph at lines 674--682
 
  []
 
 [43pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.688 \begin{itemize}
+                      <./picture/pwm.jpg>]
+<picture/vhdlstruct.jpg, id=932, 466.74374pt x 374.90062pt>
+File: picture/vhdlstruct.jpg Graphic file (type jpg)
+
+<use picture/vhdlstruct.jpg>
+Package pdftex.def Info: picture/vhdlstruct.jpg used on input line 696.
+(pdftex.def)             Requested size: 215.56593pt x 173.14856pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 693--699
+
+ []
+
+<picture/uart.jpg, id=934, 342.5297pt x 392.21532pt>
+File: picture/uart.jpg Graphic file (type jpg)
+ <use picture/uart.jpg>
+Package pdftex.def Info: picture/uart.jpg used on input line 704.
+(pdftex.def)             Requested size: 172.45012pt x 197.47168pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 701--707
+
+ []
+
+[44pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.707 \end{figure}
+                   <./picture/vhdlstruct.jpg>]
+<picture/spi.jpg, id=941, 361.35pt x 90.3375pt>
+File: picture/spi.jpg Graphic file (type jpg)
+ <use picture/spi.jpg>
+Package pdftex.def Info: picture/spi.jpg used on input line 721.
+(pdftex.def)             Requested size: 215.56593pt x 53.89137pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 718--724
+
+ []
+
+[45pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.724 \end{figure}
+                   <./picture/uart.jpg>]
+<"picture/LOGI stack - software - drivers".jpg, id=948, 112.9821pt x 137.0721pt
+>
+File: "picture/LOGI stack - software - drivers".jpg Graphic file (type jpg)
+ <use "picture/LOGI stack - software - drivers".jpg>
+Package pdftex.def Info: "picture/LOGI stack - software - drivers".jpg used on 
+input line 730.
+(pdftex.def)             Requested size: 86.22505pt x 104.61299pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 726--733
+
+ []
+
+[46pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.726 \end{table}
+l.746 \end{table}
                  pdfTeX warning (ext4): destination with the same identifier (n
 ame{figure.2.20}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.726 \end{table}
+l.746 \end{table}
                   <./picture/spi.jpg> <./picture/LOGI stack - software - driver
 s.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 735--738
+Underfull \hbox (badness 10000) in paragraph at lines 755--758
 
  []
 
-[44pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}
+[47pdfTeX warning (ext4): destination with the same identifier (name{table.2.3}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.738 \subsection{
+l.758 \subsection{
                   Conclusion}]
-Underfull \hbox (badness 10000) in paragraph at lines 739--740
+Underfull \hbox (badness 10000) in paragraph at lines 759--760
 
  []
 
-[45]
+[48]
 Chapter 3.
-[46
+[49
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) h
 as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.762 \newpage
-              ] <picture/System_Design.jpg, id=923, 1027.84pt x 770.88pt>
+l.782 \newpage
+              ] <picture/System_Design.jpg, id=967, 1027.84pt x 770.88pt>
 File: picture/System_Design.jpg Graphic file (type jpg)
 
 <use picture/System_Design.jpg>
-Package pdftex.def Info: picture/System_Design.jpg used on input line 768.
+Package pdftex.def Info: picture/System_Design.jpg used on input line 788.
 (pdftex.def)             Requested size: 252.94499pt x 189.70828pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 765--771
+Underfull \hbox (badness 10000) in paragraph at lines 785--791
 
  []
 
 
-<"picture/System data flow diagram - Page 1".jpg, id=925, 3312.375pt x 2107.875
+<"picture/System data flow diagram - Page 1".jpg, id=969, 3312.375pt x 2107.875
 pt>
 File: "picture/System data flow diagram - Page 1".jpg Graphic file (type jpg)
  <use "picture/System data flow diagram - Page 1".jpg>
 Package pdftex.def Info: "picture/System data flow diagram - Page 1".jpg used o
-n input line 776.
+n input line 796.
 (pdftex.def)             Requested size: 431.13188pt x 274.35501pt.
- [47pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [50pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.779 \end{figure}
+l.799 \end{figure}
                    <./picture/System_Design.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 780--782
+Underfull \hbox (badness 10000) in paragraph at lines 800--802
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 783--785
+Underfull \hbox (badness 10000) in paragraph at lines 803--805
 
  []
 
-[48pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
+[51pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.785 \subsection{
+l.805 \subsection{
                   Main Objective} <./picture/System data flow diagram - Page 1.
 jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 786--787
+Underfull \hbox (badness 10000) in paragraph at lines 806--807
 
  []
 
-[49pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}
+[52pdfTeX warning (ext4): destination with the same identifier (name{table.3.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.804 \newpage
+l.824 \newpage
               ]
-Underfull \hbox (badness 10000) in paragraph at lines 812--813
+Underfull \hbox (badness 10000) in paragraph at lines 832--833
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 815--816
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 817--819
+Underfull \hbox (badness 10000) in paragraph at lines 837--839
 
  []
 
-[50] [51pdfTeX warning (ext4): destination with the same identifier (name{table
+[53] [54pdfTeX warning (ext4): destination with the same identifier (name{table
 .3.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.860 \end{equation}
+l.880 \end{equation}
                     ]
-Underfull \hbox (badness 10000) in paragraph at lines 867--869
+Underfull \hbox (badness 10000) in paragraph at lines 887--889
 
  []
 
-[52]
+[55]
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ® in font cmr10!
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ® in font cmr10!
- <picture/Stg_1Recv.jpeg, id=962, 794.97pt x 614.295pt>
+ <picture/Stg_1Recv.jpeg, id=1006, 794.97pt x 614.295pt>
 File: picture/Stg_1Recv.jpeg Graphic file (type jpg)
 
 <use picture/Stg_1Recv.jpeg>
-Package pdftex.def Info: picture/Stg_1Recv.jpeg used on input line 918.
+Package pdftex.def Info: picture/Stg_1Recv.jpeg used on input line 938.
 (pdftex.def)             Requested size: 431.13188pt x 333.15785pt.
- [53]
-Underfull \hbox (badness 10000) in paragraph at lines 922--924
+ [56]
+Underfull \hbox (badness 10000) in paragraph at lines 942--944
 
  []
 
-[54pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
+[57pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.924 \subsubsection{
-                     Conclusion} <./picture/Stg_1Recv.jpeg>] [55]
-Overfull \hbox (6.06741pt too wide) in paragraph at lines 938--949
+l.944 \subsubsection{
+                     Conclusion} <./picture/Stg_1Recv.jpeg>] [58]
+Overfull \hbox (6.06741pt too wide) in paragraph at lines 958--969
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 951--953
+Underfull \hbox (badness 10000) in paragraph at lines 971--973
 
  []
 
-<picture/hardwareDesign.jpg, id=981, 359.09157pt x 356.0803pt>
+<picture/hardwareDesign.jpg, id=1026, 359.09157pt x 356.0803pt>
 File: picture/hardwareDesign.jpg Graphic file (type jpg)
 
 <use picture/hardwareDesign.jpg>
-Package pdftex.def Info: picture/hardwareDesign.jpg used on input line 957.
+Package pdftex.def Info: picture/hardwareDesign.jpg used on input line 977.
 (pdftex.def)             Requested size: 215.56593pt x 213.76393pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 954--960
+Underfull \hbox (badness 10000) in paragraph at lines 974--980
 
  []
 
-[56pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}
+[59pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.960 \end{figure}
+l.980 \end{figure}
                   ]
-Underfull \hbox (badness 10000) in paragraph at lines 961--962
+Underfull \hbox (badness 10000) in paragraph at lines 981--982
 
  []
 
-<picture/photo/SwitchConnection.jpg, id=987, 963.6pt x 541.27219pt>
+<picture/photo/SwitchConnection.jpg, id=1031, 963.6pt x 541.27219pt>
 File: picture/photo/SwitchConnection.jpg Graphic file (type jpg)
 
 <use picture/photo/SwitchConnection.jpg>
 Package pdftex.def Info: picture/photo/SwitchConnection.jpg used on input line 
-970.
+990.
 (pdftex.def)             Requested size: 215.56593pt x 121.08722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 967--973
+Underfull \hbox (badness 10000) in paragraph at lines 987--993
 
  []
 
-[57pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
+[60pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.974 \subsubsection{
+l.994 \subsubsection{
                      Interconnection implementation} <./picture/hardwareDesign.
-jpg>] <picture/photo/rappCluster.jpg, id=993, 2589.675pt x 721.69624pt>
+jpg>] <picture/photo/rappCluster.jpg, id=1037, 2589.675pt x 721.69624pt>
 File: picture/photo/rappCluster.jpg Graphic file (type jpg)
 
 <use picture/photo/rappCluster.jpg>
-Package pdftex.def Info: picture/photo/rappCluster.jpg used on input line 978.
+Package pdftex.def Info: picture/photo/rappCluster.jpg used on input line 998.
 (pdftex.def)             Requested size: 388.01605pt x 108.12863pt.
 
-<picture/powerDesign.jpg, id=995, 773.13844pt x 429.85594pt>
+<picture/powerDesign.jpg, id=1039, 773.13844pt x 429.85594pt>
 File: picture/powerDesign.jpg Graphic file (type jpg)
 
 <use picture/powerDesign.jpg>
-Package pdftex.def Info: picture/powerDesign.jpg used on input line 987.
+Package pdftex.def Info: picture/powerDesign.jpg used on input line 1007.
 (pdftex.def)             Requested size: 301.791pt x 167.79399pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 983--990
+Underfull \hbox (badness 10000) in paragraph at lines 1003--1010
 
  []
 
-[58pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5
+[61pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.991 \subsection{
-                  Conclusion}pdfTeX warning (ext4): destination with the same i
-dentifier (name{figure.3.6}) has been already used, duplicate ignored
+l.1011 \subsection{
+                   Conclusion}pdfTeX warning (ext4): destination with the same 
+identifier (name{figure.3.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.991 \subsection{
-                  Conclusion} <./picture/photo/SwitchConnection.jpg> <./picture
-/photo/rappCluster.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 992--993
+l.1011 \subsection{
+                   Conclusion} <./picture/photo/SwitchConnection.jpg> <./pictur
+e/photo/rappCluster.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1012--1013
 
  []
 
-<picture/LogicDesign.jpg, id=1002, 357.58594pt x 412.54124pt>
+<picture/LogicDesign.jpg, id=1046, 357.58594pt x 412.54124pt>
 File: picture/LogicDesign.jpg Graphic file (type jpg)
 
 <use picture/LogicDesign.jpg>
-Package pdftex.def Info: picture/LogicDesign.jpg used on input line 1003.
+Package pdftex.def Info: picture/LogicDesign.jpg used on input line 1023.
 (pdftex.def)             Requested size: 215.56593pt x 248.6975pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1000--1006
+Underfull \hbox (badness 10000) in paragraph at lines 1020--1026
 
  []
 
-[59pdfTeX warning (ext4): destination with the same identifier (name{figure.3.7
+[62pdfTeX warning (ext4): destination with the same identifier (name{figure.3.7
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1007 \subsection{
+l.1027 \subsection{
                    Operating System and Internet Connection} <./picture/powerDe
 sign.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1008--1009
+Underfull \hbox (badness 10000) in paragraph at lines 1028--1029
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1010--1011
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1031
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1012--1014
+Underfull \hbox (badness 10000) in paragraph at lines 1032--1034
 
  []
 
-[60pdfTeX warning (ext4): destination with the same identifier (name{figure.3.8
+[63pdfTeX warning (ext4): destination with the same identifier (name{figure.3.8
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1014 \subsubsection{
+l.1034 \subsubsection{
                       Interacting with the cluster: ssh terminal and VNC} <./pi
 cture/LogicDesign.jpg>]
-<picture/terminal.jpg, id=1012, 1109.64563pt x 483.30562pt>
+<picture/terminal.jpg, id=1057, 1109.64563pt x 483.30562pt>
 File: picture/terminal.jpg Graphic file (type jpg)
 
 <use picture/terminal.jpg>
-Package pdftex.def Info: picture/terminal.jpg used on input line 1018.
+Package pdftex.def Info: picture/terminal.jpg used on input line 1038.
 (pdftex.def)             Requested size: 388.01605pt x 168.99725pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1015--1021
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1041
 
  []
 
-<picture/mpi-setup/setpsMPICH2.jpg, id=1013, 4267.69406pt x 782.925pt>
+<picture/mpi-setup/setpsMPICH2.jpg, id=1058, 4267.69406pt x 782.925pt>
 File: picture/mpi-setup/setpsMPICH2.jpg Graphic file (type jpg)
 
 <use picture/mpi-setup/setpsMPICH2.jpg>
 Package pdftex.def Info: picture/mpi-setup/setpsMPICH2.jpg used on input line 1
-027.
+047.
 (pdftex.def)             Requested size: 388.01605pt x 71.17699pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1023--1030
+Underfull \hbox (badness 10000) in paragraph at lines 1043--1050
 
  []
 
-[61pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9
+[64pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1030 \end{figure}
+l.1050 \end{figure}
                     <./picture/terminal.jpg>]
 
-LaTeX Warning: Citation 'fig:LogicDesign' on page 62 undefined on input line 10
-35.
+LaTeX Warning: Citation 'fig:LogicDesign' on page 65 undefined on input line 10
+55.
 
-[62pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[65pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 0}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1040 \end{itemize}
+l.1060 \end{itemize}
                      <./picture/mpi-setup/setpsMPICH2.jpg>]
-<picture/sender-diagram.jpg, id=1027, 364.36125pt x 375.65344pt>
+<picture/sender-diagram.jpg, id=1071, 364.36125pt x 375.65344pt>
 File: picture/sender-diagram.jpg Graphic file (type jpg)
 
 <use picture/sender-diagram.jpg>
-Package pdftex.def Info: picture/sender-diagram.jpg used on input line 1047.
+Package pdftex.def Info: picture/sender-diagram.jpg used on input line 1067.
 (pdftex.def)             Requested size: 215.56593pt x 222.24692pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1051--1054
+Underfull \hbox (badness 10000) in paragraph at lines 1071--1074
 
  []
 
-[63pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[66pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1054 \subsubsection{
+l.1074 \subsubsection{
                       Transforming data loss rate to session failure rate} <./p
 icture/sender-diagram.jpg>]
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no Œ in font cmr10!
 
-<picture/udpsender.jpg, id=1032, 787.44188pt x 319.1925pt>
+<picture/udpsender.jpg, id=1076, 787.44188pt x 319.1925pt>
 File: picture/udpsender.jpg Graphic file (type jpg)
 
 <use picture/udpsender.jpg>
-Package pdftex.def Info: picture/udpsender.jpg used on input line 1059.
+Package pdftex.def Info: picture/udpsender.jpg used on input line 1079.
 (pdftex.def)             Requested size: 301.791pt x 122.33182pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1055--1062
+Underfull \hbox (badness 10000) in paragraph at lines 1075--1082
 
  []
 
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no Œ in font cmr10!
-[64pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[67pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1069 \begin{itemize}
+l.1089 \begin{itemize}
                        <./picture/udpsender.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1074--1075
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1095
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1082--1083
+Underfull \hbox (badness 10000) in paragraph at lines 1102--1103
 
  []
 
-[65]
-Overfull \hbox (31.0195pt too wide) in paragraph at lines 1090--1094
+[68]
+Overfull \hbox (31.0195pt too wide) in paragraph at lines 1110--1114
 \OT1/cmr/m/n/10.95 We uses Busi-ness Pro-cess Model and No-ta-tion to show the 
 flow con-trol of our application([]Dijkman,
  []
 
 
-<"picture/Dual sender data flow diagram - Page 1".jpeg, id=1045, 794.97pt x 614
+<"picture/Dual sender data flow diagram - Page 1".jpeg, id=1090, 794.97pt x 614
 .295pt>
 File: "picture/Dual sender data flow diagram - Page 1".jpeg Graphic file (type 
 jpg)
  <use "picture/Dual sender data flow diagram - Page 1".jpeg>
 Package pdftex.def Info: "picture/Dual sender data flow diagram - Page 1".jpeg 
-used on input line 1102.
+used on input line 1122.
 (pdftex.def)             Requested size: 431.13188pt x 333.15785pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1096--1105
+Underfull \hbox (badness 10000) in paragraph at lines 1116--1125
 
  []
 
-[66] [67pdfTeX warning (ext4): destination with the same identifier (name{figur
+[69] [70pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.3.13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1112 \end{itemize}
+l.1132 \end{itemize}
                      <./picture/Dual sender data flow diagram - Page 1.jpeg>]
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no š in font cmr10!
 
-<picture/receiverBlueprint.jpg, id=1056, 771.63281pt x 311.66437pt>
+<picture/receiverBlueprint.jpg, id=1101, 771.63281pt x 311.66437pt>
 File: picture/receiverBlueprint.jpg Graphic file (type jpg)
 
 <use picture/receiverBlueprint.jpg>
-Package pdftex.def Info: picture/receiverBlueprint.jpg used on input line 1119.
+Package pdftex.def Info: picture/receiverBlueprint.jpg used on input line 1139.
 
 (pdftex.def)             Requested size: 215.56593pt x 87.06569pt.
 
-<"picture/Dual feed handler flow diagram - Page 1".jpeg, id=1057, 794.97pt x 50
+<"picture/Dual feed handler flow diagram - Page 1".jpeg, id=1102, 794.97pt x 50
 2.9992pt>
 File: "picture/Dual feed handler flow diagram - Page 1".jpeg Graphic file (type
  jpg)
  <use "picture/Dual feed handler flow diagram - Page 1".jpeg>
 Package pdftex.def Info: "picture/Dual feed handler flow diagram - Page 1".jpeg
- used on input line 1132.
+ used on input line 1152.
 (pdftex.def)             Requested size: 301.791pt x 190.95747pt.
- [68pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [71pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1136 
+l.1156 
         <./picture/receiverBlueprint.jpg>]
 Missing character: There is no ï in font cmr10!
 Missing character: There is no ¼ in font cmr10!
 Missing character: There is no š in font cmr10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 1137--1140
+Underfull \hbox (badness 10000) in paragraph at lines 1157--1160
 
  []
 
-<picture/UDPheader.jpg, id=1064, 258.21469pt x 71.51718pt>
+<picture/UDPheader.jpg, id=1108, 258.21469pt x 71.51718pt>
 File: picture/UDPheader.jpg Graphic file (type jpg)
 
 <use picture/UDPheader.jpg>
-Package pdftex.def Info: picture/UDPheader.jpg used on input line 1145.
+Package pdftex.def Info: picture/UDPheader.jpg used on input line 1165.
 (pdftex.def)             Requested size: 301.791pt x 83.594pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1141--1148
+Underfull \hbox (badness 10000) in paragraph at lines 1161--1168
 
  []
 
-[69pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[72pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1149 
+l.1169 
         <./picture/Dual feed handler flow diagram - Page 1.jpeg>]
-<picture/controllerBlueprint.jpg, id=1071, 688.07062pt x 625.58719pt>
+<picture/controllerBlueprint.jpg, id=1115, 688.07062pt x 625.58719pt>
 File: picture/controllerBlueprint.jpg Graphic file (type jpg)
 
 <use picture/controllerBlueprint.jpg>
-Package pdftex.def Info: picture/controllerBlueprint.jpg used on input line 116
+Package pdftex.def Info: picture/controllerBlueprint.jpg used on input line 118
 0.
 (pdftex.def)             Requested size: 301.791pt x 274.38101pt.
- [70pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [73pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 16}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1164 \subsubsection{
+l.1184 \subsubsection{
                       Controller implementation} <./picture/UDPheader.jpg>]
-<"picture/Controller data flow diagram - Page 1".jpeg, id=1076, 794.97pt x 406.
+<"picture/Controller data flow diagram - Page 1".jpeg, id=1120, 794.97pt x 406.
 1574pt>
 File: "picture/Controller data flow diagram - Page 1".jpeg Graphic file (type j
 pg)
  <use "picture/Controller data flow diagram - Page 1".jpeg>
 Package pdftex.def Info: "picture/Controller data flow diagram - Page 1".jpeg u
-sed on input line 1176.
+sed on input line 1196.
 (pdftex.def)             Requested size: 431.13188pt x 220.27614pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1173--1179
+Underfull \hbox (badness 10000) in paragraph at lines 1193--1199
 
  []
 
-[71pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[74pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1180 T
+l.1200 T
         he controller application is consisted of two listeners and one veri...
  <./picture/controllerBlueprint.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1180--1182
+Underfull \hbox (badness 10000) in paragraph at lines 1200--1202
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1183--1184
+Underfull \hbox (badness 10000) in paragraph at lines 1203--1204
 
  []
 
-[72pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
+[75pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1
 8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1184 \subsection{
+l.1204 \subsection{
                    Communicator design} <./picture/Controller data flow diagram
  - Page 1.jpeg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
+Underfull \hbox (badness 10000) in paragraph at lines 1211--1212
 
  []
 
 
-Overfull \hbox (26.3208pt too wide) in paragraph at lines 1198--1205
+Overfull \hbox (26.3208pt too wide) in paragraph at lines 1218--1225
  [][] 
  []
 
-[73] [74pdfTeX warning (ext4): destination with the same identifier (name{table
+[76] [77pdfTeX warning (ext4): destination with the same identifier (name{table
 .3.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1227 	\item[3.]
+l.1247 	\item[3.]
                   The FPGA uses adder to add the data, and keeps the carry]
-<picture/skeletonProj.jpg, id=1102, 945.5325pt x 360.59718pt>
+<picture/skeletonProj.jpg, id=1146, 945.5325pt x 360.59718pt>
 File: picture/skeletonProj.jpg Graphic file (type jpg)
 
 <use picture/skeletonProj.jpg>
-Package pdftex.def Info: picture/skeletonProj.jpg used on input line 1236.
+Package pdftex.def Info: picture/skeletonProj.jpg used on input line 1256.
 (pdftex.def)             Requested size: 388.01605pt x 147.97784pt.
- [75pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
+ [78pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 19}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1259 
+l.1279 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
 3.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1259 
-        <./picture/skeletonProj.jpg>] [76]
+l.1279 
+        <./picture/skeletonProj.jpg>] [79]
 Chapter 4.
-<picture/photo/cluster.jpg, id=1112, 1284.8pt x 721.69624pt>
+<picture/photo/cluster.jpg, id=1156, 1284.8pt x 721.69624pt>
 File: picture/photo/cluster.jpg Graphic file (type jpg)
 
 <use picture/photo/cluster.jpg>
-Package pdftex.def Info: picture/photo/cluster.jpg used on input line 1263.
+Package pdftex.def Info: picture/photo/cluster.jpg used on input line 1283.
 (pdftex.def)             Requested size: 301.791pt x 169.52155pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1267--1270
+Underfull \hbox (badness 10000) in paragraph at lines 1287--1290
 
  []
 
-[77
+[80
 
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1270 \newpage
+l.1290 \newpage
                 <./picture/photo/cluster.jpg>]
-Overfull \hbox (14.18799pt too wide) in paragraph at lines 1277--1284
+Overfull \hbox (14.18799pt too wide) in paragraph at lines 1297--1304
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1285--1287
+Underfull \hbox (badness 10000) in paragraph at lines 1305--1307
 
  []
 
 
-Overfull \hbox (1.51532pt too wide) in paragraph at lines 1289--1291
+Overfull \hbox (1.51532pt too wide) in paragraph at lines 1309--1311
 \OT1/cmr/m/n/10.95 There are two dif-fer-ent met-rics sys-tem: the an-a-lyt-i-c
 al met-rics and em-pir-i-cal metrics([]Paxson,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1289--1291
+Underfull \hbox (badness 10000) in paragraph at lines 1309--1311
 
  []
 
-[78pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}
+[81pdfTeX warning (ext4): destination with the same identifier (name{table.4.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1295 	\item \textbf
+l.1315 	\item \textbf
                      {Cluster}: in this project, a cluster is specifically r...
 ]
-Overfull \hbox (16.78575pt too wide) in paragraph at lines 1327--1334
+Overfull \hbox (16.78575pt too wide) in paragraph at lines 1347--1354
  [][] 
  []
 
-[79pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}
+[82pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1335 \subsection{
-                   Choice on inputs}] [80pdfTeX warning (ext4): destination wit
+l.1355 \subsection{
+                   Choice on inputs}] [83pdfTeX warning (ext4): destination wit
 h the same identifier (name{table.4.3}) has been already used, duplicate ignore
 d
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1355 	\item N
+l.1375 	\item N
                o data lost in source and transmission]
-<picture/Exp1.jpg, id=1134, 319.94531pt x 167.12437pt>
+<picture/Exp1.jpg, id=1178, 319.94531pt x 167.12437pt>
 File: picture/Exp1.jpg Graphic file (type jpg)
  <use picture/Exp1.jpg>
-Package pdftex.def Info: picture/Exp1.jpg used on input line 1363.
+Package pdftex.def Info: picture/Exp1.jpg used on input line 1383.
 (pdftex.def)             Requested size: 215.56593pt x 112.60262pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1360--1366
+Underfull \hbox (badness 10000) in paragraph at lines 1380--1386
 
  []
 
-[81pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
+[84pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1385 \end{itemize}
+l.1405 \end{itemize}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{table.4.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1385 \end{itemize}
+l.1405 \end{itemize}
                      <./picture/Exp1.jpg>]
-<picture/experiments/exp1/latency.jpg, id=1141, 637.38126pt x 369.38pt>
-File: picture/experiments/exp1/latency.jpg Graphic file (type jpg)
+<picture/experiments/exp1/latency.png, id=1185, 637.38126pt x 402.50375pt>
+File: picture/experiments/exp1/latency.png Graphic file (type png)
 
-<use picture/experiments/exp1/latency.jpg>
-Package pdftex.def Info: picture/experiments/exp1/latency.jpg used on input lin
-e 1388.
-(pdftex.def)             Requested size: 258.68175pt x 149.91371pt.
+<use picture/experiments/exp1/latency.png>
+Package pdftex.def Info: picture/experiments/exp1/latency.png used on input lin
+e 1408.
+(pdftex.def)             Requested size: 258.68175pt x 163.35706pt.
 
-<picture/experiments/exp1/dataLoss.png, id=1143, 637.38126pt x 369.38pt>
+<picture/experiments/exp1/dataLoss.png, id=1187, 637.38126pt x 420.57124pt>
 File: picture/experiments/exp1/dataLoss.png Graphic file (type png)
 
 <use picture/experiments/exp1/dataLoss.png>
 Package pdftex.def Info: picture/experiments/exp1/dataLoss.png used on input li
-ne 1414.
-(pdftex.def)             Requested size: 258.68175pt x 149.91371pt.
+ne 1434.
+(pdftex.def)             Requested size: 258.68175pt x 170.68979pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1410--1417
+Underfull \hbox (badness 10000) in paragraph at lines 1430--1437
 
  []
 
-[82pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3
+[85pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1418 A
+l.1438 A
         nother reason is that we introduces the data loss ratio instead of s...
 pdfTeX warning (ext4): destination with the same identifier (name{table.4.5}) h
 as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1418 A
+l.1438 A
         nother reason is that we introduces the data loss ratio instead of s...
- <./picture/experiments/exp1/latency.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1418--1420
+ <./picture/experiments/exp1/latency.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1438--1440
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1421--1422
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1442
 
  []
 
-<picture/experiments/exp1/lostConnect.png, id=1149, 624.3325pt x 369.38pt>
+<picture/experiments/exp1/lostConnect.png, id=1193, 624.3325pt x 393.47pt>
 File: picture/experiments/exp1/lostConnect.png Graphic file (type png)
 
 <use picture/experiments/exp1/lostConnect.png>
 Package pdftex.def Info: picture/experiments/exp1/lostConnect.png used on input
- line 1430.
-(pdftex.def)             Requested size: 301.791pt x 178.55164pt.
- [83pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+ line 1450.
+(pdftex.def)             Requested size: 301.791pt x 190.1963pt.
+ [86pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1436 \begin{itemize}
+l.1456 \begin{itemize}
                        <./picture/experiments/exp1/dataLoss.png>]
 
-LaTeX Warning: Reference `fig:Exp2' on page 84 undefined on input line 1443.
+LaTeX Warning: Reference `fig:Exp2' on page 87 undefined on input line 1463.
 
-<picture/exp3.jpg, id=1156, 722.7pt x 316.93407pt>
+<picture/exp3.jpg, id=1201, 722.7pt x 316.93407pt>
 File: picture/exp3.jpg Graphic file (type jpg)
  <use picture/exp3.jpg>
-Package pdftex.def Info: picture/exp3.jpg used on input line 1448.
+Package pdftex.def Info: picture/exp3.jpg used on input line 1468.
 (pdftex.def)             Requested size: 344.90681pt x 151.25613pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1443--1451
+Underfull \hbox (badness 10000) in paragraph at lines 1463--1471
 
  []
 
-[84pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5
+[87pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1452 \subsubsection{
+l.1472 \subsubsection{
                       Experiment results} <./picture/experiments/exp1/lostConne
 ct.png>]
-<picture/experiments/exp2/dualLatency.png, id=1162, 637.38126pt x 369.38pt>
+<picture/experiments/exp2/dualLatency.png, id=1207, 637.38126pt x 454.69875pt>
 File: picture/experiments/exp2/dualLatency.png Graphic file (type png)
 
 <use picture/experiments/exp2/dualLatency.png>
 Package pdftex.def Info: picture/experiments/exp2/dualLatency.png used on input
- line 1458.
-(pdftex.def)             Requested size: 301.791pt x 174.89369pt.
+ line 1478.
+(pdftex.def)             Requested size: 301.791pt x 215.29033pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1462--1474
+Underfull \hbox (badness 10000) in paragraph at lines 1482--1494
 
  []
 
-[85pdfTeX warning (ext4): destination with the same identifier (name{figure.4.6
+[88pdfTeX warning (ext4): destination with the same identifier (name{figure.4.6
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1476 	\item[2.]
+l.1496 	\item[2.]
                   One of the source simulates data lost, while the other doe...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.7}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1476 	\item[2.]
+l.1496 	\item[2.]
                   One of the source simulates data lost, while the other doe...
  <./picture/exp3.jpg> <./picture/experiments/exp2/dualLatency.png>]
-<picture/experiments/exp2/oneDataLost.png, id=1170, 637.38126pt x 369.38pt>
+<picture/experiments/exp2/oneDataLost.png, id=1215, 637.38126pt x 426.59375pt>
 File: picture/experiments/exp2/oneDataLost.png Graphic file (type png)
 
 <use picture/experiments/exp2/oneDataLost.png>
 Package pdftex.def Info: picture/experiments/exp2/oneDataLost.png used on input
- line 1481.
-(pdftex.def)             Requested size: 301.791pt x 174.89369pt.
+ line 1501.
+(pdftex.def)             Requested size: 301.791pt x 201.9832pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1478--1484
+Underfull \hbox (badness 10000) in paragraph at lines 1498--1504
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1505--1507
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1485--1487
-
- []
-
-<picture/experiments/exp2/twoDataloss.png, id=1172, 637.38126pt x 369.38pt>
+<picture/experiments/exp2/twoDataloss.png, id=1217, 637.38126pt x 392.46625pt>
 File: picture/experiments/exp2/twoDataloss.png Graphic file (type png)
 
 <use picture/experiments/exp2/twoDataloss.png>
 Package pdftex.def Info: picture/experiments/exp2/twoDataloss.png used on input
- line 1494.
-(pdftex.def)             Requested size: 301.791pt x 174.89369pt.
- [86pdfTeX warning (ext4): destination with the same identifier (name{table.4.6
+ line 1514.
+(pdftex.def)             Requested size: 301.791pt x 185.82454pt.
+ [89pdfTeX warning (ext4): destination with the same identifier (name{table.4.6
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1497 \end{figure}
+l.1517 \end{figure}
                    pdfTeX warning (ext4): destination with the same identifier 
 (name{figure.4.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1497 \end{figure}
+l.1517 \end{figure}
                     <./picture/experiments/exp2/oneDataLost.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1498--1510
+Underfull \hbox (badness 10000) in paragraph at lines 1518--1530
 
  []
 
 
-<picture/experiments/exp3/delay_overall.jpg, id=1179, 1327.32507pt x 1009.74423
+<picture/experiments/exp3/delay_overall.jpg, id=1223, 1327.32507pt x 1009.74423
 pt>
 File: picture/experiments/exp3/delay_overall.jpg Graphic file (type jpg)
  <use picture/experiments/exp3/delay_overall.jpg>
 Package pdftex.def Info: picture/experiments/exp3/delay_overall.jpg used on inp
-ut line 1517.
+ut line 1537.
 (pdftex.def)             Requested size: 431.13188pt x 327.9781pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1512--1520
+Underfull \hbox (badness 10000) in paragraph at lines 1532--1540
 
  []
 
-[87pdfTeX warning (ext4): destination with the same identifier (name{figure.4.9
+[90pdfTeX warning (ext4): destination with the same identifier (name{figure.4.9
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1520 \end{figure}
+l.1540 \end{figure}
                    pdfTeX warning (ext4): destination with the same identifier 
 (name{table.4.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1520 \end{figure}
-                    <./picture/experiments/exp2/twoDataloss.png>] [88pdfTeX war
+l.1540 \end{figure}
+                    <./picture/experiments/exp2/twoDataloss.png>] [91pdfTeX war
 ning (ext4): destination with the same identifier (name{figure.4.10}) has been 
 already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1526 \end{itemize}
-                     <./picture/experiments/exp3/delay_overall.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1527--1531
+l.1544 	\item C
+               luster receiving data feed with both feed data loss <./picture/e
+xperiments/exp3/delay_overall.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1547--1551
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1532--1534
-
- []
-
-<picture/addExperi.jpg, id=1190, 669.2503pt x 330.48468pt>
+<picture/addExperi.jpg, id=1234, 669.2503pt x 330.48468pt>
 File: picture/addExperi.jpg Graphic file (type jpg)
 
 <use picture/addExperi.jpg>
-Package pdftex.def Info: picture/addExperi.jpg used on input line 1540.
+Package pdftex.def Info: picture/addExperi.jpg used on input line 1555.
 (pdftex.def)             Requested size: 301.791pt x 149.03442pt.
- [89] [90pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.4.11}) has been already used, duplicate ignored
+
+Underfull \hbox (badness 10000) in paragraph at lines 1552--1558
+
+ []
+
+[92pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
+1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1545 \chapter{
-                Results} <./picture/addExperi.jpg>]
+l.1561 \end{itemize}
+                     <./picture/addExperi.jpg>]
+<picture/experiments/exp4/latency.png, id=1241, 637.38126pt x 393.47pt>
+File: picture/experiments/exp4/latency.png Graphic file (type png)
+
+<use picture/experiments/exp4/latency.png>
+Package pdftex.def Info: picture/experiments/exp4/latency.png used on input lin
+e 1566.
+(pdftex.def)             Requested size: 301.791pt x 186.29979pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1562--1569
+
+ []
+
+[93pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1572 \chapter{
+                Result Analysis and Conclusion} <./picture/experiments/exp4/lat
+ency.png>]
 Chapter 5.
-[91
 
-]
-Chapter 6.
-(Dissertation.bbl [92
+Overfull \hbox (29.3776pt too wide) in paragraph at lines 1579--1588
+ [][] 
+ []
 
-]
+[94
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1589 \newpage
+               ]
+Overfull \hbox (1.60431pt too wide) in paragraph at lines 1590--1590
+[]\OT1/cmr/bx/n/14.4 Establishing an Open-Source Hard-ware Clus-ter Sup-port-
+ []
+
+<picture/photo/fourScene.jpg, id=1251, 2569.6pt x 1443.3925pt>
+File: picture/photo/fourScene.jpg Graphic file (type jpg)
+
+<use picture/photo/fourScene.jpg>
+Package pdftex.def Info: picture/photo/fourScene.jpg used on input line 1595.
+(pdftex.def)             Requested size: 388.01605pt x 217.95314pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1591--1598
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1600--1601
+
+ []
+
+Missing character: There is no ï in font cmr10!
+Missing character: There is no ¼ in font cmr10!
+Missing character: There is no Œ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 1602--1604
+
+ []
+
+[95pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1604 \subsection{
+                   Dual-feed data handler} <./picture/photo/fourScene.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1605--1609
+
+ []
+
+(Dissertation.bbl [96]
 Underfull \hbox (badness 10000) in paragraph at lines 54--54
 \OT1/cmr/m/n/10.95 hp-cad-vi-so-rycoun-cil. com/pdf/building-an-rdma-capableapp
 lication-with-ib-verbs.
  []
 
-[93
+[97
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 108--108
+Underfull \hbox (badness 10000) in paragraph at lines 120--120
 $\OT1/cmtt/m/n/10.95 en / us / products / collateral / switches / nexus-[]3000-
 []series-[]switches / white _$
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 118--118
+Underfull \hbox (badness 6675) in paragraph at lines 130--130
 []| | \OT1/cmr/m/n/10.95 corp., R. (n.d.), `Re-alvnc on rasp-berry pi', []$\OT1
 /cmtt/m/n/10.95 https : / / www . realvnc . com / docs /$
  []
@@ -2028,20 +2125,20 @@ Missing character: There is no ™ in font cmr10!
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-[94] [95]
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+[98] [99]
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 []| | \OT1/cmr/m/n/10.95 Jain, V. (n.d.), `A low-latency so-lu-tion for high fr
 e-quency trad-ing from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 \OT1/cmr/m/n/10.95 ibm and mel-lanox', []$\OT1/cmtt/m/n/10.95 http : / / www . 
 mellanox . com / pdf / whitepapers /$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--251
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
 $\OT1/cmtt/m/n/10.95 Low-[]Latency-[]Solution-[]for-[]High-[]Frequency-[]Tradin
 g-[]from-[]IBM-[]and-[]Mellanox .$
  []
@@ -2051,66 +2148,67 @@ Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 Missing character: There is no Â in font cmr10!
 Missing character: There is no · in font cmr10!
-[96]
-Underfull \hbox (badness 8189) in paragraph at lines 390--390
+[100] [101]
+Underfull \hbox (badness 8189) in paragraph at lines 438--438
 []| | \OT1/cmr/m/n/10.95 org., R. P. (n.d.\OT1/cmr/m/it/10.95 c\OT1/cmr/m/n/10.
 95 ), `Vnc on rasp-berry pi', []$\OT1/cmtt/m/n/10.95 https : / / www . raspberr
 ypi . org /$
  []
 
 
-Underfull \hbox (badness 1596) in paragraph at lines 395--395
+Underfull \hbox (badness 1596) in paragraph at lines 443--443
 []| | \OT1/cmr/m/n/10.95 org, T. M. (n.d.\OT1/cmr/m/it/10.95 d\OT1/cmr/m/n/10.9
 5 ), `Mpi4py doc-u-men-ta-tion', []$\OT1/cmtt/m/n/10.95 https : / / pythonhoste
 d . org / mpi4py /$
  []
 
 
-Underfull \hbox (badness 5274) in paragraph at lines 401--401
+Underfull \hbox (badness 5274) in paragraph at lines 449--449
 []| | \OT1/cmr/m/n/10.95 org, T. S. (n.d.\OT1/cmr/m/it/10.95 e\OT1/cmr/m/n/10.9
 5 ), `Scipy doc-u-men-ta-tion', []$\OT1/cmtt/m/n/10.95 http : / / docs . scipy 
 . org / doc / scipy /$
  []
 
-[97]
-Underfull \hbox (badness 3209) in paragraph at lines 443--443
+
+Underfull \hbox (badness 3209) in paragraph at lines 491--491
 []| | \OT1/cmr/m/n/10.95 reg-is-ter .Inc, T. (n.d.), `Re-view: Bea-gle-board be
 a-gle-bone black', []$\OT1/cmtt/m/n/10.95 http : / / www .$
  []
 
+[102]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ” in font cmr10!
-[98]) [99]
+ [103]) [104]
 Appendix A.
-[100
+[105
 
 ]
 Appendix B.
-[101
+[106
 
 ]
 Appendix C.
-[102
+[107
 
 ]
 Appendix D.
-[103
+[108
 
 ] (yourCodeFile.java
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2.
-) [104
+) [109
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1596.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1596.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1645.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1645.
  (Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1596.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1596.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1645.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1645.
 
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: A43D74B3D70AF51697607AB36B6484EF;5803.
+(rerunfilecheck)             Checksum: B7BA4CE1A053A0AB0E6F36B6CEF3DEE4;6262.
 
 
 LaTeX Warning: There were undefined references.
@@ -2118,16 +2216,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1596.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1645.
  ) 
 Here is how much of TeX's memory you used:
- 9053 strings out of 493634
- 137056 string characters out of 3141314
- 255437 words of memory out of 3000000
- 11770 multiletter control sequences out of 15000+200000
+ 9139 strings out of 493634
+ 138889 string characters out of 3141314
+ 256313 words of memory out of 3000000
+ 11828 multiletter control sequences out of 15000+200000
  13410 words of font info for 47 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 48i,15n,40p,1225b,1782s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,15n,40p,1288b,1782s stack positions out of 5000i,500n,10000p,200000b,50000s
 <d:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <d:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><d:/P
@@ -2148,9 +2246,9 @@ nts/type1/public/amsfonts/cm/cmsy8.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmti10.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmti8.pfb><d:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Dissertation.pdf (115 pages, 9158932 bytes).
+Output written on Dissertation.pdf (120 pages, 11633291 bytes).
 PDF statistics:
- 1580 PDF objects out of 1728 (max. 8388607)
- 506 named destinations out of 1000 (max. 500000)
- 867 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1651 PDF objects out of 1728 (max. 8388607)
+ 532 named destinations out of 1000 (max. 500000)
+ 917 words of extra memory for PDF output out of 10000 (max. 10000000)
 

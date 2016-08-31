@@ -4,69 +4,74 @@
 \BOOKMARK [2][-]{subsection.1.2.1}{Market Data Feed}{section.1.2}% 4
 \BOOKMARK [2][-]{subsection.1.2.2}{Low Latency Network Infrastructure}{section.1.2}% 5
 \BOOKMARK [2][-]{subsection.1.2.3}{A-B Data Feed}{section.1.2}% 6
-\BOOKMARK [2][-]{subsection.1.2.4}{Scalable Interconnect Switches in Supercomputers}{section.1.2}% 7
-\BOOKMARK [2][-]{subsection.1.2.5}{Discussion:the bottleneck of network performance efficiency}{section.1.2}% 8
-\BOOKMARK [2][-]{subsection.1.2.6}{Field-programmable gate array\(FPGA\) and Integration with Open Sourced Hardware}{section.1.2}% 9
-\BOOKMARK [2][-]{subsection.1.2.7}{Open Sourced Hardware}{section.1.2}% 10
-\BOOKMARK [2][-]{subsection.1.2.8}{Similar Solution}{section.1.2}% 11
-\BOOKMARK [1][-]{section.1.3}{Conclusion}{chapter.1}% 12
-\BOOKMARK [0][-]{chapter.2}{Details of Implemented Technologies}{}% 13
-\BOOKMARK [1][-]{section.2.1}{Remote Direct Memory Access\(RDMA\)}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.1.1}{Two Important Concepts: Verbs and Queue Pairs}{section.2.1}% 15
-\BOOKMARK [2][-]{subsection.2.1.2}{Queue Pair}{section.2.1}% 16
-\BOOKMARK [2][-]{subsection.2.1.3}{RNIC Verbs}{section.2.1}% 17
-\BOOKMARK [2][-]{subsection.2.1.4}{Implementation Details of Verbs}{section.2.1}% 18
-\BOOKMARK [1][-]{section.2.2}{Fat-tree topology implementation over RDMA}{chapter.2}% 19
-\BOOKMARK [2][-]{subsection.2.2.1}{Reducing the Cost in Node Intercommunication}{section.2.2}% 20
-\BOOKMARK [2][-]{subsection.2.2.2}{Analysing flat topology and fat-tree topology}{section.2.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.3}{Rebalancing the fat-tree over network bandwidth}{section.2.2}% 22
-\BOOKMARK [1][-]{section.2.3}{RDMA verb implementation: Infiniband Verbs}{chapter.2}% 23
-\BOOKMARK [2][-]{subsection.2.3.1}{Building the Passive Side}{section.2.3}% 24
-\BOOKMARK [2][-]{subsection.2.3.2}{Conclusion}{section.2.3}% 25
-\BOOKMARK [1][-]{section.2.4}{MPI-CH}{chapter.2}% 26
-\BOOKMARK [2][-]{subsection.2.4.1}{Introduction to SPMD and MPMD}{section.2.4}% 27
-\BOOKMARK [2][-]{subsection.2.4.2}{The architecture of MPI-CH}{section.2.4}% 28
-\BOOKMARK [2][-]{subsection.2.4.3}{Conclusion}{section.2.4}% 29
-\BOOKMARK [1][-]{section.2.5}{Field Programmable Field Array\(FPGA\) Assisted Computation}{chapter.2}% 30
-\BOOKMARK [2][-]{subsection.2.5.1}{Sparta-6 integration with Raspberry Pi}{section.2.5}% 31
-\BOOKMARK [2][-]{subsection.2.5.2}{FPGA hardware programming}{section.2.5}% 32
-\BOOKMARK [2][-]{subsection.2.5.3}{Wishbone: interface for FPGA-to-PC communication}{section.2.5}% 33
-\BOOKMARK [2][-]{subsection.2.5.4}{Conclusion}{section.2.5}% 34
-\BOOKMARK [1][-]{section.2.6}{Conclusions for the Chapter}{chapter.2}% 35
-\BOOKMARK [0][-]{chapter.3}{Project Design and Implementation}{}% 36
-\BOOKMARK [1][-]{section.3.1}{Experiment Objectives}{chapter.3}% 37
-\BOOKMARK [2][-]{subsection.3.1.1}{Overall Design}{section.3.1}% 38
-\BOOKMARK [2][-]{subsection.3.1.2}{Expectations}{section.3.1}% 39
-\BOOKMARK [2][-]{subsection.3.1.3}{Main Objective}{section.3.1}% 40
-\BOOKMARK [1][-]{section.3.2}{System Requirements}{chapter.3}% 41
-\BOOKMARK [2][-]{subsection.3.2.1}{System Input: Dual feeds and UDP Session Simulation}{section.3.2}% 42
-\BOOKMARK [1][-]{section.3.3}{Hardware design}{chapter.3}% 43
-\BOOKMARK [2][-]{subsection.3.3.1}{Interconnection Design and Implementation}{section.3.3}% 44
-\BOOKMARK [2][-]{subsection.3.3.2}{Power Supply Design}{section.3.3}% 45
-\BOOKMARK [2][-]{subsection.3.3.3}{Conclusion}{section.3.3}% 46
-\BOOKMARK [1][-]{section.3.4}{System Design and Implementation}{chapter.3}% 47
-\BOOKMARK [2][-]{subsection.3.4.1}{Operating System and Internet Connection}{section.3.4}% 48
-\BOOKMARK [2][-]{subsection.3.4.2}{MPI-CH2: Install and Configure}{section.3.4}% 49
-\BOOKMARK [1][-]{section.3.5}{Software Design and Implementation}{chapter.3}% 50
-\BOOKMARK [2][-]{subsection.3.5.1}{Design of the Data Feed}{section.3.5}% 51
-\BOOKMARK [2][-]{subsection.3.5.2}{Dual-feed handlers and controller}{section.3.5}% 52
-\BOOKMARK [1][-]{section.3.6}{FPGA Verification module design and implementation}{chapter.3}% 53
-\BOOKMARK [2][-]{subsection.3.6.1}{Communicator design}{section.3.6}% 54
-\BOOKMARK [2][-]{subsection.3.6.2}{Hardware versification module design}{section.3.6}% 55
-\BOOKMARK [1][-]{section.3.7}{Conclusion for the Chapter}{chapter.3}% 56
-\BOOKMARK [0][-]{chapter.4}{Experiment Requirements, Procedure, and Results}{}% 57
-\BOOKMARK [1][-]{section.4.1}{Experiment Design}{chapter.4}% 58
-\BOOKMARK [2][-]{subsection.4.1.1}{Performance metrics}{section.4.1}% 59
-\BOOKMARK [2][-]{subsection.4.1.2}{Choice on inputs}{section.4.1}% 60
-\BOOKMARK [2][-]{subsection.4.1.3}{Experiment environment set up and pre-processes}{section.4.1}% 61
-\BOOKMARK [2][-]{subsection.4.1.4}{Experiment 1: Single data feed with single receiver}{section.4.1}% 62
-\BOOKMARK [2][-]{subsection.4.1.5}{Experiment 2: Dual data feeds over the cluster on MPI-CH2 with FPGA}{section.4.1}% 63
-\BOOKMARK [2][-]{subsection.4.1.6}{Experiment 3: Dual feeds processed with MPI processors, without RDMA and FPGA separately}{section.4.1}% 64
-\BOOKMARK [2][-]{subsection.4.1.7}{Additional Experiment: Dual feeds processed with MPI processors}{section.4.1}% 65
-\BOOKMARK [0][-]{chapter.5}{Results}{}% 66
-\BOOKMARK [0][-]{chapter.6}{Conclusions}{}% 67
-\BOOKMARK [0][-]{appendix.A}{Design Diagrams}{}% 68
-\BOOKMARK [0][-]{appendix.B}{User Documentation}{}% 69
-\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 70
-\BOOKMARK [0][-]{appendix.D}{Code}{}% 71
-\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 72
+\BOOKMARK [2][-]{subsection.1.2.4}{Beowulf Cluster}{section.1.2}% 7
+\BOOKMARK [2][-]{subsection.1.2.5}{Message Passing Interface}{section.1.2}% 8
+\BOOKMARK [2][-]{subsection.1.2.6}{Scalable Interconnect Switches in Supercomputers}{section.1.2}% 9
+\BOOKMARK [2][-]{subsection.1.2.7}{Discussion:the bottleneck of network performance efficiency}{section.1.2}% 10
+\BOOKMARK [2][-]{subsection.1.2.8}{Field-programmable gate array\(FPGA\) and Integration with Open Sourced Hardware}{section.1.2}% 11
+\BOOKMARK [2][-]{subsection.1.2.9}{Open Sourced Hardware}{section.1.2}% 12
+\BOOKMARK [2][-]{subsection.1.2.10}{Similar Solution}{section.1.2}% 13
+\BOOKMARK [1][-]{section.1.3}{Conclusion}{chapter.1}% 14
+\BOOKMARK [0][-]{chapter.2}{Implemented Technologies in the Project}{}% 15
+\BOOKMARK [1][-]{section.2.1}{Remote Direct Memory Access\(RDMA\)}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.1.1}{Two Important Concepts: Verbs and Queue Pairs}{section.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.2}{Queue Pair}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.3}{RNIC Verbs}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.4}{Implementation Details of Verbs}{section.2.1}% 20
+\BOOKMARK [1][-]{section.2.2}{Fat-tree topology implementation over RDMA}{chapter.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.1}{Reducing the Cost in Node Intercommunication}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.2}{Analysing flat topology and fat-tree topology}{section.2.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.3}{Rebalancing the fat-tree over network bandwidth}{section.2.2}% 24
+\BOOKMARK [1][-]{section.2.3}{RDMA verb implementation: Infiniband Verbs}{chapter.2}% 25
+\BOOKMARK [2][-]{subsection.2.3.1}{Building the Passive Side}{section.2.3}% 26
+\BOOKMARK [2][-]{subsection.2.3.2}{Conclusion}{section.2.3}% 27
+\BOOKMARK [1][-]{section.2.4}{MPI-CH}{chapter.2}% 28
+\BOOKMARK [2][-]{subsection.2.4.1}{Introduction to SPMD and MPMD}{section.2.4}% 29
+\BOOKMARK [2][-]{subsection.2.4.2}{The architecture of MPI-CH}{section.2.4}% 30
+\BOOKMARK [2][-]{subsection.2.4.3}{Conclusion}{section.2.4}% 31
+\BOOKMARK [1][-]{section.2.5}{Field Programmable Field Array\(FPGA\) Assisted Computation}{chapter.2}% 32
+\BOOKMARK [2][-]{subsection.2.5.1}{Sparta-6 integration with Raspberry Pi}{section.2.5}% 33
+\BOOKMARK [2][-]{subsection.2.5.2}{FPGA hardware programming}{section.2.5}% 34
+\BOOKMARK [2][-]{subsection.2.5.3}{Wishbone: interface for FPGA-to-PC communication}{section.2.5}% 35
+\BOOKMARK [2][-]{subsection.2.5.4}{Conclusion}{section.2.5}% 36
+\BOOKMARK [1][-]{section.2.6}{Conclusions for the Chapter}{chapter.2}% 37
+\BOOKMARK [0][-]{chapter.3}{Project Design and Implementation}{}% 38
+\BOOKMARK [1][-]{section.3.1}{Experiment Objectives}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.1.1}{Overall Design}{section.3.1}% 40
+\BOOKMARK [2][-]{subsection.3.1.2}{Expectations}{section.3.1}% 41
+\BOOKMARK [2][-]{subsection.3.1.3}{Main Objective}{section.3.1}% 42
+\BOOKMARK [1][-]{section.3.2}{System Requirements}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection.3.2.1}{System Input: Dual feeds and UDP Session Simulation}{section.3.2}% 44
+\BOOKMARK [1][-]{section.3.3}{Hardware design}{chapter.3}% 45
+\BOOKMARK [2][-]{subsection.3.3.1}{Interconnection Design and Implementation}{section.3.3}% 46
+\BOOKMARK [2][-]{subsection.3.3.2}{Power Supply Design}{section.3.3}% 47
+\BOOKMARK [2][-]{subsection.3.3.3}{Conclusion}{section.3.3}% 48
+\BOOKMARK [1][-]{section.3.4}{System Design and Implementation}{chapter.3}% 49
+\BOOKMARK [2][-]{subsection.3.4.1}{Operating System and Internet Connection}{section.3.4}% 50
+\BOOKMARK [2][-]{subsection.3.4.2}{MPI-CH2: Install and Configure}{section.3.4}% 51
+\BOOKMARK [1][-]{section.3.5}{Software Design and Implementation}{chapter.3}% 52
+\BOOKMARK [2][-]{subsection.3.5.1}{Design of the Data Feed}{section.3.5}% 53
+\BOOKMARK [2][-]{subsection.3.5.2}{Dual-feed handlers and controller}{section.3.5}% 54
+\BOOKMARK [1][-]{section.3.6}{FPGA Verification module design and implementation}{chapter.3}% 55
+\BOOKMARK [2][-]{subsection.3.6.1}{Communicator design}{section.3.6}% 56
+\BOOKMARK [2][-]{subsection.3.6.2}{Hardware versification module design}{section.3.6}% 57
+\BOOKMARK [1][-]{section.3.7}{Conclusion for the Chapter}{chapter.3}% 58
+\BOOKMARK [0][-]{chapter.4}{Experiment Requirements, Procedure, and Results}{}% 59
+\BOOKMARK [1][-]{section.4.1}{Experiment Design}{chapter.4}% 60
+\BOOKMARK [2][-]{subsection.4.1.1}{Performance metrics}{section.4.1}% 61
+\BOOKMARK [2][-]{subsection.4.1.2}{Choice on inputs}{section.4.1}% 62
+\BOOKMARK [2][-]{subsection.4.1.3}{Experiment environment set up and pre-processes}{section.4.1}% 63
+\BOOKMARK [2][-]{subsection.4.1.4}{Experiment 1: Single data feed with single receiver}{section.4.1}% 64
+\BOOKMARK [2][-]{subsection.4.1.5}{Experiment 2: Dual data feeds over the cluster on MPI-CH2 with FPGA}{section.4.1}% 65
+\BOOKMARK [2][-]{subsection.4.1.6}{Experiment 3: Dual feeds processed with MPI processors, without RDMA and FPGA separately}{section.4.1}% 66
+\BOOKMARK [2][-]{subsection.4.1.7}{Additional Experiment: Dual feeds processed with MPI processors}{section.4.1}% 67
+\BOOKMARK [0][-]{chapter.5}{Result Analysis and Conclusion}{}% 68
+\BOOKMARK [1][-]{section.5.1}{Establishing an Open-Source Hardware Cluster Supporting Dual Data Feeds}{chapter.5}% 69
+\BOOKMARK [2][-]{subsection.5.1.1}{Hardware}{section.5.1}% 70
+\BOOKMARK [2][-]{subsection.5.1.2}{Software system}{section.5.1}% 71
+\BOOKMARK [2][-]{subsection.5.1.3}{Dual-feed data handler}{section.5.1}% 72
+\BOOKMARK [0][-]{appendix.A}{Design Diagrams}{}% 73
+\BOOKMARK [0][-]{appendix.B}{User Documentation}{}% 74
+\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 75
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 76
+\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 77

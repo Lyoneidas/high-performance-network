@@ -58,45 +58,65 @@ The thesis introduces an experimental dual-feed solution over open source hardwa
 \chapter{Thesis Background and Literature Review}
 %% Uncomment this to include a separate tex file wih the introduction contents
 \section{Thesis Inspiration}
-Financial instruments and organizations in the modern world needs to provide an live update on their current market status, and provide a package of information to its members and partners. The data they need to update is includes bid/ask prise, completed trades and other market status\cite{alexander2001market}. This package of information is aggregated, and streamed as 'Market Data Feed'. Modern financial market requires high performance infrastructure due to the implementation of automated trading system, which implements complicate market strategies and uses the data feed as sources\cite{le2009automated}. Modern strategies requires huge computational power to perform mathematical modelling, and high performance network to make the order ahead of any competitors.\\
+In the 1970' when the New York Stock Exchange started to implement the computerization on trading floors and accepts electronic orders, financial world had begun the era of high frequency trading(HFT) over market data since then\cite{mcgowan2010rise}. The rapid evolution in computer technologies especially the establishment of world-wide network, turns the traditional speculation trading period from minutes to hours into microsecond level. Financial instruments and organizations in the modern world needs to provide an live update on their latest and updated current market status, and provide a package of information to its members and partners. The data they need to update is includes bid/ask prise, completed trades and other market status\cite{alexander2001market}. This package of information is aggregated, and streamed as 'Market Data Feed'. Modern financial market requires high performance infrastructure due to the implementation of automated trading system, which implements complicate market strategies and uses the data feed as sources\cite{le2009automated}. Modern strategies requires huge computational power to perform mathematical modelling, and high performance network to make the order ahead of any competitors.\\
 Low latency infrastructure is invented to meet the market requirements, it is usually consisted of two parts,  computational nodes and network infrastructure. Existing solutions for the former part are customized servers, cloud computer farms and special data centres. They are programmed to perform data analysis over live market data feed, the outputs are trading behaviours packed as orders . Firms in computer network services are focusing on the latter part, as the latency in this part can be solved by engineering practises.\\
 Solutions for low latency network usually come with high cost non-scalable hardware, and requires racks of server cabinets to install the devices. However, the entry barrier in the upfront investment for network infrastructure makes it difficult for medium or small financial institutions to start business in this field.\\
 Researchers are looking forward to find alternative solutions to build network infrastructures that supports low latency market data feed. The researchers in high performance computation cluster provides a possible solution. The interconnect networks in supercomputers follows a different design in network interfaces. The improving design of parallel program architectural in supercomputers requires more efficient parallelism in network interface\cite{pang2014th}. We introduces the high scalable design and the fat-tree topology in the architecture into our design of high performance network switches, and achieve similar acceleration in data process as the existing commercial solutions.\\
 
 \section{Literature review}
 \subsection{Market Data Feed}
-The principle of providing low latency market data feed is to provide users live data of current price information and trader status, including individual portfolio valuation, financial market data, trading activities and alarms, a matrix of these data forms an 'Order Book'\cite{menkveld2013high}. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies\cite{hasbrouck2013low}. For example, data delayed over 5 minutes can be fetched from Yahoo finance Application Programming Interface(API) for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
+Market data feed is the network data provided by the market data providers, and consumed by participators in high-frequency trading field. One importance feature is the microsecond-level updating frequency of the data. We focus on the network infrastructure behind it to implement the high-frequency data streaming, and long range transportation as modern traders are based globally and making trade deals 24 hours$\times$7 days\cite{chlistalla2011high}.\\
 \begin{figure}[H] 
-\centering\includegraphics[width=3.5in]{picture/tradevenue.PNG} 
-\caption{Relationship among trade venue, data vendors and customers}
-\label{fig:1} 
+	\centering\includegraphics[width=0.7\linewidth]{picture/tradevenue.PNG} 
+	\caption{Relationship among trade venue, data vendors and customers}
+	\label{fig:1} 
 \end{figure} 
-The Market Data feeds usually transmitted in User Datagram Protocol(UDP) datagrams\cite{brook2015low}.in order to achieve high frequency data transmission, the size of each datagram is not big, and usually will not exceed the limit of one UDP datagram. \\
+The low latency market data usually carries users level data including current price information and trader status, the individual portfolio valuation, financial market data, trading activities and alarms. A matrix of these data forms an 'Order Book'\cite{menkveld2013high}. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies\cite{hasbrouck2013low}. For example, data delayed over 5 minutes can be fetched from Yahoo finance Application Programming Interface(API) for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
+The Market Data feeds usually transmitted in User Datagram Protocol(UDP) datagrams\cite{brook2015low}.in order to achieve high frequency data transmission, the size of each datagram is not big, and usually will not exceed the limit of one UDP datagram.\\
+Most of the high frequency trading companies uses more than one data feeds to ensure the data quality, and technology companies have implemented some technologies different to the normal global data networks.\\
 \subsection{Low Latency Network Infrastructure}
 Engineers provide solutions to achieve lower latency in network transmission for market data, including direct redundant fibre cables from trading centre to traders, shortest path transmission and dual data feed. For example, solution using microwave towers reducing the cost of digging tunnels for fibres and enabling signals transmit over the sphere is implemented between New Jersey and Chicago\cite{htfbackyard}, shows in the picture \ref{fig:2}. Engineers also developed 'dual-feed' mechanism to reduce the cost in retransmission when package lost\cite{zusman1999fault}.The introduction of dual feed, or the A-B feed of market data transmission uses two feeds with offset in delay to avoid significant failure such as delay or fault, especially for regional traders who want to trade across long geographical distances. \\
-\begin{figure}[htbp]
-\centering\includegraphics[width=3.5in]{picture/newyork-chicago.jpg}
-\caption{Chicago-New Jersey microwave networks from data vendor Quincy Data}
-\label{fig:2}
+The low latency network is consisted of at least two hardware infrastructures: the high speed network equipment to carry the signals usually linked by optic fibres, for example, the 10Gb Ethernet; the Global Position System(GPS) based clock system to synchronize both sides\cite{brook2015low}.\\
+Among all the technologies implemented, the A-B data feed is the most widely used mechanism to reduce network latency.\\
+\begin{figure}[H]
+	\centering\includegraphics[width=0.7\linewidth]{picture/newyork-chicago.jpg}
+	\caption{Chicago-New Jersey microwave networks from data vendor Quincy Data}
+	\label{fig:2}
 \end{figure}
-The low latency network is consisted of at least two hardware infrastructures: the high speed network equipment to carry the signals usually linked by optic fibres, for example, the 10Gb Ethernet; the Global Position System(GPS) based clock system to synchronize both sides\cite{brook2015low}.
 \subsection{A-B Data Feed}
 A-B feed structure requires two independent signals from one data provider, and the one feed(A) is several milliseconds faster than another feed(B). Relay stations between the sender and receiver need to decompress both feeds, filter and aggregate the package then transmit the data feed to the next station. Receiver also need a decompresser to handle the data from both feeds, reconstruct the original package and split the data into sub-streams forming process-specific subset of data, shows in picture \ref{fig:3}.\\
-\begin{figure}[htbp]
-	\centering\includegraphics[width=3.5in]{picture/A-BFeed.PNG}
+\begin{figure}[H]
+	\centering\includegraphics[width=0.7\linewidth]{picture/A-BFeed.PNG}
 	\caption{Overview of A-B streaming infrastructure}
 	\label{fig:3}
-\end{figure}\\
-Each data feed arrives in sequence with a prefixed header, containing information from abstracted layers of network protocols\cite{udpprotocol}. UDP protocol suggests UDP client to provide reliability services that the receiver should perform CRC check of the received package chains, and retransmit the chain if package lost found, timeout mechanism exacerbate the difficulty in providing low latency data service. A-B data feed reduces enable the rapid collect-dispatch system to provide output within 500 milliseconds\cite{zusman1999fault}.\\
-
+\end{figure}
+Each data feed arrives in sequence with a prefixed header, containing information from abstracted layers of network protocols\cite{udpprotocol}. UDP protocol suggests UDP client to provide reliability services that the receiver should perform CRC check of the received package chains, and retransmit the chain if package lost found, time-out mechanism exacerbate the difficulty in providing low latency data service. A-B data feed reduces enable the rapid collect-dispatch system to provide output within 500 milliseconds\cite{zusman1999fault}.\\
+The hardware implemented for the high frequency market data are commercialized and deep customized, which is a huge burden for the companies in this field. One of the equipments in the high-frequency market data infrastructure is the dual-feed switches, which accept the A-B data feeds from the network, and translate the feeds into general UDP datagram and make the market data as a service for the users connecting to it.  It will be obliging to find a way of implementing the switch using commodity, or even the open-source hardware.\\
+The dual-feed switch has two features in performance: seamless retransmission of two data feeds, and high throughput capacity in its two ports simultaneously, which is similar to the interconnection network structure of supercomputers. We will continue our discussions with the basic concepts of one particular kind of supercomputers suitable for the commodity hardware, and break down the implementations to produce a possible solution to the requirement mentioned above.\\
+\subsection{Beowulf Cluster}
+Beowulf cluster is a highly scalable hardware architecture for computer clusters, and very popular in supercomputer design\cite{behrooz2005computer}. The basic principle is providing scalable parallel computational power by scaling number of cores and other resources, the nodes are interconnected in proper designed network topology. This feature makes the Beowulf structure very friendly to commodity hardware, including the personal computers\cite{sterling2002beowulf}. The goal of using a cluster is to implement multi-process programs over isolated cores to improve the parallel performances. Before further breaking down, we need to introduce the concept of computer clusters.\\
+\subsubsection{Computer clusters}
+A computer cluster is a set of computational nodes consisted of independent Central Processing Units, Memory and other hardware structure\cite{vrenios2002linux}. Each nodes can be an independent, complete computer that can execute certain computation tasks\cite{sterling2002beowulf}. These computational nodes are connected in a certain way, in this thesis particularly, the nodes are connected by Ethernet cables, and using network protocol supported transmission channels to perform internal data exchange. \\
+\subsubsection{Constructing a Beowulf cluster}
+The key feature in the design of Beowulf cluster is the construction of interconnection network:
+\begin{itemize}
+	\item Network topology: how the network topology works and related routing strategy
+	\item Transmission protocols: we have Internet Protocol family supports implementations like Internet Protocols(IP), User Datagram Protocols(UDP) and Transmission Control Protocols(TCP), their features will have a compelling influence over the cluster efficiency
+	\item Abstraction of the intercommunication: applications running on the cluster needs to be isolated from the implementation details of the cluster, and the outputs should be platform independent
+\end{itemize}
+We put the network hardware aspects down for the moment, and focus on the intercommunication abstraction, because it defines the implementation of transmission protocol over certain type of network topology. It will be a high cost if we choose to implement the communication layer by ourselves, however, there is an established solution and can helps us to construct the abstraction layer with proper configurations. The Message Passing Interface protocol and its implementations are the most popular solution for building the standard communication interfaces for parallel computation\cite{geist1996mpi}.
+Beowulf structure is not only known for its commodity implementations, some of the world leading supercomputers, including the latest top 1 supercomputer Sunway TaihuLight\cite{fu2016sunway}, and its previous generation MilkyWay-2\cite{liao2014milkyway}. We will have a discussion about the implemented interconnection architecture, and break down to our solutions.
+\subsection{Message Passing Interface}
+The Message Passing Interface is a standard for the message passing libraries established between 1993 and 1994\cite{geist1996mpi}.
 \subsection{Scalable Interconnect Switches in Supercomputers}
-Existing hardware solutions for low latency network is not suitable for mid sized institutions or individuals to start their usage of the network, and the development in building supercomputers provides an alternative solution to build infrastructure with equivalent function without implementing designed equipments.
+Existing hardware solutions for low latency network is not suitable for mid sized institutions or individuals to start their usage of the network, and the development in building supercomputers provides an alternative solution to build infrastructure with equivalent function without implementing designed equipments. We will first introduce the acceleration feature in Beowulf cluster, then discuss the fat-tree network topology implemented in the MilkyWay supercomputer, to analyse how it improves the efficiency, and its inspiration for our project.\\
+We will also discuss these two topics related: a comparison between the established Ethernet interconnection solution and the hardware direct link solution using Serial Peripheral Interface, and the bottlenecks of the network solution.
 \subsubsection{Linear Speed-up in Beowulf Architecture}
-Beowulf is a highly scalable cluster architecture for computer clusters, and very popular in supercomputer design\cite{behrooz2005computer}. The basic principle is providing scalable computational power by scaling number of cores and other resources, the nodes are interconnected in proper designed network topology. The bottleneck now lies in the communication among cores in paralleled program\cite{brown2004engineering}, the bandwidth and latency in interconnect network worsen the efforts in removing the obstacles in improving the performances of the Beowulf cluster.\\
+The bottleneck now lies in the communication among cores in paralleled program\cite{brown2004engineering}, the bandwidth and latency in interconnect network worsen the efforts in removing the obstacles in improving the performances of the Beowulf cluster.\\
 Six kinds of memory are defined according to its logical location in computer, they have distinct latency in read/write and requirements in bandwidth, shows in table \ref{table:1}.\\
 \begin{table}[htb]
 \begin{center}
-	\caption{Latency and bandwidth in memory IO}
+	\caption{Latency and bandwidth in memory IO}\cite{johnson2005memory}
 	\label{table:1}
 	\begin{tabular}{lll}
 		\hline
@@ -232,8 +252,8 @@ In this chapter we made introductions to the background knowledge of high-freque
 Another discussion is made about the bottleneck of the high performance network system. We listed five possible conditions that the latency of a high-frequency system may be sensitive to. Our system design and experiment implementations are established according to these conditions.\\
 We also made introductions to two established dual datafeed solutions for market data infrastructure and discussed pros and cons of both solutions. The high performance network switch in TH Express network brings us an new idea about the approach to the dual data feed hardware that a Beowulf structured open source hardware can achieve similar performance over the network with much less cost. The Raspberry Pi cluster in Southampton University proves that the performance of open sourced hardware can be acceptable if they are tuned correctly.\\ 
 The following chapter will have detailed introduction of the technologies we implemented.\\ 
-\chapter{Details of Implemented Technologies}
-This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.\\
+\chapter{Implemented Technologies in the Project}
+This chapter discussed the details of the four key technology in the project: Remote direct memory access, fat-tree topology network, MPI-CH, and  field-programmable gate array assisted CPU computation.　These established technologies are well-known for being able to establish a parallel multi-core cluster. We are going to implement these technologies to build a distributed network switch over open-source hardware, and achieve similar performance as the commercial customized machines.\\
 \begin{table}[H]
 \centering
 \caption{Implemented Technologies}
@@ -750,7 +770,7 @@ This part is consisted of three parts:
 	\centering
 	\caption{Content structure of system design and implementation}
 	\label{my-label}
-	\begin{tabular}{@{}ll@{}}
+	\begin{tabular}{@{}l|l@{}}
 		\toprule
 		Name                                                                                    & Content                                                                                                                                                                     \\ \midrule
 		\begin{tabular}[c]{@{}l@{}}Experiment Objectives and\\System Requirements    \end{tabular}                                                                 & \begin{tabular}[c]{@{}l@{}}Showing system requirements based on the hardware\\ achieved, and simulation goals\end{tabular}                                                  \\ \hline
@@ -1530,38 +1550,67 @@ They believed that the checksum performed by NIC card following the RFC standard
 It is necessary to add an additional experiment which enables the checksum mechanism to find out whether it was the undiscovered bottleneck in the Raspberry Pi cluster.\\
 \subsection{Additional Experiment: Dual feeds processed with MPI processors}
 Back to the discussion in the first chapter, we have listed some bottlenecks which may severely affects the latency performance of the system. This set of experiment is trying to figure out if the checksum mechanism in the NIC card will convincingly enough to affect the system performance.\\
-The experiment implementation is different from the previous three ones, however, as the checksum now happens in NIC card, we first need to find the transmission time without retransmit for error bits, then make a comparison between the network latency with and without NIC checksum respectively.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{picture/addExperi}
+	\caption{Two parts of measurement}
+	\label{fig:addExperi}
+\end{figure}
 \begin{itemize}
 	\item[1.] Get zero retransmit latency
 \end{itemize}
-We constructs raw UDP packets with checksum equals to zero to avoid the NIC automatic mechanism, however, as the structure of the cluster uses two Raspberry Pi hosts as pure data feed handlers, we need to calculate the latency in to parts showed in picture \ref{fig:addExperi}
+The experiment implementation is different from the previous three ones, however, as the checksum now happens in NIC card, we first need to find the transmission time without retransmit for error bits, then make a comparison between the network latency with and without NIC checksum respectively.\\
+We constructs raw UDP packets with checksum equals to zero to avoid the NIC automatic mechanism, however, as the structure of the cluster uses two Raspberry Pi hosts as pure data feed handlers, we need to calculate the latency in to parts showed in picture \ref{fig:addExperi}.\\
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{picture/addExperi}
-\caption{Two parts of measurement}
-\label{fig:addExperi}
+	\centering
+	\includegraphics[width=0.7\linewidth]{picture/experiments/exp4/latency}
+	\caption{}
+	\label{fig:latency}
 \end{figure}
+It is easy to observe that transmission time cost from the handler to the sender is 38ms, therefore the interconnection in the cluster is much faster than we expected, and 
 
-\chapter{Results}
-This is the chapter in which you review the outcomes, and
-critique the outcomes process.  You may include user evaluation here
-too.
+\chapter{Result Analysis and Conclusion}
+This chapter aggregates the results from the previous chapter, make analysis and draw the conclusion about this project.\\
+The analysis focus on the following aspects:
+\begin{table}[H]
+	\centering
+	\caption{Aspects in this chapter}
+	\label{my-label}
+	\begin{tabular}{@{}l|l@{}}
+		\toprule
+		Aspect               & Description                                                                                                                                                                    \\ \midrule
+		Main goal            & \begin{tabular}[c]{@{}l@{}}The main goal of this project is to establish an open-source\\ dual-feed handler, and run the experiments to prove that it is\\ usable\end{tabular} \\ \hline
+		Analytical metrics   & \begin{tabular}[c]{@{}l@{}}Analytic metrics are derived from the experiments and needs to\\ be compared to the commercial solutions\end{tabular}                               \\ \hline
+		Key features         & \begin{tabular}[c]{@{}l@{}}Investigating the key features: hardware topology, MPI-CH2 framework\\ and how they are combined together\end{tabular}                              \\ \hline
+		Existed problems     & \begin{tabular}[c]{@{}l@{}}There are some existing problems to be solved, and leading to the future\\ work\end{tabular}                                                        \\ \hline
+		Project expectations & \begin{tabular}[c]{@{}l@{}}This project is expected to be applicable using 10Gb Ethernet hardware.\\ Introduction about the planned implementation\end{tabular}                \\ \bottomrule
+	\end{tabular}
+\end{table}
+\newpage
+\section{Establishing an Open-Source Hardware Cluster Supporting Dual Data Feeds}
+The overall design of the system is inspired by the articles about establishing Beowulf clusters using heterogeneous hardware\cite{kiepert2013creating}, and established network optimization using two UDP data feeds\cite{chordia2013high}. \\
+As illustrated above, we have built a small cluster made of three piece of open-source hardware, the Raspberry Pi 2, and simulated the high frequency dual data feeds using UDP sockets, and the data handler running on two Raspberry hosts works with the controller node, successfully consumed the data. The experiment results showed that the cluster worked as expected, and reduce the network latency compared to the traditional network topologies. The hardware system is encapsulated using Lego building blocks to achieve fine cabling layouts and scalability.\\ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{picture/photo/fourScene}
+	\caption{Raspberry Pi cluster from four angles}
+	\label{fig:fourScene}
+\end{figure}
+\subsection{Hardware}
+The network cabling and Lego built cabinets provides the cluster with portability, and four standard 5V power supply can be supported by either power strips or portable batteries. The USB cables supports peripherals such as keyboard, mouse and wireless network card. The HDMI output of the cluster support resolution up to 1400x960 according to the manual\cite{upton2014raspberry}.\\
+\subsection{Software system}
+The cluster is running on the Raspbian, which is a customized version of Debian operating system. The hosts in the cluster is interconnected by a switch turned into broadcast model. Applications running on the hosts within the cluster communicate to each other via MPI-CH2 framework, the implementation of Message Passing Interface. We also implement the Remote Memory Direct Access channel in the cluster, therefore the user level application memory contents can be swapped seamlessly by the data driver and channel provided by the RDMA module. The cluster can be accelerated using two methods: the Overclock boost on the Raspberry Pi board\cite{upton2012meet}， or using the FPGA connected to the mastser node via General-purpose input/output ports. \\
+The cluster takes inputs via Secured Shell(SSH), and we host a svn repository in the main developing areas, and users can access to the source codes easily.\\
+\subsection{Dual-feed data handler}
+The majority part of software implementation is the dual-feed data handler, which consumes UDP datagrams, and the cluster works as a high performance Internet switch particular for the UDP data transmission. This application system is implemented using Python version 2.7.3.\\
+The dual-feed handler is distributed on all three nodes, and follows the structure of Multiple Process Multiple Data(MPMD), the data handler code block is  running on two hosts, and a controller is running on the master node. A hardware algorithm in the FPGA is running to accelerate the checksum process for the UDP datagram queues.\\
+The UDP payload checksum is disabled in kernel model, and users of the handler application needs to construct their own raw UDP datagram. Data handler A receives data from IP 192.168.137.101 with port 3333, and data handler B receives data from 192.168.137.102 with the same port. The data handler can retransmit received datagrams following a customizable list of hosts with IP addresses, ports and hostnames.\\
+The handler only supports connection from RJ-45 cables at present due to the limitation in hardware portals. This will be discussed in project expectations.\\
 
-
-%%
-%% Now we are back to the standard project contents that you should include
-%%
-
-\chapter{Conclusions}
-%% Uncomment this to include a separate tex file wih the conclusion contents
-%\include{conclusion.tex}
-
-This is the chapter in which you review the major achievements in the
-light of your original objectives, critique the process, critique your
-own learning and identify possible future work.
 
 
 \bibliography{ExampleBibFile}
+
 
 
 \appendix
