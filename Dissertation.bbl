@@ -9,6 +9,14 @@ Aho, A.~V. \harvardand\ Hopcroft, J.~E.  \harvardyearleft 1974\harvardyearright
 Alexander, C.  \harvardyearleft 2001\harvardyearright , {\em Market models: A
   guide to financial data analysis}, John Wiley \& Sons.
 
+\harvarditem[Alizadeh et~al.]{Alizadeh, Kabbani, Edsall, Prabhakar, Vahdat
+  \harvardand\ Yasuda}{2012}{alizadeh2012less}
+Alizadeh, M., Kabbani, A., Edsall, T., Prabhakar, B., Vahdat, A. \harvardand\
+  Yasuda, M.  \harvardyearleft 2012\harvardyearright , Less is more: trading a
+  little bandwidth for ultra-low latency in the data center, {\em in}
+  `Presented as part of the 9th USENIX Symposium on Networked Systems Design
+  and Implementation (NSDI 12)', pp.~253--266.
+
 \harvarditem{and others}{1957}{westinghouse1957pulse}
 and others  \harvardyearleft 1957\harvardyearright , `Pulse width modulator'.
 \newblock US Patent 2,780,782.
@@ -60,9 +68,21 @@ Bradbury, A.  \harvardyearleft n.d.\harvardyearright , `Raspberry pi spi',
   \url{https://www.raspberrypi.org/documentation/configuration/raspi-config.md}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem{Brook}{2015}{brook2015low}
+Brook, A.  \harvardyearleft 2015\harvardyearright , `Low-latency distributed
+  applications in finance', {\em Communications of the ACM} {\bf
+  58}(7),~42--50.
+
 \harvarditem{Brown}{2004}{brown2004engineering}
 Brown, R.~G.  \harvardyearleft 2004\harvardyearright , `Engineering a
   beowulf-style compute cluster', {\em Duke University Physics Department} .
+
+\harvarditem[Budish et~al.]{Budish, Cramton \harvardand\
+  Shim}{2015}{budish2015high}
+Budish, E.~B., Cramton, P. \harvardand\ Shim, J.~J.  \harvardyearleft
+  2015\harvardyearright , `The high-frequency trading arms race: Frequent batch
+  auctions as a market design response', {\em Chicago Booth Research Paper}
+  (14-03).
 
 \harvarditem[C{\'a}ceres et~al.]{C{\'a}ceres, Duffield, Horowitz, Towlsey
   \harvardand\ Bu}{1999}{caceres1999multicast}
@@ -71,6 +91,10 @@ C{\'a}ceres, R., Duffield, N.~G., Horowitz, J., Towlsey, D. \harvardand\ Bu, T.
   network-internal characteristics: Accuracy of packet loss estimation, {\em
   in} `INFOCOM'99. Eighteenth Annual Joint Conference of the IEEE Computer and
   Communications Societies. Proceedings. IEEE', Vol.~1, IEEE, pp.~371--379.
+
+\harvarditem{Cerf}{1991}{cerf1991guidelines}
+Cerf, V.~G.  \harvardyearleft 1991\harvardyearright , Guidelines for internet
+  measurement activities, Technical report.
 
 \harvarditem{Chu}{2011}{chu2011fpga}
 Chu, P.~P.  \harvardyearleft 2011\harvardyearright , {\em FPGA prototyping by
@@ -125,6 +149,11 @@ Dongarra, J.~J., Otto, S.~W., Snir, M. \harvardand\ Walker, D.
   \harvardyearleft 1995\harvardyearright , `An introduction to the mpi
   standard', {\em Communications of the ACM} p.~18.
 
+\harvarditem{Dubois}{2006}{dubois2006possibility}
+Dubois, D.  \harvardyearleft 2006\harvardyearright , `Possibility theory and
+  statistical reasoning', {\em Computational statistics \& data analysis} {\bf
+  51}(1),~47--69.
+
 \harvarditem{Eggert \harvardand\ Gont}{2009}{eggert2009tcp}
 Eggert, L. \harvardand\ Gont, F.  \harvardyearleft 2009\harvardyearright , `Tcp
   user timeout option'.
@@ -168,6 +197,11 @@ Gu, H., Xu, J. \harvardand\ Zhang, W.  \harvardyearleft 2009\harvardyearright ,
 Harrington, W.  \harvardyearleft 2015\harvardyearright , {\em Learning
   Raspbian}, Packt Publishing Ltd.
 
+\harvarditem{Hasbrouck \harvardand\ Saar}{2013}{hasbrouck2013low}
+Hasbrouck, J. \harvardand\ Saar, G.  \harvardyearleft 2013\harvardyearright ,
+  `Low-latency trading', {\em Journal of Financial Markets} {\bf
+  16}(4),~646--679.
+
 \harvarditem{Hauck \harvardand\ DeHon}{2010}{hauck2010reconfigurable}
 Hauck, S. \harvardand\ DeHon, A.  \harvardyearleft 2010\harvardyearright , {\em
   Reconfigurable computing: the theory and practice of FPGA-based computation},
@@ -195,6 +229,12 @@ Hilland, J.~R., Chadalapaka, M., Krause, M.~R., Culley, P.~R. \harvardand\
 Hugunin, J.  \harvardyearleft 1997\harvardyearright , Python and java: The best
   of both worlds, {\em in} `Proceedings of the 6th international Python
   conference', Vol.~9, pp.~2--18.
+
+\harvarditem[Jacobson et~al.]{Jacobson, Braden \harvardand\
+  Borman}{1992}{jacobson1992tcp}
+Jacobson, V., Braden, R. \harvardand\ Borman, D.  \harvardyearleft
+  1992\harvardyearright , Tcp extensions for high performance, Technical
+  report.
 
 \harvarditem[Jain et~al.]{Jain, Vaibhav \harvardand\
   Goyal}{2014}{jain2014raspberry}
@@ -287,6 +327,17 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
   infiniband', {\em International Journal of Parallel Programming} {\bf
   32}(3),~167--198.
 
+\harvarditem[Livny et~al.]{Livny, Basney, Raman \harvardand\
+  Tannenbaum}{1997}{livny1997mechanisms}
+Livny, M., Basney, J., Raman, R. \harvardand\ Tannenbaum, T.  \harvardyearleft
+  1997\harvardyearright , `Mechanisms for high throughput computing', {\em
+  SPEEDUP journal} {\bf 11}(1),~36--40.
+
+\harvarditem{Menkveld}{2013}{menkveld2013high}
+Menkveld, A.~J.  \harvardyearleft 2013\harvardyearright , `High frequency
+  trading and the new market makers', {\em Journal of Financial Markets} {\bf
+  16}(4),~712--740.
+
 \harvarditem{Michael}{1992}{michael1992universal}
 Michael, M.~S.  \harvardyearleft 1992\harvardyearright , `Universal
   asynchronous receiver/transmitter'.
@@ -311,6 +362,10 @@ Morris, G.~W., Thomas, D.~B. \harvardand\ Luk, W.  \harvardyearleft
   2009\harvardyearright , Fpga accelerated low-latency market data feed
   processing, {\em in} `2009 17th IEEE Symposium on High Performance
   Interconnects', IEEE, pp.~83--89.
+
+\harvarditem{Morrison}{1990}{morrison1990multivariate}
+Morrison, D.~F.  \harvardyearleft 1990\harvardyearright , `Multivariate
+  statistical methods. 3', {\em New York, NY. Mc} .
 
 \harvarditem{MPI-CH}{n.d.}{mpich_doc_adi3}
 MPI-CH  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
@@ -338,12 +393,23 @@ org, T.~M.  \harvardyearleft n.d.{\em d}\harvardyearright , `Mpi4py
   documentation', \url{https://pythonhosted.org/mpi4py/usrman/index.html}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem{org}{n.d.{\em e}}{scipy}
+org, T.~S.  \harvardyearleft n.d.{\em e}\harvardyearright , `Scipy
+  documentation',
+  \url{http://docs.scipy.org/doc/scipy/reference/tutorial/stats.html}.
+\newblock Accessed July 2, 2016.
+
 \harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\
   Suo}{2014}{pang2014th}
 Pang, Z., Xie, M., Zhang, J., Zheng, Y., Wang, G., Dong, D. \harvardand\ Suo,
   G.  \harvardyearleft 2014\harvardyearright , `The th express high performance
   interconnect networks', {\em Frontiers of Computer Science} {\bf
   8}(3),~357--366.
+
+\harvarditem{Paxson}{1996}{paxson1996towards}
+Paxson, V.  \harvardyearleft 1996\harvardyearright , Towards a framework for
+  defining internet performance metrics, {\em in} `Proceedings of INET',
+  Vol.~96, Citeseer, pp.~50--56.
 
 \harvarditem{Pinkerton}{2002}{pinkerton2002case}
 Pinkerton, J.  \harvardyearleft 2002\harvardyearright , `The case for rdma',
@@ -375,6 +441,15 @@ register .Inc, T.  \harvardyearleft n.d.\harvardyearright , `Review:
   \url{http://www.theregister.co.uk/2013/06/11/review_beagleboard_beaglebone_black//}.
 \newblock Accessed July 2, 2016.
 
+\harvarditem{Rice}{1989}{rice1989analyzing}
+Rice, W.~R.  \harvardyearleft 1989\harvardyearright , `Analyzing tables of
+  statistical tests', {\em Evolution} {\bf 43}(1),~223--225.
+
+\harvarditem{Rosenblatt}{1956}{rosenblatt1956central}
+Rosenblatt, M.  \harvardyearleft 1956\harvardyearright , `A central limit
+  theorem and a strong mixing condition', {\em Proceedings of the National
+  Academy of Sciences} {\bf 42}(1),~43--47.
+
 \harvarditem{Russell}{2012}{RobertRDMAintro}
 Russell, R.~D.  \harvardyearleft 2012\harvardyearright , `Introduction to rdma
   programming'.
@@ -393,6 +468,15 @@ Schwartz, J.~T.  \harvardyearleft 1980\harvardyearright , `Ultracomputers',
   {\em ACM Transactions on Programming Languages and Systems (TOPLAS)} {\bf
   2}(4),~484--521.
 
+\harvarditem{Stacy}{1962}{stacy1962generalization}
+Stacy, E.~W.  \harvardyearleft 1962\harvardyearright , `A generalization of the
+  gamma distribution', {\em The Annals of Mathematical Statistics}
+  pp.~1187--1192.
+
+\harvarditem{Sterling}{2002}{sterling2002beowulf}
+Sterling, T.~L.  \harvardyearleft 2002\harvardyearright , {\em Beowulf cluster
+  computing with Linux}, MIT press.
+
 \harvarditem{Stone}{1971}{stone1971parallel}
 Stone, H.~S.  \harvardyearleft 1971\harvardyearright , `Parallel processing
   with the perfect shuffle', {\em IEEE transactions on computers} {\bf
@@ -409,6 +493,12 @@ Subramoni, H., Lai, P., Luo, M. \harvardand\ Panda, D.~K.  \harvardyearleft
   2009\harvardyearright , Rdma over ethernet—a preliminary study, {\em in}
   `2009 IEEE International Conference on Cluster Computing and Workshops',
   IEEE, pp.~1--9.
+
+\harvarditem{Thekkath \harvardand\ Levy}{1993}{thekkath1993limits}
+Thekkath, C.~A. \harvardand\ Levy, H.~M.  \harvardyearleft
+  1993\harvardyearright , `Limits to low-latency communication on high-speed
+  networks', {\em ACM Transactions on Computer Systems (TOCS)} {\bf
+  11}(2),~179--203.
 
 \harvarditem{ValentFx}{n.d.{\em a}}{logiwishbone}
 ValentFx  \harvardyearleft n.d.{\em a}\harvardyearright , `Logi pi wishbone
@@ -432,6 +522,12 @@ ValentFx, T.  \harvardyearleft n.d.{\em d}\harvardyearright , `Logi pi wishbone
   hardware documentation',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
 \newblock Accessed July 2, 2016.
+
+\harvarditem{Vl{\v{c}}ek \harvardand\ Huth}{2009}{vlvcek2009daily}
+Vl{\v{c}}ek, O. \harvardand\ Huth, R.  \harvardyearleft 2009\harvardyearright ,
+  `Is daily precipitation gamma-distributed?: Adverse effects of an incorrect
+  use of the kolmogorov--smirnov test', {\em Atmospheric Research} {\bf
+  93}(4),~759--766.
 
 \harvarditem{Yahoo!}{n.d.}{financeyahoo}
 Yahoo!  \harvardyearleft n.d.\harvardyearright , `Yahoo! finance api',

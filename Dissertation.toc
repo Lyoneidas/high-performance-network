@@ -2,117 +2,127 @@
 \contentsline {section}{\numberline {1.1}Thesis Inspiration}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Literature review}{2}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Market Data Feed}{2}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Low Latency Network Infrastructure}{2}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.2}Low Latency Network Infrastructure}{3}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}A-B Data Feed}{3}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}Scalable Interconnect Switches in Supercomputers}{4}{subsection.1.2.4}
 \contentsline {subsubsection}{Linear Speed-up in Beowulf Architecture}{4}{section*.6}
 \contentsline {subsubsection}{Interconnect Networks Topology: Perfect Shuffle and Fat Tree}{5}{section*.7}
 \contentsline {subsubsection}{Comparison: MPI supported network interconnection and SPI direct data transmission}{6}{section*.8}
-\contentsline {subsection}{\numberline {1.2.5}Field-programmable gate array(FPGA) and Integration with Open Sourced Hardware}{8}{subsection.1.2.5}
-\contentsline {subsection}{\numberline {1.2.6}Open Sourced Hardware}{8}{subsection.1.2.6}
-\contentsline {subsection}{\numberline {1.2.7}Similar Solution}{8}{subsection.1.2.7}
-\contentsline {subsubsection}{FPGA accelerated market data feed}{8}{section*.9}
-\contentsline {subsubsection}{TH Express interconnection network}{9}{section*.10}
-\contentsline {subsubsection}{Enyx`s ARM-based System on a Chip solution to market data infrastructure}{10}{section*.11}
-\contentsline {subsubsection}{Raspberry Pi supercomputer in Southampton University}{10}{section*.12}
-\contentsline {section}{\numberline {1.3}Conclusion}{11}{section.1.3}
-\contentsline {chapter}{\numberline {2}Details of Implemented Technologies}{12}{chapter.2}
-\contentsline {section}{\numberline {2.1}Remote Direct Memory Access(RDMA)}{13}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Two Important Concepts: Verbs and Queue Pairs}{14}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Queue Pair}{14}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}RNIC Verbs}{15}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}Implementation Details of Verbs}{16}{subsection.2.1.4}
-\contentsline {subsubsection}{Memory management}{16}{section*.13}
-\contentsline {section}{\numberline {2.2}Fat-tree topology implementation over RDMA}{17}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Reducing the Cost in Node Intercommunication}{17}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Analysing flat topology and fat-tree topology}{18}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Rebalancing the fat-tree over network bandwidth}{20}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}RDMA verb implementation: Infiniband Verbs}{21}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Building the Passive Side}{22}{subsection.2.3.1}
-\contentsline {subsubsection}{Building the Active Side}{23}{section*.14}
-\contentsline {subsection}{\numberline {2.3.2}Conclusion}{23}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}MPI-CH}{24}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Introduction to SPMD and MPMD}{24}{subsection.2.4.1}
-\contentsline {subsubsection}{Single Program Multiple Data}{25}{section*.15}
-\contentsline {subsubsection}{Multiple Program Multiple Data}{25}{section*.16}
-\contentsline {subsection}{\numberline {2.4.2}The architecture of MPI-CH}{26}{subsection.2.4.2}
-\contentsline {subsubsection}{MPI API}{27}{section*.17}
-\contentsline {subsubsection}{Communication mode in MPI}{27}{section*.18}
-\contentsline {subsubsection}{Abstract Device Interface}{28}{section*.19}
-\contentsline {subsubsection}{RDMA channel implementated on ADI3}{29}{section*.20}
-\contentsline {subsubsection}{RDMA channel implementation}{30}{section*.21}
-\contentsline {subsubsection}{The fat-tree topology}{32}{section*.22}
-\contentsline {subsection}{\numberline {2.4.3}Conclusion}{32}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Field Programmable Field Array(FPGA) Assisted Computation}{33}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Sparta-6 integration with Raspberry Pi}{33}{subsection.2.5.1}
-\contentsline {subsubsection}{Programming on CPU platform}{33}{section*.23}
-\contentsline {subsubsection}{The MCU platform}{34}{section*.24}
-\contentsline {subsubsection}{The FPGA platform}{35}{section*.25}
-\contentsline {subsubsection}{Spartan-6 with Raspberry Pi2}{36}{section*.26}
-\contentsline {subsection}{\numberline {2.5.2}FPGA hardware programming}{36}{subsection.2.5.2}
-\contentsline {subsubsection}{Board structure}{37}{section*.27}
-\contentsline {subsubsection}{Design the hardware logic}{37}{section*.28}
-\contentsline {subsubsection}{Burning the design into the FPGA chip}{38}{section*.29}
-\contentsline {subsection}{\numberline {2.5.3}Wishbone: interface for FPGA-to-PC communication}{39}{subsection.2.5.3}
-\contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{40}{section*.30}
-\contentsline {subsubsection}{Implementation of Wishbone on Logi Pi}{41}{section*.31}
-\contentsline {subsubsection}{Parallel process and FPGA status}{42}{section*.32}
-\contentsline {subsection}{\numberline {2.5.4}Conclusion}{43}{subsection.2.5.4}
-\contentsline {section}{\numberline {2.6}Conclusions for the Chapter}{43}{section.2.6}
-\contentsline {chapter}{\numberline {3}Project Design and Implementation}{44}{chapter.3}
-\contentsline {section}{\numberline {3.1}Experiment Objectives}{45}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Overall Design}{45}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Expectations}{46}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Main Objective}{47}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}System Requirements}{48}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}System Input: Dual feeds and UDP Session Simulation}{48}{subsection.3.2.1}
-\contentsline {subsubsection}{Dual-feed receivers hardware}{48}{section*.33}
-\contentsline {subsubsection}{Sender-receiver pair requirements}{48}{section*.34}
-\contentsline {subsubsection}{UDP simulator}{49}{section*.35}
-\contentsline {subsubsection}{Value of the packet loss rate}{50}{section*.36}
-\contentsline {subsubsection}{Choice of two receiving strategy}{51}{section*.37}
-\contentsline {subsubsection}{Conclusion}{53}{section*.38}
-\contentsline {section}{\numberline {3.3}Hardware design}{54}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Interconnection Design and Implementation}{54}{subsection.3.3.1}
-\contentsline {subsubsection}{Interconnection design}{55}{section*.39}
-\contentsline {subsubsection}{Interconnection implementation}{56}{section*.40}
-\contentsline {subsection}{\numberline {3.3.2}Power Supply Design}{56}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Conclusion}{57}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}System Design and Implementation}{57}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Operating System and Internet Connection}{58}{subsection.3.4.1}
-\contentsline {subsubsection}{Solution to the IP address configuration}{58}{section*.41}
-\contentsline {subsubsection}{Solution to Internet reconnection}{59}{section*.42}
-\contentsline {subsubsection}{Interacting with the cluster: ssh terminal and VNC}{59}{section*.43}
-\contentsline {subsection}{\numberline {3.4.2}MPI-CH2: Install and Configure}{59}{subsection.3.4.2}
-\contentsline {subsubsection}{Adding Python support to MPI-CH2:MPI4PY}{60}{section*.44}
-\contentsline {section}{\numberline {3.5}Software Design and Implementation}{60}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Design of the Data Feed}{61}{subsection.3.5.1}
-\contentsline {subsubsection}{Transforming data loss rate to session failure rate}{62}{section*.45}
-\contentsline {subsubsection}{Dual data sender implementation}{62}{section*.46}
-\contentsline {subsection}{\numberline {3.5.2}Dual-feed handlers and controller}{64}{subsection.3.5.2}
-\contentsline {subsubsection}{Requirements for dual-feed handlers}{64}{section*.47}
-\contentsline {subsubsection}{Dual-feed handler implementation}{65}{section*.48}
-\contentsline {subsubsection}{Controller design}{66}{section*.49}
-\contentsline {subsubsection}{Controller implementation}{68}{section*.50}
-\contentsline {section}{\numberline {3.6}FPGA Verification module design and implementation}{69}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Communicator design}{69}{subsection.3.6.1}
-\contentsline {subsection}{\numberline {3.6.2}Hardware versification module design}{70}{subsection.3.6.2}
-\contentsline {subsubsection}{Checksum algorithm implementation}{70}{section*.51}
-\contentsline {subsubsection}{Hardware algorithm design}{71}{section*.52}
-\contentsline {section}{\numberline {3.7}Conclusion for the Chapter}{72}{section.3.7}
-\contentsline {chapter}{\numberline {4}Experiment Design, Requirements and Expectations}{73}{chapter.4}
-\contentsline {section}{\numberline {4.1}Experiment Design}{74}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Experiment 1: Single data feed with single receiver}{74}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Experiment 2: Dual data feeds over the cluster}{75}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Experiment 3: Dual feeds processed with MPI processors without RDMA}{75}{subsection.4.1.3}
-\contentsline {subsubsection}{Description}{76}{section*.53}
-\contentsline {section}{\numberline {4.2}Experiment Requirements and Expectations}{77}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Simulation of the data source}{77}{subsection.4.2.1}
-\contentsline {chapter}{\numberline {5}Implementation and Testing}{78}{chapter.5}
-\contentsline {chapter}{\numberline {6}Results}{79}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusions}{80}{chapter.7}
-\contentsline {chapter}{\numberline {A}Design Diagrams}{87}{appendix.A}
-\contentsline {chapter}{\numberline {B}User Documentation}{88}{appendix.B}
-\contentsline {chapter}{\numberline {C}Raw results output}{89}{appendix.C}
-\contentsline {chapter}{\numberline {D}Code}{90}{appendix.D}
-\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{91}{section.D.1}
+\contentsline {subsection}{\numberline {1.2.5}Discussion:the bottleneck of network performance efficiency}{8}{subsection.1.2.5}
+\contentsline {subsection}{\numberline {1.2.6}Field-programmable gate array(FPGA) and Integration with Open Sourced Hardware}{9}{subsection.1.2.6}
+\contentsline {subsection}{\numberline {1.2.7}Open Sourced Hardware}{10}{subsection.1.2.7}
+\contentsline {subsection}{\numberline {1.2.8}Similar Solution}{10}{subsection.1.2.8}
+\contentsline {subsubsection}{FPGA accelerated market data feed}{10}{section*.9}
+\contentsline {subsubsection}{TH Express interconnection network}{11}{section*.10}
+\contentsline {subsubsection}{Enyx`s ARM-based System on a Chip solution to market data infrastructure}{12}{section*.11}
+\contentsline {subsubsection}{Raspberry Pi supercomputer in Southampton University}{12}{section*.12}
+\contentsline {section}{\numberline {1.3}Conclusion}{13}{section.1.3}
+\contentsline {chapter}{\numberline {2}Details of Implemented Technologies}{14}{chapter.2}
+\contentsline {section}{\numberline {2.1}Remote Direct Memory Access(RDMA)}{15}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Two Important Concepts: Verbs and Queue Pairs}{16}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Queue Pair}{16}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}RNIC Verbs}{17}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Implementation Details of Verbs}{18}{subsection.2.1.4}
+\contentsline {subsubsection}{Memory management}{18}{section*.13}
+\contentsline {section}{\numberline {2.2}Fat-tree topology implementation over RDMA}{19}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Reducing the Cost in Node Intercommunication}{19}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Analysing flat topology and fat-tree topology}{20}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Rebalancing the fat-tree over network bandwidth}{22}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}RDMA verb implementation: Infiniband Verbs}{23}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Building the Passive Side}{24}{subsection.2.3.1}
+\contentsline {subsubsection}{Building the Active Side}{25}{section*.14}
+\contentsline {subsection}{\numberline {2.3.2}Conclusion}{25}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}MPI-CH}{26}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Introduction to SPMD and MPMD}{26}{subsection.2.4.1}
+\contentsline {subsubsection}{Single Program Multiple Data}{27}{section*.15}
+\contentsline {subsubsection}{Multiple Program Multiple Data}{27}{section*.16}
+\contentsline {subsection}{\numberline {2.4.2}The architecture of MPI-CH}{28}{subsection.2.4.2}
+\contentsline {subsubsection}{MPI API}{29}{section*.17}
+\contentsline {subsubsection}{Communication mode in MPI}{29}{section*.18}
+\contentsline {subsubsection}{Abstract Device Interface}{30}{section*.19}
+\contentsline {subsubsection}{RDMA channel implementated on ADI3}{31}{section*.20}
+\contentsline {subsubsection}{RDMA channel implementation}{32}{section*.21}
+\contentsline {subsubsection}{The fat-tree topology}{34}{section*.22}
+\contentsline {subsection}{\numberline {2.4.3}Conclusion}{34}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Field Programmable Field Array(FPGA) Assisted Computation}{35}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Sparta-6 integration with Raspberry Pi}{35}{subsection.2.5.1}
+\contentsline {subsubsection}{Programming on CPU platform}{35}{section*.23}
+\contentsline {subsubsection}{The MCU platform}{36}{section*.24}
+\contentsline {subsubsection}{The FPGA platform}{37}{section*.25}
+\contentsline {subsubsection}{Spartan-6 with Raspberry Pi2}{38}{section*.26}
+\contentsline {subsection}{\numberline {2.5.2}FPGA hardware programming}{38}{subsection.2.5.2}
+\contentsline {subsubsection}{Board structure}{39}{section*.27}
+\contentsline {subsubsection}{Design the hardware logic}{39}{section*.28}
+\contentsline {subsubsection}{Burning the design into the FPGA chip}{40}{section*.29}
+\contentsline {subsection}{\numberline {2.5.3}Wishbone: interface for FPGA-to-PC communication}{41}{subsection.2.5.3}
+\contentsline {subsubsection}{Serial Peripheral Interface on Raspberry Pi}{42}{section*.30}
+\contentsline {subsubsection}{Implementation of Wishbone on Logi Pi}{43}{section*.31}
+\contentsline {subsubsection}{Parallel process and FPGA status}{44}{section*.32}
+\contentsline {subsection}{\numberline {2.5.4}Conclusion}{45}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}Conclusions for the Chapter}{45}{section.2.6}
+\contentsline {chapter}{\numberline {3}Project Design and Implementation}{46}{chapter.3}
+\contentsline {section}{\numberline {3.1}Experiment Objectives}{47}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Overall Design}{47}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Expectations}{48}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Main Objective}{49}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}System Requirements}{50}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}System Input: Dual feeds and UDP Session Simulation}{50}{subsection.3.2.1}
+\contentsline {subsubsection}{Dual-feed receivers hardware}{50}{section*.33}
+\contentsline {subsubsection}{Sender-receiver pair requirements}{50}{section*.34}
+\contentsline {subsubsection}{UDP simulator}{51}{section*.35}
+\contentsline {subsubsection}{Value of the packet loss rate}{52}{section*.36}
+\contentsline {subsubsection}{Choice of two receiving strategy}{53}{section*.37}
+\contentsline {subsubsection}{Conclusion}{55}{section*.38}
+\contentsline {section}{\numberline {3.3}Hardware design}{56}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Interconnection Design and Implementation}{56}{subsection.3.3.1}
+\contentsline {subsubsection}{Interconnection design}{57}{section*.39}
+\contentsline {subsubsection}{Interconnection implementation}{58}{section*.40}
+\contentsline {subsection}{\numberline {3.3.2}Power Supply Design}{58}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Conclusion}{59}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}System Design and Implementation}{59}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Operating System and Internet Connection}{60}{subsection.3.4.1}
+\contentsline {subsubsection}{Solution to the IP address configuration}{60}{section*.41}
+\contentsline {subsubsection}{Solution to Internet reconnection}{61}{section*.42}
+\contentsline {subsubsection}{Interacting with the cluster: ssh terminal and VNC}{61}{section*.43}
+\contentsline {subsection}{\numberline {3.4.2}MPI-CH2: Install and Configure}{61}{subsection.3.4.2}
+\contentsline {subsubsection}{Adding Python support to MPI-CH2:MPI4PY}{62}{section*.44}
+\contentsline {section}{\numberline {3.5}Software Design and Implementation}{62}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Design of the Data Feed}{63}{subsection.3.5.1}
+\contentsline {subsubsection}{Transforming data loss rate to session failure rate}{64}{section*.45}
+\contentsline {subsubsection}{Data lost ratio randomize}{64}{section*.46}
+\contentsline {subsubsection}{Kolmogorov-Smirnov test}{65}{section*.47}
+\contentsline {subsubsection}{Dual data sender implementation}{66}{section*.48}
+\contentsline {subsection}{\numberline {3.5.2}Dual-feed handlers and controller}{66}{subsection.3.5.2}
+\contentsline {subsubsection}{Requirements for dual-feed handlers}{67}{section*.49}
+\contentsline {subsubsection}{Dual-feed handler implementation}{68}{section*.50}
+\contentsline {subsubsection}{Controller design}{69}{section*.51}
+\contentsline {subsubsection}{Controller implementation}{71}{section*.52}
+\contentsline {section}{\numberline {3.6}FPGA Verification module design and implementation}{72}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Communicator design}{73}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Hardware versification module design}{73}{subsection.3.6.2}
+\contentsline {subsubsection}{Checksum algorithm implementation}{74}{section*.53}
+\contentsline {subsubsection}{Hardware algorithm design}{75}{section*.54}
+\contentsline {section}{\numberline {3.7}Conclusion for the Chapter}{76}{section.3.7}
+\contentsline {chapter}{\numberline {4}Experiment Requirements, Procedure, and Results}{77}{chapter.4}
+\contentsline {section}{\numberline {4.1}Experiment Design}{78}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Performance metrics}{78}{subsection.4.1.1}
+\contentsline {subsubsection}{Basic terminologies}{78}{section*.55}
+\contentsline {subsubsection}{Empirical metrics}{79}{section*.56}
+\contentsline {subsubsection}{Analytical metrics}{79}{section*.57}
+\contentsline {subsection}{\numberline {4.1.2}Choice on inputs}{80}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Experiment environment set up and pre-processes}{80}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}Experiment 1: Single data feed with single receiver}{81}{subsection.4.1.4}
+\contentsline {subsubsection}{Experiment inputs}{81}{section*.58}
+\contentsline {subsubsection}{Experiment results}{81}{section*.59}
+\contentsline {subsubsection}{K-S test for the result}{83}{section*.60}
+\contentsline {subsection}{\numberline {4.1.5}Experiment 2: Dual data feeds over the cluster on MPI-CH2 with FPGA}{84}{subsection.4.1.5}
+\contentsline {subsubsection}{Experiment results}{85}{section*.61}
+\contentsline {subsection}{\numberline {4.1.6}Experiment 3: Dual feeds processed with MPI processors, without RDMA and FPGA separately}{87}{subsection.4.1.6}
+\contentsline {subsection}{\numberline {4.1.7}Additional Experiment: Dual feeds processed with MPI processors}{89}{subsection.4.1.7}
+\contentsline {chapter}{\numberline {5}Results}{91}{chapter.5}
+\contentsline {chapter}{\numberline {6}Conclusions}{92}{chapter.6}
+\contentsline {chapter}{\numberline {A}Design Diagrams}{100}{appendix.A}
+\contentsline {chapter}{\numberline {B}User Documentation}{101}{appendix.B}
+\contentsline {chapter}{\numberline {C}Raw results output}{102}{appendix.C}
+\contentsline {chapter}{\numberline {D}Code}{103}{appendix.D}
+\contentsline {section}{\numberline {D.1}File: yourCodeFile.java}{104}{section.D.1}

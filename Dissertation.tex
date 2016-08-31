@@ -40,7 +40,7 @@
 
 
 \abstract
-The thesis introduces an experimental dual-feed solution over open source hardware to reduce the latency in network. One significant improvement in the solution different from other established commercial solutions is that the network infrastructure is built upon open sourced hardware, and the main goal of the project is to prove that the cost in implementing ultra-low latency network can be reduced significantly by using the open sourced resources assisted with FPGA. The project focuses on implementing an experimental environment of fat-tree network topology over three Raspberry Pi2 Model B with one Spartan FPGA, with the implementation of MPICH2 among three ARM CPUs, providing scalability in computational scale to the system. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
+The thesis introduces an experimental dual-feed solution over open source hardware to reduce the latency in network. One convincing improvement in the solution different from other established commercial solutions is that the network infrastructure is built upon open sourced hardware, and the main goal of the project is to prove that the cost in implementing ultra-low latency network can be reduced significantly by using the open sourced resources assisted with FPGA. The project focuses on implementing an experimental environment of fat-tree network topology over three Raspberry Pi2 Model B with one Spartan FPGA, with the implementation of MPICH2 among three ARM CPUs, providing scalability in computational scale to the system. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
 \newpage
 
 \tableofcontents
@@ -65,12 +65,13 @@ Researchers are looking forward to find alternative solutions to build network i
 
 \section{Literature review}
 \subsection{Market Data Feed}
-The principle of providing low latency market data feed is to provide users live data of current price information and trader status, including individual portfolio valuation, financial market data, trading activities and alarms, a matrix of these data forms an 'Order Book'. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies. For example, data delayed over 5 minutes can be fetched from Yahoo finance Application Programming Interface(API) for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
-\begin{figure}[htbp] 
+The principle of providing low latency market data feed is to provide users live data of current price information and trader status, including individual portfolio valuation, financial market data, trading activities and alarms, a matrix of these data forms an 'Order Book'\cite{menkveld2013high}. The data feeds have different price for varies delays, famous market data feed providers, or the data vendors, such as Yahoo finance, ThomsonReuters and Bloomberg provide combinations of pricing and other market information in different latencies\cite{hasbrouck2013low}. For example, data delayed over 5 minutes can be fetched from Yahoo finance Application Programming Interface(API) for free\cite{financeyahoo}, and ThomsonReuters provide paid services in different level of delay. Customers can choose to use designed data feed services to meet their business requirements, show in the reference to picture \ref{fig:1}.\\
+\begin{figure}[H] 
 \centering\includegraphics[width=3.5in]{picture/tradevenue.PNG} 
 \caption{Relationship among trade venue, data vendors and customers}
 \label{fig:1} 
 \end{figure} 
+The Market Data feeds usually transmitted in User Datagram Protocol(UDP) datagrams\cite{brook2015low}.in order to achieve high frequency data transmission, the size of each datagram is not big, and usually will not exceed the limit of one UDP datagram. \\
 \subsection{Low Latency Network Infrastructure}
 Engineers provide solutions to achieve lower latency in network transmission for market data, including direct redundant fibre cables from trading centre to traders, shortest path transmission and dual data feed. For example, solution using microwave towers reducing the cost of digging tunnels for fibres and enabling signals transmit over the sphere is implemented between New Jersey and Chicago\cite{htfbackyard}, shows in the picture \ref{fig:2}. Engineers also developed 'dual-feed' mechanism to reduce the cost in retransmission when package lost\cite{zusman1999fault}.The introduction of dual feed, or the A-B feed of market data transmission uses two feeds with offset in delay to avoid significant failure such as delay or fault, especially for regional traders who want to trade across long geographical distances. \\
 \begin{figure}[htbp]
@@ -78,7 +79,7 @@ Engineers provide solutions to achieve lower latency in network transmission for
 \caption{Chicago-New Jersey microwave networks from data vendor Quincy Data}
 \label{fig:2}
 \end{figure}
-
+The low latency network is consisted of at least two hardware infrastructures: the high speed network equipment to carry the signals usually linked by optic fibres, for example, the 10Gb Ethernet; the Global Position System(GPS) based clock system to synchronize both sides\cite{brook2015low}.
 \subsection{A-B Data Feed}
 A-B feed structure requires two independent signals from one data provider, and the one feed(A) is several milliseconds faster than another feed(B). Relay stations between the sender and receiver need to decompress both feeds, filter and aggregate the package then transmit the data feed to the next station. Receiver also need a decompresser to handle the data from both feeds, reconstruct the original package and split the data into sub-streams forming process-specific subset of data, shows in picture \ref{fig:3}.\\
 \begin{figure}[htbp]
@@ -158,6 +159,33 @@ We decided to use the MPI supported solution for the listing reasons:
 	\item We cannot overcome the difficulty in implementing the GPIO port board, as the open-source hardware only supports 40 GPIO pins on the board, however, the minimum number of boards is three. Therefore the SPI interface can only send 20 bit each time between the nodes, and the experiment cannot perform the scalability test as we do not have expandable GPIO pin peripherals
 	\item We found a solution to simulate the scenarios in UDP datagram transmission in 10Gb Ethernet network, especially the package loss possibility simulation, over the normal RJ-45 Ethernet network. The solution will be illustrated in the following chapters.
 \end{itemize}
+\subsection{Discussion:the bottleneck of network performance efficiency}
+We have introduced the A-B data feed mechanism,and showed how it reduces the retransmission time especially within the unreliable networks, however, most of the modern super computers do not implement the dual-feed structure in their interconnection networks. It is key to understand the bottleneck of the network performance efficiency, especially in the high frequency data environment.\\
+First of all, we need to understand the choice of UDP protocols: people choose the UDP protocols rather than TCP or other reliable transmission protocols, is largely because the headers in datagram defined by RFC is the smallest\cite{udpprotocol}, therefore UDP protocol is one of the most efficient mechanism for data transmission. UDP protocol has three feature that we should notice: the datagrams have checksum in their headers to provide filtering of 'corrupted' data; the UDP receiver stack works as First In First Service, and the datagrams can arrive in any sequence because different routing strategy; the UDP protocol defines how to detect a mistakes, but has not defined processes to correct them, and a full retransmission of the entire UDP packet will be required.\\
+Before the next step discussion, we need to highlight the main goal of high performance network solution: reducing the person-to-service(P2S) latency, and the data route between the person to the service on the other side is consisted of: input from human-computer interaction interface or the application intelligent logic, (local system)local memory, (remote system) remote memory, Network Interface Card(NIC), Ethernet infrastructure, including cables, relays, switches and other medium materials, then the data finally reach the NIC card of the server in form of network sockets, and then the application hosted in the server will consume these sockets by invoking the kernel function of slurping contents from the NIC cache.\\
+With these processes in mind, we can at least think about two features that will affect the system:
+\begin{itemize}
+	\item Network latency between nodes along the route
+	\item Wait time in the server side
+\end{itemize}
+The first feature is easy to understand: the network system is sensitive to node-to-node communication efficiency, and the ideal scenario is that a direct physical link only supported by relays is established between the server and user, the bandwidth of this link is one hundred percent owned by the user. In the real world, most high-frequency trading companies have already established this hardware system\cite{budish2015high}. The reason of using UDP datagrams is to reduce the 'meaningless' payload of the transmitted data, because the fewer protocol related bits there are, the more 'effective' loads of information we can put in a fixed length of network sockets. UDP does not have CRC or other Quality of Service(QoS) secure mechanism, which reduces the header significantly compared to TCP or FTP\cite{jacobson1992tcp}. We can reduce the latency in network by improving the reliability of the mediums over the route, or implementing alternative mechanisms at the endpoint, including the A-B data feed,cached relay and High-bandwidth Ultra-low latency network architecture\cite{alizadeh2012less}. The main goal is to reduce the cost in unnecessary aspects.\\
+The second feature is decided by the actual logic implementation of the Operating System on the server along with the application on it which provides the services.　However, this part is not entirely hardware independent,  as discussed above, the UDP datagram has checksum mechanism as the security performance to ensure the data arrived is expected. Normally, this checksum mechanism is performed by NIC card automatically, and the user level application can only see the datagrams which has already passed the checksum. Therefore, the throughput capacity of a high Input/Output(IO) host is restricted by the implementation of the NIC-OS partnership\cite{livny1997mechanisms}. \\
+Therefore, we can break down the listed two feature into the following table:
+\begin{table}[H]
+	\centering
+	\caption{System bottleneck break down}
+	\label{my-label}
+	\begin{tabular}{@{}ll@{}}
+		\toprule
+		Bottleneck             & Solution                                                                                                                                         \\ \midrule
+		Data efficiency        & \begin{tabular}[c]{@{}l@{}}Using network protocols with simple\\ structure and small headers\end{tabular}                                        \\
+		Network reliability    & More reliable materials, e.g. optic fibres                                                                                                       \\
+		Network reliablity     & \begin{tabular}[c]{@{}l@{}}Alternative mechanisms, e.g. cached relay\\ to retransmit sockets from the route instead\\ of the source\end{tabular} \\
+		End to end performance & \begin{tabular}[c]{@{}l@{}}Larger cache in NIC card, advanced system \\ architecture\end{tabular}                                                \\
+		End to end performance & Properly programmed applications                                                                                                                 \\ \bottomrule
+	\end{tabular}
+\end{table}
+The next section will introduce some established solutions for the end-to-end performances.
 \subsection{Field-programmable gate array(FPGA) and Integration with Open Sourced Hardware}
 The introduction of Field-programmable gate array, or the FPGA, aims at solving the heterogeneous computation requirement in hardware based acceleration and general computing by using gateway logic circus to perform general algorithms or general processes\cite{hauck2010reconfigurable}. The FPGA is an integrated circuit, with re-configurable gateway and other logical blocks that can simulate most non-reconfigurable hardware with similar efficiency. The FPGA can be programmed to meet certain functional requirements by certain hardware definition languages, and modern FPGA also supports advances programming language interfaces, for example, C and Python.\\
 The integration of FPGA and open sourced hardware have been carried by the community, and supported by the FPGA providers such as Xilin and Spartan. The LOGI-Pi is the very first FPGA supported by the open sourced hardware, with Spartan FX9 FPGA chip and SATA connector directly to the designed hardware board\cite{logipi}.
@@ -173,15 +201,15 @@ Hardware engineers need to design and print their customized motherboards to sup
 \subsection{Similar Solution}
 \subsubsection{FPGA accelerated market data feed}
 Engineers are not satisfied with the traditional CPU based acceleration solution, and developed an alternative hardware architecture that solves the problem of buffering and filtering high frequency data. This solution introduces direct connection between FPGA chip and network interfaces, the Celoxica AMDC board enables dual feeds for single chip. Compressors and filtering program are burned in the FPGA\cite{morris2009fpga}. The acceleration of stream processing in this solution lies in the customized hardware algorithm in FPGA, and data streams goes directly to the RAM of user cores via DMA message tunnel, the IO frequency of which is higher than that in network interfaces, the structure is shown in picture \ref{fig:4}.\\
-\begin{figure}[htbp]
-	\centering\includegraphics[width=3.5in]{picture/FPGAcall.png}
+However, this solution requires high investments in hardware, especially the motherboard and printed FPGA. Scalability is another weakness of this solution, it does not provide easy solutions for large scale implementations, especially in the scenario of bandwidth upgrading from 1Gb to 10Gb Ethernet. The NIC chip and interfaces need to be redesigned and reimplemented in the printed FPGA chip, and against the principle of System On a Chip, that the algorithm and application should be maintained only by the system supported by the hardware, not the hardware itself\cite{klaas2004system}.\\
+\begin{figure}[H]
+	\centering\includegraphics[width=0.5\linewidth]{picture/FPGAcall.png}
 	\caption{Overview of A-B streaming infrastructure}
 	\label{fig:4}
-\end{figure}\\
-However, this solution requires high investments in hardware, especially the motherboard and printed FPGA. Scalability is another weakness of this solution, it does not provide easy solutions for large scale implementations, especially in the scenario of bandwidth upgrading from 1Gb to 10Gb Ethernet. The NIC chip and interfaces need to be redesigned and reimplemented in the printed FPGA chip, and against the principle of System On a Chip, that the algorithm and application should be maintained only by the system supported by the hardware, not the hardware itself\cite{klaas2004system}.\\
+\end{figure}
 \subsubsection{TH Express interconnection network}
 TH Express interconnection network is the local area net framework for the Chinese Galaxy series super computers. It is a fat-tree topology network, and consisted of two main parts: communication network and monitor/diagnose network\cite{yang2011tianhe}. The former one connects computational nodes, the latter one checks machine status and resolves runtime error.The researchers developed a scalable network interface hardware High-Radix Routing Chip, and using RDMA method to access multiple memory spaces with unified offset, reducing processing time, improve the scalability and increasing the potential bandwidth. The architecture is shown in the picture \ref{fig:tianhe1a}\\
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{picture/tianhe1A.PNG}
 	\caption{Tianhe 1A interconnection network architecture}
@@ -195,12 +223,13 @@ One of the well-known solution provider is the Enyx, the platform of which is ba
 The Southampton University has implemented an Raspberry Pi supercomputer with sixty-four Raspberry Pi Model B boards, interconnected several switches and named 'Iridis-Pi'\cite{cox2014iridis}. The performance of the cluster is measured using LINPACK and HPL benchmark, and the single node performance in LINPACK and node increment benchmark by the HPL results are shown in the picture \ref{fig:iridisBenchmark}. The cluster proves that the Raspberry Pi can form an usable parallel computing cluster, even though its power consumption is relatively very low compared to formal parallel computing infrastructures.\\
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{picture/iridisBenchmark}
+\includegraphics[width=0.6\linewidth]{picture/iridisBenchmark}
 \caption{Benchmark result of LINPACK and HPL on Iridis Pi}\cite{cox2014iridis} 
 \label{fig:iridisBenchmark}
 \end{figure}
 \section{Conclusion}
 In this chapter we made introductions to the background knowledge of high-frequency market data and its network infrastructure, especially the A-B data feed it uses to reduce network latency. Then we explained how the scalable interconnect switches are structured in the supercomputers, and focuses on the Beowulf architecture, which is the prototype of our design, the perfect shuffle within the interconnection network and Message Passing Interface. We made a comparison over the Serial Peripheral Interface connection and MPI supported network connection, and explained our choice of the MPI supported one. We also introduced the Field Programmable Gateway Array which holds our hardware algorithm, and two different types of supported open sourced hardware, the BeagleBone Back and Raspberry Pi 2Mode B.\\
+Another discussion is made about the bottleneck of the high performance network system. We listed five possible conditions that the latency of a high-frequency system may be sensitive to. Our system design and experiment implementations are established according to these conditions.\\
 We also made introductions to two established dual datafeed solutions for market data infrastructure and discussed pros and cons of both solutions. The high performance network switch in TH Express network brings us an new idea about the approach to the dual data feed hardware that a Beowulf structured open source hardware can achieve similar performance over the network with much less cost. The Raspberry Pi cluster in Southampton University proves that the performance of open sourced hardware can be acceptable if they are tuned correctly.\\ 
 The following chapter will have detailed introduction of the technologies we implemented.\\ 
 \chapter{Details of Implemented Technologies}
@@ -906,15 +935,15 @@ The table of materials used in the project is shown in table \ref{bom}. However,
 	\centering
 	\caption{Materials used in the experiment}
 	\label{bom}
-	\begin{tabular}{@{}llll@{}}
+	\begin{tabular}{@{}|l|l|l|l|@{}}
 		\toprule
 		Name                  & Amount & Manufacture    & Metrics                                                                                                                    \\ \midrule
-		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\
-		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\
+		Raspberry Pi2         & 3      & Raspberry Org. & \begin{tabular}[c]{@{}l@{}}1x Boardcom ARM CPU, \\ 1x Ethernet Port, \\ 1x SD card port\\ 5.1V 1A input power\end{tabular} \\ \hline
+		Kingston MicroSD card & 3      & Kingston       & 8GB Micro SD card                                                                                                          \\ \hline
 		Logi Pi FPGA board    & 1      & ValentFX       & \begin{tabular}[c]{@{}l@{}}1x SPARTAN-6 FPGA chip, \\ 5V 1A input\end{tabular}                                             \\
-		Ethernet Switch          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\
-		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\
-		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\
+		Ethernet Switch          & 1      &                & \begin{tabular}[c]{@{}l@{}}1x S1786 central chip, \\ 8x Ethernet ports\end{tabular}                                        \\ \hline
+		Ethernet cable        & 4      &                & RJ45 copper cable                                                                                                          \\ \hline
+		Power source          & 1      & iClever        & \begin{tabular}[c]{@{}l@{}}6x Powerports, \\ 100-240V 50-60Hz 1200mA input, \\ 5V(max) each output\end{tabular}            \\ \hline
 		Power cable           & 4      &                & USB power cable                                                                                                            \\ \bottomrule
 	\end{tabular}
 \end{table}
@@ -1031,6 +1060,26 @@ The reason for this transforming is that the UDP protocol does not have an error
 \caption{UDP sender from data loss rate to success rate}
 \label{fig:udpsender}
 \end{figure}
+\subsubsection{Data lost ratio randomize}
+We shift the data lost in Ethernet transmissions into the manually set random data lost, which is implemented by software only. As discussed above, we need to find a reliable random number generator to simulate random data loss.\\
+We believe that the data loss happens independently, as infinite cause will result in data loss during transmission. However, we have measured the normal data loss ratio of UDP datagram in 10Gb Ethernet infrastructure, and we have two possibility models to simulate: the Gamma Distribution and the Gaussian Distribution\cite{dubois2006possibility}.\\
+This project, however, does not focus on the random number generation strategy, and we only need to have a brief analysis over the two different distributions. The Gaussian Distribution, or the Normal Distribution, describes how the independent experiment set $A$ will distribute as event $\alpha$ will most likely to occur in a certain possibility\cite{morrison1990multivariate}, but the Normal distribution will satisfy the conditions of Central Limit theorem only when there are finite variances to affect the event $\alpha$ \cite{rosenblatt1956central}, therefore the data loss in Ethernet transmission cannot meet the requirements of Gaussian Distribution because the causes are infinite, as discussed above.\\
+The Gamma Distribution defines the possible time $t$ in a set of experiment $B$ if we want certain event $\beta$ to happen, and the reciprocal of $t$ can be viewed as the frequency of event $\beta$ happens in general\cite{stacy1962generalization}. The Gamma Distribution does not require the finite or infinite influential variables, and we have already got the possibility of the event \textit{data loss} happen in the discussion above， the Gamma Distribution is an ideal random simulation in this project.\\
+The two variables in Gamma distribution should have the following value according to the discussion above:
+\begin{itemize}
+	\item Mean value $e$: $3.0435\%$
+	\item Dispersion $\phi$: this value needs to be derived from the density function of Gamma distribution, and will be attached in the appendix. The value in the sender is $2$.
+\end{itemize} 
+\subsubsection{Kolmogorov-Smirnov test}
+We introduced the Kolmogorov-Smirnov test(K-S test) to check if the data loss ratio fits the Gamma Distribution\cite{vlvcek2009daily}. K-S test implements the basic idea that if the distribution of  experiment results fits our pre-defined distribution pattern, then we can accept the fact that events happened in the experiment fits our defined distribution. The process of the K-S test is simple, and we introduce the following terms to show the statistics we need to collect.\\
+\begin{itemize}
+	\item[1.] $H_{0}$ is the assumption we make, that the data loss distributed in the experiment fits Gamma distribution
+	\item[2.] $H_{1}$ is the reverse of the assumption, which assumes the results cannot fit the definition
+	\item[3.]  $F_{0}(x)$ is the expression of Gamma Distribution, $F_{0}(x)=\frac{1}{\beta^{\alpha}\Gamma(\alpha)}x^{\alpha-1}e^{-\frac{x}{\beta}}$, $x>0$
+	\item[4.] $F_{n}(X)$ is the frequency equation of event $k$ happens in the experiment result.
+	\item[5.] $\alpha(0.05)$ significance level, and if $p-value$ is smaller than it, the distribution will not fit the assumption $H_{0}$
+\end{itemize}
+The calculation for the K-S test is to find the value pair $ D=\{max|F_{0}(x)-F_{n}(x)|, p-value\}$ \cite{rice1989analyzing}. Value of $D$ shows the approximation level between the experiment and ideal distribution, and the smaller it is, the higher it will be possible that the experiment fits the defined distribution pattern, and $p-value$ is defined to compare with the significance level, and if $p-value < \alpha(0.05)$, $H_{0}$ will not be real.\\
 \subsubsection{Dual data sender implementation}
 The dual data sender needs to implement the following features:
 \begin{itemize}
@@ -1041,30 +1090,33 @@ The dual data sender needs to implement the following features:
 The first feature requires us to be able to send UDP packages to the MPI hosted applications on the cluster before the actual sending process happens, and the initialization should be able to take parameters associate to the experiment we performed. \\
 The second feature requires us to be able to start UDP sessions to two different UDP listeners,a nd send packages simulating the A-B data feed discussed before, with fixed offset in latency.\\
 The third feature requires us to be able to achieve two things: recording the time stamp in each individual session, and sending the recorded results to the benchmark using TCP sessions, as the data would be too big for the UDP protocol to handle.\\
-We uses Business Process Model and Notation to show the flow control of our application\cite{dijkman2011business}:
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.0\linewidth]{"picture/Dual sender data flow diagram - Page 1"}
-\caption{Dual sender data flow diagram}
-\label{fig:Dualsenderdataflowdiagram-Page1}
-\end{figure}
+We uses Business Process Model and Notation to show the flow control of our application\cite{dijkman2011business} in picture \ref{fig:Dualsenderdataflowdiagram-Page1}.
+
 \subsection{Dual-feed handlers and controller}
 The dual-feed receiver and controller is running on the Raspberry Pi cluster, consisted of three parts and on the MPI-CH2 framework. It has two feed handers, \text{receiver\_A} and \text{receiver\_B}, and a controller running on the master node.\\
 We had two options to design the handlers and controllers over the MPI-CH2, one os using SPMD which only implements one application defining three behaviours, and the \textit{mpirun} take only one applications running on multiple nodes. Behaviours and communications are defined by node rank and tag respectively. \\
 Another solution is using MPMD which defines two different applications, one is for the handlers and anther for the controller. Therefore the \textit{mpirun} needs to manage which node implements which application by defining the details in the \textit{machinefile} required by the method.\\
 We choose the first solution for three reasons: a united application is easier for coding and testing, and easier in scalability because we can changing the functions of each nodes by reordering the ranks defined in the configuration file of MPI-CH, and the version control over the cluster is much easier than the MPMD solution by using the \textit{rsync} tool.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{"picture/Dual sender data flow diagram - Page 1"}
+	\caption{Dual sender data flow diagram}
+	\label{fig:Dualsenderdataflowdiagram-Page1}
+\end{figure}
 \subsubsection{Requirements for dual-feed handlers}
 The main goal of dual feed handlers is receiving data feeds from the source, and seamlessly retransmit the datagrams to the controller for error check. We think about two different approaches:
 \begin{itemize}
+	\item Synchronize the clock before transmission
 	\item Collecting all the datagrams before sending to the controller
 	\item Retransmit each datagram to the controller instantly
 \end{itemize}
+The synchronization of system clock is simulated by setting the initialization point in the runtime using libraries in the Python language, we focus on the solution of consuming the datagrams.\\
 We made experiments over the two solutions, and found that the second one affected the overall efficiency of the parallel system, as the instant retransmission will be trigger in the same sequence of the sender, and according to the fat-tree design of the system, the bandwidth of output from the controller is the aggregation of bandwidth over data handlers, therefore the maximum data frequency between the handler and the controller can only be a half of the incoming data.\\
 Another analyse was performed by monitoring the verb queues in the MPI-CH architecture, and we found that the queuing buffer requirement for the second solution shows the similar result: the incoming data of frequency $f$, and the average size of the datagram is $s$, the size of verb queue buffer in the controller is approximately $2\times \frac{s}{f}$ with no data loss, because the architecture of the controller is the same as the handlers, therefore the maximum frequency in verb queue consumption equals to that of handers, so the buffer size should be doubled.\\
 Along with the distribution strategy of filtering and error check discussed in earlier section, and our choice in the retransmit strategy, we can have our blue print for the dual-feed handlers：
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{picture/receiverBlueprint}
+\includegraphics[width=0.5\linewidth]{picture/receiverBlueprint}
 \caption{A-B data feed handler blueprint}
 \label{fig:receiverBlueprint}
 \end{figure}
@@ -1077,7 +1129,7 @@ The implementation of dual-feed handler is simple, and A, B handler uses the sam
 \end{itemize}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\linewidth]{"picture/Dual feed handler flow diagram - Page 1"}
+\includegraphics[width=0.7\linewidth]{"picture/Dual feed handler flow diagram - Page 1"}
 \caption{Dual-feed handler flow chart}
 \label{fig:Dualfeedhandlerflowdiagram-Page1}
 \end{figure}
@@ -1205,52 +1257,181 @@ The overall design shows how the data drives each part to perform its functions.
 The hardware algorithm design introduced in detail about how the checksum mechanism is performed in the FPGA, and we introduced the module structure inside the FPGA by using the IDE desgin diagram of Skeleton.\\
 The next chapter will introduce the experiments we implemented, and their analysis.
 
-\chapter{Experiment Design, Requirements and Expectations}
+\chapter{Experiment Requirements, Procedure, and Results}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{picture/photo/cluster}
 	\caption{The Raspberry Pi cluster framed by Lego}
 	\label{fig:cluster}
 \end{figure}
-This chapter shows the design of experiment, requirements and expectations the project wants to achieve. \\
+This chapter shows the design of experiment, requirements and results of the implemented experiments.\\
 The main goal is to implement a data processor for the dual feed data sources using open-source hardware, and implement UDP package processing application on the FPGA for acceleration.\\
 In order to achieve the goal of receiving dual feeds, which will come from physically two Ethernet cables, the system needs at least two Ethernet ports, and we introduces MPICH over multiple independent hardware which has one Ethernet port each, and congregate them into a cluster in order to meet the requirements.\\
 \newpage
 \section{Experiment Design}
-This section introduces the design of five experiments and their architectures:
+This section introduces the design of three groups of experiments and their architectures:
+\begin{table}[H]
+	\centering
+	\caption{Experiments}
+	\label{my-label}
+	\begin{tabular}{@{}|l|l|l|@{}}
+		\toprule
+		Number & Name                                                                                                   & Introduction                                                                                                                                                                  \\ \midrule
+		1      & Single data feedwith single receiver                                                                   & Normal UDP send/receive pair                                                                                                                                                  \\ \hline
+		2      &\begin{tabular}[c]{@{}l@{}} Dual data feeds over the cluster\\ with MPI-CH2 and FPGA\end{tabular}                                                                       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds of normal \\ UDP send/receiver pairs accelerated\\ via FPGA\end{tabular}                                                                    \\ \hline
+		3      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ processors without FPGA\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds sending data\\ to MPI structure receivers without FPGA\end{tabular}                                                          \\ \bottomrule
+	\end{tabular}
+\end{table}
+For each groups of experiment, three basic processes will be performed: getting the basic network latency, get the network latency with data loss, and checking the performance of the system if hazard situation happens, especially when one of the data sources is lost.\\ 
+The goal of implementing these experiments is to make comparisons of the network system with and without the dual-feed topology, and compare the open-sourced dual-feed system with the commercial ones, and see if the open-source system can achieve similar acceleration compared to the commercial ones.\\
+
+\subsection{Performance metrics}
+The performance metrics of the network can have multiple definitions, and we made a framework for the metrics to focus on the efficiency in the following terms: the mean time for a success session, the average success ratio within certain time interval and overall success ratio in extreme conditions\cite{cerf1991guidelines}.\\
+There are two different metrics system: the analytical metrics and empirical metrics\cite{paxson1996towards}. Discussed in Paxon`s paper, the empirical metrics can only be measured via program, and analytical ones can be derived from the benchmark results.Therefore, we use empirical metrics in the experiment for a direct comparison in network efficiency, and compare to the 10Gb Ethernet solution by using the analytically metrics derived from the experiment results.\\
+\subsubsection{Basic terminologies}
+We need to introduce some basic terminologies from a general framework for network performance benchmark before the next step discussion, and these terminologies are not related to certain way of platform implementation\cite{paxson1996towards}:
+\begin{itemize}
+	\item \textbf{Host}: a computer linked to the network
+	\item \textbf{Cluster}: in this project, a cluster is specifically refers to the Raspberry Pi cluster, consisted of three Raspberry Pi hosts, and can be treated like a \textit{black box}
+	\item \textbf{Network Path}: an virtual path between two hosts, exists in the Internet Layer  in TCP/IP model
+	\item \textbf{Route}: specifically how the hardware devices, the hosts, linked to form a network path
+\end{itemize}
+\subsubsection{Empirical metrics}
+As discussed above, we need a framework of empirical metrics in the experiment:
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[H]
 	\centering
-	\caption{Experiment design table}
+	\caption{Empirical metrics}
 	\label{my-label}
 	\begin{tabular}{@{}lll@{}}
 		\toprule
-		Number & Name                                                                                                   & Introduction                                                                                                                                                                  \\ \midrule
-		1      & Single data feedwith single receiver                                                                   & Normal UDP send/receive pair                                                                                                                                                  \\
-		2      & Dual data feeds over the cluster                                                                       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds of normal \\ UDP send/receiver pairs\end{tabular}                                                                            \\
-		3      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ processors without RDMA\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Using dual data feeds sending data\\ to MPI structure receivers without RDMA\end{tabular}                                                          \\
-		4      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ processors with RDMA\end{tabular}          & \begin{tabular}[c]{@{}l@{}}Using dual data feeds sending data\\ to MPI structure receivers with RDMA\end{tabular}                                                             \\
-		5      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI \\ with unified QoS check\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Ignoring the QoS check of sockets when\\ each node receives data, and performs an\\ unified checksum after merging the feeds\end{tabular}          \\
-		6      & \begin{tabular}[c]{@{}l@{}}Dual feeds processed with MPI\\ with unified QoS check on FPGA\end{tabular} & \begin{tabular}[c]{@{}l@{}}Ignoring the QoS check of sockets when\\ each node receives data and performs an\\ unified checksum after merging the feeds\\ by FPGA\end{tabular} \\ \bottomrule
+		Name                                                             & Unite          & Note                                                                                                       \\ \midrule
+		Transmission efficiency                                                & second per session & \begin{tabular}[c]{@{}l@{}}The time cost for one times of \\sessions from host A to B\end{tabular} \\
+		\begin{tabular}[c]{@{}l@{}}Transmission\\ frequency\end{tabular} & per session    & \begin{tabular}[c]{@{}l@{}}The reciprocal of transmission times \\ for a success session\end{tabular}      \\
+		Datagram received                                                 & per session    & 
+		\begin{tabular}[c]{@{}l@{}}The correct datagram received in one\\ session        \end{tabular}                                                        \\ \bottomrule
 	\end{tabular}
 \end{table}
+The transmission time refers to the cost in datagram transmission over the network path in the system, and it will be affected by the checksum mechanism, because 'corrupted' datagrams will cause a retransmission of the entire session.\\
+The transmission frequency refers to the situation when the data received is 'corrupted', and the sender needs to retransmit the data. The number of times it take to have a success session can be an overall metrics of system efficiency.\\
+The datagram received refers to the number of correct package received in a single session. This number will be affected by data lost and checksum error, as retransmission will add a new datagram to it.
+\subsubsection{Analytical metrics}
+We also implement some analytical metrics to compare the experiment hardware to the commercial ones:
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+	\centering
+	\caption{Analytical metrics}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Name               & Unit                & Note                                                                                                      \\ \midrule
+		Acceleration ratio & \%                  & Latency with dual-feed against latency without it                                                         \\
+		Bandwidth cost     & Kilo bit per second & \begin{tabular}[c]{@{}l@{}}Derived bandwidth cost of the system implemented\\ with dual-feed\end{tabular} \\
+		Power cost         & Kilo Walt           & The energy cost of the system                                                                             \\ \bottomrule
+		\end{tabular}
+\end{table}
+\subsection{Choice on inputs}
+The inputs of the experiments are UDP datagrams, however, the frequency of UDP datagram and the length of the data inside the datagram should be chose carefully, as the input of the experiment should be able to simulate the real world situation.\\
+According to the discussion of data loss ratio in the above chapter, the data loss ratio is the same as the real world, and according to the expression of transmission time cost $T_{trans}=(1+P_{lost})\times T$, T is the one-side average transmission time without data lost. In order to compare the acceleration ratio of the experiment $Acc_{exp}$ with the real world one $Acc_{real}$, we have the term expected acceleration compared to te established one:
+\begin{equation}
+	E_{acc}=\frac{{T}'_{trans}}{T_{trans}\times Acc_{real}}
+\end{equation}
+The ${T}'_{trans}$ is the transmission time in dual-feed system with data loss, and $T_{trans}$ is the one without dual-feed mechanism. It is affected by both the data size of datagrams and frequency of the sessions, however, the size of the data 
+\subsection{Experiment environment set up and pre-processes}
+After booting up the MPI-CH2 environment on the cluster, we need to make the following setups before the experiments:
+\begin{itemize}
+	\item Disable the UDP checksum mechanism in both the server host and cluster
+	\item Synchronize the application repository in the cluster using \textit{rsync} command
+	\item Open the \textit{Jupyter Notebook} in the server host to record the metrics using \textit{iPython} 
+\end{itemize}
+The first step is to ensure the system based checksum is disabled, as we need to perform checksum by the applications, and the NIC card in both side should not be able to perform the checksum of the payload.\\
+We have set up three empirical metrics and three analytical metrics, and the next section will describe the process of each experiment, and the results of them.
+
 \subsection{Experiment 1: Single data feed with single receiver}
 This experiment shows the behaviour of a single UDP sender(data source) and a single UDP receiver(client), and tracks the output of receiver in the following environment:
 \begin{itemize}
 	\item No data lost in source and transmission
 	\item Data lost in source
 	\item Significant latency in data transmission
-	\item Data source goes down
+	\item Data source is down
 \end{itemize} 
-This experiment requires an computer simulating the data source, and a raspberry pi hosted receiver as the client. Quality of service strategy of data transmission is relied on the default settings of the client operating system.\\
+This experiment requires a host simulating the data source, and a raspberry pi hosted receiver as the client. Quality of service strategy in UDP datagram, which is the checksum of datagram is relied on the default settings of the client operating system.\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{picture/Exp1}
 \caption{Design of experiment 1}
 \label{fig:Exp1}
 \end{figure}
-\subsection{Experiment 2: Dual data feeds over the cluster}
+\subsubsection{Experiment inputs}
+The input data of each experiment is pre-configured, and listed in the table below:
+\begin{table}[H]
+	\centering
+	\caption{Inputs for experiment 1}
+	\label{my-label}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Input          & Unit & Value           & Note                           \\ \midrule
+		UDP sessions   & time & 1000 packets    & The sessions without data loss \\
+		Data loss rate & \%   & 0-3.4\%         &                                \\
+		UDP sessions   & time & 100-1000 packets & The session with data loss     \\ \bottomrule
+	\end{tabular}
+\end{table}
+\subsubsection{Experiment results}
+This experiment aims at figuring out the basic environment empirical metrics,and we made the processes discussed above.
+\begin{itemize}
+	\item[1.] No data lost between source and transmission, low frequency data
+\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{picture/experiments/exp1/latency}
+\caption{Latency with no data lost}
+\label{fig:latency}
+\end{figure}
+The average transmission time is 39.655ms. 
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[H]
+	\centering
+	\caption{Empirical metrics results for experiment 1.1}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Metrics                 & Unit               & Result                 \\ \midrule
+		Transmission efficiency & second per session & $3.9655\times 10^{-2}$ \\
+		Transmission frequency  & per session        & 50(fixed)              \\
+		Datagram received       & number per session & 1000(fixed)            \\ \bottomrule
+	\end{tabular}
+\end{table}
+\begin{itemize}
+	\item[2.] Data lost in source, the data lost ratio is 0-3.4\%
+\end{itemize}
+Input: 100-1000 datagrams in 100 UDP sessions, each with a random data loss ratio from 0 to 3.5\%, and the results are shown in picture \ref{fig:dataLoss}.\\
+In this experiment, we have set the time-out value to $1$ second, as some of the retransmission will take multiple times. For each data node, it represents the time cost $y$ in having $x$ amount of success UDP datagrams-length session between the sender and receiver in high frequency. However, the average time cost raises significantly as the amount of datagrams rises, compared to the situation when no data lost happens, the average network latency turns out to be very stable. The reason for it is that, the data loss of the UDP package will trigger a full retransmission, and the increasing amount of datagram retransmitted largely impacts the overall latency performance.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{picture/experiments/exp1/dataLoss}
+	\caption{Experiment result with data loss}
+	\label{fig:dataLoss}
+\end{figure}
+Another reason is that we introduces the data loss ratio instead of simulating the real data loss, and the UDP protocol does not provide CRC in the header. Therefore, we cannot inspect the 'corrupted' diagrams, although this mechanism increases the overall transmission speed with smaller header, it also makes the number of 'corrupted' diagrams increasing as the distribution of the wrong 'bits' will be enlarged as the amount of samples increases.\\
+The empirical results of average transmission time varies from 49ms to 54ms, and the average datagram received is 92-96\% of the sent datagrams. However, the result of this experiment can not be compared to the general results, as the data is sensitive to the actual data loss ratios, and we will have analytical results instead.\\
+\subsubsection{K-S test for the result}
+We implements the \textit{Scipy} package in Python to test if the data loss happens follows the Gamma distribution\cite{scipy}. We generate the random integer list with the \textit{numpy} library using $mean=3.0435$, $dispersion \phi =2$, and the significant test passes with the value pair $D=0.00363, \phi = 0.1342$. The distribution of data lost fit the distribution pattern of Gamma distribution.\\
+
+\begin{itemize}
+	\item[3.] Data source lost connectivity
+\end{itemize}
+The live diagram of this experiment is missing, as the \textit{metaplotlib} requires a full session to parsing the data structure. We managed to get the diagram from the csv file we created during the session.\\
+The value 0 means the CSV writer cannot catch new data, and write a zero to the result after time-out.
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{picture/experiments/exp1/lostConnect}
+\caption{Single feed lost connection}
+\label{fig:lostConnect}
+\end{figure}
+\subsection{Experiment 2: Dual data feeds over the cluster on MPI-CH2 with FPGA}
 This experiment shows the advantage of using dual feeds. Data source needs to simulate two data sources with the same content in package, and has an manual offset of one millisecond. The experiment needs to track the output from receivers under the following scenarios:
 \begin{itemize}
 	\item No data lost in either sources
@@ -1261,60 +1442,105 @@ This experiment shows the advantage of using dual feeds. Data source needs to si
 \end{itemize}
 The design is shown in picture \ref{fig:Exp2}.\\
 Receiver 1 and 2 can communicate with each other using network protocols and contact $output_{1}$ and $output_{2}$ together to have an unified output, and shows the differences in data lost conditions.\\
-The QoS mechanism is also relied on the configurations in operating system of the receiver, and the merging process will happen in the simulated master node.\\ 
-\subsection{Experiment 3: Dual feeds processed with MPI processors without RDMA}
-This experiment implements MPICH over the Raspberry Pi2 clusters, and the experiment shows output on the master node with dual data feed sources under the same scenarios as experiment2. The receiver programme communicate with each other using the message passing interfaces provided by MPICH, and shows the details of latency handling.\\
-The MPICH program uses MPI\_recv and MPI\_send pair to communicate under the MPI framework, and the way it runs is using SSH client in the master to perform \textit{mpiexec} shell command, with the arguments of a file containing lists of servers, and configurations of pointing at the destination of each MPI programme.\\
+The checksum mechanism is also relied on the configurations in operating system of the receiver, and the merging process will happen in the simulated master node.\\ 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{picture/Exp2}
-\caption{Design of experiment 2}
-\label{fig:Exp2}
+	\centering
+	\includegraphics[width=0.8\linewidth]{picture/exp3}
+	\caption{Design of experiment set 2}
+	\label{fig:exp3}
 \end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\linewidth]{picture/exp3}
-\caption{Design of experiment 3}
-\label{fig:exp3}
-\end{figure}
-
-\subsubsection{Description}
-This experiment shows the 
+\subsubsection{Experiment results}
 \begin{itemize}
-	\item UDP clients runs independently on two nodes, and passing the result to a master node
-	\item UDP clients
+	\item[1.] No data lost in either sources
 \end{itemize}
-
-\section{Experiment Requirements and Expectations}
-\subsection{Simulation of the data source}
-An server needs to run on an separate computer to simulate two high-frequency data sources, and push the data via different programming interfaces to two destinations.
-
-\chapter{Implementation and Testing}
-This is the chapter in which you review the implementation and testing
-decisions and issues, and critique these processes.
-
-Code can be output inline using \verb@\lstinline|some code|@.  For example,
-this code is inline: \lstinline|public static int example = 0;|  (I have
-used the character \verb@|@ as a delimiter, but any non-reserved character
-not in the code text can be used.)
-
-Code snippets can be output using the \verb|\begin{lstlisting} ... \end{lstlisting}|
-environment with the code given in the environment.  For
-example, consider listing \ref{Example-Code}, below.
-
-\begin{lstlisting}[breaklines,breakatwhitespace,caption={Example code},label=Example-Code]
-public static void main() {
-
-  System.out.println("Hello World");
-
-}
-\end{lstlisting}
-
-Code listings are produced using the package ``Listings''.  This has many
-useful options, so have a look at the package documentation for further
-ideas.
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/experiments/exp2/dualLatency}
+\caption{Dual data feed network latency without data loss compares to the one without data loss}
+\label{fig:dualLatency}
+\end{figure}
+The average transmission time cost is 41.0039982666ms. This result shows the system works as we expected, because the latency of network does not change significantly even we added a handler layer between the actual receiver and the sender. The network latency using RDMA intercommunication is much more efficient than the UDP sockets.\\ 
+\begin{table}[H]
+	\centering
+	\caption{Empirical metrics results for experiment 2.1}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Metrics                 & Unit               & Result                 \\ \midrule
+		Transmission efficiency & second per session & $4.1003\times 10^{-2}$ \\
+		Transmission frequency  & per session        & 50 each(fixed)              \\
+		Datagram received       & number per session & 1000 each(fixed)            \\ \bottomrule
+	\end{tabular}
+\end{table}
+\begin{itemize}
+	\item[2.] One of the source simulates data lost, while the other does not
+\end{itemize}
+We made a comparison of this result with the one only has one data feed. The comparison of overall transmission delay shows in picture \ref{fig:oneDataLost}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/experiments/exp2/oneDataLost}
+\caption{With B feed data lost compared to single data feed}
+\label{fig:oneDataLost}
+\end{figure}
+The comparison between the two situation shows the efficiency of the dual data feeds is higher than that with one data feed, as the data loss will not affect the system, as the controller will always have the correct result, because one of the sources have fixed zero data loss.\\
+In this scenario, the average transmission time per session does not change significantly compared to the previous experiment, and the improvement in network latency performance is more significant when the traffic is busy, as is shown on the right part of the diagram: the red line of single data feed has time-out, however, the green one with dual data feeds performs as normal.\\
+\begin{itemize}
+	\item[3.] Both data feeds are tuned with data loss
+\end{itemize}
+This experiment set A-B data feed both with random data loss, and the controller cannot guarantee if it can receive the correct datagram. If the merging result still has data loss, the controller will trigger an \textit{resend} signal to the source, and both A and B data feed will retransmit the datagrams of the same session.\\
+We made a comparison of the three scenarios all with data loss, and the result shows in picture \ref{fig:twoDataloss}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/experiments/exp2/twoDataloss}
+\caption{Comparison of three data-loss scenarios}
+\label{fig:twoDataloss}
+\end{figure}
+It is worth highlighting that even though the latency raise significantly compared to the one with reliable source, it still does not reach the time-out, and only raise to less than half of the situation when there are significant data loss in the network. The experiment result is stable and not sensitive to the data loss, therefore we have the empirical results:\\
+\begin{table}[H]
+	\centering
+	\caption{Empirical results for experiment 2.3}
+	\label{my-label}
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		Metrics                 & Result                              & Note                                                                                 \\ \midrule
+		Transmission efficiency & $4.936\times 10^{-2}s/session$      &                                                                                      \\
+		Transmission frequency  & 5 - 900 datagrams/second            &                                                                                      \\
+		Datagram received       & approximately 496 datagrams/session & \begin{tabular}[c]{@{}l@{}}This value is sensitive \\ to data loss rate\end{tabular} \\ \bottomrule
+	\end{tabular}
+\end{table}
+\subsection{Experiment 3: Dual feeds processed with MPI processors, without RDMA and FPGA separately}
+This experiment implements MPICH over the Raspberry Pi2 clusters, and the experiment shows output on the master node with dual data feed sources under the same scenarios as experiment2. The receiver programme communicate with each other using the message passing interfaces provided by MPICH, and shows the details of latency handling.\\
+The MPICH program uses MPI\_recv and MPI\_send pair to communicate under the MPI framework, and the way it runs is using SSH client in the master to perform \textit{mpiexec} shell command, with the arguments of a file containing lists of servers, and configurations of pointing at the destination of each MPI programme. The intercommunication can be implemented with or without RDMA, and this experiment aims at comparing the differences between the two choices.\\
+We also made two versions of controller, with and without the acceleration of FPGA hardware algorithm. The comparison between the two is expected to show us the necessity of implementing the FPGA hardware.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{picture/experiments/exp3/delay_overall}
+	\caption{Comparison with other experiment results}
+	\label{fig:delay_overall}
+\end{figure}
+We design the two subsets of experiments:the hardware environment of subset one is using FPGA without RDMA
+\begin{itemize}
+	\item Cluster receiving data feed without data loss
+	\item Cluster receiving data feed with both feed data loss
+	\item Cluster receiving data feed with hazard situation when sources off-line unexpected
+\end{itemize}
+The hardware environment of subset one is using RDMA without FPGA, and the experiment processes are the same.We expected to see a significant reduce in system performance when the RDMA or FPGA hardware are removed, however, the experiment results told a different story in \ref{fig:delay_overall}.\\
+From the result diagram, we can see that all three metrics are similar to the results in experiment 2, and the overall performance of the system is not sensitive to the implementation of FPGA and RDMA. However, we searched for the materials in Beowulf cluster analysis\cite{sterling2002beowulf}, and low latency network infrastructures\cite{thekkath1993limits}, both mentioned one important bottleneck of system efficiency, which is the checksum mechanism over the payload, especially in IPv4 environment.\\
+They believed that the checksum performed by NIC card following the RFC standards is not efficient for high performance network devices, however,in the pre-process, we have disabled the UDP payload checksum.\\
+It is necessary to add an additional experiment which enables the checksum mechanism to find out whether it was the undiscovered bottleneck in the Raspberry Pi cluster.\\
+\subsection{Additional Experiment: Dual feeds processed with MPI processors}
+Back to the discussion in the first chapter, we have listed some bottlenecks which may severely affects the latency performance of the system. This set of experiment is trying to figure out if the checksum mechanism in the NIC card will convincingly enough to affect the system performance.\\
+The experiment implementation is different from the previous three ones, however, as the checksum now happens in NIC card, we first need to find the transmission time without retransmit for error bits, then make a comparison between the network latency with and without NIC checksum respectively.\\
+\begin{itemize}
+	\item[1.] Get zero retransmit latency
+\end{itemize}
+We constructs raw UDP packets with checksum equals to zero to avoid the NIC automatic mechanism, however, as the structure of the cluster uses two Raspberry Pi hosts as pure data feed handlers, we need to calculate the latency in to parts showed in picture \ref{fig:addExperi}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{picture/addExperi}
+\caption{Two parts of measurement}
+\label{fig:addExperi}
+\end{figure}
 
 \chapter{Results}
 This is the chapter in which you review the outcomes, and
