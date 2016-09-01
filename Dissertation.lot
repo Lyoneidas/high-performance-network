@@ -1,27 +1,27 @@
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Latency and bandwidth in memory IO}}{7}{table.1.1}
-\contentsline {table}{\numberline {1.2}{\ignorespaces System bottleneck break down}}{12}{table.1.2}
+\contentsline {table}{\numberline {1.1}{\ignorespaces Latency and bandwidth in memory IO}}{8}{table.1.1}
+\contentsline {table}{\numberline {1.2}{\ignorespaces System bottleneck break down}}{13}{table.1.2}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Implemented Technologies}}{17}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{24}{table.2.2}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Wishbone functions}}{47}{table.2.3}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Implemented Technologies}}{19}{table.2.1}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{26}{table.2.2}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Wishbone functions}}{49}{table.2.3}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Content structure of system design and implementation}}{49}{table.3.1}
-\contentsline {table}{\numberline {3.2}{\ignorespaces System Features}}{52}{table.3.2}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Low-latency market data handler metrics}}{54}{table.3.3}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Materials used in the experiment}}{59}{table.3.4}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Logi Pi input/output fixed variables}}{77}{table.3.5}
-\contentsline {table}{\numberline {3.6}{\ignorespaces Static module addresses}}{78}{table.3.6}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Content structure of system design and implementation}}{51}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces System Features}}{54}{table.3.2}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Low-latency market data handler metrics}}{56}{table.3.3}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Materials used in the experiment}}{61}{table.3.4}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Logi Pi input/output fixed variables}}{79}{table.3.5}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Static module addresses}}{80}{table.3.6}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Experiments}}{81}{table.4.1}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Empirical metrics}}{82}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Analytical metrics}}{83}{table.4.3}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Inputs for experiment 1}}{84}{table.4.4}
-\contentsline {table}{\numberline {4.5}{\ignorespaces Empirical metrics results for experiment 1.1}}{85}{table.4.5}
-\contentsline {table}{\numberline {4.6}{\ignorespaces Empirical metrics results for experiment 2.1}}{89}{table.4.6}
-\contentsline {table}{\numberline {4.7}{\ignorespaces Empirical results for experiment 2.3}}{90}{table.4.7}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Experiments}}{83}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Empirical metrics}}{84}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Analytical metrics}}{85}{table.4.3}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Inputs for experiment 1}}{86}{table.4.4}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Empirical metrics results for experiment 1.1}}{87}{table.4.5}
+\contentsline {table}{\numberline {4.6}{\ignorespaces Empirical metrics results for experiment 2.1}}{91}{table.4.6}
+\contentsline {table}{\numberline {4.7}{\ignorespaces Empirical results for experiment 2.3}}{92}{table.4.7}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Aspects in this chapter}}{94}{table.5.1}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Aspects in this chapter}}{96}{table.5.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

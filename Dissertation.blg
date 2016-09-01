@@ -13,10 +13,14 @@ Repeated entry---line 616 of file ExampleBibFile.bib
  : @misc{garcia2006binding
  :                        ,
 I'm skipping whatever remains of this entry
+Repeated entry---line 1036 of file ExampleBibFile.bib
+ : @article{gropp1996high
+ :                       ,
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "fig:LogicDesign"
 Warning--there's a number but no volume in budish2015high
 Warning--empty institution in cerf1991guidelines
 Warning--there's a number but no volume in chordia2013high
 Warning--empty institution in jacobson1992tcp
 Warning--empty institution in postel1980user
-(There were 3 error messages)
+(There were 4 error messages)

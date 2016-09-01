@@ -1,5 +1,10 @@
 \begin{thebibliography}{xx}
 
+\harvarditem{Abraham}{2002}{abraham2002high}
+Abraham, C.  \harvardyearleft 2002\harvardyearright , `High frequency network
+  communications over various lines'.
+\newblock US Patent 6,396,392.
+
 \harvarditem{Aho \harvardand\ Hopcroft}{1974}{aho1974design}
 Aho, A.~V. \harvardand\ Hopcroft, J.~E.  \harvardyearleft 1974\harvardyearright
   , {\em The design and analysis of computer algorithms}, Pearson Education
@@ -453,6 +458,13 @@ Pang, Z., Xie, M., Zhang, J., Zheng, Y., Wang, G., Dong, D. \harvardand\ Suo,
   G.  \harvardyearleft 2014\harvardyearright , `The th express high performance
   interconnect networks', {\em Frontiers of Computer Science} {\bf
   8}(3),~357--366.
+
+\harvarditem[Pasetto et~al.]{Pasetto, Lynch, Tucker, Maguire, Petrini
+  \harvardand\ Franke}{2011}{pasetto2011ultra}
+Pasetto, D., Lynch, K., Tucker, R., Maguire, B., Petrini, F. \harvardand\
+  Franke, H.  \harvardyearleft 2011\harvardyearright , `Ultra low latency
+  market data feed on ibm powerentm', {\em Computer Science-Research and
+  Development} {\bf 26}(3-4),~307--315.
 
 \harvarditem{Paxson}{1996}{paxson1996towards}
 Paxson, V.  \harvardyearleft 1996\harvardyearright , Towards a framework for
