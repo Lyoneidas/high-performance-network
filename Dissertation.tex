@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage[]{algorithm2e}
+\usepackage{pdfpages}
 \title{High Performance Network Switch Solution Using Open Sourced Hardware}
 \author{Zhouqiang Tu}
 \date{MSc in Internet System and Security\\The University of Bath\\September 2016}
@@ -41,7 +42,7 @@
 
 
 \abstract
-The thesis introduces an experimental dual-feed solution over open source hardware to reduce the latency in network. One convincing improvement in the solution different from other established commercial solutions is that the network infrastructure is built upon open sourced hardware, and the main goal of the project is to prove that the cost in implementing ultra-low latency network can be reduced significantly by using the open sourced resources assisted with FPGA. The project focuses on implementing an experimental environment of fat-tree network topology over three Raspberry Pi2 Model B with one Spartan FPGA, with the implementation of MPICH2 among three ARM CPUs, providing scalability in computational scale to the system. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
+The thesis provides an integrated solution for dual-feed data handler implemented by open sourced hardware. The implementation of the solution is a Beowulf cluster with two data handlers and one data receiver, interconnected by RJ-45 Ethernet cables with Message Passing Interface(MPI) supported intercommunication. The main goal is to prove that commodity hardware can achieve similar system efficiency compared to the established commercial hardware. The cost in implementing ultra-low latency network can be reduced significantly by using the open sourced resources assisted with FPGA. The project focuses on constructing an experimental environment consisted of three Raspberry Pi2 Model B with one Spartan FPGA. The software system is running on Raspbian, a customized Debian OS customized for the Raspberry Pi. The main implementation is a parallel application based on MPICH2 among three ARM CPUs, written in Python, providing basic functions of data receiving,  filtering and error check. The experiments performed in the project shows that the solution reduces network latency significantly with reasonable cost in bandwidth and computational power. The system can be implemented in both high-frequency market data infrastructure and high-performance computational clusters as the distributed switch, for it meets the requirements of: low-latency data transmission, reliable end-to-end communication and acceleration in collective communication in MPI.  
 \newpage
 
 \tableofcontents
@@ -1160,7 +1161,7 @@ The implementation of dual-feed handler is simple, and A, B handler uses the sam
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{"picture/Dual-feed handler flow chart - Page 1"}
-\caption{}
+\caption{Data flow diagram for dual-feed handler}
 \label{fig:Dual-feedhandlerflowchart-Page1}
 \end{figure}
 The initialization of the handler can receive configuration files in MPI structure, synchronized within the cluster, and the end of the handler is when the datagram session is over, and the handler will retransmit the datagram queue to the handler.\\
@@ -1250,6 +1251,9 @@ The standard checksum process using hardware is as follows:
 	\item[4.] Add the carry to the final sum, and get the complement code via Wishbone
 	\item[5.] Compare the complement code to the checksum
 \end{itemize}
+\subsubsection{Error check algorithm design and implementation}
+The error check algorithm is similar to the checksum algorithm. The FPGA takes the expected length of the data and actual length as inputs in the second register, and perform bit \textit{with} operation to these two numbers, and return the calculation result.\\
+The result will be $0x1111$ when correct, and other values will indicate that the error check result is \textit{fail}.\\
 \subsubsection{Hardware algorithm design}
 The Valent Fx has provided a modular design tool, the Skeleton, over the Logi Pi board, which customized several pre-defined modules that can be implemented over the Logi Pi board\cite{skeleton}.
 The design of the hardware algorithm showed in the Skeleton IDE shows as follows:
@@ -1269,7 +1273,9 @@ The tool will provide us with several fixed addresses for each modules, and the 
 		Module Name   & Address & Note                                       \\ \midrule
 		PWM\_0        & 0x000B  & PWM connects to the LED                    \\
 		PWM\_divider  & 0x0008  & PWM\_divider connects to the system\_clock \\
-		reg\_checksum & 0x0000  & Read/Write address of reg\_checksum module \\ \bottomrule
+		reg\_checksum & 0x0000  & Read/Write address of reg\_checksum module \\
+		reg\_errorcheck & 0x0011 & Read/Write address of reg\_errorcheck module \\
+		 \bottomrule
 	\end{tabular}
 \end{table}
 
@@ -1627,7 +1633,7 @@ We design the two subsets of experiments:the hardware environment of subset one 
 The hardware environment of subset one is using RDMA without FPGA, and the experiment processes are the same.We expected to see a significant reduce in system performance when the RDMA or FPGA hardware are removed, however, the experiment results told a different story in \ref{fig:delay_overall}.\\
 From the result diagram, we can see that all three metrics are similar to the results in experiment 2, and the overall performance of the system is not sensitive to the implementation of FPGA and RDMA. However, we searched for the materials in Beowulf cluster analysis\cite{sterling2002beowulf}, and low latency network infrastructures\cite{thekkath1993limits}, both mentioned one important bottleneck of system efficiency, which is the checksum mechanism over the payload, especially in IPv4 environment.\\
 They believed that the checksum performed by NIC card following the RFC standards is not efficient for high performance network devices, however,in the pre-process, we have disabled the UDP payload checksum.\\
-It is necessary to add an additional experiment which enables the checksum mechanism to find out whether it was the undiscovered bottleneck in the Raspberry Pi cluster.\\
+It is necessary to add an additional experiment which enables the checksum mechanism, because the reason for us to implement the FPGA and RDMA channel is to substitute the filtering mechanism in NIC cards, and in the UDP datagram transmission, the filtering is the checksum mechanism.\\
 \subsection{Additional Experiment: Dual feeds processed with MPI processors}
 Back to the discussion in the first chapter, we have listed some bottlenecks which may severely affects the latency performance of the system. This set of experiment is trying to figure out if the checksum mechanism in the NIC card will convincingly enough to affect the system performance.\\
 \begin{figure}[H]
@@ -1649,10 +1655,48 @@ We first measure the latency between the sender and handler when both the NIC ca
 It is easy to observe that transmission time cost from the handler to sender is 38ms. Our implementation for the interconnection within cluster does not use UDP protocol, as discussed in the previous chapter, and we believe the latency in intercommunication is much lower than that between the sender and handler.\\
 The checksum mechanism does not affect the system efficiency when no data loss in the transmission with low frequency data, and we continue our experiment with high frequency data with data loss.\\
 The checksum mechanism does not influence UDP sessions within the cluster, therefore we can assume that the latency from the receiver to sender is limited by the connections between sender and handler.
-\subsubsection{Both feeds with data loss and checksum in NIC turned on}
-
-We turned on the checksum mechanism in both NIC cards of the handler, and measure the transmission time between the sender and receiver.
-\chapter{Conclusion}
+\subsubsection{2. Both feeds with data loss and checksum in NIC turned on}
+We turned on the checksum mechanism in both NIC cards of the handler, and measure the transmission time between the sender and receiver. We implement this experiment to find out whether the checksum mechanism will influence the latency of the network. The results in experiment 4.1 proved that the checksum in NIC card would not affect data transmission between the sender and handler in traditional single data feed with no data loss.\\
+\subsubsection{Inputs}
+\begin{table}[H]
+	\centering
+	\caption{Inputs for experiment 4.2}
+	\label{my-label}
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		Input          & Unit           & Value  & Note                     \\ \midrule
+		UDP datagram   & packet/session & 0-990 & Increasing by 10 per set \\ 
+		UDP session    & per second     & 500    & 							\\
+		Data loss rate & \%             & 0-3.4  & Random for each session  \\
+		Feed offset & millisecond   & 5         &                                \\ \bottomrule
+		\end{tabular}
+\end{table}
+Both A source and B source follow uses the same parameters.\\
+\subsubsection{Results and analysis}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{./picture/experiments/exp4/dataLoss_compare.jpg}
+\caption{Results for experiment 4.2}
+\label{fig:dataLoss_compare}
+\end{figure}
+The result shows that the latency between sender and receiver will exceed the time-out limit in the receiver side, and in comparison with the results in experiments set 3, we can find out the reasons that cause this problem:\\
+The checksum mechanism in NIC card lower the efficiency between the handler and the sender, and the datagram will be retransmitted several times before being retransmitted to the receiver. Compared to experiment set 3, whose datagram checksum happens in the receiver, and the datagrams are merged after the checksum, and the 'corrupted' datagrams will be ignored if anther feed has the correct one, and no retransmission will be performed in such scenario.\\
+However, according to the data loss ratio we set, the overall data loss ratio should be $1-0.966^{2}=6.68\%$, which is much lower than the empirical results. We guess it is because that the checksum mechanism is not parallel for the channel between the NIC cache to the system memory, and the channel will wait for the checksum to tag the correct datagram before slurping into the user level memory spaces. This could be the bottleneck for the system, as the data filtering will either exceed the time-out limit between the handler and receiver, or the amount of received datagram would flood the NIC cache, and the data loss ratio will increase significantly in high-frequency transmission environment.\\
+The results also show that the speed of filtering can influence the system efficiency especially when we implement the high frequency data, as the curve reaches time-out limit more when the frequency is higher than 400 packages per session.\\
+\section{Analysis and Conclusion}
+We have made four sets on experiments, the first three ones are performed with checksum in receiver, the fourth one equipped checksum in the NIC card in handlers.\\
+The first set shows the latency in traditional single feed between sender and receiver is 39.655ms, and the latency will significantly increase to larger than the 1000ms time-out limit when the sender increases the transmission frequency with random data loss.The single feed solution also cannot resolve the hazard situation when the data source lost connection.\\
+The k-s test shows that our settings in $p-value$ and $D$ in the distribution of data loss fits the Gamma distribution.\\
+The second set shows the situation when implementing dual data feeds. The latency between sender and receiver is 41.003ms, which is close to the latency in traditional solution. However, the empirical results of high-frequency data with data loss are much more improved than the traditional one, as dual-feed sources reduce the retransmission time by introducing merging mechanism between checksum and error check. This notably reduces the network latency by 70-80\% when one of the source is reliable with no data loss, and 50\% when both sources are not reliable. The dual-feed mechanism can also prevent 100\% data loss when one of the source lost connection, however, the metrics should be the same as the single-feed one with data loss.\\
+The third one tried to measure the efficiency in FPGA hardware algorithm and RDMA channel, however, we find that these two implementation do not influence the system performance as we expected.\\
+We implemented the fourth experiment set to prove the necessity of implementing the FPGA and RDMA, and this experiment shows that the system is not usable when we implement the UDP checksum in the NIC card, especially when we increase the data frequency. The cause can be split into two parts:
+\begin{itemize}
+	\item The checksum in NIC of the handlers requires both feed with no bit error, therefore the loss ratio increases to 6.68\%
+	\item The cache memory space in NIC of the handlers in commodity hardware is not big enough to handle high-frequency data while the filtering mechanism is single threaded to the content channel between cache and user memory space
+\end{itemize} 
+It is necessary to disable the NIC payload filtering mechanism, according to this experiment, and our analysis result shows that acceleration in FPGA filtering can be more conspicuous if we higher the data frequency.\\
+The RDMA channel is also necessary because the transmission with pure MPI communication interfaces is less efficient than the RDMA solution, as explained in the previous chapter, and the direct data swapping is lower in both time and memory space.
+\chapter{Conclusion and future work}
 This chapter aggregates the results from the previous chapter, make analysis and draw the conclusion about this project.\\
 The analysis focus on the following aspects:
 \begin{table}[H]
@@ -1662,14 +1706,13 @@ The analysis focus on the following aspects:
 	\begin{tabular}{@{}l|l@{}}
 		\toprule
 		Aspect               & Description                                                                                                                                                                    \\ \midrule
-		Main goal            & \begin{tabular}[c]{@{}l@{}}The main goal of this project is to establish an open-source\\ dual-feed handler, and run the experiments to prove that it is\\ usable\end{tabular} \\ \hline
-		Key features         & \begin{tabular}[c]{@{}l@{}}Investigating the key features: hardware topology, MPI-CH2 framework\\ and how they are combined together\end{tabular}                              \\ \hline
-		Unsolved problems     & \begin{tabular}[c]{@{}l@{}}There are some existing problems to be solved, and leading to the future\\ work\end{tabular}                                                        \\ \hline
-		Project expectations & \begin{tabular}[c]{@{}l@{}}This project is expected to be applicable using 10Gb Ethernet hardware.\\ Introduction about the planned implementation\end{tabular}                \\ \bottomrule
+		Main contribution            & \begin{tabular}[c]{@{}l@{}}The main goal of this project is to establish an open-source\\ dual-feed handler, and run the experiments to prove that it is\\ usable\end{tabular} \\ \hline
+		Challenges     & \begin{tabular}[c]{@{}l@{}}There are some existing problems to be solved, and leading to the future\\ work\end{tabular}                                                        \\ \hline
+		Future work & \begin{tabular}[c]{@{}l@{}}This project is expected to be applicable using 10Gb Ethernet hardware,\\ more features and tests will be performed\end{tabular}                \\ \bottomrule
 	\end{tabular}
 \end{table}
 \newpage
-\section{Establishing an Open-Source Hardware Cluster Supporting Dual Data Feeds}
+\section{Main Contributions}
 The overall design of the system is inspired by the articles about establishing Beowulf clusters using heterogeneous hardware\cite{kiepert2013creating}, and established network optimization using two UDP data feeds\cite{chordia2013high}. \\
 As illustrated above, we have built a small cluster made of three piece of open-source hardware, the Raspberry Pi 2, and simulated the high frequency dual data feeds using UDP sockets, and the data handler running on two Raspberry hosts works with the controller node, successfully consumed the data. The experiment results showed that the cluster worked as expected, and reduce the network latency compared to the traditional network topologies. The hardware system is encapsulated using Lego building blocks to achieve fine cabling layouts and scalability.\\ 
 \begin{figure}[H]
@@ -1683,14 +1726,54 @@ The network cabling and Lego built cabinets provides the cluster with portabilit
 \subsection{Software system}
 The cluster is running on the Raspbian, which is a customized version of Debian operating system. The hosts in the cluster is interconnected by a switch turned into broadcast model. Applications running on the hosts within the cluster communicate to each other via MPI-CH2 framework, the implementation of Message Passing Interface. We also implement the Remote Memory Direct Access channel in the cluster, therefore the user level application memory contents can be swapped seamlessly by the data driver and channel provided by the RDMA module. The cluster can be accelerated using two methods: the Overclock boost on the Raspberry Pi board\cite{upton2012meet}， or using the FPGA connected to the mastser node via General-purpose input/output ports. \\
 The cluster takes inputs via Secured Shell(SSH), and we host a svn repository in the main developing areas, and users can access to the source codes easily.\\
+\subsection{Data sender}
+The sender is a simulator that can send UDP datagrams in different model. The models includes:
+\begin{itemize}
+	\item Sending data feed to single source with/without data loss
+	\item Sending data feeds to dual data sources with manual offset in latency. The UDP datagram checksum=$0x0000$ and using TCP sessions to transmit correct checksum, and collect metrics
+	\item Sending data feeds to dual data sources with manual offset in latency, the UDP datagram with normal checksum 
+\end{itemize}
 \subsection{Dual-feed data handler}
-The majority part of software implementation is the dual-feed data handler, which consumes UDP datagrams, and the cluster works as a high performance Internet switch particular for the UDP data transmission. This application system is implemented using Python version 2.7.3.\\
+The main part of software implementation is the dual-feed data handler, which consumes UDP datagrams, and the cluster works as a high performance Internet switch particular for the UDP data transmission. This application system is implemented using Python version 2.7.3.\\
 The dual-feed handler is distributed on all three nodes, and follows the structure of Multiple Process Multiple Data(MPMD), the data handler code block is  running on two hosts, and a controller is running on the master node. A hardware algorithm in the FPGA is running to accelerate the checksum process for the UDP datagram queues.\\
 The UDP payload checksum is disabled in kernel model, and users of the handler application needs to construct their own raw UDP datagram. Data handler A receives data from IP 192.168.137.101 with port 3333, and data handler B receives data from 192.168.137.102 with the same port. The data handler can retransmit received datagrams following a customizable list of hosts with IP addresses, ports and hostnames.\\
 The handler only supports connection from RJ-45 cables at present due to the limitation in hardware portals. This will be discussed in project expectations.\\
-
-
-
+\subsection{Receiver}
+The receiver consumes the retransmission data from the data handlers, and implemented with Python 2.7.3.\\
+The receiver receives data feeds from the handlers using MPI communication channels, and merge the sources into a single result, and perform error check to the result. The filtering of checksum happens when the data is transmitted via the MPI channels, and 'corrupted' datagrams will be thrown by the mechanism. Merging mechanism will merge both feeds, and the error check will examine the merged result to see if a retransmission is required.\\
+The receiver is attached to an FPGA in hardware, and the checksum and error check both have two versions: the pure Python one and FPGA hardware accelerated one.\\
+\section{Challenges}
+The project is an experimental platform, which proves that the commodity hardware can implement the high-frequency data feed infrastructure by forming a Beowulf cluster with the help of Message Passing Interface.\\
+There are some major unsolved problem in this platform:\\
+\begin{itemize}
+	\item No back-up power supply for the system
+	\item The system is connected with the RJ-45 cables, whose metrics is much lower than the 10Gb Ethernet cables
+	\item The experiment platform does not have relays between the sender and handlers, and the influence of the relays are not considered
+	\item The Beowulf cluster is consisted of three nodes, which is much smaller than an applicable cluster
+\end{itemize}
+The cluster is supported by a power strip connecting to the public electric grid, with no backup or hazard tolerance mechanism, which is an unacceptable problem if we want to implement the solution in working environment.\\   
+The established solutions are implemented over the 10Gb Ethernet hardware infrastructures, and we need to test our solutions under the same environment if we want to substitute these commercial equipments with the commodity hardware, which is our final goal.\\
+The real-world scenario of high performance network usually connects each other from long distance, and the behaviour of relays between the nodes can influence the network performance.\\
+We implement the cluster with three heterogeneous nodes connected with wired cables, which is limited by the resources we are provided. However, the system performance could be improved by implementing more computational nodes, especially in the receiver which is performing a single threaded parser.\\
+\section{Future work}
+This section lists the components we expect to add to the project in the next phase, the additional experiments related we expect to perform and implementations we want the project to be in the future.\\
+\subsubsection{Unstoppable Power Supply(UPS)}
+We expect to be able to implement an Unstoppable Power Supply between the direct power feed and the system, which will increase the availability of the system.\\
+We have designed a UPS in the system, however, the special requirement for the cluster makes it hard to implement an UPS, because the Raspberry Pi boards are supported by the USB cables and the switch is supported by the 3.5mm power adapter.\\
+We expect to find an UPS hardware which supports a mixed power outputs.\\
+\subsubsection{10Gb Ehternet port for commodity hardware}
+We have found the established USB-based Gb Ethernet cable support for the implemented commodity hardware, for example the D-link USB to GB Ethernet solution shows in picture \ref{usbtogb}.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{picture/usbtogb.jpg}
+	\caption{USB to Gb Ethernet port by D-link}\cite{dlink}
+	\label{fig:usbtogb}
+\end{figure}
+However, we only find the SoC solutions for the 10 Gb Ethernet ports, which requires additional interconnection structure and power supply. We will keep on with the hardware implementations of a portable USB based 10 Gb Ethernet port solution.\\
+\subsubsection{Comparison between the MPI solution to the GPIO solution}
+We have analysed the choice between the implemented MPI solution and the GPIO based solution, which interconnects the system via SPI interfaces. However, we should compare the efficiency of interconnection using the GPIO system. The GPIO solution sacrifice the scalability for communication efficiency, as we analysed, and we need to experiment over at least two sets of inputs: the small amount of inputs which the GPIO can retransmit within the chip clock period, and the large one which exceeds the clock period, and requires multiple times of retransmission.\\
+\subsubsection{Comparison with the real implementation}
+We compare the results with the established system using the provided analytical results from the reports, however, we should compare the real-time metrics between the commodity cluster with the commercial solutions after implementing the 10-Gb solution on the commodity one, and make further improvements on the system.\\  
 \bibliography{ExampleBibFile}
 
 
@@ -1702,9 +1785,27 @@ The handler only supports connection from RJ-45 cables at present due to the lim
 %% these to your own requirements
 %%
 
-\chapter{Design Diagrams}
-
-\chapter{User Documentation}
+\chapter{Definition dispersion parameter $\phi$ of Gamma distribution}
+For the random value $Y$ following Gamma distribution $Gamma(\alpha,\nu)$, the density function is\cite{lukacs1955characterization}:\\
+\begin{equation}
+	f_{Y}{y}=\frac{y^{\nu-1}\alpha^{\nu}e^{-y\alpha}}{\Gamma(\nu)}
+\end{equation}
+we set the term A as the right side of the equation, and transforming the expression using $e$:$f_{Y}{y}=e^{ln(A)}$\\
+and $ln(A)$ is:
+\begin{equation}
+	\frac{y\frac{-\alpha}{\nu}-(-log\alpha)}{\frac{1}{\nu}}+(\nu-1)logy-log\Gamma(\nu)
+\end{equation}
+setting two terms: $\theta = -\frac{\alpha}{\nu}$ and $\phi=\frac{1}{\nu}$
+Therefore the density function can be expressed as:
+\begin{equation}
+	f_{Y}(y)=e^{\frac{y\theta-(-log(-\theta))}{\phi}-\frac{log\phi}{\phi}+(\frac{1}{\phi}-1)logy-log\Gamma(\frac{1}{\phi})}
+\end{equation}
+Therefore we have the distribution function of Gamma distribution is in exponential family with dispersion parameter $\phi \equiv \frac{1}{\nu}$, and variance of the distribution:
+\begin{equation}
+	Var(Y)=\frac{d^{2}ln(A)}{dy^{2}}=\frac{\nu}{(\alpha-y)^{2}}
+\end{equation}
+Which can be a value of dispersion parameter of Gamma distribution
+\chapter{BPMN 2.0 notations}
 
 \chapter{Raw results output}
 

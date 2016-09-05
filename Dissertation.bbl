@@ -140,6 +140,12 @@ Cox, S.~J., Cox, J.~T., Boardman, R.~P., Johnston, S.~J., Scott, M.
   `Iridis-pi: a low-cost, compact demonstration cluster', {\em Cluster
   Computing} {\bf 17}(2),~349--358.
 
+\harvarditem{D-link}{n.d.}{dlink}
+D-link, T.  \harvardyearleft n.d.\harvardyearright , `D-link usb to gb ethernet
+  port',
+  \url{http://www.dlink.com/uk/en/-/media/consumer_products/dub/dub-1312/datasheet/dub_1312_datasheet_en.pdf}.
+\newblock Accessed July 2, 2016.
+
 \harvarditem{Darema}{2001}{darema2001spmd}
 Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
   present and future, {\em in} `European Parallel Virtual Machine/Message
@@ -380,6 +386,11 @@ Liu, J., Wu, J. \harvardand\ Panda, D.~K.  \harvardyearleft
 Livny, M., Basney, J., Raman, R. \harvardand\ Tannenbaum, T.  \harvardyearleft
   1997\harvardyearright , `Mechanisms for high throughput computing', {\em
   SPEEDUP journal} {\bf 11}(1),~36--40.
+
+\harvarditem{Lukacs}{1955}{lukacs1955characterization}
+Lukacs, E.  \harvardyearleft 1955\harvardyearright , `A characterization of the
+  gamma distribution', {\em The Annals of Mathematical Statistics} {\bf
+  26}(2),~319--324.
 
 \harvarditem{McGowan}{2010}{mcgowan2010rise}
 McGowan, M.~J.  \harvardyearleft 2010\harvardyearright , `Rise of computerized

@@ -66,13 +66,18 @@
 \BOOKMARK [2][-]{subsection.4.1.5}{Experiment set 2: Dual data feeds over the cluster on MPI-CH2 with FPGA}{section.4.1}% 66
 \BOOKMARK [2][-]{subsection.4.1.6}{Experiment set 3: Dual feeds processed with MPI processors, without RDMA and FPGA separately}{section.4.1}% 67
 \BOOKMARK [2][-]{subsection.4.1.7}{Additional Experiment: Dual feeds processed with MPI processors}{section.4.1}% 68
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 69
-\BOOKMARK [1][-]{section.5.1}{Establishing an Open-Source Hardware Cluster Supporting Dual Data Feeds}{chapter.5}% 70
-\BOOKMARK [2][-]{subsection.5.1.1}{Hardware}{section.5.1}% 71
-\BOOKMARK [2][-]{subsection.5.1.2}{Software system}{section.5.1}% 72
-\BOOKMARK [2][-]{subsection.5.1.3}{Dual-feed data handler}{section.5.1}% 73
-\BOOKMARK [0][-]{appendix.A}{Design Diagrams}{}% 74
-\BOOKMARK [0][-]{appendix.B}{User Documentation}{}% 75
-\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 76
-\BOOKMARK [0][-]{appendix.D}{Code}{}% 77
-\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 78
+\BOOKMARK [1][-]{section.4.2}{Analysis and Conclusion}{chapter.4}% 69
+\BOOKMARK [0][-]{chapter.5}{Conclusion and future work}{}% 70
+\BOOKMARK [1][-]{section.5.1}{Main Contributions}{chapter.5}% 71
+\BOOKMARK [2][-]{subsection.5.1.1}{Hardware}{section.5.1}% 72
+\BOOKMARK [2][-]{subsection.5.1.2}{Software system}{section.5.1}% 73
+\BOOKMARK [2][-]{subsection.5.1.3}{Data sender}{section.5.1}% 74
+\BOOKMARK [2][-]{subsection.5.1.4}{Dual-feed data handler}{section.5.1}% 75
+\BOOKMARK [2][-]{subsection.5.1.5}{Receiver}{section.5.1}% 76
+\BOOKMARK [1][-]{section.5.2}{Challenges}{chapter.5}% 77
+\BOOKMARK [1][-]{section.5.3}{Future work}{chapter.5}% 78
+\BOOKMARK [0][-]{appendix.A}{Definition dispersion parameter \040of Gamma distribution}{}% 79
+\BOOKMARK [0][-]{appendix.B}{BPMN 2.0 notations}{}% 80
+\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 81
+\BOOKMARK [0][-]{appendix.D}{Code}{}% 82
+\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 83
