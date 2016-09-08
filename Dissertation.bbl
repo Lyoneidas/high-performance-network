@@ -51,6 +51,11 @@ Arndt, R., Beukema, B., Craddock, D., Gregg, T., Schmidt, D. \harvardand\ Walk,
   queue pair emulation for multiple logical ports on a single physical port'.
 \newblock US Patent App. 10/626,988.
 
+\harvarditem{Balasubramanian}{1984}{balasubramanian1984maximum}
+Balasubramanian, V.  \harvardyearleft 1984\harvardyearright , `Maximum entropy
+  principle', {\em Journal of the American Society for Information Science}
+  {\bf 35}(3),~153--153.
+
 \harvarditem{Bedeir}{2010}{bedeir2010building}
 Bedeir, T.  \harvardyearleft 2010\harvardyearright , Building an rdma-capable
   application with ib verbs, Technical report, Technical report, http://www.
@@ -68,10 +73,10 @@ Boyd, W.~T., Joseph, D.~J., Ko, M.~A. \harvardand\ Recio, R.~J.
   enabled network adapters'.
 \newblock US Patent 7,299,266.
 
-\harvarditem{Bradbury}{n.d.}{rasppiconfig}
-Bradbury, A.  \harvardyearleft n.d.\harvardyearright , `Raspberry pi spi',
+\harvarditem{Bradbury}{Accessed July 2, 2016}{rasppiconfig}
+Bradbury, A.  \harvardyearleft Accessed July 2, 2016\harvardyearright ,
+  `Raspberry pi spi',
   \url{https://www.raspberrypi.org/documentation/configuration/raspi-config.md}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Brook}{2015}{brook2015low}
 Brook, A.  \harvardyearleft 2015\harvardyearright , `Low-latency distributed
@@ -117,21 +122,15 @@ Chordia, T., Goyal, A., Lehmann, B.~N. \harvardand\ Saar, G.  \harvardyearleft
 Chu, P.~P.  \harvardyearleft 2011\harvardyearright , {\em FPGA prototyping by
   VHDL examples: Xilinx Spartan-3 version}, John Wiley \& Sons.
 
-\harvarditem{Cisco}{n.d.}{ciscoWhitePaper}
-Cisco  \harvardyearleft n.d.\harvardyearright , `The next generation trading
-  infrasturcture',
+\harvarditem{Cisco}{Accessed July 2, 2016}{ciscoWhitePaper}
+Cisco  \harvardyearleft Accessed July 2, 2016\harvardyearright , `The next
+  generation trading infrasturcture',
   \url{http://www.cisco.com/c/dam/en/us/products/collateral/switches/nexus-3000-series-switches/white_paper_c11-720080.pdf}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Clos}{1953}{clos1953study}
 Clos, C.  \harvardyearleft 1953\harvardyearright , `A study of non-blocking
   switching networks', {\em Bell System Technical Journal} {\bf
   32}(2),~406--424.
-
-\harvarditem{corp.}{n.d.}{realvnc}
-corp., R.  \harvardyearleft n.d.\harvardyearright , `Realvnc on raspberry pi',
-  \url{https://www.realvnc.com/docs/raspberry-pi.html}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem[Cox et~al.]{Cox, Cox, Boardman, Johnston, Scott \harvardand\
   O’brien}{2014}{cox2014iridis}
@@ -140,11 +139,10 @@ Cox, S.~J., Cox, J.~T., Boardman, R.~P., Johnston, S.~J., Scott, M.
   `Iridis-pi: a low-cost, compact demonstration cluster', {\em Cluster
   Computing} {\bf 17}(2),~349--358.
 
-\harvarditem{D-link}{n.d.}{dlink}
-D-link, T.  \harvardyearleft n.d.\harvardyearright , `D-link usb to gb ethernet
-  port',
+\harvarditem{D-link}{Accessed July 2, 2016}{dlink}
+D-link, T.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `D-link
+  usb to gb ethernet port',
   \url{http://www.dlink.com/uk/en/-/media/consumer_products/dub/dub-1312/datasheet/dub_1312_datasheet_en.pdf}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Darema}{2001}{darema2001spmd}
 Darema, F.  \harvardyearleft 2001\harvardyearright , The spmd model: Past,
@@ -280,11 +278,10 @@ Jain, S., Vaibhav, A. \harvardand\ Goyal, L.  \harvardyearleft
   through e-mail, {\em in} `Optimization, Reliabilty, and Information
   Technology (ICROIT), 2014 International Conference on', IEEE, pp.~277--280.
 
-\harvarditem{Jain}{n.d.}{ibm2011highfrequency}
-Jain, V.  \harvardyearleft n.d.\harvardyearright , `A low-latency solution for
-  high frequency trading from ibm and mellanox',
+\harvarditem{Jain}{Accessed July 2, 2016}{ibm2011highfrequency}
+Jain, V.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `A
+  low-latency solution for high frequency trading from ibm and mellanox',
   \url{http://www.mellanox.com/pdf/whitepapers/Low-Latency-Solution-for-High-Frequency-Trading-from-IBM-and-Mellanox.pdf}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem[Jiang et~al.]{Jiang, Liu, Jin, Panda, Buntinas, Thakur
   \harvardand\ Gropp}{2004}{jiang2004efficient}
@@ -308,6 +305,10 @@ Junger, A., Moritz, R., Lueders, U., Thuss, W., Elbracht, B., Haensel, J.
   data transmission and a transmission and reception device therefor'.
 \newblock US Patent 7,203,776.
 
+\harvarditem{Kapur}{1994}{kapur1994measures}
+Kapur, J.~N.  \harvardyearleft 1994\harvardyearright , {\em Measures of
+  information and their applications}, Wiley-Interscience.
+
 \harvarditem[Kashyap et~al.]{Kashyap, Neal, Pfister \harvardand\
   Recio}{2006}{kashyap2006queue}
 Kashyap, V., Neal, D.~M., Pfister, G.~F. \harvardand\ Recio, R.~J.
@@ -315,11 +316,10 @@ Kashyap, V., Neal, D.~M., Pfister, G.~F. \harvardand\ Recio, R.~J.
   fabrics'.
 \newblock US Patent 7,116,673.
 
-\harvarditem{Kendall}{n.d.}{kendall_2016}
-Kendall, W.  \harvardyearleft n.d.\harvardyearright , `Mpi tutorial
-  introduction · mpi tutorial',
+\harvarditem{Kendall}{Accessed July 2, 2016}{kendall_2016}
+Kendall, W.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Mpi
+  tutorial introduction · mpi tutorial',
   \url{http://mpitutorial.com/tutorials/mpi-introduction/}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Kiepert}{2013}{kiepert2013creating}
 Kiepert, J.  \harvardyearleft 2013\harvardyearright , `Creating a raspberry
@@ -341,10 +341,10 @@ Kunz, W.~E. \harvardand\ McCamey, A.  \harvardyearleft 1999\harvardyearright ,
   conditioning for high speed networks'.
 \newblock US Patent 5,971,813.
 
-\harvarditem{Laumonier}{n.d.}{htfbackyard}
-Laumonier, A.  \harvardyearleft n.d.\harvardyearright , `Hft in my backyard',
+\harvarditem{Laumonier}{Accessed July 2, 2016}{htfbackyard}
+Laumonier, A.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Hft
+  in my backyard',
   \url{https://sniperinmahwah.wordpress.com/2014/09/22/hft-in-my-backyard-part-i/}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Le}{2009}{le2009automated}
 Le, D.  \harvardyearleft 2009\harvardyearright , `Automated trading system'.
@@ -431,37 +431,24 @@ Morris, G.~W., Thomas, D.~B. \harvardand\ Luk, W.  \harvardyearleft
 Morrison, D.~F.  \harvardyearleft 1990\harvardyearright , `Multivariate
   statistical methods. 3', {\em New York, NY. Mc} .
 
-\harvarditem{MPI-CH}{n.d.}{mpich_doc_adi3}
-MPI-CH  \harvardyearleft n.d.\harvardyearright , `Mpich documentation',
+\harvarditem{MPI-CH}{Accessed July 2, 2016}{mpich_doc_adi3}
+MPI-CH  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Mpich
+  documentation',
   \url{https://wiki.mpich.org/mpich/index.php/CH3_And_Channels}.
-\newblock Accessed July 2, 2016.
 
-\harvarditem{Org}{n.d.{\em a}}{mpich_doc}
-Org, M.-C.  \harvardyearleft n.d.{\em a}\harvardyearright , `Mpich
-  documentation',
-  \url{http://www.mpich.org/static/docs/v3.2/www3/MPI_Init.html}.
-\newblock Accessed July 2, 2016.
-
-\harvarditem{Org.}{n.d.{\em b}}{rasppispi}
-Org., R.  \harvardyearleft n.d.{\em b}\harvardyearright , `Raspberry pi spi',
-  \url{https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md}.
-\newblock Accessed July 2, 2016.
-
-\harvarditem{org.}{n.d.{\em c}}{xtightvncserver}
-org., R.~P.  \harvardyearleft n.d.{\em c}\harvardyearright , `Vnc on raspberry
-  pi', \url{https://www.raspberrypi.org/documentation/remote-access/vnc/}.
-\newblock Accessed July 2, 2016.
-
-\harvarditem{org}{n.d.{\em d}}{mpi4py}
-org, T.~M.  \harvardyearleft n.d.{\em d}\harvardyearright , `Mpi4py
+\harvarditem{MPI4Py}{Accessed July 2, 2016}{mpi4py}
+MPI4Py, T.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Mpi4py
   documentation', \url{https://pythonhosted.org/mpi4py/usrman/index.html}.
-\newblock Accessed July 2, 2016.
 
-\harvarditem{org}{n.d.{\em e}}{scipy}
-org, T.~S.  \harvardyearleft n.d.{\em e}\harvardyearright , `Scipy
-  documentation',
-  \url{http://docs.scipy.org/doc/scipy/reference/tutorial/stats.html}.
-\newblock Accessed July 2, 2016.
+\harvarditem{Org}{Accessed July 2, 2016{\em a}}{mpich_doc}
+Org, M.-C.  \harvardyearleft Accessed July 2, 2016{\em a}\harvardyearright ,
+  `Mpich documentation',
+  \url{http://www.mpich.org/static/docs/v3.2/www3/MPI_Init.html}.
+
+\harvarditem{Org.}{Accessed July 2, 2016{\em b}}{rasppispi}
+Org., R.  \harvardyearleft Accessed July 2, 2016{\em b}\harvardyearright ,
+  `Raspberry pi spi',
+  \url{https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md}.
 
 \harvarditem[Pang et~al.]{Pang, Xie, Zhang, Zheng, Wang, Dong \harvardand\
   Suo}{2014}{pang2014th}
@@ -490,10 +477,9 @@ Pinkerton, J.  \harvardyearleft 2002\harvardyearright , `The case for rdma',
 Postel, J.  \harvardyearleft 1980\harvardyearright , User datagram protocol,
   Technical report.
 
-\harvarditem{Postel}{n.d.}{udpprotocol}
-Postel, J.  \harvardyearleft n.d.\harvardyearright , `Rfc 768 user datagram
-  protocol', \url{https://tools.ietf.org/html/rfc768}.
-\newblock Accessed July 2, 2016.
+\harvarditem{Postel}{Accessed July 2, 2016}{udpprotocol}
+Postel, J.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Rfc 768
+  user datagram protocol', \url{https://tools.ietf.org/html/rfc768}.
 
 \harvarditem{Protopopov \harvardand\
   Skjellum}{2001}{protopopov2001multithreaded}
@@ -506,11 +492,10 @@ Protopopov, B.~V. \harvardand\ Skjellum, A.  \harvardyearleft
 Recio, R.  \harvardyearleft 2003\harvardyearright , `Rdma enabled nic (rnic)
   verbs overview', {\em dated Apr} {\bf 29},~1--28.
 
-\harvarditem{register .Inc}{n.d.}{bbbrpi}
-register .Inc, T.  \harvardyearleft n.d.\harvardyearright , `Review:
-  Beagleboard beaglebone black',
+\harvarditem{register}{Accessed July 2, 2016}{bbbrpi}
+register, T.  \harvardyearleft Accessed July 2, 2016\harvardyearright ,
+  `Review: Beagleboard beaglebone black',
   \url{http://www.theregister.co.uk/2013/06/11/review_beagleboard_beaglebone_black//}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Rice}{1989}{rice1989analyzing}
 Rice, W.~R.  \harvardyearleft 1989\harvardyearright , `Analyzing tables of
@@ -538,6 +523,11 @@ Santhanaraman, G., Narravula, S. \harvardand\ Panda, D.~K.  \harvardyearleft
 Schwartz, J.~T.  \harvardyearleft 1980\harvardyearright , `Ultracomputers',
   {\em ACM Transactions on Programming Languages and Systems (TOPLAS)} {\bf
   2}(4),~484--521.
+
+\harvarditem{Scipy}{Accessed July 2, 2016}{scipy}
+Scipy, T.  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Scipy
+  documentation',
+  \url{http://docs.scipy.org/doc/scipy/reference/tutorial/stats.html}.
 
 \harvarditem{Stacy}{1962}{stacy1962generalization}
 Stacy, E.~W.  \harvardyearleft 1962\harvardyearright , `A generalization of the
@@ -579,28 +569,20 @@ Upton, E. \harvardand\ Halfacree, G.  \harvardyearleft 2012\harvardyearright ,
 Upton, E. \harvardand\ Halfacree, G.  \harvardyearleft 2014\harvardyearright ,
   {\em Raspberry Pi user guide}, John Wiley \& Sons.
 
-\harvarditem{ValentFx}{n.d.{\em a}}{logiwishbone}
-ValentFx  \harvardyearleft n.d.{\em a}\harvardyearright , `Logi pi wishbone
-  document',
+\harvarditem{ValentFx}{Accessed July 2, 2016{\em a}}{logiwishbone}
+ValentFx  \harvardyearleft Accessed July 2, 2016{\em a}\harvardyearright ,
+  `Logi pi wishbone document',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
-\newblock Accessed July 2, 2016.
 
-\harvarditem{ValentFx}{n.d.{\em b}}{skeleton}
-ValentFx, T.  \harvardyearleft n.d.{\em b}\harvardyearright , `Logi pi skeleton
-  project',
+\harvarditem{ValentFx}{Accessed July 2, 2016{\em b}}{skeleton}
+ValentFx, T.  \harvardyearleft Accessed July 2, 2016{\em b}\harvardyearright ,
+  `Logi pi skeleton project',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Skeleton_Editor_-_Project}.
-\newblock Accessed July 2, 2016.
 
-\harvarditem{ValentFx}{n.d.{\em c}}{logipimanual}
-ValentFx, T.  \harvardyearleft n.d.{\em c}\harvardyearright , `Logi pi user
-  manual', \url{http://valentfx.com/wiki/index.php?title=LOGI_Pi_User_Manual}.
-\newblock Accessed July 2, 2016.
-
-\harvarditem{ValentFx}{n.d.{\em d}}{wishbone}
-ValentFx, T.  \harvardyearleft n.d.{\em d}\harvardyearright , `Logi pi wishbone
-  hardware documentation',
+\harvarditem{ValentFx}{Accessed July 2, 2016{\em c}}{wishbone}
+ValentFx, T.  \harvardyearleft Accessed July 2, 2016{\em c}\harvardyearright ,
+  `Logi pi wishbone hardware documentation',
   \url{http://valentfx.com/wiki/index.php?title=LOGI_-_Wishbone_-_HW}.
-\newblock Accessed July 2, 2016.
 
 \harvarditem{Vl{\v{c}}ek \harvardand\ Huth}{2009}{vlvcek2009daily}
 Vl{\v{c}}ek, O. \harvardand\ Huth, R.  \harvardyearleft 2009\harvardyearright ,
@@ -612,10 +594,9 @@ Vl{\v{c}}ek, O. \harvardand\ Huth, R.  \harvardyearleft 2009\harvardyearright ,
 Vrenios, A.  \harvardyearleft 2002\harvardyearright , {\em Linux cluster
   architecture}, Sams.
 
-\harvarditem{Yahoo!}{n.d.}{financeyahoo}
-Yahoo!  \harvardyearleft n.d.\harvardyearright , `Yahoo! finance api',
-  \url{http://finance.yahoo.com/quote/API?ltr=1}.
-\newblock Accessed July 2, 2016.
+\harvarditem{Yahoo!}{Accessed July 2, 2016}{financeyahoo}
+Yahoo!  \harvardyearleft Accessed July 2, 2016\harvardyearright , `Yahoo!
+  finance api', \url{http://finance.yahoo.com/quote/API?ltr=1}.
 
 \harvarditem[Yang et~al.]{Yang, Liao, Lu, Hu, Song \harvardand\
   Su}{2011}{yang2011tianhe}

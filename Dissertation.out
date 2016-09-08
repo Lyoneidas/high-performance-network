@@ -26,7 +26,7 @@
 \BOOKMARK [1][-]{section.2.3}{RDMA verb implementation: Infiniband Verbs}{chapter.2}% 26
 \BOOKMARK [2][-]{subsection.2.3.1}{Building the Passive Side}{section.2.3}% 27
 \BOOKMARK [2][-]{subsection.2.3.2}{Conclusion}{section.2.3}% 28
-\BOOKMARK [1][-]{section.2.4}{MPI-CH}{chapter.2}% 29
+\BOOKMARK [1][-]{section.2.4}{MPI-CH: the Implementation of MPI standard}{chapter.2}% 29
 \BOOKMARK [2][-]{subsection.2.4.1}{Introduction to SPMD and MPMD}{section.2.4}% 30
 \BOOKMARK [2][-]{subsection.2.4.2}{The architecture of MPI-CH}{section.2.4}% 31
 \BOOKMARK [2][-]{subsection.2.4.3}{Conclusion}{section.2.4}% 32
@@ -78,6 +78,5 @@
 \BOOKMARK [1][-]{section.5.3}{Future work}{chapter.5}% 78
 \BOOKMARK [0][-]{appendix.A}{Definition dispersion parameter \040of Gamma distribution}{}% 79
 \BOOKMARK [0][-]{appendix.B}{BPMN 2.0 notations}{}% 80
-\BOOKMARK [0][-]{appendix.C}{Raw results output}{}% 81
+\BOOKMARK [0][-]{appendix.C}{Raw results List}{}% 81
 \BOOKMARK [0][-]{appendix.D}{Code}{}% 82
-\BOOKMARK [1][-]{section.D.1}{File: yourCodeFile.java}{appendix.D}% 83

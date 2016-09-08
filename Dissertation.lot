@@ -3,31 +3,31 @@
 \contentsline {table}{\numberline {1.2}{\ignorespaces System bottleneck break down}}{14}{table.1.2}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {2.1}{\ignorespaces Implemented Technologies}}{19}{table.2.1}
-\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{26}{table.2.2}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Average processing time for node N1}}{27}{table.2.2}
 \contentsline {table}{\numberline {2.3}{\ignorespaces Wishbone functions}}{49}{table.2.3}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Content structure of system design and implementation}}{51}{table.3.1}
 \contentsline {table}{\numberline {3.2}{\ignorespaces System Features}}{54}{table.3.2}
 \contentsline {table}{\numberline {3.3}{\ignorespaces Low-latency market data handler metrics}}{56}{table.3.3}
 \contentsline {table}{\numberline {3.4}{\ignorespaces Materials used in the experiment}}{61}{table.3.4}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Logi Pi input/output fixed variables}}{79}{table.3.5}
-\contentsline {table}{\numberline {3.6}{\ignorespaces Static module addresses}}{81}{table.3.6}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Logi Pi input/output fixed variables}}{80}{table.3.5}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Static module addresses}}{82}{table.3.6}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Experiments}}{83}{table.4.1}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Empirical metrics}}{84}{table.4.2}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Analytical metrics}}{85}{table.4.3}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Inputs for experiment 1.1}}{87}{table.4.4}
-\contentsline {table}{\numberline {4.5}{\ignorespaces Empirical metrics results for experiment 1.1}}{87}{table.4.5}
-\contentsline {table}{\numberline {4.6}{\ignorespaces Inputs for experiment 1.2}}{88}{table.4.6}
-\contentsline {table}{\numberline {4.7}{\ignorespaces Inputs for experiment 1.3}}{89}{table.4.7}
-\contentsline {table}{\numberline {4.8}{\ignorespaces Inputs for experiment 2.1}}{91}{table.4.8}
-\contentsline {table}{\numberline {4.9}{\ignorespaces Empirical metrics results for experiment 2.1}}{92}{table.4.9}
-\contentsline {table}{\numberline {4.10}{\ignorespaces Inputs for experiment 2.2}}{93}{table.4.10}
-\contentsline {table}{\numberline {4.11}{\ignorespaces Inputs for experiment 2.3}}{94}{table.4.11}
-\contentsline {table}{\numberline {4.12}{\ignorespaces Empirical results for experiment 2.3}}{94}{table.4.12}
-\contentsline {table}{\numberline {4.13}{\ignorespaces Inputs for experiment 4.2}}{99}{table.4.13}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Experiments}}{84}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Empirical metrics}}{85}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Analytical metrics}}{86}{table.4.3}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Inputs for experiment 1.1}}{88}{table.4.4}
+\contentsline {table}{\numberline {4.5}{\ignorespaces Empirical metrics results for experiment 1.1}}{88}{table.4.5}
+\contentsline {table}{\numberline {4.6}{\ignorespaces Inputs for experiment 1.2}}{89}{table.4.6}
+\contentsline {table}{\numberline {4.7}{\ignorespaces Inputs for experiment 1.3}}{90}{table.4.7}
+\contentsline {table}{\numberline {4.8}{\ignorespaces Inputs for experiment 2.1}}{92}{table.4.8}
+\contentsline {table}{\numberline {4.9}{\ignorespaces Empirical metrics results for experiment 2.1}}{93}{table.4.9}
+\contentsline {table}{\numberline {4.10}{\ignorespaces Inputs for experiment 2.2}}{94}{table.4.10}
+\contentsline {table}{\numberline {4.11}{\ignorespaces Inputs for experiment 2.3}}{95}{table.4.11}
+\contentsline {table}{\numberline {4.12}{\ignorespaces Empirical results for experiment 2.3}}{95}{table.4.12}
+\contentsline {table}{\numberline {4.13}{\ignorespaces Inputs for experiment 4.2}}{100}{table.4.13}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Aspects in this chapter}}{102}{table.5.1}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Aspects in this chapter}}{103}{table.5.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
